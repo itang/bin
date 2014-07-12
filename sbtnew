@@ -1,0 +1,193 @@
+#!/bin/bash
+
+#-----------------------------------------------------------------------------
+# Modified By itang
+#-----------------------------------------------------------------------------
+
+## Origin info
+#------------------------------------------------------------------------------
+# Name:    sbtmkdirs
+# Purpose: Create an SBT project directory structure with a few simple options.
+# Author:  Alvin Alexander, http://alvinalexander.com
+# Info:    http://alvinalexander.com/sbtmkdirs
+# License: Creative Commons Attribution-ShareAlike 2.5 Generic
+#          http://creativecommons.org/licenses/by-sa/2.5/
+#------------------------------------------------------------------------------
+##
+declare -r TRUE=0
+declare -r FALSE=1
+
+ScalaVersion=2.11.1
+SbtVersion=0.13.5
+SbteclipseVersion=2.5.0
+SbtupdatesVersion=0.1.6
+SbtassemblyVersion=0.11.2
+ScalatestVersion=2.2.0
+JavaVersion=1.7
+ScalazVersion=7.0.6
+ShapelessVersion=2.0.0
+
+
+# takes a string and returns true if it seems to represent "yes"
+function isYes() {
+    local x=$1
+    [ $x = "y" ] && echo $TRUE; return
+    [ $x = "Y" ] && echo $TRUE; return
+    [ $x = "yes" ] && echo $TRUE; return
+    echo $FALSE
+}
+
+echo "This script creates an SBT project directory beneath the current directory."
+
+while [ $TRUE ]; do
+
+    echo ""
+    read -p "Directory/Project Name (MyFirstProject): " directoryName
+    directoryName=${directoryName:-MyFirstProject}
+
+    read -p "Create .gitignore File? (Y/n): " createGitignore
+    createGitignore=${createGitignore:-y}
+
+    read -p "Create README.md File? (Y/n): " createReadme
+    createReadme=${createReadme:-y}
+
+    echo ""
+    echo "-----------------------------------------------"
+    echo "Directory/Project Name: $directoryName"
+    echo "Create .gitignore File?: $createGitignore"
+    echo "Create README.md File?: $createReadme"
+    echo "-----------------------------------------------"
+    read -p "Create Project? (Y/n): " createProject
+    createProject=${createProject:-y}
+    [ "$(isYes $createProject)" = "$TRUE" ] && break
+
+done
+
+mkdir -p ${directoryName}/src/{main,test}/{java,resources,scala}
+mkdir ${directoryName}/lib ${directoryName}/project ${directoryName}/target
+
+# optional
+#mkdir -p ${directoryName}/src/main/config
+#mkdir -p ${directoryName}/src/{main,test}/{filters,assembly}
+#mkdir -p ${directoryName}/src/site
+
+#---------------------------------
+# create an initial build.sbt file
+#---------------------------------
+echo "import AssemblyKeys._
+
+name := \"$directoryName\"
+
+version := \"1.0-SNAPSHOT\"
+
+scalaVersion := \"${ScalaVersion}\"
+
+javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\")
+
+scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\")
+
+libraryDependencies ++= Seq(
+  //\"org.brianmckenna\" % \"wartremover_2.10\" % \"0.3\",
+  \"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
+  \"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
+  \"org.scalatest\" % \"scalatest_2.11\" % \"${ScalatestVersion}\" % \"test\"
+)
+
+resolvers ++= Seq(
+  Resolver.sonatypeRepo(\"snapshots\"),
+  Resolver.sonatypeRepo(\"releases\")
+)
+
+incOptions := incOptions.value.withNameHashing(true)
+
+assemblySettings
+
+mainClass in assembly := Some(\"example.Example\")
+" > ${directoryName}/build.sbt
+
+#-----------------
+# init plugins.sbt
+#-----------------
+echo "addSbtPlugin(\"com.typesafe.sbteclipse\" % \"sbteclipse-plugin\" % \"${SbteclipseVersion}\")
+
+addSbtPlugin(\"com.timushev.sbt\" % \"sbt-updates\" % \"${SbtupdatesVersion}\")
+
+addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")" > ${directoryName}/project/plugins.sbt
+
+#-----------------
+# init build.properties
+#-----------------
+echo "sbt.version=${SbtVersion}" > ${directoryName}/project/build.properties
+
+#----------------------------------
+# init src/main/scala/example.scala
+#----------------------------------
+echo "package example
+
+object Example {
+  def echo(s: String) = s
+  def main(args: Array[String]): Unit = {
+    println(\"Hello,\" + echo(\"World!\"))
+
+    //scalaz
+    {
+      import scalaz._
+      import std.option._
+      import std.list._
+      val ret = Apply[Option].apply2(some(1), some(2)) { (a, b) => a + b }
+      assert(ret == Some(3))
+    }
+
+    //shapeless
+    {
+      import shapeless._
+      import poly._
+      // choose is a function from Sets to Options with no type specific cases
+      object choose extends (Set ~> Option) {
+        def apply[T](s: Set[T]) = s.headOption
+      }
+
+      assert(choose(Set(1, 2, 3)) == Some(1))
+    }
+  }
+}
+" > ${directoryName}/src/main/scala/example.scala
+
+#----------------------------------
+# init src/test/scala/example_test.scala
+#----------------------------------
+echo "package example
+
+import org.scalatest.FunSpec
+
+class ExampleSpec extends FunSpec {
+
+  describe(\"echo\") {
+    it(\"echo return the same from args\") {
+      assert(Example.echo(\"hello\") === \"hello\")
+    }
+  }
+}" >  ${directoryName}/src/test/scala/example_test.scala
+#------------------------------
+# create .gitignore, if desired
+#------------------------------
+if [ "$(isYes $createGitignore)" = "$TRUE" ]; then
+    echo "bin/
+project/project/
+target/
+.cache
+.classpath
+.project
+.settings" > ${directoryName}/.gitignore
+fi
+
+#-----------------------------
+# create README.me, if desired
+#-----------------------------
+if [ "$(isYes $createReadme)" = "$TRUE" ]; then
+    touch ${directoryName}/README.md
+fi
+
+echo ""
+echo "Project created. See the following URL for build.sbt examples:"
+echo "http://alvinalexander.com/scala/sbt-syntax-examples"
