@@ -7,8 +7,11 @@ sudo apt-get install curl
 # git
 sudo apt-get install git
 
-#
+# xclip
 sudo apt-get install xclip
+
+# cloc
+sudo apt-get install cloc
 
 # SBT
 echo "install sbt"
