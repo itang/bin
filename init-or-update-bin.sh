@@ -13,6 +13,9 @@ sudo apt-get install xclip
 # cloc
 sudo apt-get install cloc
 
+# tree
+sudo apt-get install tree
+
 # SBT
 echo "install sbt"
 curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/bin/sbt && chmod 0755 ~/bin/sbt
