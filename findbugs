@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mvn findbugs:findbugs && mvn findbugs:gui
+
