@@ -17,7 +17,7 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.11.1
+ScalaVersion=2.11.2
 SbtVersion=0.13.5
 SbteclipseVersion=2.5.0
 SbtupdatesVersion=0.1.6
