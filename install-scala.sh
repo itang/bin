@@ -1,13 +1,15 @@
 #!/bin/bash
 
+SCALA_VERSION=2.11.2
 (
 cd ~/Downloads
-rm scala-2.11.1.tgz
-wget http://downloads.typesafe.com/scala/2.11.1/scala-2.11.1.tgz
-tar zxvf scala-2.11.1.tgz -C ~/dev-env
+rm scala-${SCALA_VERSION}.tgz
+wget http://downloads.typesafe.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.tgz
+tar zxvf scala-${SCALA_VERSION}.tgz -C ~/dev-env
 
 cd ~/dev-env
-ln -s scala-2.11.1 scala
+rm scala
+ln -s scala-${SCALA_VERSION} scala
 source ~/.profile
 scala -version
 )
