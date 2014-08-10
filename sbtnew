@@ -26,6 +26,7 @@ ScalatestVersion=2.2.0
 JavaVersion=1.7
 ScalazVersion=7.0.6
 ShapelessVersion=2.0.0
+ScatangVersion=0.1
 
 
 # takes a string and returns true if it seems to represent "yes"
@@ -90,7 +91,7 @@ libraryDependencies ++= Seq(
   //\"org.brianmckenna\" % \"wartremover_2.10\" % \"0.3\",
   \"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
   \"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
-  \"me.itang\" %% \"scatang\" % \"0.1.0-SNAPSHOT\",
+  \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
   \"org.scalatest\" % \"scalatest_2.11\" % \"${ScalatestVersion}\" % \"test\"
 )
 
@@ -106,6 +107,9 @@ incOptions := incOptions.value.withNameHashing(true)
 assemblySettings
 
 mainClass in assembly := Some(\"example.Example\")
+
+initialCommands in console := \"import scatang._;import scatang.string._\"
+
 " > ${directoryName}/build.sbt
 
 #-----------------
