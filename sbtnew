@@ -24,10 +24,9 @@ SbtupdatesVersion=0.1.6
 SbtassemblyVersion=0.11.2
 ScalatestVersion=2.2.0
 JavaVersion=1.7
-ScalazVersion=7.0.6
+ScalazVersion=7.1.0
 ShapelessVersion=2.0.0
 ScatangVersion=0.1
-
 
 # takes a string and returns true if it seems to represent "yes"
 function isYes() {
@@ -208,3 +207,12 @@ fi
 echo ""
 echo "Project created. See the following URL for build.sbt examples:"
 echo "http://alvinalexander.com/scala/sbt-syntax-examples"
+
+echo "cd ${directoryName}"
+cd ${directoryName}
+
+echo "eclipse with-source=true"
+sbt 'eclipse with-source=true';
+
+echo "enter sbt:"
+sbt
