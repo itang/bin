@@ -1,23 +1,10 @@
 #!/bin/bash
 
-# curl
-echo "install curl"
-sudo apt-get install curl
+sudo apt-get update
 
-# git
-sudo apt-get install git
-
-# hg
-sudo apt-get install mercurial
-
-# xclip
-sudo apt-get install xclip
-
-# cloc
-sudo apt-get install cloc
-
-# tree
-sudo apt-get install tree
+sudo apt-get install -y --force-yes build-essential 
+sudo apt-get install -y --force-yes ubuntu-restricted-extras
+sudo apt-get install -y --force-yes wget curl git hg mercurial xclip cloc tree
 
 # SBT
 echo "install sbt"
