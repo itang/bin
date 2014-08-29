@@ -137,7 +137,10 @@ import scatang._
 object Main {
 
   def main(args: Array[String]): Unit = {
-    println(\"Hello,\" + echo(\"World!\"))
+    6.times {
+      println(\"Hello, World!\")
+    }
+  }
 }
 
 " > ${directoryName}/src/main/scala/main.scala
