@@ -4,7 +4,7 @@ sudo apt-get update
 
 sudo apt-get install -y --force-yes build-essential 
 sudo apt-get install -y --force-yes ubuntu-restricted-extras
-sudo apt-get install -y --force-yes wget curl git hg mercurial xclip cloc tree
+sudo apt-get install -y --force-yes wget curl git mercurial xclip cloc tree
 
 # SBT
 echo "install sbt"
