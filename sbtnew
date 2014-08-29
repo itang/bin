@@ -88,8 +88,8 @@ scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-
 
 libraryDependencies ++= Seq(
   //\"org.brianmckenna\" % \"wartremover_2.10\" % \"0.3\",
-  \"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
-  \"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
+  //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
+  //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
   \"org.scalatest\" % \"scalatest_2.11\" % \"${ScalatestVersion}\" % \"test\"
 )
@@ -105,7 +105,7 @@ incOptions := incOptions.value.withNameHashing(true)
 
 assemblySettings
 
-mainClass in assembly := Some(\"example.Example\")
+mainClass in assembly := Some(\"Main\")
 
 initialCommands in console := \"import scatang._;import scatang.string._\"
 
@@ -128,62 +128,37 @@ echo "sbt.version=${SbtVersion}" > ${directoryName}/project/build.properties
 #----------------------------------
 # init src/main/scala/example.scala
 #----------------------------------
-echo "package example
+echo "/**
+ * main.scala
+ */
 
-object Example {
-  def echo(s: String) = s
+import scatang._
+
+object Main {
+
   def main(args: Array[String]): Unit = {
     println(\"Hello,\" + echo(\"World!\"))
-
-    //scalaz
-    {
-      import scalaz._
-      import std.option._
-      import std.list._
-      val ret = Apply[Option].apply2(some(1), some(2)) { (a, b) => a + b }
-      assert(ret == Some(3))
-    }
-
-    //shapeless
-    {
-      import shapeless._
-      import poly._
-      // choose is a function from Sets to Options with no type specific cases
-      object choose extends (Set ~> Option) {
-        def apply[T](s: Set[T]) = s.headOption
-      }
-
-      assert(choose(Set(1, 2, 3)) == Some(1))
-    }
-    
-    //scatang
-    {
-      import scatang._
-      import scatang.string._
-      
-      6.times { i => print(i) }
-      println()
-      println(\"hello\".padRight(60, \"*\"))
-    }
-  }
 }
-" > ${directoryName}/src/main/scala/example.scala
+
+" > ${directoryName}/src/main/scala/main.scala
 
 #----------------------------------
 # init src/test/scala/example_test.scala
 #----------------------------------
-echo "package example
 
-import org.scalatest.FunSpec
+#echo "package example
+#
+#import org.scalatest.FunSpec
+#
+#class ExampleSpec extends FunSpec {
+#
+#  describe(\"echo\") {
+#    it(\"test\") {
+#      assert(\"hello\" === \"hello\")
+#    }
+#  }
+#}" >  ${directoryName}/src/test/scala/example_test.scala
 
-class ExampleSpec extends FunSpec {
-
-  describe(\"echo\") {
-    it(\"echo return the same from args\") {
-      assert(Example.echo(\"hello\") === \"hello\")
-    }
-  }
-}" >  ${directoryName}/src/test/scala/example_test.scala
 #------------------------------
 # create .gitignore, if desired
 #------------------------------
@@ -191,6 +166,7 @@ if [ "$(isYes $createGitignore)" = "$TRUE" ]; then
     echo "bin/
 project/project/
 target/
+lib/
 .cache
 .classpath
 .project
