@@ -18,11 +18,11 @@ declare -r TRUE=0
 declare -r FALSE=1
 
 ScalaVersion=2.11.2
-SbtVersion=0.13.5
+SbtVersion=0.13.6
 SbteclipseVersion=2.5.0
 SbtupdatesVersion=0.1.6
 SbtassemblyVersion=0.11.2
-ScalatestVersion=2.2.0
+ScalatestVersion=2.2.2
 JavaVersion=1.7
 ScalazVersion=7.1.0
 ShapelessVersion=2.0.0
