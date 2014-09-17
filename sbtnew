@@ -19,8 +19,6 @@ declare -r FALSE=1
 
 ScalaVersion=2.11.2
 SbtVersion=0.13.6
-SbteclipseVersion=2.5.0
-SbtupdatesVersion=0.1.6
 SbtassemblyVersion=0.11.2
 ScalatestVersion=2.2.2
 JavaVersion=1.7
@@ -114,11 +112,7 @@ initialCommands in console := \"import scatang._;import scatang.string._\"
 #-----------------
 # init plugins.sbt
 #-----------------
-echo "addSbtPlugin(\"com.typesafe.sbteclipse\" % \"sbteclipse-plugin\" % \"${SbteclipseVersion}\")
-
-addSbtPlugin(\"com.timushev.sbt\" % \"sbt-updates\" % \"${SbtupdatesVersion}\")
-
-addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")" > ${directoryName}/project/plugins.sbt
+echo "addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")" > ${directoryName}/project/plugins.sbt
 
 #-----------------
 # init build.properties
