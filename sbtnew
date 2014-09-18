@@ -20,6 +20,7 @@ declare -r FALSE=1
 ScalaVersion=2.11.2
 SbtVersion=0.13.6
 SbtassemblyVersion=0.11.2
+SbtDependencyGraph=0.7.4
 ScalatestVersion=2.2.2
 JavaVersion=1.7
 ScalazVersion=7.1.0
@@ -105,6 +106,8 @@ assemblySettings
 
 mainClass in assembly := Some(\"Main\")
 
+net.virtualvoid.sbt.graph.Plugin.graphSettings
+
 initialCommands in console := \"import scatang._;import scatang.string._\"
 
 " > ${directoryName}/build.sbt
@@ -112,7 +115,9 @@ initialCommands in console := \"import scatang._;import scatang.string._\"
 #-----------------
 # init plugins.sbt
 #-----------------
-echo "addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")" > ${directoryName}/project/plugins.sbt
+echo "addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")
+
+addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")" > ${directoryName}/project/plugins.sbt
 
 #-----------------
 # init build.properties
