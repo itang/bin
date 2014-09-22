@@ -4,14 +4,14 @@
 # Author: Paul Phillips <paulp@typesafe.com>
 
 # todo - make this dynamic
-declare -r sbt_release_version="0.13.5"
-declare -r sbt_unreleased_version="0.13.6-MSERVER-1"
+declare -r sbt_release_version="0.13.6"
+declare -r sbt_unreleased_version="0.13.6"
 declare -r buildProps="project/build.properties"
 
 declare sbt_jar sbt_dir sbt_create sbt_version
 declare scala_version sbt_explicit_version
 declare verbose noshare batch trace_level log_level
-declare sbt_saved_stty
+declare sbt_saved_stty debugUs
 
 echoerr () { echo >&2 "$@"; }
 vlog ()    { [[ -n "$verbose" ]] && echoerr "$@"; }
@@ -106,7 +106,7 @@ declare -r noshare_opts="-Dsbt.global.base=project/.sbtboot -Dsbt.boot.directory
 declare -r latest_28="2.8.2"
 declare -r latest_29="2.9.3"
 declare -r latest_210="2.10.4"
-declare -r latest_211="2.11.1"
+declare -r latest_211="2.11.2"
 
 declare -r script_path="$(get_script_path "$BASH_SOURCE")"
 declare -r script_name="${script_path##*/}"
@@ -173,9 +173,7 @@ execRunner () {
     vlog ""
   }
 
-  if [[ -n "$batch" ]]; then
-    exec </dev/null
-  fi
+  [[ -n "$batch" ]] && exec </dev/null
   exec "$@"
 }
 
@@ -220,9 +218,16 @@ options to this runner use a single dash. Any sbt command can be scheduled
 to run first by prefixing the command with --, so --warn, --error and so on
 are not special.
 
+Output filtering: if there is a file in the home directory called .sbtignore
+and this is not an interactive sbt session, the file is treated as a list of
+bash regular expressions. Output lines which match any regex are not echoed.
+One can see exactly which lines would have been suppressed by starting this
+runner with the -x option.
+
   -h | -help         print this message
   -v                 verbose operation (this runner is chattier)
   -d, -w, -q         aliases for --debug, --warn, --error (q means quiet)
+  -x                 debug this script
   -trace <level>     display stack traces with a max of <level> frames (default: -1, traces suppressed)
   -debug-inc         enable debugging log for the incremental compiler
   -no-colors         disable ANSI color codes
@@ -283,6 +288,12 @@ addSbt () {
   vlog "[addSbt] arg = '$1'"
   sbt_commands=( "${sbt_commands[@]}" "$1" )
 }
+setThisBuild () {
+  vlog "[addBuild] args = '$@'"
+  local key="$1" && shift
+  addSbt "set $key in ThisBuild := $@"
+}
+
 addScalac () {
   vlog "[addScalac] arg = '$1'"
   scalac_args=( "${scalac_args[@]}" "$1" )
@@ -321,6 +332,7 @@ process_args ()
                 -d) addSbt "--debug" && shift ;;
                 -w) addSbt "--warn" && shift ;;
                 -q) addSbt "--error" && shift ;;
+                -x) debugUs=true && shift ;;
             -trace) require_arg integer "$1" "$2" && trace_level="$2" && shift 2 ;;
               -ivy) require_arg path "$1" "$2" && addJava "-Dsbt.ivy.home=$2" && shift 2 ;;
         -no-colors) addJava "-Dsbt.log.noformat=true" && shift ;;
@@ -331,7 +343,7 @@ process_args ()
           -offline) addSbt "set offline := true" && shift ;;
         -jvm-debug) require_arg port "$1" "$2" && addDebugger "$2" && shift 2 ;;
             -batch) batch=true && shift ;;
-           -prompt) require_arg "expr" "$1" "$2" && addSbt "set shellPrompt in ThisBuild := (s => { val e = Project.extract(s) ; $2 })" && shift 2 ;;
+           -prompt) require_arg "expr" "$1" "$2" && setThisBuild shellPrompt "(s => { val e = Project.extract(s) ; $2 })" && shift 2 ;;
 
        -sbt-create) sbt_create=true && shift ;;
           -sbt-jar) require_arg path "$1" "$2" && sbt_jar="$2" && shift 2 ;;
@@ -341,8 +353,8 @@ process_args ()
    -sbt-launch-dir) require_arg path "$1" "$2" && sbt_launch_dir="$2" && shift 2 ;;
   -sbt-launch-repo) require_arg path "$1" "$2" && sbt_launch_repo="$2" && shift 2 ;;
     -scala-version) require_arg version "$1" "$2" && setScalaVersion "$2" && shift 2 ;;
-   -binary-version) require_arg version "$1" "$2" && addSbt "set scalaBinaryVersion in ThisBuild := \"$2\"" && shift 2 ;;
-       -scala-home) require_arg path "$1" "$2" && addSbt "set every scalaHome := Some(file(\"$2\"))" && shift 2 ;;
+   -binary-version) require_arg version "$1" "$2" && setThisBuild scalaBinaryVersion "\"$2\"" && shift 2 ;;
+       -scala-home) require_arg path "$1" "$2" && setThisBuild scalaHome "Some(file(\"$2\"))" && shift 2 ;;
         -java-home) require_arg path "$1" "$2" && java_cmd="$2/bin/java" && shift 2 ;;
          -sbt-opts) require_arg path "$1" "$2" && sbt_opts_file="$2" && shift 2 ;;
          -jvm-opts) require_arg path "$1" "$2" && jvm_opts_file="$2" && shift 2 ;;
@@ -395,7 +407,7 @@ set_sbt_version
 setTraceLevel() {
   case "$sbt_version" in
     "0.7."* | "0.10."* | "0.11."* ) echoerr "Cannot set trace level in sbt version $sbt_version" ;;
-                                 *) addSbt "set every traceLevel := $trace_level" ;;
+                                 *) setThisBuild traceLevel $trace_level ;;
   esac
 }
 
@@ -468,10 +480,46 @@ fi
 # traceLevel is 0.12+
 [[ -n "$trace_level" ]] && setTraceLevel
 
+main () {
+  execRunner "$java_cmd" \
+    "${extra_jvm_opts[@]}" \
+    "${java_args[@]}" \
+    -jar "$sbt_jar" \
+    "${sbt_commands[@]}" \
+    "${residual_args[@]}"
+}
+
+# sbt inserts this string on certain lines when formatting is enabled:
+#   val OverwriteLine = "\r\u001BM\u001B[2K"
+# ...in order not to spam the console with a million "Resolving" lines.
+# Unfortunately that makes it that much harder to work with when
+# we're not going to print those lines anyway. We strip that bit of
+# line noise, but leave the other codes to preserve color.
+mainFiltered () {
+  local ansiOverwrite='\r\x1BM\x1B[2K'
+  local excludeRegex=$(egrep -v '^#|^$' ~/.sbtignore | paste -sd'|' -)
+
+  echoLine () {
+    local line="$1"
+    local line1="$(echo "$line" | sed -r 's/\r\x1BM\x1B\[2K//g')"       # This strips the OverwriteLine code.
+    local line2="$(echo "$line1" | sed -r 's/\x1B\[[0-9;]*[JKmsu]//g')" # This strips all codes - we test regexes against this.
+
+    if [[ $line2 =~ $excludeRegex ]]; then
+      [[ -n $debugUs ]] && echo "[X] $line1"
+    else
+      [[ -n $debugUs ]] && echo "    $line1" || echo "$line1"
+    fi
+  }
+
+  echoLine "Starting sbt with output filtering enabled."
+  main | while read -r line; do echoLine "$line"; done
+}
+
+# Only filter if there's a filter file and we don't see a known interactive command.
+# Obviously this is super ad hoc but I don't know how to improve on it. Testing whether
+# stdin is a terminal is useless because most of my use cases for this filtering are
+# exactly when I'm at a terminal, running sbt non-interactively.
+shouldFilter () { [[ -f ~/.sbtignore ]] && ! egrep -q '\b(shell|console|consoleProject)\b' <<<"${residual_args[@]}"; }
+
 # run sbt
-execRunner "$java_cmd" \
-  "${extra_jvm_opts[@]}" \
-  "${java_args[@]}" \
-  -jar "$sbt_jar" \
-  "${sbt_commands[@]}" \
-  "${residual_args[@]}"
+if shouldFilter; then mainFiltered; else main; fi
