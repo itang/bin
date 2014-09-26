@@ -2,8 +2,9 @@
 
 go version;
 
-VERSION=1.3.1
-URL=http://golangtc.com/static/go/go${VERSION}.linux-amd64.tar.gz
+VERSION=1.3.2
+URL=https://storage.googleapis.com/golang/go${VERSION}.linux-amd64.tar.gz
+#URL=http://golangtc.com/static/go/go${VERSION}.linux-amd64.tar.gz
 
 echo "download from ${URL}"
 
