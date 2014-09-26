@@ -3,7 +3,13 @@
 
 VERSION=0.131.0
 
+function prepare() {
+  npm config set python /usr/bin/python2 -g
+}
+
 function binary() {
+  prepare
+
   (
   rm atom-amd64.deb
 
@@ -15,6 +21,8 @@ function binary() {
 }
 
 function build() {
+ prepare
+ 
  sudo apt-get install build-essential git libgnome-keyring-dev
  (
  cd /tmp
@@ -30,3 +38,4 @@ function build() {
 }
 
 build
+
