@@ -1,15 +1,13 @@
 #!/bin/bash
 
 
-VERSION=0.131.0
+VERSION=0.132.0
 
 function prepare() {
   npm config set python /usr/bin/python2 -g
 }
 
 function binary() {
-  prepare
-
   (
   rm atom-amd64.deb
 
@@ -37,5 +35,8 @@ function build() {
  # atom
 }
 
-build
+case "$1" in
+	build) build;;
+	*) binary;;
+esac
 

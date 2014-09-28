@@ -23,4 +23,15 @@ xz -d clang+llvm-3.5.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz &&
 tar -xvf clang+llvm-3.5.0-x86_64-linux-gnu-ubuntu-14.04.tar -C ~/dev-env/ 
 ln -s ~/dev-env/clang+llvm-3.5.0-x86_64-linux-gnu ~/dev-env/clang 
 # add $LLVM_HOME/bin to $PATH
+
+# http://www.hboehm.info/gc/gc_source/gc-7.4.2.tar.gz
+git clone git://github.com/ivmai/libatomic_ops.git
+git clone git://github.com/ivmai/bdwgc.git
+ln -s  libatomic_ops bdwgc/libatomic_ops
+cd bdwgc
+autoreconf -vif
+automake --add-missing
+./configure
+make && make install
+
 )
