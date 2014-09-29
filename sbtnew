@@ -81,7 +81,7 @@ version := \"1.0-SNAPSHOT\"
 
 scalaVersion := \"${ScalaVersion}\"
 
-javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\")
+javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\", \"-Xlint\")
 
 scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\")
 
