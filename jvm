@@ -3,7 +3,8 @@
 function to_java() {
   version=$1
   cd ~/dev-env
-  rm java && ln -s "java${version}" java
+  rm java
+  ln -s "java${version}" java
   java -version
 }
 
