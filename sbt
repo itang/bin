@@ -4,8 +4,8 @@
 # Author: Paul Phillips <paulp@typesafe.com>
 
 # todo - make this dynamic
-declare -r sbt_release_version="0.13.6"
-declare -r sbt_unreleased_version="0.13.6"
+declare -r sbt_release_version="0.13.7"
+declare -r sbt_unreleased_version="0.13.8-M1"
 declare -r buildProps="project/build.properties"
 
 declare sbt_jar sbt_dir sbt_create sbt_version
@@ -106,7 +106,7 @@ declare -r noshare_opts="-Dsbt.global.base=project/.sbtboot -Dsbt.boot.directory
 declare -r latest_28="2.8.2"
 declare -r latest_29="2.9.3"
 declare -r latest_210="2.10.4"
-declare -r latest_211="2.11.2"
+declare -r latest_211="2.11.4"
 
 declare -r script_path="$(get_script_path "$BASH_SOURCE")"
 declare -r script_name="${script_path##*/}"
