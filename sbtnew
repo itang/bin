@@ -18,8 +18,8 @@ declare -r TRUE=0
 declare -r FALSE=1
 
 ScalaVersion=2.11.4
-SbtVersion=0.13.6
-SbtassemblyVersion=0.11.2
+SbtVersion=0.13.7
+SbtassemblyVersion=0.12.0
 SbtDependencyGraph=0.7.4
 ScalatestVersion=2.2.2
 JavaVersion=1.7
@@ -73,9 +73,7 @@ mkdir ${directoryName}/lib ${directoryName}/project ${directoryName}/target
 #---------------------------------
 # create an initial build.sbt file
 #---------------------------------
-echo "import AssemblyKeys._
-
-name := \"$directoryName\"
+echo "name := \"$directoryName\"
 
 version := \"1.0-SNAPSHOT\"
 
@@ -86,11 +84,10 @@ javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", 
 scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\")
 
 libraryDependencies ++= Seq(
-  //\"org.brianmckenna\" % \"wartremover_2.10\" % \"0.3\",
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
-  \"org.scalatest\" % \"scalatest_2.11\" % \"${ScalatestVersion}\" % \"test\"
+  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\"
 )
 
 resolvers ++= Seq(
@@ -101,8 +98,6 @@ resolvers ++= Seq(
 resolvers += \"itang's repos\" at \"http://itang.github.io/maven-repo\"
 
 incOptions := incOptions.value.withNameHashing(true)
-
-assemblySettings
 
 mainClass in assembly := Some(\"Main\")
 
@@ -172,7 +167,9 @@ lib/
 .cache
 .classpath
 .project
-.settings" > ${directoryName}/.gitignore
+.settings
+
+.svn" > ${directoryName}/.gitignore
 fi
 
 #-----------------------------
