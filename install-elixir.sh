@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0.1
+VERSION=1.0.2
 (
 cd /tmp
 rm elixir.zip
@@ -8,12 +8,11 @@ rm elixir.zip
 wget https://github.com/elixir-lang/elixir/archive/v${VERSION}.zip -O elixir.zip &&
 rm ~/dev-env/elixir
 
-unzip elixir.zip -d ~/dev-env/ && 
+unzip elixir.zip -d ~/dev-env/ &&
 cd ~/dev-env &&
 ln -s elixir-${VERSION} elixir &&
 cd elixir &&
-make 
+make
 
 iex -v
 )
-
