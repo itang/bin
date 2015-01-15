@@ -17,7 +17,7 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.11.4
+ScalaVersion=2.11.5
 SbtVersion=0.13.7
 SbtassemblyVersion=0.12.0
 SbtDependencyGraph=0.7.4
@@ -81,7 +81,7 @@ scalaVersion := \"${ScalaVersion}\"
 
 javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\", \"-Xlint\")
 
-scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\")
+scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", \"-YclasspathImpl:flat\")
 
 libraryDependencies ++= Seq(
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
