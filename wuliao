@@ -1,15 +1,28 @@
-#!/bin/bash lein-exec
+#!/usr/bin/env ruby
 
-(require '[clojure.java.browse :as browse])
+def browser(link)
+  if RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
+    system "start #{link}"
+  elsif RbConfig::CONFIG['host_os'] =~ /darwin/
+    system "open #{link}"
+  elsif RbConfig::CONFIG['host_os'] =~ /linux|bsd/
+    system "xdg-open #{link}"
+  end
+end
 
-(def sees ["https://twitter.com/"
-           "http://www.reddit.com/r/rust"
-           "https://github.com/stars?direction=desc&sort=updated"
-           "http://getprismatic.com/"
-           "http://www.douban.com"
-           "http://www.weibo.com"
-           "http://www.deftype.com"
-           "http://bbs.szhome.com/30017.html"])
+if __FILE__ == $0
+  wls = ["https://twitter.com/",
+    "http://www.reddit.com/r/rust",
+    "https://github.com/stars?direction=desc&sort=updated",
+    "http://getprismatic.com/",
+    "http://www.douban.com",
+    "http://www.weibo.com",
+    "http://www.deftype.com",
+    "http://bbs.szhome.com/30017.html"]
 
-(doseq [see (reverse sees)]
-  (browse/browse-url see))
+    wls.reverse.each do |wl|
+      browser(wl)
+    end
+
+    exit 0
+end
