@@ -97,7 +97,7 @@ resolvers ++= Seq(
   Resolver.sonatypeRepo(\"releases\")
 )
 
-resolvers += \"itang's repos\" at \"http://itang.github.io/maven-repo\"
+resolvers += \"itang's repos\" at \"http://120.24.68.174:8081/nexus/content/groups/public\"
 
 incOptions := incOptions.value.withNameHashing(true)
 
