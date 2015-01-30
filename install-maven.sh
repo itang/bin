@@ -1,4 +1,4 @@
-VERSION=3.2.3
+VERSION=3.2.5
 
 (cd ~/tmp
 rm apache-maven-${VERSION}-bin.tar.gz
