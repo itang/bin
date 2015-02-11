@@ -16,7 +16,7 @@ end
 if __FILE__ == $0
   ["https://twitter.com/",
     "http://www.reddit.com/r/rust",
-    "https://app.astralapp.com/dashboard",
+    # "https://app.astralapp.com/dashboard",
     "https://github.com/stars?direction=desc&sort=updated",
     "http://getprismatic.com/",
     "http://www.douban.com",
