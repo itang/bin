@@ -89,7 +89,8 @@ libraryDependencies ++= Seq(
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
-  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\"
+  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\",
+  \"com.lihaoyi\" %% \"ammonite-repl\" % \"0.2.4\" % \"test\"
 )
 
 resolvers ++= Seq(
@@ -107,7 +108,7 @@ net.virtualvoid.sbt.graph.Plugin.graphSettings
 
 EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
 
-initialCommands in console := \"import scatang._;import scatang.string._\"
+initialCommands in console := \"import scatang._;import scatang.string._;ammonite.repl.Repl.main(null)\"
 
 publishTo := {
   val nexus = \"http://120.24.68.174:8081/nexus/content/repositories\"
