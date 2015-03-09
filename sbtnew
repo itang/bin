@@ -26,6 +26,7 @@ JavaVersion=1.7
 ScalazVersion=7.1.0
 ShapelessVersion=2.0.0
 ScatangVersion=0.1
+AmmoniteVersion=0.2.6
 
 # takes a string and returns true if it seems to represent "yes"
 function isYes() {
@@ -90,7 +91,7 @@ libraryDependencies ++= Seq(
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
   \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\",
-  \"com.lihaoyi\" %% \"ammonite-repl\" % \"0.2.4\" % \"test\"
+  \"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"
 )
 
 resolvers ++= Seq(
