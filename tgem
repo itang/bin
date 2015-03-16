@@ -1,0 +1,11 @@
+#!/bin/bash
+
+gem sources --remove https://rubygems.org/
+gem sources -a https://ruby.taobao.org/
+gem sources -l
+
+#gem $*
+
+#gem sources --remove https://ruby.taobao.org/
+#gem sources -a https://rubygems.org/
+#gem sources -l
