@@ -58,16 +58,23 @@ puts "Hello, World"
     write_file!(mc, "#{pname}/src/main.cr")
   end
 
+  def write_readme!()
+    rmc = <<-eos
+# #{pname}
+
+eos
+
+    write_file!(rmc, "#{pname}/README.md")
+  end
+
   def generate!()
     system "mkdir -p #{pname}/src"
 
     write_rakefile!()
-
     write_projectfile!()
-
     write_gitignore!()
-
     write_main_cr!()
+    write_readme!()
   end
 
   private
