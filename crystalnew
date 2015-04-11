@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+class ProjectWriter
+
+  attr_reader :pname
+
+  def initialize(name)
+    @pname = name
+  end
+
+  def write_rakefile!()
+    rfc = %q(file "src/main.cr"
+
+task :update do 
+  sh 'crystal deps'
+end
+
+file :main => %w[src/main.cr] do |t|
+  puts "#{t.name} #{t.prerequisites.join(' ')}"
+  sh 'crystal build src/main.cr'
+end
+
+task :build => %w[main]
+
+task :run => %w[build] do 
+  sh './main'
+end
+)
+    write_file!(rfc, "#{pname}/Rakefile")
+  end
+
+  def write_projectfile!()
+    pfc = <<-eos
+#deps do
+#  github "manastech/frank"
+#end
+  eos
+
+    write_file!(pfc, "#{pname}/Projectfile")
+  end
+
+  def write_gitignore!()
+    gic = <<-eos
+.crystal/
+libs/
+.deps/
+main
+  eos
+
+    write_file!(gic, "#{pname}/.gitignore")
+  end 
+
+  def write_main_cr!()
+    mc = <<-eos
+puts "Hello, World"
+    eos
+
+    write_file!(mc, "#{pname}/src/main.cr")
+  end
+
+  def generate!()
+    system "mkdir -p #{pname}/src"
+
+    write_rakefile!()
+
+    write_projectfile!()
+
+    write_gitignore!()
+
+    write_main_cr!()
+  end
+
+  private
+  def write_file!(c, f)
+    File.open(f, 'w') do |file|
+      file.write(c)
+    end
+  end
+end
+
+if __FILE__ == $0
+  pname = ARGV[0]
+  while !pname
+    puts "Enter project name:"
+    pname = gets.chomp
+  end
+
+  ProjectWriter.new(pname).generate!()
+end
