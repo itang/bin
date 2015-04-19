@@ -26,7 +26,7 @@ JavaVersion=1.7
 ScalazVersion=7.1.0
 ShapelessVersion=2.0.0
 ScatangVersion=0.1
-AmmoniteVersion=0.2.7
+AmmoniteVersion=0.2.8
 
 # takes a string and returns true if it seems to represent "yes"
 function isYes() {
@@ -84,7 +84,7 @@ libraryDependencies ++= Seq(
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
   \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\",
-  \"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"
+  \"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"  cross CrossVersion.full
 )
 
 resolvers ++= Seq(
@@ -193,11 +193,7 @@ echo ""
 echo "Project created. See the following URL for build.sbt examples:"
 echo "http://alvinalexander.com/scala/sbt-syntax-examples"
 
-echo "cd ${directoryName}"
 cd ${directoryName}
 
-echo "eclipse with-source=true"
-sbt 'eclipse with-source=true';
-
-echo "enter sbt:"
-sbt
+echo "eclipse with-source=false"
+sbt 'eclipse with-source=false';
