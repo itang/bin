@@ -39,29 +39,22 @@ function isYes() {
 
 echo "This script creates an SBT project directory beneath the current directory."
 
-while [ $TRUE ]; do
+if [ -n "$1" ]; then
+  directoryName=$1
+else
+  read -p "Directory/Project Name (MyFirstProject): " directoryName
+fi
+directoryName=${directoryName:-MyFirstProject}
+createGitignore="y"
+createReadme="y"
 
-    echo ""
-    read -p "Directory/Project Name (MyFirstProject): " directoryName
-    directoryName=${directoryName:-MyFirstProject}
-
-    read -p "Create .gitignore File? (Y/n): " createGitignore
-    createGitignore=${createGitignore:-y}
-
-    read -p "Create README.md File? (Y/n): " createReadme
-    createReadme=${createReadme:-y}
-
-    echo ""
-    echo "-----------------------------------------------"
-    echo "Directory/Project Name: $directoryName"
-    echo "Create .gitignore File?: $createGitignore"
-    echo "Create README.md File?: $createReadme"
-    echo "-----------------------------------------------"
-    read -p "Create Project? (Y/n): " createProject
-    createProject=${createProject:-y}
-    [ "$(isYes $createProject)" = "$TRUE" ] && break
-
-done
+echo ""
+echo "-----------------------------------------------"
+echo "Directory/Project Name: $directoryName"
+echo "Create .gitignore File?: $createGitignore"
+echo "Create README.md File?: $createReadme"
+echo "-----------------------------------------------"
+createProject="y"
 
 mkdir -p ${directoryName}/src/{main,test}/{java,resources,scala}
 mkdir ${directoryName}/lib ${directoryName}/project ${directoryName}/target
@@ -95,6 +88,7 @@ libraryDependencies ++= Seq(
 )
 
 resolvers ++= Seq(
+  DefaultMavenRepository,
   Resolver.sonatypeRepo(\"snapshots\"),
   Resolver.sonatypeRepo(\"releases\")
 )
