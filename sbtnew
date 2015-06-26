@@ -17,7 +17,7 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.11.6
+ScalaVersion=2.11.7
 SbtVersion=0.13.8
 SbtassemblyVersion=0.13.0
 SbtDependencyGraph=0.7.5
@@ -26,7 +26,7 @@ JavaVersion=1.7
 ScalazVersion=7.1.0
 ShapelessVersion=2.0.0
 ScatangVersion=0.1
-AmmoniteVersion=0.3.2
+#AmmoniteVersion=0.3.2
 
 # takes a string and returns true if it seems to represent "yes"
 function isYes() {
@@ -83,8 +83,8 @@ libraryDependencies ++= Seq(
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
-  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\",
-  \"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"  cross CrossVersion.full
+  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\"/*,
+  \"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"  cross CrossVersion.full*/
 )
 
 resolvers ++= Seq(
@@ -103,7 +103,7 @@ net.virtualvoid.sbt.graph.Plugin.graphSettings
 
 EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
 
-initialCommands in console := \"import scatang._;import scatang.string._;ammonite.repl.Repl.main(null)\"
+initialCommands in console := \"import scatang._;/*import scatang.string._;ammonite.repl.Repl.main(null)*/\"
 
 publishTo := {
   val nexus = \"http://120.24.68.174:8081/nexus/content/repositories\"
