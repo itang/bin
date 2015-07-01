@@ -15,13 +15,15 @@ end
 
 if __FILE__ == $0
   ["https://twitter.com/",
-    "http://www.reddit.com/r/rust",
+    # "http://www.reddit.com/r/rust",
     # "https://app.astralapp.com/dashboard",
+    'https://github.com/manastech/crystal',
+    'https://github.com/Codcore/Amethyst',
     'https://groups.google.com/forum/?fromgroups#!forum/crystal-lang',
     'https://github.com/stars?direction=desc&sort=updated',
     'http://getprismatic.com/',
     'http://www.douban.com',
     'http://www.weibo.com',
     'http://www.deftype.com',
-    'http://bbs.szhome.com/30017.html'].reverse.map{|url| %Q("#{url}")}.each(&:browser)
+    'http://bbs.szhome.com/30017.html'].reverse.map {|url| %Q("#{url}")}.each(&:browser)
 end
