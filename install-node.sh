@@ -1,16 +1,17 @@
 #!/bin/bash
 
-VERSION=0.10.33
+VERSION=2.3.3
 
 (
 cd /tmp
-rm node-v${VERSION}-linux-x64.tar.gz
-wget http://nodejs.org/dist/v${VERSION}/node-v${VERSION}-linux-x64.tar.gz &&
-rm -rf ~/dev-env/node-v${VERSION}-linux-x64 &&
-tar zxvf node-v${VERSION}-linux-x64.tar.gz -C ~/dev-env &&
+#rm iojs-v${VERSION}-linux-x64.tar.xz
+#wget https://iojs.org/dist/v${VERSION}/iojs-v${VERSION}-linux-x64.tar.xz &&
+rm -rf ~/dev-env/iojs-v${VERSION}-linux-x64 &&
+tar xvJf iojs-v${VERSION}-linux-x64.tar.xz -C ~/dev-env &&
 cd ~/dev-env && 
 rm -rf node &&
-ln -s node-v${VERSION}-linux-x64 node &&
-node -v  &&
-npm install -g react-tools
+ln -s iojs-v${VERSION}-linux-x64 node &&
+node -v  
+##&&
+#npm install -g react-tools
 )
