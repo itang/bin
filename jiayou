@@ -26,7 +26,7 @@ if __FILE__ == $0
     'http://www.weibo.com',
     'http://www.deftype.com',
     #'http://120.24.68.174/',
-    'http://www.haoshuju.net:3000/',
+    'http://www.haoshuju.net:8000/',
     'http://www.adexchanger.cn',
     'http://bbs.szhome.com/30017.html'].reverse.map {|url| %Q("#{url}")}.each(&:browser)
 end
