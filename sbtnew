@@ -21,6 +21,7 @@ ScalaVersion=2.11.7
 SbtVersion=0.13.9-RC3
 SbtassemblyVersion=0.13.0
 SbtDependencyGraph=0.7.5
+SbtScoverageVersion=1.2.0
 ScalatestVersion=2.2.2
 JavaVersion=1.8
 ScalazVersion=7.1.0
@@ -122,7 +123,9 @@ credentials += Credentials(Path.userHome / \".ivy2\" / \".credentials\")
 #-----------------
 echo "addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")
 
-addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")" > ${directoryName}/project/plugins.sbt
+addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")
+
+addSbtPlugin(\"org.scoverage\" % \"sbt-scoverage\" % \"${SbtScoverageVersion}\")" > ${directoryName}/project/plugins.sbt
 
 #-----------------
 # init build.properties
