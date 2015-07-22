@@ -2,21 +2,23 @@
 
 class String
   def browser()
-    link = self
-    if RbConfig::CONFIG['host_os'] =~ /linux|bsd/
-      system "xdg-open #{link}"
-    elsif RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
-      system "start #{link}"
-    elsif RbConfig::CONFIG['host_os'] =~ /darwin/
-      system "open #{link}"
-    end
+    cmd = case 
+      when  RbConfig::CONFIG['host_os'] =~ /linux|bsd/
+        'xdg-open'
+      when RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
+        'start'
+      when RbConfig::CONFIG['host_os'] =~ /darwin/
+        'open'
+      end
+     if cmd
+      system "#{cmd} #{self}".tap {|x| puts x }
+     end
   end
 end
 
 if __FILE__ == $0
   ["https://twitter.com/",
     # "http://www.reddit.com/r/rust",
-    # "https://app.astralapp.com/dashboard",
     'https://github.com/manastech/crystal',
     'https://github.com/Codcore/Amethyst',
     'https://groups.google.com/forum/?fromgroups#!forum/crystal-lang',
@@ -25,7 +27,6 @@ if __FILE__ == $0
     'http://www.douban.com',
     'http://www.weibo.com',
     'http://www.deftype.com',
-    #'http://120.24.68.174/',
     'http://www.haoshuju.net:8000/',
     'http://www.adexchanger.cn',
     'http://www.rtbchina.com/',
