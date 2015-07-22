@@ -9,10 +9,8 @@ class String
         'start'
       when RbConfig::CONFIG['host_os'] =~ /darwin/
         'open'
-      end
-     if cmd
-      system "#{cmd} #{self}".tap {|x| puts x }
-     end
+    end
+    system "#{cmd} #{self}".tap {|x| puts x } if cmd
   end
 end
 
@@ -30,5 +28,8 @@ if __FILE__ == $0
     'http://www.haoshuju.net:8000/',
     'http://www.adexchanger.cn',
     'http://www.rtbchina.com/',
-    'http://bbs.szhome.com/30017.html'].reverse.map {|url| %Q("#{url}")}.each(&:browser)
+    'http://bbs.szhome.com/30017.html'
+  ].reverse
+    .map {|url| %Q("#{url}")}
+    .each(&:browser)
 end
