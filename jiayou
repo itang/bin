@@ -2,7 +2,7 @@
 
 class String
   def browser()
-    cmd = case 
+    cmd = case
       when  RbConfig::CONFIG['host_os'] =~ /linux|bsd/
         'xdg-open'
       when RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
@@ -19,6 +19,7 @@ if __FILE__ == $0
     # "http://www.reddit.com/r/rust",
     'https://github.com/manastech/crystal',
     'https://github.com/Codcore/Amethyst',
+    'http://www.reddit.com/r/crystal_programming/',
     'https://groups.google.com/forum/?fromgroups#!forum/crystal-lang',
     'https://github.com/stars?direction=desc&sort=updated',
     'http://getprismatic.com/',
