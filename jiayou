@@ -10,27 +10,28 @@ class String
       when RbConfig::CONFIG['host_os'] =~ /darwin/
         'open'
     end
-    system "#{cmd} #{self}".tap {|x| puts x } if cmd
+    system "#{cmd} #{self}".tap {|x| puts x } + " > /dev/null 2>&1" if cmd
   end
 end
 
 if __FILE__ == $0
-  ["https://twitter.com/",
-    # "http://www.reddit.com/r/rust",
-    'https://github.com/manastech/crystal',
-    'https://github.com/Codcore/Amethyst',
-    'http://www.reddit.com/r/crystal_programming/',
-    'https://groups.google.com/forum/?fromgroups#!forum/crystal-lang',
-    'https://github.com/stars?direction=desc&sort=updated',
-    'http://getprismatic.com/',
-    'http://www.douban.com',
-    'http://www.weibo.com',
-    'http://www.deftype.com',
-    'http://www.haoshuju.net:8000/',
-    'http://www.adexchanger.cn',
-    'http://www.rtbchina.com/',
-    'http://bbs.szhome.com/30017.html'
+  %w[https://twitter.com/
+    http://www.reddit.com/r/rust
+    https://github.com/manastech/crystal
+    https://github.com/Codcore/Amethyst
+    http://www.reddit.com/r/crystal_programming
+    https://groups.google.com/forum/?fromgroups#!forum/crystal-lang
+    https://github.com/stars?direction=desc&sort=updated
+    https://github.com/notifications
+    http://getprismatic.com
+    http://www.douban.com
+    http://www.weibo.com
+    http://www.deftype.com
+    http://www.haoshuju.net:8000
+    http://www.adexchanger.cn
+    http://www.rtbchina.com
+    http://bbs.szhome.com/30017.html
   ].reverse
-    .map {|url| %Q("#{url}")}
-    .each(&:browser)
+   .map {|url| %Q("#{url}")}
+   .each(&:browser)
 end
