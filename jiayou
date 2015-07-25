@@ -10,7 +10,7 @@ class String
       when RbConfig::CONFIG['host_os'] =~ /darwin/
         'open'
     end
-    system "#{cmd} #{self}".tap {|x| puts x } + " > /dev/null 2>&1" if cmd
+    system "#{cmd} #{self}".tap {|x| puts x } + " > /dev/null 2>&1 &" if cmd
   end
 end
 
