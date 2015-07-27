@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 class String
-  def browser()
+  def browser(f=false)
     cmd = case
       when  RbConfig::CONFIG['host_os'] =~ /linux|bsd/
         'xdg-open'
@@ -10,11 +10,19 @@ class String
       when RbConfig::CONFIG['host_os'] =~ /darwin/
         'open'
     end
-    system "#{cmd} #{self}".tap {|x| puts x } + " > /dev/null 2>&1 &" if cmd
+    if cmd
+      cline = "#{cmd} #{self} > /dev/null 2>&1" + (f ? "" : " &")
+      puts cline
+      system cline
+      if f
+        sleep(0.3)
+      end
+    end
   end
 end
 
 if __FILE__ == $0
+  f = ARGV.any? { |e| e.start_with? "--f" }
   %w[https://twitter.com/
     https://github.com/manastech/crystal
     http://www.reddit.com/r/crystal_programming
@@ -31,5 +39,5 @@ if __FILE__ == $0
     http://bbs.szhome.com/30017.html
   ].reverse
    .map {|url| %Q("#{url}")}
-   .each(&:browser)
+   .each {|url| url.browser(f)}
 end
