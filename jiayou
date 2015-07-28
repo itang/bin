@@ -1,22 +1,21 @@
 #!/usr/bin/env ruby
 
 class String
-  def browser(f=false)
-    cmd = case
-      when  RbConfig::CONFIG['host_os'] =~ /linux|bsd/
+  def browser(f = false)
+    os = RbConfig::CONFIG['host_os']
+    cmd =
+      case os
+      when /linux|bsd/
         'xdg-open'
-      when RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
+      when /mswin|mingw|cygwin/
         'start'
-      when RbConfig::CONFIG['host_os'] =~ /darwin/
+      when /darwin/
         'open'
-    end
-    if cmd
-      cline = "#{cmd} #{self} > /dev/null 2>&1" + (f ? "" : " &")
-      puts cline
-      system cline
-      if f
-        sleep(0.3)
       end
+    if cmd
+      cline = ("#{cmd} #{self} > /dev/null 2>1" + (f ? "" : " &")).tap {|x| puts x}
+      system cline
+      sleep(0.3) if f
     end
   end
 end
@@ -36,6 +35,8 @@ if __FILE__ == $0
     http://www.haoshuju.net:8000
     http://www.adexchanger.cn
     http://www.rtbchina.com
+    http://www.phoenixframework.org/docs/overview
+    http://elixir-lang.org/getting-started/introduction.html
     http://bbs.szhome.com/30017.html
   ].reverse
    .map {|url| %Q("#{url}")}
