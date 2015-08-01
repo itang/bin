@@ -27,6 +27,7 @@ JavaVersion=1.8
 ScalazVersion=7.1.0
 ShapelessVersion=2.0.0
 ScatangVersion=0.1
+ScalaStyleVersion=0.7.0
 #AmmoniteVersion=0.3.2
 
 # takes a string and returns true if it seems to represent "yes"
@@ -125,7 +126,9 @@ echo "addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}
 
 addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")
 
-addSbtPlugin(\"org.scoverage\" % \"sbt-scoverage\" % \"${SbtScoverageVersion}\")" > ${directoryName}/project/plugins.sbt
+addSbtPlugin(\"org.scoverage\" % \"sbt-scoverage\" % \"${SbtScoverageVersion}\")
+
+addSbtPlugin(\"org.scalastyle\" %% \"scalastyle-sbt-plugin\" % \"${ScalaStyleVersion}\")" > ${directoryName}/project/plugins.sbt
 
 #-----------------
 # init build.properties
@@ -184,6 +187,26 @@ lib/
 
 .svn" > ${directoryName}/.gitignore
 fi
+
+#------------------------------
+# create Rakefile
+#-----------------------------
+
+echo "namespace :dev do
+  desc 'Generate Scalastyle config'
+  task :scalastyle_config do
+    sh 'sbt scalastyleGenerateConfig'
+  end
+end
+
+namespace :source do
+  namespace :check do
+    desc 'check scala style'
+    task :scalastyle do
+      sh 'sbt scalastyle'
+    end
+  end
+end" > ${directoryName}/Rakefile
 
 #-----------------------------
 # create README.me, if desired
