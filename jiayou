@@ -13,7 +13,7 @@ class String
         'open'
       end
     if cmd
-      cline = ("#{cmd} #{self} > /dev/null 2>1" + (f ? "" : " &")).tap {|x| puts x}
+      cline = ("#{cmd} #{self} > /dev/null 2>&1" + (f ? "" : " &")).tap {|x| puts x}
       system cline
       sleep(0.3) if f
     end
