@@ -18,7 +18,7 @@ declare -r TRUE=0
 declare -r FALSE=1
 
 ScalaVersion=2.11.7
-SbtVersion=0.13.9-RC3
+SbtVersion=0.13.9
 SbtassemblyVersion=0.13.0
 SbtDependencyGraph=0.7.5
 SbtScoverageVersion=1.2.0

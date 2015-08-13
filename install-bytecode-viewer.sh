@@ -10,7 +10,6 @@ mkdir ~/dev-env/bytecodeviewer && unzip BytecodeViewer.$VERSION.zip -d ~/dev-env
 
 echo "#!/bin/bash
 
-java -jar "\"$HOME/dev-env/bytecodeviewer/BytecodeViewer ${VERSION}.jar\""
-" > ~/dev-env/tools/viewcodeviewer
+java -jar "\"$HOME/dev-env/bytecodeviewer/BytecodeViewer ${VERSION}.jar\"" > ~/dev-env/tools/bytecode-viewer
 
-chmod +x ~/dev-env/tools/viewcodeviewer
+chmod +x ~/dev-env/tools/bytecode-viewer
