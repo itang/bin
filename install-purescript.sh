@@ -1,10 +1,11 @@
 #!/bin/bash
 
-VERSION=0.7.2
+VERSION=0.7.3
 
 cd /tmp
 wget https://github.com/purescript/purescript/releases/download/v$VERSION/linux64.tar.gz
 
+rm -rf ~/dev-env/purescript
 tar zxvf linux64.tar.gz -C ~/dev-env
 
 echo "add below code to .profile"
