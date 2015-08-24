@@ -3,16 +3,9 @@
 VERSION=1.0.5
 (
 cd /tmp
-rm elixir.zip
+rm Precompiled.zip
 
-wget https://github.com/elixir-lang/elixir/archive/v${VERSION}.zip -O elixir.zip &&
-rm ~/dev-env/elixir
+wget https://github.com/elixir-lang/elixir/releases/download/v${VERSION}/Precompiled.zip && rm ~/dev-env/elixir && mkdir -p ~/dev-env/elixir
 
-unzip elixir.zip -d ~/dev-env/ &&
-cd ~/dev-env &&
-ln -s elixir-${VERSION} elixir &&
-cd elixir &&
-make
-
-iex -v
+unzip Precompiled.zip -d ~/dev-env/elixir/ && ~/dev-env/elixir/bin/iex -v
 )
