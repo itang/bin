@@ -1,4 +1,4 @@
 #!/bin/bash
 
-VERSION=0.17.1
+VERSION=1.0.0
 mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v${VERSION}/phoenix_new-${VERSION}.ez
