@@ -1,5 +1,4 @@
 cd ~/dev-env/tools
 
-curl -L -o amm http://git.io/v3Xln; chmod +x amm; ./amm
-
+curl -L -o amm http://git.io/vGksC; chmod +x amm; ./amm
 # ./amm
