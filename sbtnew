@@ -28,7 +28,7 @@ ScalazVersion=7.1.0
 ShapelessVersion=2.0.0
 ScatangVersion=0.1
 ScalaStyleVersion=0.7.0
-#AmmoniteVersion=0.3.2
+AmmoniteVersion=0.4.6
 
 # takes a string and returns true if it seems to represent "yes"
 function isYes() {
@@ -85,8 +85,8 @@ libraryDependencies ++= Seq(
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
-  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\"/*,
-  \"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"  cross CrossVersion.full*/
+  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\",
+  \"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"  cross CrossVersion.full
 )
 
 resolvers ++= Seq(
@@ -95,7 +95,7 @@ resolvers ++= Seq(
   Resolver.sonatypeRepo(\"releases\")
 )
 
-resolvers += \"itang's repos\" at \"http://120.24.68.174:8081/nexus/content/groups/public\"
+resolvers += \"itang's repos\" at \"http://www.haoshuju.net:8078\"
 
 incOptions := incOptions.value.withNameHashing(true)
 
@@ -105,7 +105,9 @@ net.virtualvoid.sbt.graph.Plugin.graphSettings
 
 EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
 
-initialCommands in console := \"import scatang._;/*import scatang.string._;ammonite.repl.Repl.main(null)*/\"
+initialCommands in console := \"import scatang._;\"
+
+initialCommands in (Test, console) := \"\"\"ammonite.repl.Repl.run(\"\")\"\"\"
 
 publishTo := {
   val nexus = \"http://120.24.68.174:8081/nexus/content/repositories\"
