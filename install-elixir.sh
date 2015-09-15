@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.1.0-beta
+VERSION=1.1.0-rc.0
 (
 cd /tmp
 rm Precompiled.zip
