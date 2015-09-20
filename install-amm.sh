@@ -1,5 +1,5 @@
 cd ~/dev-env/tools
 
-mkdir ~/.ammonite; curl -L -o ~/.ammonite/predef.scala http://git.io/vZJot
+mkdir ~/.ammonite; curl -L -o ~/.ammonite/predef.scala http://git.io/vnnBy
 
-curl -L -o amm http://git.io/vZJoU; chmod +x amm; ./amm
+curl -L -o amm http://git.io/vnnBX; chmod +x amm; ./amm
