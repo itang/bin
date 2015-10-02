@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SPARK_VERSION=1.5.0
+SPARK_VERSION=1.5.1
 HADOOP_VERSION=2.6
 
 cd /tmp
