@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'uri'
 
 class String
   def browser(f = false)
@@ -18,6 +19,15 @@ class String
       sleep(0.3) if f
     end
   end
+
+  def valid_url?
+    begin
+      URI.parse(self)
+      true
+    rescue e
+      false
+    end
+  end
 end
 
 if __FILE__ == $0
@@ -29,7 +39,7 @@ if __FILE__ == $0
     https://groups.google.com/forum/?fromgroups#!forum/crystal-lang
     https://github.com/stars?direction=desc&sort=updated
     https://github.com/notifications
-    http://getprismatic.com
+    #http://getprismatic.com
     http://www.douban.com
     http://www.weibo.com
     http://www.deftype.com
@@ -38,8 +48,10 @@ if __FILE__ == $0
     http://www.rtbchina.com
     http://www.phoenixframework.org/docs/overview
     http://elixir-lang.org/getting-started/introduction.html
+    http://elixir-lang.org/docs/stable/elixir/Kernel.html
     http://bbs.szhome.com/30017.html
-  ].reverse
+  ].select(&:valid_url?)
+   .reverse
    .map {|url| %Q("#{url}")}
    .each {|url| url.browser(f)}
 end
