@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-VERSION=0.132.0
+VERSION=1.0.19
 
 function prepare() {
   npm config set python /usr/bin/python2 -g
@@ -9,6 +9,8 @@ function prepare() {
 
 function binary() {
   (
+
+  cd /tmp
   rm atom-amd64.deb
 
   wget https://github.com/atom/atom/releases/download/v${VERSION}/atom-amd64.deb &&
@@ -39,4 +41,3 @@ case "$1" in
 	build) build;;
 	*) binary;;
 esac
-
