@@ -6,7 +6,11 @@ VERSION=0.15.1
 
 ghc --version
 
-sudo apt-get install libtinfo-dev
+##########################################################################################################
+
+sudo apt-get install libtinfo-
+
+#########################################################################################################
 
 cd ~/dev-env/
 
@@ -14,3 +18,6 @@ cd ~/dev-env/
 curl https://raw.githubusercontent.com/elm-lang/elm-platform/master/installers/BuildFromSource.hs > BuildFromSource.hs
 
 runhaskell BuildFromSource.hs $VERSION
+
+#########################################################################################################
+npm install -g elm-oracle

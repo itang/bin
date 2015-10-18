@@ -1,20 +1,31 @@
 #!/bin/bash
 
-VERSION=0.7.3
+## require(cabal, nodejs)
 
-cd /tmp
-wget https://github.com/purescript/purescript/releases/download/v$VERSION/linux64.tar.gz
+# cabal update
+# cabal install purescript
+cnpm="npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc"
 
-rm -rf ~/dev-env/purescript
-tar zxvf linux64.tar.gz -C ~/dev-env
+$cnpm install -g purescript pulp
 
-echo "add below code to .profile"
-
-echo 'export PURESCRIPT_HOME=$DE/purescript
-
-export PATH=$PURESCRIPT_HOME:$PATH
-'
-# source ~/.profile
-# psc --version
-
-npm install -g pulp
+# VERSION=0.7.3
+#
+# cd /tmp
+# wget https://github.com/purescript/purescript/releases/download/v$VERSION/linux64.tar.gz
+#
+# rm -rf ~/dev-env/purescript
+# tar zxvf linux64.tar.gz -C ~/dev-env
+#
+# echo "add below code to .profile"
+#
+# echo 'export PURESCRIPT_HOME=$DE/purescript
+#
+# export PATH=$PURESCRIPT_HOME:$PATH
+# '
+# # source ~/.profile
+# # psc --version
+#
+# npm install -g pulp
