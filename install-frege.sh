@@ -19,13 +19,13 @@ cd ~/dev-env/frege
 
 echo '#!/bin/bash
 
-FREGE_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
+FREGE_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled"
 java $FREGE_OPTS -jar `dirname $0`/lib/frege.jar -d build "$@"' > fregec
 
 
 echo '#!/bin/bash
 
-FREGE_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
+FREGE_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled"
 java $FREGE_OPTS -cp build:`dirname $0`/lib/frege.jar "$@"' > frege
 
 chmod +x fregec frege
