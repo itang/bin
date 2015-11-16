@@ -17,6 +17,8 @@ multirust default nightly
 rustc --version
 
 cargo install cargo-extras
-cargo install cargo-add
+#cargo install cargo-add
+#cargo install cargo-edit
+
 
 
