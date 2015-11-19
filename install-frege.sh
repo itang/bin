@@ -6,7 +6,7 @@ FROM=frege3.23.370-g898bc8c.jar
 (
 cd /tmp
 
-#wget https://github.com/Frege/frege/releases/download/3.23.288/$FROM
+wget https://github.com/Frege/frege/releases/download/3.23.288/$FROM
 
 mkdir -p ~/dev-env/frege/lib
 
