@@ -1,14 +1,17 @@
 #!/bin/bash
 
 ## @see http://alphydan.svbtle.com/elm-lang-on-ubuntu-14-04
+## @see https://github.com/elm-lang/elm-platform
+## @notice
+### elm-Platform/0.16/.cabal-sandbox/bin to your PATH (like this). This is necessary to successfully build elm-reactor which relies on elm-make.
 
-VERSION=0.15.1
+VERSION=0.16
 
 ghc --version
 
 ##########################################################################################################
 
-sudo apt-get install libtinfo-
+sudo apt-get install libtinfo-dev
 
 #########################################################################################################
 

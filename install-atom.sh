@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-VERSION=1.0.19
+VERSION=1.2.3
 
 function prepare() {
   npm config set python /usr/bin/python2 -g
