@@ -20,5 +20,7 @@ cargo install cargo-extras
 #cargo install cargo-add
 #cargo install cargo-edit
 
+cargo install --git https://github.com/phildawes/racer
+cargo install --git https://github.com/rust-lang-nursery/rustfmt
 
 

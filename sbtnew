@@ -81,7 +81,7 @@ scalaVersion := \"${ScalaVersion}\"
 
 javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\", \"-Xlint\")
 
-scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", \"-YclasspathImpl:flat\")
+scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", \"-YclasspathImpl:flat\", \"-Xexperimental\")
 
 libraryDependencies ++= Seq(
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
