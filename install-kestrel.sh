@@ -20,6 +20,15 @@ function install() {
 
 function extinfo() {
   echo "add bin dir to PATH"
+  echo "gem install kestrel-client [optional]"
 }
 
-download && extract && install && extinfo
+function prepareEnv() {
+  sudo mkdir -p /var/log/kestrel
+  sudo chown itang:itang /var/log/kestrel
+
+  sudo mkdir -p /var/spool/kestrel
+  sudo chown itang:itang /var/spool/kestrel
+}
+
+download && extract && install && extinfo && prepareEnv
