@@ -16,3 +16,6 @@ node -v
 ##&&
 #npm install -g react-tools
 )
+
+npm install -g source-map-support
+
