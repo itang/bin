@@ -21,6 +21,8 @@ function install() {
   sudo apt-get install libevent-dev
   ./configure && make
   # && make test && sudo make install
+
+  echo '[optional] gem install dalli'
 }
 
 download &&
