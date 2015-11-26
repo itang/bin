@@ -20,6 +20,8 @@ function install() {
 
 function extinfo() {
   echo "add bin dir to PATH"
+
+  echo "sudo apt-get install libsasl2-dev [optional]"
   echo "gem install kestrel-client [optional]"
 }
 
