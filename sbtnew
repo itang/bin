@@ -22,7 +22,7 @@ SbtVersion=0.13.9
 SbtEclipseVersion=4.0.0
 SbtUpdatesVersion=0.1.9
 SbtassemblyVersion=0.14.0
-SbtDependencyGraph=0.7.5
+SbtDependencyGraph=0.8.0
 SbtScoverageVersion=1.3.3
 ScalatestVersion=2.2.4
 JavaVersion=1.8
@@ -30,7 +30,7 @@ ScalazVersion=7.1.5
 ShapelessVersion=2.2.5
 ScatangVersion=0.1
 ScalaStyleVersion=0.7.0
-AmmoniteVersion=0.4.8
+AmmoniteVersion=0.5.0
 
 # takes a string and returns true if it seems to represent "yes"
 function isYes() {
@@ -113,7 +113,8 @@ assemblyMergeStrategy in assembly := {
     oldStrategy(x)
 }
 
-net.virtualvoid.sbt.graph.Plugin.graphSettings
+// no need for v0.8
+//net.virtualvoid.sbt.graph.Plugin.graphSettings
 
 EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
 
