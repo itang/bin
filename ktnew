@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+KOTLIN_VERSION='1.0.0-beta-2423'
+
+name = ARGV[0] || "test-kotlin"
+
+def sh(cmd)
+  puts cmd
+  ret = system cmd
+  raise "error" unless ret
+end
+
+
+################################################################################
+sh "mkdir #{name}"
+
+['java', 'resources', 'kotlin'].each do |x|
+  sh "mkdir -p #{name}/src/main/#{x}"
+end
+
+sh "cd #{name}; gradle init"
+
+build_content = <<-eos
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:#{KOTLIN_VERSION}'
+  }
+}
+
+apply plugin: "kotlin"
+apply plugin: 'application'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile 'org.jetbrains.kotlin:kotlin-stdlib:#{KOTLIN_VERSION}'
+}
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += 'src/main/java'
+}
+
+mainClassName = 'demo.MainKt'
+defaultTasks 'run'
+
+eos
+
+File.write "#{name}/build.gradle", build_content
+
+main_content = <<-eos
+package demo
+
+fun main(args: Array<String>) {
+    println("Hello, Kotlin")
+}
+
+eos
+
+sh "mkdir -p #{name}/src/main/kotlin/demo"
+File.write "#{name}/src/main/kotlin/demo/Main.kt", main_content
+
+sh "cd #{name}; tree"
