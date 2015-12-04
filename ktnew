@@ -65,4 +65,27 @@ eos
 sh "mkdir -p #{name}/src/main/kotlin/demo"
 File.write "#{name}/src/main/kotlin/demo/Main.kt", main_content
 
+gitignore_content = <<eos
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+# !gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+.idea
+*.iml
+
+.settings
+.classpath
+.project
+
+eos
+File.write "#{name}/.gitignore", gitignore_content
+
 sh "cd #{name}; tree"
