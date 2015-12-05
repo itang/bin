@@ -11,7 +11,20 @@ end
 
 sh "mkdir -p #{name}"
 sh "mkdir -p #{name}/Sources"
+
+package_content = <<-eos
+import PackageDescription
+
+let package = Package(
+    name: "#{name}",
+    dependencies: [
+        //.Package(url: "https://github.com/apple/example-package-deckofplayingcards.git", majorVersion: 1),
+    ]
+)
+
+eos
 sh "touch #{name}/Package.swift"
+File.write "#{name}/Package.swift", package_content
 
 main_content = <<-eos
 print("Hello, world!")
