@@ -48,9 +48,9 @@ if __FILE__ == $0
     http://www.rtbchina.com
     https://www.reddit.com/r/rust
     https://doc.rust-lang.org/stable/book/
-    http://www.phoenixframework.org/docs/overview
-    http://elixir-lang.org/getting-started/introduction.html
-    http://elixir-lang.org/docs/stable/elixir/Kernel.html
+    #http://www.phoenixframework.org/docs/overview
+    #http://elixir-lang.org/getting-started/introduction.html
+    #http://elixir-lang.org/docs/stable/elixir/Kernel.html
     http://bbs.szhome.com/30017.html
   ].select(&:valid_url?)
    .reverse
