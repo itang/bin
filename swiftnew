@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 name = ARGV[0] || 'test-swift'
-puts "xxx: #{name}"
+puts "new project: #{name}"
 
 def sh(cmd)
   puts cmd
