@@ -78,5 +78,7 @@ File.write "#{name}/Guardfile", guard_content
 gitignore_content = <<-eos
 .build/
 
+Packages/
+
 eos
 File.write "#{name}/.gitignore", gitignore_content
