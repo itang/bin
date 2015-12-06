@@ -9,7 +9,7 @@ def sh(cmd)
   raise "Error" if !ret
 end
 
-sh "mkdir -p #{name}"
+sh "mkdir #{name}"
 sh "mkdir -p #{name}/Sources"
 
 package_content = <<-eos
@@ -31,3 +31,23 @@ print("Hello, world!")
 eos
 
 File.write "#{name}/Sources/main.swift", main_content
+
+rakefile_content = <<-eos
+task :default => :run
+
+file ".build/debug/#{name}" => Dir["Sources/**/*.swift"] do
+  sh 'swift build'
+end
+
+desc "build"
+task :build => ".build/debug/#{name}" do
+end
+
+desc "run"
+task :run => :build do
+  sh '.build/debug/#{name}'
+end
+
+eos
+
+File.write "#{name}/Rakefile", rakefile_content
