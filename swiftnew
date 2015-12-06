@@ -48,6 +48,29 @@ task :run => :build do
   sh '.build/debug/#{name}'
 end
 
+desc "guard"
+task :guard do
+  sh 'guard'
+end
+
 eos
 
 File.write "#{name}/Rakefile", rakefile_content
+
+begin
+  sh "cd #{name};guard init shell"
+rescue ex
+  sh "gem install guard-shell"
+end
+
+guard_content = <<-eos
+guard :shell do
+  watch(/Sources\\/(.*).swift/) do |m|
+    puts m[0] + " has changed."
+    system "rake run"
+  end
+end
+
+eos
+
+File.write "#{name}/Guardfile", guard_content
