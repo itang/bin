@@ -1,9 +1,9 @@
-#!/bin/bash 
+#!/bin/bash
 
-VERSION=1.0.0-beta-2423
+VERSION=1.0.0-beta-3595
 
 cd /tmp
-wget https://github.com/JetBrains/kotlin/releases/download/build-$VERSION/kotlin-compiler-$VERSION.zip 
+wget https://github.com/JetBrains/kotlin/releases/download/build-$VERSION/kotlin-compiler-$VERSION.zip
 
 rm -rf ~/dev-env/kotlinc
 
