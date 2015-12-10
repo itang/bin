@@ -4,7 +4,7 @@
 
 VERSION=2.2-SNAPSHOT-2015-12-01-b
 
-function install() {
+function download() {
     cd /tmp
     wget https://swift.org/builds/ubuntu1404/swift-${VERSION}/swift-${VERSION}-ubuntu14.04.tar.gz
     wget https://swift.org/builds/ubuntu1404/swift-${VERSION}/swift-${VERSION}-ubuntu14.04.tar.gz.sig
@@ -28,6 +28,4 @@ function install() {
     echo "add ~/dev-env/swift/usr/bin to \$PATH"
 }
 
-install &&
-extract &&
-install;
+download && extract && install;
