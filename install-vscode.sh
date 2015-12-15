@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.10.1-release
+VERSION=0.10.3
 
 cd /tmp
 
@@ -15,4 +15,4 @@ unzip VSCode-linux64.zip -d ~/dev-env/
 cd ~/dev-env/tools
 
 rm code
-ln -s ~/dev-env/VSCode-linux-x64/Code code
+ln -sfn ~/dev-env/VSCode-linux-x64/Code code
