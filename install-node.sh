@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=5.0.0
+VERSION=5.3.0
 
 (
 cd /tmp
@@ -18,4 +18,5 @@ node -v
 )
 
 npm install -g source-map-support
+npm install -g cnpm --registry=https://registry.npm.taobao.org
 
