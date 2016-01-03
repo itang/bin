@@ -71,7 +71,7 @@ eos
 sh "mkdir -p #{name}/src/main/kotlin/demo"
 File.write "#{name}/src/main/kotlin/demo/Main.kt", main_content
 
-gitignore_content = <<eos
+gitignore_content = <<-eos
 .gradle
 build/
 
@@ -93,5 +93,20 @@ gradle-app.setting
 
 eos
 File.write "#{name}/.gitignore", gitignore_content
+
+
+## guard file
+
+guard_content = <<-eos
+## gem install guard-shell
+guard :shell do
+  watch(/src\\/(.*).kt/) do |m|
+    puts m[0] + " has changed."
+    system "gradle --daemon run"
+  end
+end
+eos
+
+File.write "#{name}/Guardfile", guard_content
 
 sh "cd #{name}; tree"

@@ -35,8 +35,8 @@ if __FILE__ == $0
   %w[https://twitter.com
     https://mobile.twitter.com
     https://github.com/manastech/crystal
-    http://www.reddit.com/r/crystal_programming
-    https://groups.google.com/forum/?fromgroups#!forum/crystal-lang
+    //http://www.reddit.com/r/crystal_programming
+    //https://groups.google.com/forum/?fromgroups#!forum/crystal-lang
     https://github.com/stars?direction=desc&sort=updated
     https://github.com/notifications
     #http://getprismatic.com

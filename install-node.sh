@@ -17,6 +17,6 @@ node -v
 #npm install -g react-tools
 )
 
-npm install -g source-map-support
+npm install -g source-map-support  --registry=https://registry.npm.taobao.org
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 
