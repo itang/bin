@@ -34,12 +34,11 @@ if __FILE__ == $0
   f = ARGV.any? { |e| e.start_with? "--f" }
   %w[https://twitter.com
     https://mobile.twitter.com
-    https://github.com/manastech/crystal
+    //https://github.com/manastech/crystal
     //http://www.reddit.com/r/crystal_programming
     //https://groups.google.com/forum/?fromgroups#!forum/crystal-lang
     https://github.com/stars?direction=desc&sort=updated
     https://github.com/notifications
-    #http://getprismatic.com
     http://www.douban.com
     http://www.weibo.com
     http://www.deftype.com
@@ -48,6 +47,7 @@ if __FILE__ == $0
     http://www.rtbchina.com
     https://www.reddit.com/r/rust
     https://doc.rust-lang.org/stable/book/
+    http://rustbyexample.com/
     #http://www.phoenixframework.org/docs/overview
     #http://elixir-lang.org/getting-started/introduction.html
     #http://elixir-lang.org/docs/stable/elixir/Kernel.html
