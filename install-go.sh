@@ -15,3 +15,13 @@ tar zxvf go${VERSION}.linux-amd64.tar.gz -C ~/dev-env &&
 go version;
 )
 
+# tools
+(
+go get -u github.com/nsf/gocode
+go get -u golang.org/x/tools/cmd/godoc
+go get -u github.com/bradfitz/goimports
+go get -u github.com/k0kubun/pp
+go get -u github.com/motemen/gore
+go get -u github.com/golang/lint/golint
+go get -u github.com/sqs/goreturns
+)
