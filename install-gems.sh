@@ -14,6 +14,7 @@ gem install typescript
 
 
 ## tools.
+gem install nokogiri
 gem install roo
 gem install ruby-protocol-buffers
 gem install livereload
