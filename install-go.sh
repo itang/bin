@@ -16,6 +16,7 @@ go version;
 )
 
 # tools
+echo 'install go tools'
 (
 go get -u github.com/nsf/gocode
 go get -u golang.org/x/tools/cmd/godoc
