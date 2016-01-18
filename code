@@ -2,4 +2,11 @@
 
 #tmux new-session -s code -d "~/dev-env/VSCode-linux-x64/Code $* > /dev/null 2>&1"
 
-~/dev-env/VSCode-linux-x64/Code $* > /dev/null 2>&1 &
+args="."
+if [ $# -ne 0 ]
+  then
+    args=$*
+fi
+
+echo $args
+~/dev-env/VSCode-linux-x64/Code $args > /dev/null 2>&1 &
