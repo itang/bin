@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0.0-beta-4583
+VERSION=1.0.0-beta-4584
 
 cd /tmp
 wget https://github.com/JetBrains/kotlin/releases/download/build-$VERSION/kotlin-compiler-$VERSION.zip

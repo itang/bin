@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.351
+VERSION=0.399
 
 function download() {
     cd /tmp
