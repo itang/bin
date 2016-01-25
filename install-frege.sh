@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FROM=frege3.23.370-g898bc8c.jar
+FROM=frege3.23.422-ga05a487.jar
 
 
 (

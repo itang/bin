@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+key=ARGV.join(" ")
+
+system "xdg-open 'https://www.google.com.hk/webhp?q=java#newwindow=1&safe=strict&q=#{key}'"
