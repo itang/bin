@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+key=ARGV.join(" ")
+
+system "xdg-open 'https://doc.rust-lang.org/core/?search=#{key}' > /dev/null &"
