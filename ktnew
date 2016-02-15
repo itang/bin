@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-KOTLIN_VERSION='1.0.0-rc-1036'
+KOTLIN_VERSION='1.0.0'
 
 name = ARGV[0] || "test-kotlin"
 
