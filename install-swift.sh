@@ -2,12 +2,13 @@
 
 ## @see https://swift.org/download/#linux
 
-VERSION=2.2-SNAPSHOT-2015-12-18-a
+VERSION=DEVELOPMENT-SNAPSHOT-2016-02-08-a
+
 
 function download() {
     cd /tmp
-    wget https://swift.org/builds/ubuntu1404/swift-${VERSION}/swift-${VERSION}-ubuntu14.04.tar.gz
-    wget https://swift.org/builds/ubuntu1404/swift-${VERSION}/swift-${VERSION}-ubuntu14.04.tar.gz.sig
+    wget https://swift.org/builds/development/ubuntu1404/swift-${VERSION}/swift-${VERSION}-ubuntu14.04.tar.gz
+    wget https://swift.org/builds/development/ubuntu1404/swift-${VERSION}/swift-${VERSION}-ubuntu14.04.tar.gz.sig
 }
 
 function extract() {
