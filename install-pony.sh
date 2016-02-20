@@ -10,6 +10,8 @@
 
 
 cd ~/dev-env
+
+rm -rf ponyc
 git clone git@github.com:CausalityLtd/ponyc.git --depth 1
 
 cd ponyc
