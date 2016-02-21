@@ -47,7 +47,8 @@ if __FILE__ == $0
     http://www.rtbchina.com
     http://www.infoq.com/
     http://36kr.com/
-    https://github.com/rust-lang/rfcs/issues/323
+    https://github.com/oden-lang/oden
+    #https://github.com/rust-lang/rfcs/issues/323
     https://www.reddit.com/r/rust
     https://doc.rust-lang.org/stable/book/
     http://rustbyexample.com/
