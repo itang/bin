@@ -15,3 +15,6 @@ npm install -g tsun
 npm install -g typescript-formatter
 # tsd
 npm install -g tsd
+
+# tools
+npm install -g how2
