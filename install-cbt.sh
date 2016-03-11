@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "do 'sudo apt-get install nailgun' first..."
+
 cd ~/dev-env
 
 if [[ -d "cbt" ]]
