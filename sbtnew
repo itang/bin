@@ -32,6 +32,8 @@ ScatangVersion=0.1
 ScalaStyleVersion=0.8.0
 AmmoniteVersion=0.5.6
 
+ScalaJava8Version=0.7.0
+
 # takes a string and returns true if it seems to represent "yes"
 function isYes() {
     local x=$1
@@ -81,14 +83,15 @@ scalaVersion := \"${ScalaVersion}\"
 
 javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\", \"-Xlint\")
 
-scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", \"-YclasspathImpl:flat\", \"-Xexperimental\")
+scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", \"-YclasspathImpl:flat\", \"-Xexperimental\", \"-Ybackend:GenBCode\", \"-Ydelambdafy:method\", \"-target:jvm-1.8\")
 
 libraryDependencies ++= Seq(
+  \"org.scala-lang.modules\" %% \"scala-java8-compat\" % \"${ScalaJava8Version}\",
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
-  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\",
-  \"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"  cross CrossVersion.full
+  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\"
+  //,\"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"  cross CrossVersion.full
 )
 
 resolvers ++= Seq(
@@ -120,7 +123,7 @@ EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
 
 initialCommands in console := \"import scatang._;\"
 
-initialCommands in (Test, console) := \"\"\"ammonite.repl.Repl.run(\"\")\"\"\"
+//initialCommands in (Test, console) := \"\"\"ammonite.repl.Repl.run(\"\")\"\"\"
 
 publishTo := {
   val nexus = \"http://120.24.68.174:8081/nexus/content/repositories\"
