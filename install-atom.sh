@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-VERSION=1.2.3
+VERSION=1.6.0
 
 function prepare() {
   npm config set python /usr/bin/python2 -g
@@ -22,7 +22,7 @@ function binary() {
 
 function build() {
  prepare
- 
+
  sudo apt-get install build-essential git libgnome-keyring-dev
  (
  cd /tmp
@@ -33,7 +33,7 @@ function build() {
  script/build &&
  sudo script/grunt install
  )
- 
+
  # atom
 }
 

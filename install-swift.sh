@@ -2,7 +2,7 @@
 
 ## @see https://swift.org/download/#linux
 
-VERSION=DEVELOPMENT-SNAPSHOT-2016-02-08-a
+VERSION=DEVELOPMENT-SNAPSHOT-2016-03-16-a
 
 
 function download() {

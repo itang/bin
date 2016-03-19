@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SPARK_VERSION=1.5.1
+SPARK_VERSION=1.6.1
 HADOOP_VERSION=2.6
 
 cd /tmp
@@ -10,5 +10,4 @@ wget http://mirrors.cnnic.cn/apache/spark/spark-$SPARK_VERSION/spark-${SPARK_VER
 tar zxvf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz -C ~/dev-env/
 
 cd ~/dev-env
-rm spark
-ln -s spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark
+ln -sfn spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark
