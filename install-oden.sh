@@ -2,7 +2,7 @@
 
 oden -V
 
-VERSION=0.3.0-alpha11
+VERSION=0.3.0-alpha12
 
 (
 
