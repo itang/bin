@@ -16,9 +16,20 @@ multirust default nightly
 
 rustc --version
 
-cargo install cargo-extras
-#cargo install cargo-add
-#cargo install cargo-edit
+echo "cat > ~/.cargo/config
+
+[registry]
+index = \"git://crates.mirrors.ustc.edu.cn/index\"
+
+...
+"
+
+#cargo install cargo-extras
+cargo install cargo-edit
+cargo install cargo-graph
+cargo install cargo-outdated
+cargo install cargo-script
+cargo install cargo-watch
 
 cargo install --git https://github.com/phildawes/racer
 cargo install --git https://github.com/rust-lang-nursery/rustfmt
