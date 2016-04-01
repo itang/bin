@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+i = 1
+
+loop do
+  sleep(1)
+
+  if i % 60 == 0 then
+    puts "\n>> #{i}"
+    i = 0
+  else
+    print "#{i} "
+  end
+
+  i += 1
+end
