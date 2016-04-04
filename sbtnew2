@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+##
+# deps: (https://github.com/paulp/sbt-extras, https://github.com/sbt/sbt-fresh)
+##
+
+name=ARGV[0] || 'test-noidea-sbt'
+
+def esh(cmd)
+  puts cmd
+  ret = system cmd
+  if !ret 
+    raise "#{cmd} error"
+  end
+end
+
+esh "mkdir #{name}"
+esh "cd #{name}; sbt -sbt-create \"fresh name=#{name}\""
+

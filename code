@@ -8,4 +8,4 @@ if [ $# -ne 0 ]
     args=$*
 fi
 
-~/dev-env/VSCode-linux-x64/Code $args > /dev/null 2>&1 &
+~/dev-env/VSCode-linux-x64/code $args > /dev/null 2>&1 &
