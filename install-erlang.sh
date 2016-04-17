@@ -1,11 +1,12 @@
 #!/bin/bash
 
-VERSION=18.0-1
+VERSION=18.3-1~ubuntu~wily_amd64
 
 (
 cd /tmp
-wget http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_esl/esl-erlang_${VERSION}~ubuntu~trusty_amd64.deb
 
-sudo dpkg -i esl-erlang_${VERSION}~ubuntu~trusty_amd64.deb &&
-erl -version
+wget http://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_$VERSION.deb
+
+
+sudo dpkg -i esl-erlang_$VERSION.deb && erl -version
 )
