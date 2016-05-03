@@ -6,13 +6,17 @@
 #rustc --version
 
 
-curl -sf https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh | sh
+#curl -sf https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh | sh
 
-multirust update nightly
+curl https://sh.rustup.rs -sSf | sudo sh
 
-multirust update stable
+rustup self upgrade-data
 
-multirust default nightly
+rustup update nightly
+
+rustup update stable
+
+rustup default nightly
 
 rustc --version
 
@@ -33,5 +37,3 @@ cargo install cargo-watch
 
 cargo install --git https://github.com/phildawes/racer
 cargo install --git https://github.com/rust-lang-nursery/rustfmt
-
-
