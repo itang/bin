@@ -1,20 +1,19 @@
 #!/usr/bin/env ruby
 
-KOTLIN_VERSION='1.0.1-2'
+KOTLIN_VERSION = '1.0.2'.freeze
 
-name = ARGV[0] || "test-kotlin"
+name = ARGV[0] || 'test-kotlin'
 
 def sh(cmd)
   puts cmd
   ret = system cmd
-  raise "error" unless ret
+  raise 'error' unless ret
 end
-
 
 ################################################################################
 sh "mkdir #{name}"
 
-['java', 'resources', 'kotlin'].each do |x|
+%w(java resources kotlin).each do |x|
   sh "mkdir -p #{name}/src/main/#{x}"
 end
 
@@ -48,12 +47,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    //compile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-}
-
-sourceSets {
-    main.kotlin.srcDirs += 'src/main/kotlin'
-    main.java.srcDirs += 'src/main/java'
+    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 }
 
 mainClassName = 'demo.MainKt'
@@ -93,6 +87,13 @@ eos
 sh "mkdir -p #{name}/src/main/kotlin/demo"
 File.write "#{name}/src/main/kotlin/demo/Main.kt", main_content
 
+################################################################
+gp_content = <<-eos
+kotlin.incremental=true
+eos
+
+File.write "#{name}/gradle.properties", gp_content
+
 gitignore_content = <<-eos
 .gradle
 build/
@@ -115,7 +116,6 @@ gradle-app.setting
 
 eos
 File.write "#{name}/.gitignore", gitignore_content
-
 
 ## guard file
 

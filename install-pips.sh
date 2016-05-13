@@ -9,7 +9,7 @@ cd /tmp
 wget https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 
-## pips
+## pipsa
 sudo pip install pep8
 
 sudo pip install ptpython
