@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=5.10.1
+VERSION=6.1.0
 
 (
 cd /tmp

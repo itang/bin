@@ -4,11 +4,12 @@ VERSION=0.9.3
 
 function download() {
   cd /tmp
-  wget http://mirrors.hust.edu.cn/apache/thrift/${VERSION}/thrift-${VERSION}.tar.gz
+  wget http://apache.fayea.com/thrift/${VERSION}/thrift-${VERSION}.tar.gz
 }
 
 function extract() {
   cd /tmp
+  rm -rf ~/dev-env/thrift-${VERSION}
   tar zxvf thrift-${VERSION}.tar.gz -C ~/dev-env/
   cd ~/dev-env
   rm thrift
@@ -17,7 +18,7 @@ function extract() {
 
 function build() {
   cd ~/dev-env/thrift
-  ./configure --without-haskell --without-nodejs && make
+  ./configure --without-haskell && make
 }
 
 function install() {
@@ -26,7 +27,7 @@ function install() {
 }
 
 ##################################################################################
-download && 
+download &&
 extract &&
-build && 
+build &&
 install;
