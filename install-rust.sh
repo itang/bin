@@ -8,13 +8,13 @@
 
 #curl -sf https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh | sh
 
-curl https://sh.rustup.rs -sSf | sudo sh
+curl https://sh.rustup.rs -sSf | sh
 
-rustup self upgrade-data
+source ~/.profile
 
-rustup update nightly
+rustup install nightly
 
-rustup update stable
+rustup install stable
 
 rustup default nightly
 
@@ -29,11 +29,11 @@ index = \"git://crates.mirrors.ustc.edu.cn/index\"
 "
 
 #cargo install cargo-extras
-cargo install cargo-edit
-cargo install cargo-graph
-cargo install cargo-outdated
-cargo install cargo-script
-cargo install cargo-watch
+cargo install cargo-edit --force
+cargo install cargo-graph --force
+cargo install cargo-outdated --force
+cargo install cargo-script --force
+cargo install cargo-watch --force
 
 cargo install --git https://github.com/phildawes/racer
 cargo install --git https://github.com/rust-lang-nursery/rustfmt
