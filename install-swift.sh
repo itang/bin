@@ -2,8 +2,7 @@
 
 ## @see https://swift.org/download/#linux
 
-VERSION=DEVELOPMENT-SNAPSHOT-2016-03-24-a
-
+VERSION=DEVELOPMENT-SNAPSHOT-2016-05-09-a
 
 function download() {
     cd /tmp
@@ -30,5 +29,5 @@ function install() {
     echo "add ~/dev-env/swift/usr/bin to \$PATH"
 }
 
-#download &&
+download &&
 extract && install;

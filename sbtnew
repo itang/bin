@@ -89,7 +89,7 @@ libraryDependencies ++= Seq(
   \"org.scala-lang.modules\" %% \"scala-java8-compat\" % \"${ScalaJava8Version}\",
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
-  \"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
+  //\"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
   \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\"
   //,\"com.lihaoyi\" %% \"ammonite-repl\" % \"${AmmoniteVersion}\" % \"test\"  cross CrossVersion.full
 )
@@ -121,7 +121,7 @@ assemblyMergeStrategy in assembly := {
 
 EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
 
-initialCommands in console := \"import scatang._;\"
+//initialCommands in console := \"import scatang._;\"
 
 //initialCommands in (Test, console) := \"\"\"ammonite.repl.Repl.run(\"\")\"\"\"
 
@@ -164,14 +164,14 @@ echo "/**
  * main.scala
  */
 
-import scatang._
+//import scatang._
 
 object Main {
 
   def main(args: Array[String]): Unit = {
-    6.times {
-      println(\"Hello, World!\")
-    }
+   // 6.times {
+   //   println(\"Hello, World!\")
+   // }
   }
 }
 
@@ -241,7 +241,7 @@ echo ""
 echo "Project created. See the following URL for build.sbt examples:"
 echo "http://alvinalexander.com/scala/sbt-syntax-examples"
 
-cd ${directoryName}
+# cd ${directoryName}
 
-echo "eclipse with-source=false"
-sbt 'eclipse with-source=false';
+# echo "eclipse with-source=false"
+# sbt 'eclipse with-source=false';

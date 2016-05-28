@@ -3,6 +3,8 @@
 # A more capable sbt runner, coincidentally also called sbt.
 # Author: Paul Phillips <paulp@improving.org>
 
+export SBT_OPTS="-Dsbt.override.build.repos=true"
+
 set -o pipefail
 
 # todo - make this dynamic
