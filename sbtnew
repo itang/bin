@@ -207,7 +207,11 @@ lib/
 .project
 .settings
 
-.svn" > ${directoryName}/.gitignore
+.svn
+
+.idea/
+*.iml
+" > ${directoryName}/.gitignore
 fi
 
 #------------------------------
