@@ -2,7 +2,7 @@
 
 oden -V
 
-VERSION=0.3.0-alpha13
+VERSION=0.3.2
 
 (
 
@@ -13,7 +13,7 @@ wget https://github.com/oden-lang/oden/releases/download/$VERSION/oden-$VERSION-
 rm -rf ~/dev-env/oden
 mkdir ~/dev-env/oden
 
-tar -zxvf oden-$VERSION-linux.tar.gz -C ~/dev-env/oden
+tar -zxvf oden-$VERSION-linux.tar.gz -C ~/dev-env
 
 oden -V
 )
