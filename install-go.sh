@@ -2,7 +2,7 @@
 
 go version;
 
-VERSION=1.7beta1
+VERSION=1.7beta2
 
 URL=https://storage.googleapis.com/golang/go${VERSION}.linux-amd64.tar.gz
 
