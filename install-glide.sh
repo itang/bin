@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.9.0
+VERSION=0.10.2
 
 
 glide -v
