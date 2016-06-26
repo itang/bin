@@ -1,0 +1,161 @@
+#!/usr/bin/env ruby
+
+KOTLIN_VERSION = '1.1.0-dev-1159'.freeze
+
+name = ARGV[0] || 'test-kotlin'
+
+def sh(cmd)
+  puts cmd
+  ret = system cmd
+  raise 'error' unless ret
+end
+
+################################################################################
+sh "mkdir #{name}"
+
+%w(java resources kotlin).each do |x|
+  sh "mkdir -p #{name}/src/main/#{x}"
+end
+
+sh "cd #{name}; gradle init"
+
+build_content = <<-eos
+buildscript {
+    val extra = project.extensions.extraProperties.apply {
+        this["kotlinVersion"] = "#{KOTLIN_VERSION}"
+        this["repo"] = "https://repo.gradle.org/gradle/repo"
+    }
+
+    repositories {
+        maven { setUrl(extra["repo"]) }
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinVersion"]}")
+    }
+}
+
+apply {
+    plugin<JavaPlugin>()
+    plugin("kotlin")
+    plugin<ApplicationPlugin>()
+}
+
+configure<JavaPluginConvention> {
+    setSourceCompatibility("1.8")
+    setTargetCompatibility("1.8")
+}
+
+configure<ApplicationPluginConvention> {
+    mainClassName = "demo.MainKt"
+}
+
+defaultTasks("run")
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { setUrl(extra["repo"]) }
+}
+
+dependencies {
+    compile("org.jetbrains.kotlin:kotlin-stdlib:${extra["kotlinVersion"]}")
+    //compile("org.jetbrains.kotlin:kotlin-reflect:${extra["kotlinVersion"]}")
+
+    testCompile("junit:junit:4.12")
+    testCompile("org.jetbrains.kotlin:kotlin-test-junit:${extra["kotlinVersion"]}")
+}
+
+eos
+
+File.write "#{name}/build.gradle.kts", build_content
+
+setting_content = <<-eos
+rootProject.buildFileName = 'build.gradle.kts'
+
+eos
+
+File.write "#{name}/settings.gradle", setting_content
+
+main_content = <<-eos
+package demo
+
+fun main(args: Array<String>) {
+    println("Hello, Kotlin")
+}
+
+eos
+
+sh "mkdir -p #{name}/src/main/kotlin/demo"
+File.write "#{name}/src/main/kotlin/demo/Main.kt", main_content
+
+
+################################################################
+
+test_content = <<-eos
+package demo
+
+import org.junit.Test
+import kotlin.test.assertEquals
+
+class TestDemo {
+
+    @Test
+    fun testDemo() {
+        assertEquals(1 + 1, 2)
+    }
+}
+
+eos
+
+sh "mkdir -p #{name}/src/test/kotlin/demo"
+File.write "#{name}/src/test/kotlin/demo/TestDemo.kt", test_content
+
+################################################################
+gp_content = <<-eos
+kotlin.incremental=true
+eos
+
+File.write "#{name}/gradle.properties", gp_content
+
+gitignore_content = <<-eos
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+# !gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+.idea
+*.iml
+
+.settings
+.classpath
+.project
+
+logs/
+
+eos
+File.write "#{name}/.gitignore", gitignore_content
+
+## guard file
+
+guard_content = <<-eos
+## gem install guard-shell
+guard :shell do
+  watch(/src\\/(.*).kt/) do |m|
+    puts m[0] + " has changed."
+    system "gradle --daemon run"
+  end
+end
+eos
+
+File.write "#{name}/Guardfile", guard_content
+
+sh "cd #{name}; tree"

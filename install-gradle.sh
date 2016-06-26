@@ -1,4 +1,4 @@
-VERSION=2.14
+VERSION=3.0-milestone-2
 (
 cd /tmp
 
