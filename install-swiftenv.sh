@@ -2,7 +2,7 @@
 
 action=$1
 
-if [ '$action' == 'update' ]; then
+if [ "$action" == 'update' ]; then
   cd ~/.swiftenv
   git pull
   
