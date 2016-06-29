@@ -2,13 +2,13 @@
 
 ## @see https://swift.org/download/#linux
 
-VERSION=DEVELOPMENT-SNAPSHOT-2016-05-09-a
+VERSION=3.0-PREVIEW-1
 
 function download() {
     cd /tmp
-    wget https://swift.org/builds/development/ubuntu1510/swift-$VERSION/swift-$VERSION-ubuntu15.10.tar.gz
+    wget https://swift.org/builds/swift-${VERSION,,}/ubuntu1510/swift-3.0-PREVIEW-1/swift-3.0-PREVIEW-1-ubuntu15.10.tar.gz
 
-    wget https://swift.org/builds/development/ubuntu1510/swift-$VERSION/swift-$VERSION-ubuntu15.10.tar.gz.sig
+    wget https://swift.org/builds/swift-${VERSION,,}/ubuntu1510/swift-3.0-PREVIEW-1/swift-3.0-PREVIEW-1-ubuntu15.10.tar.gz.sig
 }
 
 function extract() {
