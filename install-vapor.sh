@@ -7,6 +7,7 @@ action=$1
 if [ "$action" == "update" ]; then
 
     vapor self update
+    vapor self compile
 
 else
 
@@ -14,7 +15,8 @@ else
 
     curl -L cli.qutheory.io -o vapor
     chmod +x vapor
-
+    
+    vapor self compile
 fi
 
 vapor help
