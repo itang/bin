@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0.2
+VERSION=1.0.3
 
 cd /tmp
 
@@ -11,4 +11,3 @@ unzip kotlin-compiler-$VERSION.zip -d ~/dev-env/
 )
 
 kotlinc -version
-
