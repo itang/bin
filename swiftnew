@@ -11,6 +11,7 @@ end
 
 sh "mkdir #{name}"
 sh "mkdir -p #{name}/Sources"
+sh "mkdir -p #{name}/Tests"
 
 package_content = <<-eos
 import PackageDescription
@@ -79,6 +80,9 @@ gitignore_content = <<-eos
 .build/
 
 Packages/
+
+.DS_Store
+/*.xcodeproj
 
 eos
 File.write "#{name}/.gitignore", gitignore_content
