@@ -2,7 +2,7 @@
 
 ## @see https://swift.org/download/#linux
 
-VERSION=3.0-PREVIEW-1
+VERSION=3.0-PREVIEW-2
 
 function download() {
     cd /tmp
