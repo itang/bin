@@ -2,7 +2,7 @@
 
 go version;
 
-VERSION=1.7rc1
+VERSION=1.7rc2
 
 URL=https://storage.googleapis.com/golang/go${VERSION}.linux-amd64.tar.gz
 
@@ -26,4 +26,5 @@ go get -u github.com/k0kubun/pp
 go get -u github.com/motemen/gore
 go get -u github.com/golang/lint/golint
 go get -u github.com/sqs/goreturns
+go get -u github.com/newhook/go-symbols
 )

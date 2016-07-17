@@ -1,22 +1,52 @@
 #!/bin/bash
 
-#curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=nightly
-#curl -sf -L https://static.rust-lang.org/rustup.sh | sh
+mode=$1
 
-#rustc --version
+function update_cargos() {
+    #cargo install cargo-extras
+    cargo install cargo-edit --force
+    cargo install cargo-graph --force
+    cargo install cargo-outdated --force
+    cargo install cargo-script --force
+    cargo install cargo-watch --force
 
+    cargo install racer --force
+    cargo install rustfmt --force
+}
 
-#curl -sf https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh | sh
+function install() {
+    curl https://sh.rustup.rs -sSf | sh
 
-curl https://sh.rustup.rs -sSf | sh
+    source ~/.profile
 
-source ~/.profile
+    rustup install nightly
 
-rustup install nightly
+    rustup install stable
 
-rustup install stable
+    rustup default nightly
+}
 
-rustup default nightly
+function update() {
+    rustup update nightly
+
+    rustup update stable
+
+    rustup default nightly
+
+    update_cargos
+}
+
+function usage() {
+    echo "usage|update|update_cargos|install"
+}
+
+case "$mode" in
+  update) update;;
+  update_cargos) update_cargos;;
+  usage) usage;;
+  help) usage;;
+  *) install;;
+esac
 
 rustc --version
 
@@ -27,13 +57,3 @@ index = \"git://crates.mirrors.ustc.edu.cn/index\"
 
 ...
 "
-
-#cargo install cargo-extras
-cargo install cargo-edit --force
-cargo install cargo-graph --force
-cargo install cargo-outdated --force
-cargo install cargo-script --force
-cargo install cargo-watch --force
-
-cargo install --git https://github.com/phildawes/racer
-cargo install --git https://github.com/rust-lang-nursery/rustfmt
