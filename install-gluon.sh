@@ -16,10 +16,11 @@ function install() {
     cd gluon
     rustup override set stable
     cargo build --release
-    cp target/release/repl ./gluon
+    cp target/release/repl gluon
 
     echo '#!/bin/bash
 
+    cd ~/dev-env/gluon
     cargo run -- -i
     ' > gluon-repl
     chmod +x gluon-repl
