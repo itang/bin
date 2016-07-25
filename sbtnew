@@ -118,7 +118,7 @@ assemblyMergeStrategy in assembly := {
 // no need for v0.8
 //net.virtualvoid.sbt.graph.Plugin.graphSettings
 
-EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
+//EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
 
 //initialCommands in console := \"import scatang._;\"
 
@@ -157,18 +157,11 @@ echo "sbt.version=${SbtVersion}" > ${directoryName}/project/build.properties
 #----------------------------------
 # init src/main/scala/example.scala
 #----------------------------------
-echo "/**
- * main.scala
- */
-
-//import scatang._
-
+echo "
 object Main {
 
   def main(args: Array[String]): Unit = {
-   // 6.times {
-   //   println(\"Hello, World!\")
-   // }
+    println(\"Hello, World!\")
   }
 }
 
