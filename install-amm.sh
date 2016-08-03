@@ -1,5 +1,5 @@
 cd ~/dev-env/tools
 
-mkdir ~/.ammonite && curl -L -o ~/.ammonite/predef.scala https://git.io/voluk
-curl -L -o amm https://git.io/voluT && chmod +x amm && ./amm
+mkdir -p ~/.ammonite && curl -L -o ~/.ammonite/predef.sc https://git.io/vo4wx
+curl -L -o amm https://git.io/vKSbm && chmod +x amm && ./amm
 
