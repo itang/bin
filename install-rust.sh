@@ -12,6 +12,7 @@ function update_cargos() {
 
     cargo install racer --force
     cargo install rustfmt --force
+    cargo install cargo-expand --farce
 }
 
 function install() {
