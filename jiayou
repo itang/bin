@@ -53,6 +53,7 @@ if __FILE__ == $0
     #https://www.reddit.com/r/rust
     #https://doc.rust-lang.org/stable/book/
     http://rustbyexample.com/
+    https://github.com/trending/rust
     #http://www.phoenixframework.org/docs/overview
     #http://elixir-lang.org/getting-started/introduction.html
     #http://elixir-lang.org/docs/stable/elixir/Kernel.html
