@@ -38,7 +38,7 @@ if __FILE__ == $0
     //http://www.reddit.com/r/crystal_programming
     //https://groups.google.com/forum/?fromgroups#!forum/crystal-lang
     https://github.com/stars?direction=desc&sort=updated
-    https://github.com/notifications
+    #https://github.com/notifications
     http://www.douban.com
     http://www.weibo.com
     http://www.deftype.com
@@ -47,13 +47,14 @@ if __FILE__ == $0
     #http://www.rtbchina.com
     http://www.infoq.com/
     http://36kr.com/
-    https://github.com/oden-lang/oden
+    #https://github.com/oden-lang/oden
     #http://www.arewewebyet.org/
     #https://github.com/rust-lang/rfcs/issues/323
     #https://www.reddit.com/r/rust
     #https://doc.rust-lang.org/stable/book/
     http://rustbyexample.com/
     https://github.com/trending/rust
+    https://www.reddit.com/r/rust/
     #http://www.phoenixframework.org/docs/overview
     #http://elixir-lang.org/getting-started/introduction.html
     #http://elixir-lang.org/docs/stable/elixir/Kernel.html
