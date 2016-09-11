@@ -9,10 +9,15 @@ function update_cargos() {
     cargo install cargo-outdated --force
     cargo install cargo-script --force
     cargo install cargo-watch --force
+    cargo install cargo-expand --force
+    cargo install cargo-check --force
+
+    cargo install clippy --force
 
     cargo install racer --force
     cargo install rustfmt --force
-    cargo install cargo-expand --force
+    cargo install rustsym --force
+
     cargo install tokei --force
 }
 
