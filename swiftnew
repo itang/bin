@@ -6,7 +6,7 @@ puts "new project: #{name}"
 def sh(cmd)
   puts cmd
   ret = system cmd
-  raise "Error" if !ret
+  raise 'Error' unless ret
 end
 
 sh "mkdir #{name}"
@@ -28,22 +28,22 @@ eos
 File.write "#{name}/Package.swift", package_content
 
 rakefile_content = <<-eos
-task :default => :run
+task default: :run
 
-file ".build/debug/#{name}" => Dir["Sources/**/*.swift"] do
+file '.build/debug/#{name}' => Dir['Sources/**/*.swift'] do
   sh 'swift build'
 end
 
-desc "build"
-task :build => ".build/debug/#{name}" do
+desc 'build'
+task build: '.build/debug/#{name}' do
 end
 
-desc "run"
-task :run => :build do
+desc 'run'
+task run: :build do
   sh '.build/debug/#{name}'
 end
 
-desc "guard"
+desc 'guard'
 task :guard do
   sh 'guard'
 end
@@ -55,7 +55,7 @@ File.write "#{name}/Rakefile", rakefile_content
 begin
   sh "cd #{name};guard init shell"
 rescue ex
-  sh "gem install guard-shell"
+  sh 'gem install guard-shell'
 end
 
 guard_content = <<-eos
@@ -69,4 +69,3 @@ end
 eos
 
 File.write "#{name}/Guardfile", guard_content
-
