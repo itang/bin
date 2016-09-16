@@ -2,7 +2,8 @@
 
 sudo apt-get update
 
-sudo apt-get install -y --force-yes build-essential libssl-dev libreadline-dev zlib1g-dev
+sudo apt-get install -y --force-yes build-essential libssl-dev libreadline-dev zlib1g-dev libglib2.0-dev
+
 #sudo apt-get install -y --force-yes ubuntu-restricted-extras
 sudo apt-get install -y --force-yes zsh wget curl git mercurial xclip cloc tree p7zip-full rsync inotify-tools tmux 
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "使用install-n.sh代替..."
+exit 0
+
 VERSION=6.1.0
 
 (

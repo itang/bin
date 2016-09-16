@@ -10,8 +10,8 @@ def sh(cmd)
 end
 
 sh "mkdir #{name}"
-sh "mkdir -p #{name}/Sources"
-sh "mkdir -p #{name}/Tests"
+
+sh "cd #{name}; swift package init --type executable"
 
 package_content = <<-eos
 import PackageDescription
@@ -24,14 +24,8 @@ let package = Package(
 )
 
 eos
-sh "touch #{name}/Package.swift"
+
 File.write "#{name}/Package.swift", package_content
-
-main_content = <<-eos
-print("Hello, world!")
-eos
-
-File.write "#{name}/Sources/main.swift", main_content
 
 rakefile_content = <<-eos
 task :default => :run
@@ -76,13 +70,3 @@ eos
 
 File.write "#{name}/Guardfile", guard_content
 
-gitignore_content = <<-eos
-.build/
-
-Packages/
-
-.DS_Store
-/*.xcodeproj
-
-eos
-File.write "#{name}/.gitignore", gitignore_content

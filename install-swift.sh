@@ -2,6 +2,11 @@
 
 ## @see https://swift.org/download/#linux
 
+echo "安装clang: sudo apt-get install clang"
+echo "使用 swiftenv install"
+exit 0
+
+##############################################################################
 VERSION=3.0-PREVIEW-2
 
 function download() {
