@@ -9,6 +9,9 @@ sudo apt-get install -y --force-yes zsh wget curl git mercurial xclip cloc tree 
 
 chsh -s $(which zsh)
 
+# sys monitor
+sudo apt-get install -y --force-yes procps sysstat
+
 # SBT
 echo "install sbt"
 curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/bin/sbt && chmod 0755 ~/bin/sbt
