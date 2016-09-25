@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.9.15.1
+VERSION=1.11.2.1
 
 mode=$1
 
@@ -15,7 +15,10 @@ else
    wget https://openresty.org/download/openresty-$VERSION.tar.gz
    tar zxvf openresty-$VERSION.tar.gz -C .
    cd openresty-$VERSION
-   ./configure
+   #./configure
+   ./configure --with-pcre-jit --with-ipv6
    make
    sudo make install
+
+   echo "ADD: export PATH=/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$PATH"
 fi
