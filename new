@@ -1,0 +1,107 @@
+#!/usr/bin/env ruby
+
+def sh(cmd)
+  puts cmd
+  system cmd
+end
+
+def new_phoenix_project
+  project_name = ARGV[1] || 'test_phoenix'
+  sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
+end
+
+$base_fabfile_content = <<-eos
+  # -*- coding: utf-8 -*-
+
+from fabric.api import *
+
+
+def help():
+    """help"""
+    print('help')
+
+
+eos
+def new_fabfile
+  content = $base_fabfile_content
+
+  File.write 'fabfile.py', content
+end
+
+def new_openresty_project
+  project_name = ARGV[1] || 'test_openresty'
+  sh("mkdir -p #{project_name}/logs")
+  sh("mkdir -p #{project_name}/conf")
+
+  content = <<-eos
+worker_processes  1;
+error_log logs/error.log;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    server {
+        listen 3000;
+        location / {
+            default_type text/html;
+            content_by_lua '
+                ngx.say("<p>hello, world</p>")
+            ';
+        }
+    }
+}
+
+  eos
+
+  File.write "#{project_name}/conf/nginx.conf", content
+
+  content = <<-eos
+
+
+def run():
+    """run"""
+    local('nginx -p `pwd`/ -c conf/nginx.conf')
+
+
+  eos
+
+  content = "#{$base_fabfile_content}#{content}"
+
+  File.write "#{project_name}/fabfile.py", content
+
+  content = <<-eos
+*.pyc
+
+logs/
+
+tmp/
+target/
+
+.idea/
+
+  eos
+
+  File.write "#{project_name}/.gitignore", content
+
+  puts "cd #{project_name}"
+end
+
+#############################################
+
+tmp = ARGV[0]
+
+# tmp || (raise "no template!")
+
+case tmp
+when 'phoenix'
+  new_phoenix_project
+when 'fabfile'
+  new_fabfile
+when 'openresty'
+  new_openresty_project
+else
+  puts 'Usage: new phoenix project_name | fabfile | openresty project_name'
+  # raise "unsupported"
+end
