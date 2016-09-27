@@ -11,7 +11,7 @@ def new_phoenix_project
 end
 
 $base_fabfile_content = <<-eos
-  # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from fabric.api import *
 
@@ -58,11 +58,32 @@ http {
   File.write "#{project_name}/conf/nginx.conf", content
 
   content = <<-eos
+def start():
+    """nginx start"""
+    local('[ -d "./logs" ] || mkdir logs')
+    local('nginx -p `pwd`/ -c conf/nginx.conf')
 
 
 def run():
-    """run"""
-    local('nginx -p `pwd`/ -c conf/nginx.conf')
+    """nginx run"""
+    start()
+
+
+def reload():
+    """nginx reload"""
+    local('nginx -p `pwd`/ -s reload')
+
+
+def stop():
+    """nginx stop"""
+    with warn_only():
+        local('nginx -p `pwd`/ -s stop')
+
+
+def restart():
+    """restart"""
+    stop()
+    run()
 
 
   eos
