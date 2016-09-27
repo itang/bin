@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
 def sh(cmd)
-  puts cmd
-  system cmd
+    puts cmd
+    system cmd
 end
 
 def new_phoenix_project
-  project_name = ARGV[1] || 'test_phoenix'
-  sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
+    project_name = ARGV[1] || 'test_phoenix'
+    sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
 end
 
 $base_fabfile_content = <<-eos
@@ -23,17 +23,17 @@ def help():
 
 eos
 def new_fabfile
-  content = $base_fabfile_content
+    content = $base_fabfile_content
 
-  File.write 'fabfile.py', content
+    File.write 'fabfile.py', content
 end
 
 def new_openresty_project
-  project_name = ARGV[1] || 'test_openresty'
-  sh("mkdir -p #{project_name}/logs")
-  sh("mkdir -p #{project_name}/conf")
+    project_name = ARGV[1] || 'test_openresty'
+    sh("mkdir -p #{project_name}/logs")
+    sh("mkdir -p #{project_name}/conf")
 
-  content = <<-eos
+    content = <<-eos
 worker_processes  1;
 error_log logs/error.log;
 
@@ -55,9 +55,9 @@ http {
 
   eos
 
-  File.write "#{project_name}/conf/nginx.conf", content
+    File.write "#{project_name}/conf/nginx.conf", content
 
-  content = <<-eos
+    content = <<-eos
 def start():
     """nginx start"""
     local('[ -d "./logs" ] || mkdir logs')
@@ -88,11 +88,11 @@ def restart():
 
   eos
 
-  content = "#{$base_fabfile_content}#{content}"
+    content = "#{$base_fabfile_content}#{content}"
 
-  File.write "#{project_name}/fabfile.py", content
+    File.write "#{project_name}/fabfile.py", content
 
-  content = <<-eos
+    content = <<-eos
 *.pyc
 
 logs/
@@ -102,13 +102,31 @@ target/
 
 .idea/
 
-  eos
+eos
 
-  File.write "#{project_name}/.gitignore", content
+    File.write "#{project_name}/.gitignore", content
 
-  puts "cd #{project_name}"
+    puts "cd #{project_name}"
 end
 
+def _parse(type)
+    _, tmp, *tail = ARGV
+
+    project_name = tmp || "test_#{type}"
+    args = tail
+
+    [project_name, args]
+end
+
+def new_kotlin_project
+    project_name, args = _parse('kotlin')
+    sh "ktnew #{project_name} #{args.join(' ')}"
+end
+
+def new_swift_project
+    project_name, args = _parse('swift')
+    sh "swiftnew #{project_name} #{args.join(' ')}"
+end
 #############################################
 
 tmp = ARGV[0]
@@ -117,12 +135,16 @@ tmp = ARGV[0]
 
 case tmp
 when 'phoenix'
-  new_phoenix_project
+    new_phoenix_project
 when 'fabfile'
-  new_fabfile
+    new_fabfile
 when 'openresty'
-  new_openresty_project
+    new_openresty_project
+when 'kotlin'
+    new_kotlin_project
+when 'swift'
+    new_swift_project
 else
-  puts 'Usage: new phoenix project_name | fabfile | openresty project_name'
-  # raise "unsupported"
+    puts 'Usage: new phoenix project_name | fabfile | openresty project_name | kotlin project_name | swift project_name'
+    # raise "unsupported"
 end
