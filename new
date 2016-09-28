@@ -127,10 +127,14 @@ def new_swift_project
     project_name, args = _parse('swift')
     sh "swiftnew #{project_name} #{args.join(' ')}"
 end
+
+def new_elixir_project
+    project_name, args = _parse('elixir')
+    sh "mix new #{project_name} #{args.join(' ')}"
+end
 #############################################
 
 tmp = ARGV[0]
-
 # tmp || (raise "no template!")
 
 case tmp
@@ -144,7 +148,9 @@ when 'kotlin'
     new_kotlin_project
 when 'swift'
     new_swift_project
+when 'elixir'
+    new_elixir_project
 else
-    puts 'Usage: new phoenix project_name | fabfile | openresty project_name | kotlin project_name | swift project_name'
+    puts 'Usage: new phoenix project_name | fabfile | openresty project_name | kotlin project_name | swift project_name | elixir project_name'
     # raise "unsupported"
 end
