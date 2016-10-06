@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
 
 def sh(cmd)
-    puts cmd
+    puts "$ #{cmd}"
     system cmd
+end
+
+def write(file, content)
+    puts ">>write to file: #{file}:\n#{content}"
+    puts ''
+    File.write file, content
 end
 
 def new_phoenix_project
@@ -132,6 +138,65 @@ def new_elixir_project
     project_name, args = _parse('elixir')
     sh "mix new #{project_name} #{args.join(' ')}"
 end
+
+def new_vapor_project
+    project_name, args = _parse('vapor')
+    sh "vapor new #{project_name}"
+    content = <<-eos
+'use strict';
+
+var gulp = require('gulp');        // npm install gulp
+var vapor = require('gulp-vapor'); // npm install gulp-vapor
+
+/* If your project requires special configuration during */
+//vapor.config.commands.build = 'swift build --some-flag';
+//vapor.config.commands.start = ['.build/debug/gulp-vapor', ['serve', '--port=80']];
+
+gulp.task('vapor:start', vapor.start);
+gulp.task('vapor:reload', vapor.reload);
+
+gulp.task('watch', function() {
+   gulp.watch('./Sources/**/*', ['vapor:reload']);
+});
+
+
+gulp.task('default', ['vapor:start', 'watch']);
+
+    eos
+
+    write "#{project_name}/gulpfile.js", content
+
+    sh "echo node_modules >> #{project_name}/.gitignore"
+
+    content = <<-eos
+def run():
+    local('vapor build && vapor run serve')
+
+
+def prepare_watch():
+    local('npm install gulp gulp-vapor')
+
+
+def watch():
+    local('gulp')
+
+
+    eos
+
+    content = "#{$base_fabfile_content}#{content}"
+    write "#{project_name}/fabfile.py", content
+end
+
+def new_rust_project
+    project_name, args = _parse('rust')
+    sh "cargo new --bin #{project_name}"
+    puts "cd #{project_name}"
+end
+
+def new_go_project
+    project_name, args = _parse('go')
+    sh "gonew #{project_name} #{args.join(' ')}"
+end
 #############################################
 
 tmp = ARGV[0]
@@ -150,7 +215,26 @@ when 'swift'
     new_swift_project
 when 'elixir'
     new_elixir_project
+when 'vapor'
+    new_vapor_project
+when 'rust'
+    new_rust_project
+when 'go'
+    new_go_project
 else
-    puts 'Usage: new phoenix project_name | fabfile | openresty project_name | kotlin project_name | swift project_name | elixir project_name'
+    puts 'Usage:
+
+new kotlin    project_name   |
+    rust      project_name   |
+    go        project_name   |
+    swift     project_name   |
+    elixir    project_name   |
+
+    fabfile                  |
+
+    vapor     project_name   |
+    phoenix   project_name   |
+    openresty project_name   |
+    '
     # raise "unsupported"
 end
