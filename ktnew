@@ -25,6 +25,7 @@ buildscript {
         kotlinVersion = '#{KOTLIN_VERSION}'
     }
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -44,9 +45,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    maven {
-        url "http://www.haoshuju.net:8078/"
-    }
+    //maven {
+    //    url "http://www.haoshuju.net:8078/"
+    //}
+    jcenter()
     mavenCentral()
 }
 
