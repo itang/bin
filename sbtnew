@@ -19,10 +19,10 @@ declare -r FALSE=1
 
 ScalaVersion=2.11.8
 SbtVersion=0.13.12
-SbtUpdatesVersion=0.1.10
+SbtUpdatesVersion=0.2.0
 SbtassemblyVersion=0.14.3
 SbtDependencyGraph=0.8.2
-SbtScoverageVersion=1.3.5
+SbtScoverageVersion=1.4.0
 ScalatestVersion=2.2.6
 JavaVersion=1.8
 ScalazVersion=7.2.1
@@ -30,6 +30,7 @@ ShapelessVersion=2.3.0
 ScatangVersion=0.1
 ScalaStyleVersion=0.8.0
 AmmoniteVersion=0.6.2
+SbtCoursierVersion=1.0.0-M14
 
 ScalaJava8Version=0.7.0
 
@@ -147,7 +148,10 @@ addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependency
 
 addSbtPlugin(\"org.scoverage\" % \"sbt-scoverage\" % \"${SbtScoverageVersion}\")
 
-addSbtPlugin(\"org.scalastyle\" %% \"scalastyle-sbt-plugin\" % \"${ScalaStyleVersion}\")" > ${directoryName}/project/plugins.sbt
+addSbtPlugin(\"org.scalastyle\" %% \"scalastyle-sbt-plugin\" % \"${ScalaStyleVersion}\")
+
+addSbtPlugin(\"io.get-coursier\" % \"sbt-coursier\" % \"${SbtCoursierVersion}\")" > ${directoryName}/project/plugins.sbt
+
 
 #-----------------
 # init build.properties
