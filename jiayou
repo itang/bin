@@ -2,65 +2,63 @@
 require 'uri'
 
 class String
-  def browser(f = false)
-    os = RbConfig::CONFIG['host_os']
-    cmd =
-      case os
-      when /linux|bsd/
-        'xdg-open'
-      when /mswin|mingw|cygwin/
-        'start'
-      when /darwin/
-        'open'
-      end
-    if cmd
-      cline = ("#{cmd} #{self} > /dev/null 2>&1" + (f ? "" : " &")) #.tap {|x| puts x}
-      system cline
-      sleep(0.3) if f
+    def browser(f = false)
+        os = RbConfig::CONFIG['host_os']
+        cmd =
+            case os
+            when /linux|bsd/
+                'xdg-open'
+            when /mswin|mingw|cygwin/
+                'start'
+            when /darwin/
+                'open'
+            end
+        if cmd
+            cline = ("#{cmd} #{self} > /dev/null 2>&1" + (f ? '' : ' &')) # .tap {|x| puts x}
+            system cline
+            sleep(0.3) if f
+        end
     end
-  end
 
-  def valid_url?
-    begin
-      URI.parse(self)
-      true
-    rescue e
-      false
-    end
-  end
+    def valid_url?
+        URI.parse(self)
+        true
+      rescue e
+          false
+      end
 end
 
-if __FILE__ == $0
-  f = ARGV.any? { |e| e.start_with? "--f" }
-  %w[https://twitter.com
-    #https://mobile.twitter.com
-    //https://github.com/manastech/crystal
-    //http://www.reddit.com/r/crystal_programming
-    //https://groups.google.com/forum/?fromgroups#!forum/crystal-lang
-    https://github.com/stars?direction=desc&sort=updated
-    #https://github.com/notifications
-    http://www.douban.com
-    http://www.weibo.com
-    http://www.deftype.com
-    #http://www.haoshuju.net:8000
-    #http://www.adexchanger.cn
-    #http://www.rtbchina.com
-    http://www.infoq.com/
-    http://36kr.com/
-    #https://github.com/oden-lang/oden
-    #http://www.arewewebyet.org/
-    #https://github.com/rust-lang/rfcs/issues/323
-    #https://www.reddit.com/r/rust
-    #https://doc.rust-lang.org/stable/book/
-    #http://rustbyexample.com/
-    https://github.com/trending/rust
-    https://www.reddit.com/r/rust/
-    http://www.phoenixframework.org/docs/overview
-    http://elixir-lang.org/getting-started/introduction.html
-    http://elixir-lang.org/docs/stable/elixir/Kernel.html
-    http://bbs.szhome.com/30017.html
-  ].select(&:valid_url?)
-   .reverse
-   .map {|url| %Q("#{url}")}
-   .each {|url| url.browser(f)}
+if __FILE__ == $PROGRAM_NAME
+    f = ARGV.any? { |e| e.start_with? '--f' }
+    %w(https://twitter.com
+       #https://mobile.twitter.com
+       //https://github.com/manastech/crystal
+       //http://www.reddit.com/r/crystal_programming
+       //https://groups.google.com/forum/?fromgroups#!forum/crystal-lang
+       https://github.com/stars?direction=desc&sort=updated
+       #https://github.com/notifications
+       http://www.douban.com
+       http://www.weibo.com
+       http://www.deftype.com
+       #http://www.haoshuju.net:8000
+       #http://www.adexchanger.cn
+       #http://www.rtbchina.com
+       http://www.infoq.com/
+       http://36kr.com/
+       #https://github.com/oden-lang/oden
+       #http://www.arewewebyet.org/
+       #https://github.com/rust-lang/rfcs/issues/323
+       #https://www.reddit.com/r/rust
+       #https://doc.rust-lang.org/stable/book/
+       #http://rustbyexample.com/
+       https://github.com/trending/rust
+       https://www.reddit.com/r/rust/
+       http://www.phoenixframework.org/docs/overview
+       http://elixir-lang.org/getting-started/introduction.html
+       http://elixir-lang.org/docs/stable/elixir/Kernel.html
+       https://elixirforum.com/
+       http://bbs.szhome.com/30017.html).select(&:valid_url?)
+        .reverse
+        .map { |url| %("#{url}") }
+        .each { |url| url.browser(f) }
 end
