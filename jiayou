@@ -53,9 +53,9 @@ if __FILE__ == $PROGRAM_NAME
        #http://rustbyexample.com/
        https://github.com/trending/rust
        https://www.reddit.com/r/rust/
-       http://www.phoenixframework.org/docs/overview
-       http://elixir-lang.org/getting-started/introduction.html
-       http://elixir-lang.org/docs/stable/elixir/Kernel.html
+       #http://www.phoenixframework.org/docs/overview
+       #http://elixir-lang.org/getting-started/introduction.html
+       #http://elixir-lang.org/docs/stable/elixir/Kernel.html
        https://elixirforum.com/
        http://bbs.szhome.com/30017.html).select(&:valid_url?)
         .reverse

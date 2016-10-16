@@ -32,16 +32,18 @@ urls = ~w(
      #http://rustbyexample.com/
      https://github.com/trending/rust
      https://www.reddit.com/r/rust/
-     http://www.phoenixframework.org/docs/overview
-     http://elixir-lang.org/getting-started/introduction.html
-     http://elixir-lang.org/docs/stable/elixir/Kernel.html
+     #http://www.phoenixframework.org/docs/overview
+     #http://elixir-lang.org/getting-started/introduction.html
+     #http://elixir-lang.org/docs/stable/elixir/Kernel.html
      https://elixirforum.com/
      http://bbs.szhome.com/30017.html)
 
-#for url <- urls, !String.starts_with?(url, "#") do
-#  Jiayou.browser(url)
-#end
 
-urls
-|> Enum.filter(fn url -> !String.starts_with?(url, "#") end)
-|> Enum.each(fn url -> System.cmd("xdg-open", [url], parallelism: true) end)
+
+# urls
+# |> Enum.filter(fn url -> !String.starts_with?(url, "#") end)
+# |> Enum.each(fn url -> System.cmd("xdg-open", [url], parallelism: true) end)
+
+for url <- urls, !String.starts_with?(url, "#") do
+  System.cmd("xdg-open", [url], parallelism: true)
+end
