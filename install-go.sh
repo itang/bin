@@ -2,7 +2,7 @@
 
 go version
 
-VERSION=1.7.1
+VERSION=1.7.3
 
 function install() {
     URL=https://storage.googleapis.com/golang/go${VERSION}.linux-amd64.tar.gz

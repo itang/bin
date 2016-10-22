@@ -19,6 +19,7 @@ function update_cargos() {
     cargo install rustsym --force
 
     cargo install tokei --force
+    cargo install ripgrep --force
 }
 
 function install() {

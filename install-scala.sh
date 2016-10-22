@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCALA_VERSION=2.11.8
+SCALA_VERSION=2.12.0-RC2
 (
 cd ~/Downloads
 rm scala-${SCALA_VERSION}.tgz
