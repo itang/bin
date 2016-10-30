@@ -4,7 +4,7 @@
 
 # cabal update
 # cabal install purescript
-$cnpm install -g purescript pulp
+npm install -g purescript pulp
 
 # VERSION=0.7.3
 #
