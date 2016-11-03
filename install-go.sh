@@ -33,6 +33,8 @@ function install_pkgs() {
         go get -u  golang.org/x/tools/cmd/guru
         go get -u  github.com/k0kubun/pp
         go get -u  github.com/motemen/gore
+        go get -u github.com/cweill/gotests/...
+
     )
 }
 

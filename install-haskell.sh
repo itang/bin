@@ -1,17 +1,20 @@
 #!/bin/bash
 
+
+# https://www.haskell.org/downloads/linux
+# cabal ghc
+udo apt-get update
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository -y ppa:hvr/ghc
+sudo apt-get update
+sudo apt-get install -y cabal-install ghc
+
 # https://docs.haskellstack.org/en/stable/README/
+# stack
 curl -sSL https://get.haskellstack.org/ | sh
 
-#sudo apt-get update
 
-#sudo apt-get install haskell-platform
-
-
-#sudo add-apt-repository ppa:hvr/ghc
-#sudo apt-get update
-
-#sudo apt-get install ghc-7.10.2
-#sudo apt-get install cabal-install-1.22.4.0
-
-#ghc --version
+# cabals
+cabal update 
+cabal install happy
+cabal install ghc-mod
