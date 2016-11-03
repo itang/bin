@@ -21,6 +21,7 @@ function update_cargos() {
     cargo install tokei --force
     cargo install ripgrep --force
     cargo install loc --force
+    cargo install cargo-update --force
 }
 
 function install() {

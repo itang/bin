@@ -17,13 +17,13 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.11.8
+ScalaVersion=2.12.0
 SbtVersion=0.13.13
 SbtUpdatesVersion=0.2.0
 SbtassemblyVersion=0.14.3
 SbtDependencyGraph=0.8.2
 SbtScoverageVersion=1.4.0
-ScalatestVersion=2.2.6
+ScalatestVersion=3.0.0
 JavaVersion=1.8
 ScalazVersion=7.2.1
 ShapelessVersion=2.3.0
@@ -83,10 +83,10 @@ scalaVersion := \"${ScalaVersion}\"
 
 javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\", \"-Xlint\")
 
-scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", \"-YclasspathImpl:flat\", \"-Xexperimental\", \"-Ybackend:GenBCode\", \"-Ydelambdafy:method\", \"-target:jvm-1.8\")
+scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", /*\"-YclasspathImpl:flat\",*/ \"-Xexperimental\", /*\"-Ybackend:GenBCode\",*/ \"-Ydelambdafy:method\", \"-target:jvm-1.8\")
 
 libraryDependencies ++= Seq(
-  \"org.scala-lang.modules\" %% \"scala-java8-compat\" % \"${ScalaJava8Version}\",
+  //\"org.scala-lang.modules\" %% \"scala-java8-compat\" % \"${ScalaJava8Version}\",
   //\"org.scalaz\" %% \"scalaz-core\" % \"${ScalazVersion}\",
   //\"com.chuusai\" %% \"shapeless\" % \"${ShapelessVersion}\",
   //\"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
