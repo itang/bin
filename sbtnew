@@ -83,7 +83,7 @@ scalaVersion := \"${ScalaVersion}\"
 
 javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\", \"-Xlint\")
 
-scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", /*\"-YclasspathImpl:flat\",*/ \"-Xexperimental\", /*\"-Ybackend:GenBCode\",*/ \"-Ydelambdafy:method\", \"-target:jvm-1.8\")
+scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Yno-adapted-args\", \"-Xfatal-warnings\", \"-Ypartial-unification\", \"-Ydelambdafy:method\", \"-target:jvm-1.8\")
 
 libraryDependencies ++= Seq(
   //\"org.scala-lang.modules\" %% \"scala-java8-compat\" % \"${ScalaJava8Version}\",
