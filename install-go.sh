@@ -35,6 +35,7 @@ function install_pkgs() {
         go get -u  github.com/motemen/gore
         go get -u github.com/cweill/gotests/...
 
+        go get -u -v github.com/mitchellh/gox
     )
 }
 
