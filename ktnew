@@ -1,20 +1,20 @@
 #!/usr/bin/env ruby
 
-KOTLIN_VERSION = '1.0.4'.freeze
+KOTLIN_VERSION = '1.0.5'.freeze
 
 name = ARGV[0] || 'test-kotlin'
 
 def sh(cmd)
-  puts cmd
-  ret = system cmd
-  raise 'error' unless ret
+    puts cmd
+    ret = system cmd
+    raise 'error' unless ret
 end
 
 ################################################################################
 sh "mkdir #{name}"
 
-%w(java resources kotlin).each do |x|
-  sh "mkdir -p #{name}/src/main/#{x}"
+%w(resources kotlin).each do |x|
+    sh "mkdir -p #{name}/src/main/#{x}"
 end
 
 sh "cd #{name}; gradle init"
@@ -96,7 +96,6 @@ eos
 
 sh "mkdir -p #{name}/src/main/kotlin/demo"
 File.write "#{name}/src/main/kotlin/demo/Main.kt", main_content
-
 
 ################################################################
 
