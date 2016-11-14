@@ -95,12 +95,13 @@ libraryDependencies ++= Seq(
 )
 
 resolvers ++= Seq(
+  Resolver.jcenterRepo,
   DefaultMavenRepository,
   Resolver.sonatypeRepo(\"snapshots\"),
   Resolver.sonatypeRepo(\"releases\")
 )
 
-resolvers += \"itang's repos\" at \"http://www.haoshuju.net:8078\"
+//resolvers += \"itang's repos\" at \"http://www.haoshuju.net:8078\"
 
 incOptions := incOptions.value.withNameHashing(true)
 
