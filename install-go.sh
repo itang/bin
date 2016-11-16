@@ -37,6 +37,7 @@ function install_pkgs() {
 
         go get -u -v github.com/mitchellh/gox
         go get -u -v github.com/google/gops
+        go get -u -v github.com/tockins/realize
     )
 }
 
