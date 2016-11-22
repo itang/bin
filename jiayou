@@ -48,16 +48,17 @@ if __FILE__ == $PROGRAM_NAME
        #https://github.com/oden-lang/oden
        #http://www.arewewebyet.org/
        #https://github.com/rust-lang/rfcs/issues/323
-       #https://www.reddit.com/r/rust
+       https://www.reddit.com/r/rust
        #https://doc.rust-lang.org/stable/book/
        #http://rustbyexample.com/
        https://www.reddit.com/r/haskell/
        #https://github.com/trending/rust
        #https://www.reddit.com/r/rust/
        #http://www.phoenixframework.org/docs/overview
-       #http://elixir-lang.org/getting-started/introduction.html
-       #http://elixir-lang.org/docs/stable/elixir/Kernel.html
-       #https://elixirforum.com/
+       https://github.com/trending/elixir
+       http://elixir-lang.org/getting-started/introduction.html
+       http://elixir-lang.org/docs/stable/elixir/Kernel.html
+       https://elixirforum.com/
        http://bbs.szhome.com/30017.html).select(&:valid_url?)
         .reverse
         .map { |url| %("#{url}") }

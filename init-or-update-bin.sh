@@ -2,10 +2,10 @@
 
 sudo apt-get update
 
-sudo apt-get install -y --force-yes build-essential cmake libssl-dev libreadline-dev zlib1g-dev libglib2.0-dev
+sudo apt-get install -y --force-yes build-essential make cmake libssl-dev libreadline-dev zlib1g-dev libglib2.0-dev
 
 #sudo apt-get install -y --force-yes ubuntu-restricted-extras
-sudo apt-get install -y --force-yes zsh wget curl git mercurial xclip cloc tree p7zip-full rsync inotify-tools tmux shellcheck
+sudo apt-get install -y --force-yes zsh wget curl git mercurial binutils bison xclip cloc tree p7zip-full rsync inotify-tools tmux shellcheck
 
 chsh -s $(which zsh)
 
