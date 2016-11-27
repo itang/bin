@@ -22,6 +22,7 @@ function update_cargos() {
     cargo install ripgrep --force
     cargo install loc --force
     cargo install cargo-update --force
+    cargo install cargo-benchcmp --force
 }
 
 function install() {
