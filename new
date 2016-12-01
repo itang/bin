@@ -13,7 +13,8 @@ end
 
 def new_phoenix_project
     project_name = ARGV[1] || 'test_phoenix'
-    sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
+    sh "mix phoenix.new #{project_name} --no-brunch --no-ecto"
+    # sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
 end
 
 $base_fabfile_content = <<-eos
