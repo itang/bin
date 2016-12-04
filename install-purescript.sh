@@ -1,26 +1,41 @@
 #!/bin/bash
 
-## require(cabal, nodejs)
+version=0.10.2
 
-# cabal update
-# cabal install purescript
-npm install -g purescript pulp
+function install_by_source() {
+    cd /tmp
 
-# VERSION=0.7.3
-#
-# cd /tmp
-# wget https://github.com/purescript/purescript/releases/download/v$VERSION/linux64.tar.gz
-#
-# rm -rf ~/dev-env/purescript
-# tar zxvf linux64.tar.gz -C ~/dev-env
-#
-# echo "add below code to .profile"
-#
-# echo 'export PURESCRIPT_HOME=$DE/purescript
-#
-# export PATH=$PURESCRIPT_HOME:$PATH
-# '
-# # source ~/.profile
-# # psc --version
-#
-# npm install -g pulp
+    wget https://github.com/purescript/purescript/archive/v$version.tar.gz
+
+    tar zxvf v$version.tar.gz
+
+    cd purescript-$version
+
+    stack update
+
+    stack unpack purescript
+
+    cd purescript-$version
+
+    stack setup
+    stack install
+
+    echo "add ~/.local/bin to .zshenv"
+}
+
+function install_by_binary() {
+    cd /tmp
+    wget https://github.com/purescript/purescript/releases/download/v$version/linux64.tar.gz
+    tar zxvf linux64.tar.gz
+    cp purescript/* ~/.local/bin
+    psc --version
+}
+
+function install_by_npm() {
+    npm install -g purescript pulp
+}
+
+# main
+#install_binary
+
+install_by_binary
