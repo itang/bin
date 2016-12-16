@@ -202,11 +202,25 @@ def run():
     dist()
     local('./#{project_name}')
 
+
+def repl():
+    """repl"""
+    local('iex -S mix')
+
         eos
 
         write "#{project_name}/fabfile.py", content
     else
         sh "mix new #{project_name} #{args.join(' ')}"
+        content = <<-eos
+#{$base_fabfile_content}
+def repl():
+    """repl"""
+    local('iex -S mix')
+
+        eos
+
+        write "#{project_name}/fabfile.py", content
     end
 end
 
