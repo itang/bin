@@ -119,7 +119,7 @@ end
 def _parse(type)
     _, tmp, *tail = ARGV
 
-    if tmp.start_with?('-')
+    if !tmp || tmp.start_with?('-')
         project_name = "test_#{type}"
         args = tail.insert(0, tmp)
     else
@@ -283,6 +283,50 @@ def new_go_project
     sh "gonew #{project_name} #{args.join(' ')}"
 end
 
+def new_eta_project
+    project_name, _args = _parse('eta')
+    sh "mkdir -p #{project_name}"
+
+    sh "cd #{project_name}; epm init --main-is Main.hs -p #{project_name.delete('_')} --version=0.1.0.0 -l MIT -a $USER -e \"live.tang@gmail.com\" -u \"http://deftype.com/projects/#{project_name}\" -s \"test\" -c Other --is-executable --language Haskell2010 --no-comments --source-dir src"
+
+    content = <<-eos
+module Main where
+
+main = putStrLn "Hello, World"
+eos
+    write("#{project_name}/src/Main.hs", content)
+
+    content = <<-eos
+    #{$base_fabfile_content}
+def run():
+    """run"""
+    local('epm run')
+
+
+def clean():
+    """clean"""
+    local('epm clean')
+    local('epm install --dependencies-only')
+
+
+eos
+
+    write("#{project_name}/fabfile.py", content)
+
+    content = <<-eos
+dist/
+*.pyc
+eos
+
+    write("#{project_name}/.gitignore", content)
+
+    content = <<-eos
+# #{project_name}
+
+eos
+    write("#{project_name}/README.md", content)
+end
+
 def new_elm_project
     project_name, _args = _parse('elm')
     sh "mkdir -p #{project_name}/src"
@@ -362,6 +406,8 @@ when 'go'
     new_go_project
 when 'elm'
     new_elm_project
+when 'eta'
+    new_eta_project
 else
     puts 'Usage:
 
@@ -371,6 +417,7 @@ new kotlin    project_name   |
     swift     project_name   |
     elixir    project_name   |
     elm       project_name   |
+    eta       project_name   |
 
     fabfile                  |
 
