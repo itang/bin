@@ -2,7 +2,7 @@
 
 go version
 
-VERSION=1.8rc1
+VERSION=1.8rc2
 function install() {
     URL=https://storage.googleapis.com/golang/go${VERSION}.linux-amd64.tar.gz
     echo "download from ${URL}"
@@ -37,6 +37,8 @@ function install_pkgs() {
         go get -u -v github.com/mitchellh/gox
         go get -u -v github.com/google/gops
         go get -u -v github.com/tockins/realize
+
+        go get -u github.com/simeji/jid/cmd/jid
     )
 }
 
