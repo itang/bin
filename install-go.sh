@@ -31,14 +31,25 @@ function install_pkgs() {
         go get -u  github.com/newhook/go-symbols
         go get -u  golang.org/x/tools/cmd/guru
         go get -u  github.com/k0kubun/pp
-        go get -u  github.com/motemen/gore
         go get -u github.com/cweill/gotests/...
 
+        # REPL
+        go get -u  github.com/motemen/gore
+
+        # cross system compile
         go get -u -v github.com/mitchellh/gox
+
+        # go ps
         go get -u -v github.com/google/gops
+
+        # hot reload
         go get -u -v github.com/tockins/realize
 
-        go get -u github.com/simeji/jid/cmd/jid
+        # JSON inspect
+        go get -u -v github.com/simeji/jid/cmd/jid
+
+        # package manager
+        go get -u -v github.com/golang/dep
     )
 }
 
