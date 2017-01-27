@@ -56,6 +56,16 @@ def run():
     local('go run main.go')
 
 
+def dev():
+    """ """
+    # https://github.com/tockins/realize
+    local('realize fast')
+
+def repl():
+    """repl"""
+    local('gore')
+
+
 def update():
     """"dep ensure -update"""
     status()
