@@ -1,13 +1,13 @@
 #!/bin/bash
 
-VERSION=3.91
+VERSION=3.92
 
 (
     cd /tmp
 
-    wget https://github.com/upx/upx/releases/download/v$VERSION/upx-$VERSION-amd64_linux.tar.bz2
+    wget https://github.com/upx/upx/releases/download/v$VERSION/upx-$VERSION-amd64_linux.tar.xz
 
-    tar jxvf upx-$VERSION-amd64_linux.tar.bz2
+    tar -xJf upx-$VERSION-amd64_linux.tar.xz
 
     cp upx-$VERSION-amd64_linux/upx ~/dev-env/tools/
 
