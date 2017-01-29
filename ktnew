@@ -148,18 +148,33 @@ gradle-app.setting
 eos
 File.write "#{name}/.gitignore", gitignore_content
 
-## guard file
+## fabfile
 
-guard_content = <<-eos
-## gem install guard-shell
-guard :shell do
-  watch(/src\\/(.*).kt/) do |m|
-    puts m[0] + " has changed."
-    system "gradle --daemon run"
-  end
-end
+content = <<-eos
+# -*- coding: utf-8 -*-
+
+from fabric.api import *
+
+
+def run():
+    """run"""
+    local('./gradlew run')
+
+
+def dev():
+    """dev"""
+    local('watchexec "./gradlew run -no-daemon"')
+
+
+def clean():
+    """clean"""
+    local('./gradlew clean')
+
+
 eos
 
-File.write "#{name}/Guardfile", guard_content
+File.write("#{name}/fabfile.py", content)
 
 sh "cd #{name}; tree"
+
+puts "cd #{name}"

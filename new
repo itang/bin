@@ -303,10 +303,16 @@ def run():
     local('epm run')
 
 
+def dev():
+    """dev"""
+    local('watchexec "epm run"')
+
+
 def uberjar_mode():
     """uberjar mode"""
     local('epm clean')
     local('epm configure --enable-uberjar-mode')
+
 
 def jar_mode():
     """jar mode"""
@@ -336,6 +342,8 @@ eos
 
 eos
     write("#{project_name}/README.md", content)
+
+    puts "cd #{project_name}"
 end
 
 def new_elm_project
