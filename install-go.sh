@@ -47,12 +47,14 @@ function install_pkgs() {
 
         # JSON inspect
         go get -u -v github.com/simeji/jid/cmd/jid
-        
+
         # http stat
         go get -u -v github.com/davecheney/httpstat
 
         # package manager
         go get -u -v github.com/golang/dep
+
+        go get -u -v github.com/tj/go-search
     )
 }
 

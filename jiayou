@@ -57,10 +57,10 @@ if __FILE__ == $PROGRAM_NAME
        https://www.reddit.com/r/rust/
        #http://www.phoenixframework.org/docs/overview
        https://github.com/trending/elixir
-       http://elixir-lang.org/getting-started/introduction.html
+       #http://elixir-lang.org/getting-started/introduction.html
        #http://elixir-lang.org/docs/stable/elixir/Kernel.html
-       https://hexdocs.pm/elixir/Kernel.html
-       https://elixirforum.com/
+       #https://hexdocs.pm/elixir/Kernel.html
+       #https://elixirforum.com/
        http://bbs.szhome.com/30017.html).select(&:valid_url?)
         .reverse
         .map { |url| %("#{url}") }

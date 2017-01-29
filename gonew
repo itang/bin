@@ -28,7 +28,7 @@ import (
 
 func main() {
   fmt.Println("Hello, World!")
-  fmt.Printf("Yesterday: %v", ttime.RichTime(time.Now()).Yesterday())
+  fmt.Printf("Yesterday: %v\\n", ttime.RichTime(time.Now()).Yesterday())
 }
 
 eos
@@ -57,9 +57,10 @@ def run():
 
 
 def dev():
-    """ """
+    """dev"""
     # https://github.com/tockins/realize
     local('realize fast')
+
 
 def repl():
     """repl"""
@@ -67,8 +68,9 @@ def repl():
 
 
 def update():
-    """"dep ensure -update"""
+    """dep ensure -update"""
     status()
+    # https://github.com/golang/dep
     local('dep ensure -update')
     status()
 
