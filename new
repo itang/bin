@@ -35,6 +35,17 @@ def new_fabfile
     File.write 'fabfile.py', content
 end
 
+def new_procfile
+    content = <<-eos
+# sample
+web: python serve.py
+redis: redis-server
+
+eos
+    puts 'create Procfile...'
+    File.write 'Procfile', content
+end
+
 def new_openresty_project
     project_name = ARGV[1] || 'test_openresty'
     sh("mkdir -p #{project_name}/logs")
@@ -409,6 +420,8 @@ when 'phoenix'
     new_phoenix_project
 when 'fabfile'
     new_fabfile
+when 'procfile'
+    new_procfile
 when 'openresty'
     new_openresty_project
 when 'kotlin'
@@ -439,6 +452,7 @@ new kotlin    project_name   |
     eta       project_name   |
 
     fabfile                  |
+    procfile                 |
 
     vapor     project_name   |
     phoenix   project_name   |
