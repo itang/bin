@@ -16,3 +16,8 @@ else
 fi
 
 eta --version
+
+if [ "$0" != "0" ]; then
+   echo "You should add `stack path --local-bin` to your system PATH"
+fi
+
