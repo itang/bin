@@ -23,6 +23,7 @@ function update_cargos() {
     cargo install loc --force
     cargo install cargo-update --force
     cargo install cargo-benchcmp --force
+    cargo install mdbook --force
 }
 
 function install() {
