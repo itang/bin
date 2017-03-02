@@ -55,6 +55,8 @@ function install_pkgs() {
         go get -u -v github.com/golang/dep
 
         go get -u -v github.com/tj/go-search
+        
+        go get -u -v github.com/asciimoo/wuzz
     )
 }
 
