@@ -21,3 +21,6 @@ pip install redis
 pip instal fabric
 
 pip install honcho
+
+pip install fire
+
