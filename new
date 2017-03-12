@@ -46,6 +46,23 @@ eos
     File.write 'Procfile', content
 end
 
+def new_dockercompose
+    content = <<-eos
+version: '2'
+
+services:
+  seagull:
+    restart: always
+    image: tobegit3hub/seagull
+    ports:
+      - "10086:10086"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+eos
+    puts 'create docker-compose.yml'
+    File.write 'docker-compose.yml', content
+end
+
 def new_openresty_project
     project_name = ARGV[1] || 'test_openresty'
     sh("mkdir -p #{project_name}/logs")
@@ -422,6 +439,8 @@ when 'fabfile'
     new_fabfile
 when 'procfile'
     new_procfile
+when 'dockercompose'
+    new_dockercompose
 when 'openresty'
     new_openresty_project
 when 'kotlin'
@@ -453,6 +472,7 @@ new kotlin    project_name   |
 
     fabfile                  |
     procfile                 |
+    dockercompose            |
 
     vapor     project_name   |
     phoenix   project_name   |
