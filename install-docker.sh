@@ -4,3 +4,9 @@
 echo "wget -qO- https://get.docker.com/gpg | sudo apt-key add -"
 wget -qO- https://get.docker.com/ | sh
 docker --version;
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+sudo service docker restart
+
