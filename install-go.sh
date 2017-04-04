@@ -63,6 +63,8 @@ function install_pkgs() {
         go get -u -v github.com/rakyll/hey
         
         go get -u -v github.com/gchaincl/httplab
+        
+        go get -u -v github.com/heppu/gkill
     )
 }
 
