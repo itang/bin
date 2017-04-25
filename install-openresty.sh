@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.11.2.1
+VERSION=1.11.2.3
 
 mode=$1
 
@@ -16,9 +16,9 @@ else
    tar zxvf openresty-$VERSION.tar.gz -C .
    cd openresty-$VERSION
    #./configure
-   ./configure --with-pcre-jit --with-ipv6
-   make
+   ./configure -j2 --with-pcre-jit --with-ipv6
+   make -j2
    sudo make install
 
-   echo "ADD: export PATH=/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$PATH"
+   echo "ADD: export PATH=/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:\$PATH"
 fi
