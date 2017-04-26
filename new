@@ -401,6 +401,13 @@ eos
     puts "cd #{project_name}"
 end
 
+
+def new_springboot
+    project_name, _args = _parse('springboot')
+    system("spring init --build=gradle -l kotlin #{project_name}")
+end
+
+
 def new_elm_project
     project_name, _args = _parse('elm')
     sh "mkdir -p #{project_name}/src"
@@ -488,6 +495,8 @@ when 'elm'
     new_elm_project
 when 'eta'
     new_eta_project
+when 'springboot'
+    new_springboot
 else
     puts 'Usage:
 
@@ -507,6 +516,7 @@ new kotlin    project_name   |
     vapor     project_name   |
     phoenix   project_name   |
     openresty project_name   |
+    springboot project_name  |
     '
     # raise "unsupported"
 end
