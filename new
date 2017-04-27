@@ -405,6 +405,7 @@ end
 def new_springboot
     project_name, _args = _parse('springboot')
     system("spring init --build=gradle -l kotlin #{project_name}")
+    system("cd #{project_name}; gradle wrapper --gradle-version=3.5")
 end
 
 
