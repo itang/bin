@@ -1,4 +1,7 @@
 #!/bin/bash
 
-echo 'deb http://download.fpcomplete.com/ubuntu/trusty stable main'|sudo tee /etc/apt/sources.list.d/fpco.list
-sudo apt-get update && sudo apt-get install stack -y --force-yes
+curl -sSL https://get.haskellstack.org/ | sh
+
+echo ""
+echo 'tip: export PATH="\$HOME/.local/bin:$PATH"'
+
