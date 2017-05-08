@@ -1,11 +1,5 @@
 #!/bin/bash
 
-cd /tmp
+sudo apt-get update
+sudo apt-get install htop
 
-rm -rf htop
-git clone git@github.com:hishamhm/htop.git
-
-cd htop
-
-sudo apt-get install libncursesw5 libncursesw5-dev
-./autogen.sh && ./configure && make && sudo make install
