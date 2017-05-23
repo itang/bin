@@ -65,6 +65,8 @@ function install_pkgs() {
         go get -u -v github.com/gchaincl/httplab
         
         go get -u -v github.com/heppu/gkill
+
+        go get -v github.com/kshvmdn/fsql/...
     )
 }
 

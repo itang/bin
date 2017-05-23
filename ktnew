@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-KOTLIN_VERSION = '1.1.1'.freeze
+KOTLIN_VERSION = '1.1.2-3'.freeze
 
 name = ARGV[0] || 'test-kotlin'
 
@@ -54,6 +54,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
     //compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 
     testCompile "junit:junit:4.12"
