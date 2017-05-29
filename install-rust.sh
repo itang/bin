@@ -25,6 +25,7 @@ function update_cargos() {
     cargo install cargo-benchcmp --force
     cargo install mdbook --force
     cargo install shoop --force
+    cargo install cage --force
 }
 
 function install() {
