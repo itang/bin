@@ -38,6 +38,12 @@ function install() {
     rustup install stable
 
     rustup default nightly
+
+    rustup target add x86_64-unknown-linux-musl
+
+    rustup component add rls --toolchain nightly
+    rustup component add rust-analysis --toolchain nightly
+    rustup component add rust-src --toolchain nightly
 }
 
 function update() {
