@@ -462,6 +462,10 @@ view model =
     eos
     write "#{project_name}/README.md", content
 end
+
+def new_rls_toml
+    write "rls.toml", "unstable_features = true"
+end
 #############################################
 
 tmp = ARGV[0]
@@ -480,6 +484,8 @@ when 'openresty'
     new_openresty_project
 when 'nginx_conf'
     new_nginx_conf
+when 'rls_toml'
+    new_rls_toml
 when 'kotlin'
     new_kotlin_project
 when 'swift'
@@ -513,6 +519,7 @@ new kotlin    project_name   |
     procfile                 |
     dockercompose            |
     nginx_conf               |
+    rls_toml                 |
 
     vapor     project_name   |
     phoenix   project_name   |
