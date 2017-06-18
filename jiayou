@@ -21,11 +21,13 @@ class String
     end
 
     def valid_url?
+      begin
         URI.parse(self)
         true
-      rescue e
+      rescue
           false
       end
+    end
 end
 
 if __FILE__ == $PROGRAM_NAME
