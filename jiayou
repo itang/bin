@@ -41,7 +41,8 @@ if __FILE__ == $PROGRAM_NAME
 
        https://elixirforum.com/
        https://github.com/trending/elixir       
-       https://hexdocs.pm/elixir/Supervisor.html#content
+       #https://hexdocs.pm/elixir/Supervisor.html#content
+       https://github.com/trending
        https://github.com/trending/go
        https://github.com/trending/python
 
