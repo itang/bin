@@ -8,6 +8,8 @@ npm install -g source-map-support  --registry=https://registry.npm.taobao.org
 cnpm install -g jshint
 
 
+npm install -g eslint
+
 npm install -g typescript
 # tsun
 npm install -g tsun
