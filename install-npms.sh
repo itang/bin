@@ -23,3 +23,4 @@ npm install -g how2
 ### babel
 npm install --global babel-cli --registry=https://registry.npm.taobao.org
 
+npm install --global neon-cli
