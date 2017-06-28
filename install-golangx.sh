@@ -18,4 +18,13 @@ function get() {
 
 }
 
-get $1
+case "$1" in
+    all) 
+        array=( "sys" "tools" "net" "crypto" "arch" )
+        for it in ${array[@]}
+        do 
+            get $it 
+        done ;;
+    *)　get $1;;
+esac
+
