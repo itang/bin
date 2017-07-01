@@ -23,9 +23,9 @@ $base_fabfile_content = <<-eos
 from fabric.api import *
 
 
-def help():
-    """help"""
-    print('help')
+def usage():
+    """Usage"""
+    print('usage')
 
 
 eos

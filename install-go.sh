@@ -51,6 +51,12 @@ function install_pkgs() {
         # http stat
         go get -u -v github.com/davecheney/httpstat
 
+        # http://www.techug.com/post/lint-your-golang-code-like-a-mad-man.html
+        go get -u -v github.com/fzipp/gocyclo
+        go get -u -v honnef.co/go/staticcheck/cmd/staticcheck
+        go get -u -v golang.org/x/tools/cmd/gotype
+        go get -u -v github.com/tsenart/deadcode
+        
         # package manager
         go get -u -v github.com/golang/dep
 
