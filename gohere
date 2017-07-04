@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import subprocess
+
+dir_path = os.getcwd() # os.path.dirname(os.path.realpath(__file__))
+args = ' '.join(sys.argv[1:])
+cmd = 'GOPATH={} go {}'.format(dir_path, args)
+print cmd
+
+if len(sys.argv) > 1:
+    subprocess.call(cmd, shell=True)
