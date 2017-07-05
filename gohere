@@ -4,13 +4,30 @@ import os
 import sys
 import subprocess
 
-dir_path = os.getcwd()  # os.path.dirname(os.path.realpath(__file__))
+
+def search_gopath(cwd):
+    name = os.path.basename(cwd)
+    parent = os.path.abspath(os.path.join(cwd, os.pardir))
+    if name == 'src':
+        return parent
+    if parent == '/':
+        return None
+
+    return search_gopath(parent)
+
+
+CWD = os.getcwd()  # os.path.dirname(os.path.realpath(__file__))
+GOPATH = search_gopath(CWD) or CWD
+
+print('INFO: GOPATH={}'.format(GOPATH))
 
 if len(sys.argv) == 1:
-    print 'GOPATH={} go '.format(dir_path)
+    print 'USAGE: GOPATH={} go get github.com/itang/gotang'.format(GOPATH)
 else:
     args = ' '.join(sys.argv[1:])
-    cmd = 'GOPATH={} {}'.format(dir_path, args)
-    print cmd
+    cmd = 'GOPATH={} {}'.format(GOPATH, args)
+    print 'RUN ' + cmd
 
     subprocess.call(cmd, shell=True)
+
+    print("\nDONE.")
