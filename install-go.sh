@@ -72,9 +72,11 @@ function install_pkgs() {
         
         go get -u -v github.com/heppu/gkill
 
-        go get -v github.com/kshvmdn/fsql/...
+        go get -u -v github.com/kshvmdn/fsql/...
 
-        go get -v github.com/goby-lang/goby
+        go get -u -v github.com/goby-lang/goby
+
+        go get -u -v github.com/gobuffalo/buffalo/buffalo
     )
 }
 
