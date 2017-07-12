@@ -1,3 +1,5 @@
+#!/bin/bash
+
 VERSION=2.11.1-01
 
 cd /tmp

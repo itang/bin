@@ -1,4 +1,4 @@
-  #!/bin/bash
+#!/bin/bash
 
 VERSION=1.4-SNAPSHOT
 
@@ -15,4 +15,3 @@ cd ~/dev-env
 rm frege-repl
 
 ln -s frege-repl-${VERSION} frege-repl
-

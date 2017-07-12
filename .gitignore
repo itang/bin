@@ -1,2 +1,8 @@
 drip
 
+target/
+tmp/
+
+.idea
+.vscode
+

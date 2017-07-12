@@ -26,7 +26,7 @@ function install() {
     chmod +x gluon-repl
 }
 
-case $1 in
+case $mode in
   update) update;;
   *) install;;
 esac

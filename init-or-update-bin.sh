@@ -9,7 +9,7 @@ sudo apt-get install -y --force-yes zsh wget curl git mercurial binutils bison x
 sudo apt-get install -y --force-yes lm-sensors hddtemp
 
 
-chsh -s $(which zsh)
+chsh -s "$(which zsh)"
 
 # sys monitor
 sudo apt-get install -y --force-yes procps sysstat

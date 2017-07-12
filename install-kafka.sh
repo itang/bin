@@ -1,3 +1,5 @@
+#!/bin/bash
+
 VERSION="0.8.2.1"
 
 DOWNLOAD_URL=http://mirrors.cnnic.cn/apache/kafka/$VERSION/kafka_2.11-$VERSION.tgz
