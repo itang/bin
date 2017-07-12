@@ -49,7 +49,7 @@ if __FILE__ == $PROGRAM_NAME
        https://github.com/trending/go
        https://github.com/trending/python
 
-       https://www.reddit.com/r/reasonml/
+       #https://www.reddit.com/r/reasonml/
        https://github.com/trending/rust
        https://www.reddit.com/r/rust
        #https://www.reddit.com/r/haskell/
