@@ -26,3 +26,6 @@ npm install -g how2
 npm install --global babel-cli --registry=https://registry.npm.taobao.org
 
 npm install --global neon-cli
+
+npm install -g create-react-app
+

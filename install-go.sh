@@ -77,6 +77,8 @@ function install_pkgs() {
         go get -u -v github.com/goby-lang/goby
 
         go get -u -v github.com/gobuffalo/buffalo/buffalo
+
+        go get -u -v github.com/d4l3k/go-pry
     )
 }
 
