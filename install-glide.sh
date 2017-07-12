@@ -2,7 +2,6 @@
 
 VERSION=0.11.1
 
-
 glide -v
 
 #(
@@ -17,14 +16,14 @@ glide -v
 action=$1
 
 if [ "$action" == 'update' ]; then
-  
-  cd $GOPATH/src/github.com/Masterminds/glide
-  git pull
+
+    cd $GOPATH/src/github.com/Masterminds/glide
+    git pull
 
 else
-  mkdir -p $GOPATH/src/github.com/Masterminds
-  cd $GOPATH/src/github.com/Masterminds
-  git clone git@github.com:Masterminds/glide.git --depth 1
+    mkdir -p $GOPATH/src/github.com/Masterminds
+    cd $GOPATH/src/github.com/Masterminds
+    git clone git@github.com:Masterminds/glide.git --depth 1
 fi
 
 cd $GOPATH/src/github.com/Masterminds/glide

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 action=$1
 
 if [ "$action" == "update" ]; then

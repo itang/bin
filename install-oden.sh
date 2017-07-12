@@ -6,14 +6,14 @@ VERSION=0.3.5
 
 (
 
-cd /tmp
+    cd /tmp
 
-wget https://github.com/oden-lang/oden/releases/download/$VERSION/oden-$VERSION-linux.tar.gz
+    wget https://github.com/oden-lang/oden/releases/download/$VERSION/oden-$VERSION-linux.tar.gz
 
-rm -rf ~/dev-env/oden
-mkdir ~/dev-env/oden
+    rm -rf ~/dev-env/oden
+    mkdir ~/dev-env/oden
 
-tar -zxvf oden-$VERSION-linux.tar.gz -C ~/dev-env
+    tar -zxvf oden-$VERSION-linux.tar.gz -C ~/dev-env
 
-oden -V
+    oden -V
 )
