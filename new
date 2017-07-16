@@ -1,20 +1,20 @@
 #!/usr/bin/env ruby
 
 def sh(cmd)
-    puts "$ #{cmd}"
-    system cmd
+  puts "$ #{cmd}"
+  system cmd
 end
 
 def write(file, content)
-    puts ">>write to file: #{file}:\n#{content}"
-    puts ''
-    File.write file, content
+  puts ">>write to file: #{file}:\n#{content}"
+  puts ''
+  File.write file, content
 end
 
 def new_phoenix_project
-    project_name = ARGV[1] || 'test_phoenix'
-    sh "mix phoenix.new #{project_name} --no-brunch --no-ecto"
-    # sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
+  project_name = ARGV[1] || 'test_phoenix'
+  sh "mix phoenix.new #{project_name} --no-brunch --no-ecto"
+  # sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
 end
 
 $base_fabfile_content = <<-eos
@@ -30,24 +30,24 @@ def usage():
 
 eos
 def new_fabfile
-    content = $base_fabfile_content
+  content = $base_fabfile_content
 
-    File.write 'fabfile.py', content
+  File.write 'fabfile.py', content
 end
 
 def new_procfile
-    content = <<-eos
+  content = <<-eos
 # sample
 web: python serve.py
 redis: redis-server
 
 eos
-    puts 'create Procfile...'
-    File.write 'Procfile', content
+  puts 'create Procfile...'
+  File.write 'Procfile', content
 end
 
 def new_dockercompose
-    content = <<-eos
+  content = <<-eos
 version: '2'
 
 services:
@@ -59,12 +59,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 eos
-    puts 'create docker-compose.yml'
-    File.write 'docker-compose.yml', content
+  puts 'create docker-compose.yml'
+  File.write 'docker-compose.yml', content
 end
 
 def new_nginx_conf
-    content = <<-eos
+  content = <<-eos
 worker_processes 4;
 error_log logs/error.log;
 events {
@@ -86,16 +86,16 @@ http {
 
 eos
 
-    puts 'create nginx config file...'
-    write 'nginx.conf', content
+  puts 'create nginx config file...'
+  write 'nginx.conf', content
 end
 
 def new_openresty_project
-    project_name = ARGV[1] || 'test_openresty'
-    sh("mkdir -p #{project_name}/logs")
-    sh("mkdir -p #{project_name}/conf")
+  project_name = ARGV[1] || 'test_openresty'
+  sh("mkdir -p #{project_name}/logs")
+  sh("mkdir -p #{project_name}/conf")
 
-    content = <<-eos
+  content = <<-eos
 worker_processes  1;
 error_log logs/error.log;
 
@@ -117,9 +117,9 @@ http {
 
   eos
 
-    File.write "#{project_name}/conf/nginx.conf", content
+  File.write "#{project_name}/conf/nginx.conf", content
 
-    content = <<-eos
+  content = <<-eos
 def start():
     """nginx start"""
     local('[ -d "./logs" ] || mkdir logs')
@@ -150,11 +150,11 @@ def restart():
 
   eos
 
-    content = "#{$base_fabfile_content}#{content}"
+  content = "#{$base_fabfile_content}#{content}"
 
-    File.write "#{project_name}/fabfile.py", content
+  File.write "#{project_name}/fabfile.py", content
 
-    content = <<-eos
+  content = <<-eos
 *.pyc
 
 logs/
@@ -166,45 +166,45 @@ target/
 
 eos
 
-    File.write "#{project_name}/.gitignore", content
+  File.write "#{project_name}/.gitignore", content
 
-    puts "cd #{project_name}"
+  puts "cd #{project_name}"
 end
 
 def _parse(type)
-    _, tmp, *tail = ARGV
+  _, tmp, *tail = ARGV
 
-    if !tmp || tmp.start_with?('-')
-        project_name = "test_#{type}"
-        args = tail.insert(0, tmp)
-    else
-        project_name = tmp || "test_#{type}"
-        args = tail
-    end
+  if !tmp || tmp.start_with?('-')
+    project_name = "test_#{type}"
+    args = tail.insert(0, tmp)
+  else
+    project_name = tmp || "test_#{type}"
+    args = tail
+  end
 
-    [project_name, args]
+  [project_name, args]
 end
 
 def new_kotlin_project
-    project_name, args = _parse('kotlin')
-    sh "ktnew #{project_name} #{args.join(' ')}"
+  project_name, args = _parse('kotlin')
+  sh "ktnew #{project_name} #{args.join(' ')}"
 end
 
 def new_swift_project
-    project_name, args = _parse('swift')
-    sh "swiftnew #{project_name} #{args.join(' ')}"
+  project_name, args = _parse('swift')
+  sh "swiftnew #{project_name} #{args.join(' ')}"
 end
 
 def new_elixir_project
-    project_name, args = _parse('elixir')
+  project_name, args = _parse('elixir')
 
-    if args.include?('--bin')
-        args.delete('--bin')
-        sh "mix new #{project_name} #{args.join(' ')}"
-        sh("cd #{project_name};new fabfile")
-        sh("echo /#{project_name} >> #{project_name}/.gitignore")
+  if args.include?('--bin')
+    args.delete('--bin')
+    sh "mix new #{project_name} #{args.join(' ')}"
+    sh("cd #{project_name};new fabfile")
+    sh("echo /#{project_name} >> #{project_name}/.gitignore")
 
-        content = <<-eos
+    content = <<-eos
 defmodule MyApp.CLI do
   def main(_args) do
     IO.puts("Hello from MyApp!")
@@ -212,10 +212,10 @@ defmodule MyApp.CLI do
 end
 eos
 
-        write "#{project_name}/lib/main.ex", content
+    write "#{project_name}/lib/main.ex", content
 
-        module_name = (File.read("#{project_name}/mix.exs").match /defmodule (.+)\..+ do/)[1]
-        content = <<-eos
+    module_name = (File.read("#{project_name}/mix.exs").match /defmodule (.+)\..+ do/)[1]
+    content = <<-eos
 defmodule #{module_name}.Mixfile do
   use Mix.Project
 
@@ -243,9 +243,9 @@ defmodule #{module_name}.Mixfile do
 end
         eos
 
-        write "#{project_name}/mix.exs", content
+    write "#{project_name}/mix.exs", content
 
-        content = <<-eos
+    content = <<-eos
 #{$base_fabfile_content}
 def dist():
     """dist"""
@@ -264,10 +264,10 @@ def repl():
 
         eos
 
-        write "#{project_name}/fabfile.py", content
-    else
-        sh "mix new #{project_name} #{args.join(' ')}"
-        content = <<-eos
+    write "#{project_name}/fabfile.py", content
+  else
+    sh "mix new #{project_name} #{args.join(' ')}"
+    content = <<-eos
 #{$base_fabfile_content}
 def repl():
     """repl"""
@@ -275,14 +275,14 @@ def repl():
 
         eos
 
-        write "#{project_name}/fabfile.py", content
-    end
+    write "#{project_name}/fabfile.py", content
+  end
 end
 
 def new_vapor_project
-    project_name, _args = _parse('vapor')
-    sh "vapor new #{project_name}"
-    content = <<-eos
+  project_name, _args = _parse('vapor')
+  sh "vapor new #{project_name}"
+  content = <<-eos
 'use strict';
 
 var gulp = require('gulp');        // npm install gulp
@@ -304,11 +304,11 @@ gulp.task('default', ['vapor:start', 'watch']);
 
     eos
 
-    write "#{project_name}/gulpfile.js", content
+  write "#{project_name}/gulpfile.js", content
 
-    sh "echo node_modules >> #{project_name}/.gitignore"
+  sh "echo node_modules >> #{project_name}/.gitignore"
 
-    content = <<-eos
+  content = <<-eos
 def run():
     local('vapor build && vapor run serve')
 
@@ -323,35 +323,41 @@ def watch():
 
     eos
 
-    content = "#{$base_fabfile_content}#{content}"
-    write "#{project_name}/fabfile.py", content
+  content = "#{$base_fabfile_content}#{content}"
+  write "#{project_name}/fabfile.py", content
 end
 
 def new_rust_project
-    project_name, _args = _parse('rust')
-    sh "cargo new --bin #{project_name}"
-    puts "cd #{project_name}"
+  project_name, _args = _parse('rust')
+  sh "cargo new --bin #{project_name}"
+  puts "cd #{project_name}"
+end
+
+def new_bs_project
+  project_name, _args = _parse('bs')
+  sh "bsb -init #{project_name}"
+  puts "cd #{project_name}"
 end
 
 def new_go_project
-    project_name, args = _parse('go')
-    sh "gonew #{project_name} #{args.join(' ')}"
+  project_name, args = _parse('go')
+  sh "gonew #{project_name} #{args.join(' ')}"
 end
 
 def new_eta_project
-    project_name, _args = _parse('eta')
-    sh "mkdir -p #{project_name}"
+  project_name, _args = _parse('eta')
+  sh "mkdir -p #{project_name}"
 
-    sh "cd #{project_name}; epm init --main-is Main.hs -p #{project_name.delete('_')} --version=0.1.0.0 -l MIT -a $USER -e \"live.tang@gmail.com\" -u \"http://deftype.com/projects/#{project_name}\" -s \"test\" -c Other --is-executable --language Haskell2010 --no-comments --source-dir src"
+  sh "cd #{project_name}; epm init --main-is Main.hs -p #{project_name.delete('_')} --version=0.1.0.0 -l MIT -a $USER -e \"live.tang@gmail.com\" -u \"http://deftype.com/projects/#{project_name}\" -s \"test\" -c Other --is-executable --language Haskell2010 --no-comments --source-dir src"
 
-    content = <<-eos
+  content = <<-eos
 module Main where
 
 main = putStrLn "Hello, World"
 eos
-    write("#{project_name}/src/Main.hs", content)
+  write("#{project_name}/src/Main.hs", content)
 
-    content = <<-eos
+  content = <<-eos
     #{$base_fabfile_content}
 def run():
     """run"""
@@ -383,37 +389,35 @@ def clean():
 
 eos
 
-    write("#{project_name}/fabfile.py", content)
+  write("#{project_name}/fabfile.py", content)
 
-    content = <<-eos
+  content = <<-eos
 dist/
 *.pyc
 eos
 
-    write("#{project_name}/.gitignore", content)
+  write("#{project_name}/.gitignore", content)
 
-    content = <<-eos
+  content = <<-eos
 # #{project_name}
 
 eos
-    write("#{project_name}/README.md", content)
+  write("#{project_name}/README.md", content)
 
-    puts "cd #{project_name}"
+  puts "cd #{project_name}"
 end
-
 
 def new_springboot
-    project_name, _args = _parse('springboot')
-    system("spring init --build=gradle -l kotlin #{project_name}")
-    system("cd #{project_name}; gradle wrapper --gradle-version=3.5")
+  project_name, _args = _parse('springboot')
+  system("spring init --build=gradle -l kotlin #{project_name}")
+  system("cd #{project_name}; gradle wrapper --gradle-version=3.5")
 end
 
-
 def new_elm_project
-    project_name, _args = _parse('elm')
-    sh "mkdir -p #{project_name}/src"
+  project_name, _args = _parse('elm')
+  sh "mkdir -p #{project_name}/src"
 
-    content = <<-eos
+  content = <<-eos
 elm-stuff
 tmp
 
@@ -421,9 +425,9 @@ tmp
 
     eos
 
-    write "#{project_name}/.gitignore", content
+  write "#{project_name}/.gitignore", content
 
-    content = <<-eos
+  content = <<-eos
 import Html exposing (Html, button, div, text)
 import Html.App as App
 import Html.Events exposing (onClick)
@@ -450,21 +454,21 @@ view model =
 
     eos
 
-    write "#{project_name}/src/Main.elm", content
+  write "#{project_name}/src/Main.elm", content
 
-    sh "cd #{project_name}; elm-make"
+  sh "cd #{project_name}; elm-make"
 
-    ep = "#{project_name}/elm-package.json"
-    write ep, File.read(ep).sub('"."', '"src"')
+  ep = "#{project_name}/elm-package.json"
+  write ep, File.read(ep).sub('"."', '"src"')
 
-    content = <<-eos
+  content = <<-eos
 # #{project_name}
     eos
-    write "#{project_name}/README.md", content
+  write "#{project_name}/README.md", content
 end
 
 def new_rls_toml
-    write "rls.toml", "unstable_features = true"
+  write 'rls.toml', 'unstable_features = true'
 end
 #############################################
 
@@ -473,58 +477,61 @@ tmp = ARGV[0]
 
 case tmp
 when 'phoenix'
-    new_phoenix_project
+  new_phoenix_project
 when 'fabfile'
-    new_fabfile
+  new_fabfile
 when 'procfile'
-    new_procfile
+  new_procfile
 when 'dockercompose'
-    new_dockercompose
+  new_dockercompose
 when 'openresty'
-    new_openresty_project
+  new_openresty_project
 when 'nginx_conf'
-    new_nginx_conf
+  new_nginx_conf
 when 'rls_toml'
-    new_rls_toml
+  new_rls_toml
 when 'kotlin'
-    new_kotlin_project
+  new_kotlin_project
 when 'swift'
-    new_swift_project
+  new_swift_project
 when 'elixir'
-    new_elixir_project
+  new_elixir_project
 when 'vapor'
-    new_vapor_project
+  new_vapor_project
 when 'rust'
-    new_rust_project
+  new_rust_project
 when 'go'
-    new_go_project
+  new_go_project
 when 'elm'
-    new_elm_project
+  new_elm_project
 when 'eta'
-    new_eta_project
+  new_eta_project
+when 'bs'
+  new_bs_project
 when 'springboot'
-    new_springboot
+  new_springboot
 else
-    puts 'Usage:
+  puts 'Usage:
 
 new kotlin    project_name   |
-    rust      project_name   |
-    go        project_name   |
-    swift     project_name   |
-    elixir    project_name   |
-    elm       project_name   |
-    eta       project_name   |
+  rust      project_name   |
+  go        project_name   |
+  swift     project_name   |
+  elixir    project_name   |
+  elm       project_name   |
+  eta       project_name   |
+  bs        project_name   |
 
-    fabfile                  |
-    procfile                 |
-    dockercompose            |
-    nginx_conf               |
-    rls_toml                 |
+  fabfile                  |
+  procfile                 |
+  dockercompose            |
+  nginx_conf               |
+  rls_toml                 |
 
-    vapor     project_name   |
-    phoenix   project_name   |
-    openresty project_name   |
-    springboot project_name  |
-    '
-    # raise "unsupported"
+  vapor     project_name   |
+  phoenix   project_name   |
+  openresty project_name   |
+  springboot project_name  |
+  '
+  # raise "unsupported"
 end
