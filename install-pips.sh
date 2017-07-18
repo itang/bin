@@ -24,3 +24,5 @@ pip install honcho
 
 pip install fire
 
+pip install git+https://github.com/jeffkaufman/icdiff.git
+

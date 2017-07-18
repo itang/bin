@@ -20,10 +20,11 @@ let urls = [
   "https://www.reddit.com/r/rust";
 ]
 
-let rec browse urls = match urls with 
-| [] -> 0
-| hd::tail -> 
-  let _:int = Sys.command ("xdg-open" ^ " " ^ hd) in
-  browse tail;;
-
+let rec browse urls =
+  match urls with
+  | []       -> 0
+  | hd::tail ->
+    let _:int = Sys.command ("xdg-open" ^ " " ^ hd) in
+      browse tail
+;;
 browse urls
