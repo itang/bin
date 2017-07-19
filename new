@@ -35,6 +35,27 @@ def new_fabfile
   File.write 'fabfile.py', content
 end
 
+$rakefile_content = <<eos
+task default: :usage
+
+task :usage do
+    sh 'rake -T'
+end
+
+namespace :run do
+  desc 'run dev mode'
+  task :dev do
+    puts "run dev..."
+  end
+end
+eos
+
+def new_rakefile
+  content = $rakefile_content
+
+  write 'Rakefile', content
+end
+
 def new_procfile
   content = <<-eos
 # sample
@@ -480,6 +501,8 @@ when 'phoenix'
   new_phoenix_project
 when 'fabfile'
   new_fabfile
+when 'rakefile'
+  new_rakefile
 when 'procfile'
   new_procfile
 when 'dockercompose'
@@ -523,6 +546,7 @@ new kotlin    project_name   |
   bs        project_name   |
 
   fabfile                  |
+  rakefile                 |
   procfile                 |
   dockercompose            |
   nginx_conf               |
