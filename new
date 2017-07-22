@@ -360,6 +360,12 @@ def new_bs_project
   puts "cd #{project_name}"
 end
 
+def new_reason_project
+  project_name, _args = _parse('reason')
+  sh "bsb -init #{project_name} -theme basic-reason"
+  puts "cd #{project_name};npm run build;node lib/js/src/demo.js"
+end
+
 def new_go_project
   project_name, args = _parse('go')
   sh "gonew #{project_name} #{args.join(' ')}"
@@ -531,6 +537,12 @@ when 'eta'
   new_eta_project
 when 'bs'
   new_bs_project
+when 'bucklescript'
+  new_bs_project
+when 'reason'
+  new_reason_project
+when 're'
+  new_reason_project
 when 'springboot'
   new_springboot
 else
