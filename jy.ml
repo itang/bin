@@ -1,7 +1,7 @@
 #!/usr/bin/env ocaml
 
 let urls = [
-  "http://bbs.szhome.com/30016.html";
+  "http://bbs.szhome.com/30017.html";
   "https://twitter.com";
   "https://github.com/stars?direction=desc&sort=updated";
   "http://www.douban.com";
