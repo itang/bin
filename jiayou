@@ -2,60 +2,57 @@
 require 'uri'
 
 class String
-    def browser(f = false)
-        os = RbConfig::CONFIG['host_os']
-        cmd =
-            case os
-            when /linux|bsd/
-                'xdg-open'
-            when /mswin|mingw|cygwin/
-                'start'
-            when /darwin/
-                'open'
-            end
-        if cmd
-            cline = ("#{cmd} #{self} > /dev/null 2>&1" + (f ? '' : ' &')) # .tap {|x| puts x}
-            system cline
-            sleep(1.3) if f
-        end
-    end
-
-    def valid_url?
-      begin
-        URI.parse(self)
-        true
-      rescue
-          false
+  def browser(f = false)
+    os = RbConfig::CONFIG['host_os']
+    cmd =
+      case os
+      when /linux|bsd/
+        'xdg-open'
+      when /mswin|mingw|cygwin/
+        'start'
+      when /darwin/
+        'open'
       end
+    if cmd
+      cline = ("#{cmd} #{self} > /dev/null 2>&1" + (f ? '' : ' &')) # .tap {|x| puts x}
+      system cline
+      sleep(1.3) if f
     end
+  end
+
+  def valid_url?
+    URI.parse(self)
+    true
+  rescue
+    false
+  end
 end
 
-if __FILE__ == $PROGRAM_NAME
-    f = ARGV.any? { |e| e.start_with? '--f' }
-    %w(http://bbs.szhome.com/30017.html
-       https://twitter.com
-       https://github.com/stars?direction=desc&sort=updated
-       http://www.douban.com
-       http://www.weibo.com
-       http://www.deftype.com
-       http://www.oschina.net/
-       http://www.infoq.com/
-       http://36kr.com/
+if $PROGRAM_NAME == __FILE__
+  f = ARGV.any? { |e| e.start_with? '--f' }
+  %w[http://bbs.szhome.com/30017.html
+     https://twitter.com
+     https://github.com/stars?direction=desc&sort=updated
+     http://www.douban.com
+     http://www.weibo.com
+     http://www.deftype.com
+     http://www.oschina.net/
+     http://www.infoq.com/
+     http://36kr.com/
 
-       https://elixirforum.com/
-       https://github.com/trending/elixir       
-       #https://hexdocs.pm/elixir/Supervisor.html#content
-       https://github.com/trending
-       https://github.com/trending/go
-       https://github.com/trending/python
+     https://elixirforum.com/
+     https://github.com/trending/elixir
+     #https://hexdocs.pm/elixir/Supervisor.html#content
+     https://github.com/trending
+     https://github.com/trending/go
+     https://github.com/trending/python
 
-       #https://www.reddit.com/r/reasonml/
-       https://github.com/trending/rust
-       https://www.reddit.com/r/rust
-       #https://www.reddit.com/r/haskell/
-       #http://rustbyexample.com/hello/print/print_debug.html
-       ).select(&:valid_url?)
-        .reverse
-        .map { |url| %("#{url}") }
-        .each { |url| url.browser(f) }
+     #https://www.reddit.com/r/reasonml/
+     https://github.com/trending/rust
+     https://www.reddit.com/r/rust
+     #https://www.reddit.com/r/haskell/
+     #http://rustbyexample.com/hello/print/print_debug.html].select(&:valid_url?)
+    .reverse
+    .map { |url| %("#{url}") }
+    .each { |url| url.browser(f) }
 end
