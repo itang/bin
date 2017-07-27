@@ -44,6 +44,11 @@ urls = ~w(
 # |> Enum.filter(fn url -> !String.starts_with?(url, "#") end)
 # |> Enum.each(fn url -> System.cmd("xdg-open", [url], parallelism: true) end)
 
-for url <- urls, !String.starts_with?(url, "#") do
-  System.cmd("xdg-open", [url], parallelism: true)
-end
+#for url <- urls, !String.starts_with?(url, "#") do
+#  System.cmd("xdg-open", [url], parallelism: false)
+#end
+
+urls
+|> Stream.filter(fn url -> !String.starts_with?(url, "#") end)
+|> Task.async_stream(fn url -> System.cmd("xdg-open", [url], parallelism: true) end, max_concurrency: System.schedulers_online * 2)
+|> Stream.run

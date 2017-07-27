@@ -2,5 +2,5 @@
 
 cd ~/dev-env/tools
 
-mkdir -p ~/.ammonite && curl -L -o ~/.ammonite/predef.sc https://git.io/v6r5y
-curl -L -o amm https://git.io/v1rPf && chmod +x amm
+mkdir -p ~/.ammonite && curl -L -o ~/.ammonite/predef.sc https://git.io/vHaKQ
+curl -L -o amm https://git.io/vQEhd && chmod +x amm
