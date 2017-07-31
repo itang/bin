@@ -81,6 +81,8 @@ function install_pkgs() {
         go get -u -v github.com/d4l3k/go-pry
 
         go get -u -v github.com/mvdan/sh/cmd/shfm
+
+        go get -u -v github.com/GetStream/vg
     )
 }
 
