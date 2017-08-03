@@ -29,3 +29,5 @@ npm install --global neon-cli
 
 npm install -g create-react-app
 
+npm uninstall -g reason-cli
+npm install -g https://github.com/reasonml/reason-cli/archive/beta-v-1.13.6-bin-linux.tar.gz

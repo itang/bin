@@ -366,6 +366,12 @@ def new_reason_project
   puts "cd #{project_name};npm run build;node lib/js/src/demo.js"
 end
 
+def new_reason_react_project
+  project_name, _args = _parse('reason-react')
+  sh "bsb -init #{project_name} -theme react"
+  puts "cd #{project_name};npm install;npm run build;"
+end
+
 def new_go_project
   project_name, args = _parse('go')
   sh "gonew #{project_name} #{args.join(' ')}"
@@ -541,6 +547,8 @@ when 'bucklescript'
   new_bs_project
 when 'reason'
   new_reason_project
+when 're-react'
+  new_reason_react_project
 when 're'
   new_reason_project
 when 'springboot'
@@ -568,6 +576,7 @@ new kotlin    project_name   |
   phoenix   project_name   |
   openresty project_name   |
   springboot project_name  |
+  re-react   project_name  |
   '
   # raise "unsupported"
 end
