@@ -6,7 +6,7 @@ for g in $gits
 do
     (
         echo "git pull: $g";
-        cd $g;
+        cd "$g";
         git pull
     )
 done
