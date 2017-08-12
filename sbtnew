@@ -17,20 +17,20 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.12.0
-SbtVersion=0.13.13
-SbtUpdatesVersion=0.2.0
-SbtassemblyVersion=0.14.3
-SbtDependencyGraph=0.8.2
+ScalaVersion=2.12.3
+SbtVersion=1.0.0
+SbtUpdatesVersion=0.3.1
+SbtassemblyVersion=0.14.5
+#SbtDependencyGraph=0.8.2
 SbtScoverageVersion=1.4.0
-ScalatestVersion=3.0.0
+ScalatestVersion=3.0.1
 JavaVersion=1.8
 ScalazVersion=7.2.1
 ShapelessVersion=2.3.0
 ScatangVersion=0.1
 ScalaStyleVersion=0.8.0
-AmmoniteVersion=0.6.2
-SbtCoursierVersion=1.0.0-M14
+AmmoniteVersion=1.0.1
+SbtCoursierVersion=1.0.0-RC10
 
 ScalaJava8Version=0.7.0
 
@@ -103,7 +103,7 @@ resolvers ++= Seq(
 
 //resolvers += \"itang's repos\" at \"http://www.haoshuju.net:8078\"
 
-incOptions := incOptions.value.withNameHashing(true)
+//incOptions := incOptions.value.withNameHashing(true)
 
 mainClass in assembly := Some(\"Main\")
 
@@ -145,11 +145,11 @@ echo "addSbtPlugin(\"com.timushev.sbt\" % \"sbt-updates\" % \"${SbtUpdatesVersio
 
 addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")
 
-addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")
+//addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")
 
-addSbtPlugin(\"org.scoverage\" % \"sbt-scoverage\" % \"${SbtScoverageVersion}\")
+//addSbtPlugin(\"org.scoverage\" % \"sbt-scoverage\" % \"${SbtScoverageVersion}\")
 
-addSbtPlugin(\"org.scalastyle\" %% \"scalastyle-sbt-plugin\" % \"${ScalaStyleVersion}\")
+//addSbtPlugin(\"org.scalastyle\" %% \"scalastyle-sbt-plugin\" % \"${ScalaStyleVersion}\")
 
 addSbtPlugin(\"io.get-coursier\" % \"sbt-coursier\" % \"${SbtCoursierVersion}\")" > ${directoryName}/project/plugins.sbt
 
