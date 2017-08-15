@@ -151,7 +151,7 @@ addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")
 
 //addSbtPlugin(\"org.scalastyle\" %% \"scalastyle-sbt-plugin\" % \"${ScalaStyleVersion}\")
 
-addSbtPlugin(\"io.get-coursier\" % \"sbt-coursier\" % \"${SbtCoursierVersion}\")" > ${directoryName}/project/plugins.sbt
+//addSbtPlugin(\"io.get-coursier\" % \"sbt-coursier\" % \"${SbtCoursierVersion}\")" > ${directoryName}/project/plugins.sbt
 
 
 #-----------------
