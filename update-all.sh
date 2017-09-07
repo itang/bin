@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-gits="$HOME/workspace/load-imei $HOME/tang/load-imei $HOME/workspace/tangcloud $HOME/tang/tangcloud $HOME/workspace/tests $HOME/tang/tests $HOME/bin"
+gits="$HOME/workspace/load-imei $HOME/tang/load-imei $HOME/workspace/tangcloud $HOME/tang/tangcloud $HOME/tang/now $HOME/workspace/now $HOME/workspace/tests $HOME/tang/tests $HOME/bin"
 for g in $gits
 do
     (
