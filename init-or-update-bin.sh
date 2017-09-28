@@ -6,7 +6,7 @@ sudo apt-get install -y --force-yes build-essential make cmake libssl-dev pkg-co
 
 #sudo apt-get install -y --force-yes ubuntu-restricted-extras
 sudo apt-get install -y --force-yes zsh wget curl git mercurial binutils bison xclip cloc tree zip p7zip-full rsync inotify-tools tmux shellcheck lnav
-sudo apt-get install -y --force-yes lm-sensors hddtemp
+sudo apt-get install -y --force-yes lm-sensors hddtemp linux-tools-generic
 
 
 chsh -s "$(which zsh)"
