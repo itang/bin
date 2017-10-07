@@ -8,9 +8,9 @@ TARGET_DIR = "#{PDIR}/#{name}".freeze
 raise "dir existing: #{TARGET_DIR}" if Dir.exist?(TARGET_DIR)
 
 def sh(cmd)
-    puts cmd
-    ret = system cmd
-    raise 'error' unless ret
+  puts cmd
+  ret = system cmd
+  raise 'error' unless ret
 end
 
 sh "mkdir -p #{TARGET_DIR}"
@@ -48,7 +48,7 @@ File.write("#{TARGET_DIR}/.gitignore", ignore_content)
 fabfile_content = <<eos
 # -*- coding: utf-8 -*-
 
-from fabric.api import *
+from fabric.api import local
 
 
 def run():
@@ -92,4 +92,4 @@ sh "tree #{TARGET_DIR}"
 
 puts 'Finished!'
 
-puts "just cd #{TARGET_DIR}"
+puts "just\ncd #{TARGET_DIR}"
