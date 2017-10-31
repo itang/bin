@@ -1,5 +1,7 @@
 #!/usr/bin/env ng
 
+// go get -u -v neugram.io/ng
+
 import "fmt"
 import "os"
 import "strconv"
@@ -10,7 +12,19 @@ func m(d int) float64 {
 }
 
 fmt.Printf("args: %v\n", os.Args)
-d := strconv.Atoi(os.Args[2])
 
-fmt.Printf("走%v米, 需花分钟数: %6.2v", d, m(d))
+d := 1000
+al := len(os.Args)
+//if al >= 3 {
+	d = strconv.Atoi(os.Args[2])
+//}
 
+mf := m(d)
+mi := int(m(d))
+md := mf - float64(mi)
+
+if md > 0 {
+	fmt.Printf("步行%v米, 需花%v分%.1f秒", d, mi, md * 60)
+}else {
+	fmt.Printf("步行走%v米, 需花%v分钟", d, mi)
+}
