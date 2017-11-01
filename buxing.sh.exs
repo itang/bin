@@ -12,7 +12,7 @@ end
 d = (List.first(System.argv()) || "1000") |> String.to_integer()
 
 mf = A.m(d)
-mi = round(mf)
+mi = mf |> :math.floor() |> round
 md = mf - mi
 
 IO.puts("")
