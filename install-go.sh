@@ -83,6 +83,8 @@ function install_pkgs() {
         go get -u -v github.com/mvdan/sh/cmd/shfm
 
         go get -u -v github.com/GetStream/vg
+
+        go get -u -v neugram.io/ng
     )
 }
 
