@@ -14,7 +14,7 @@ export SDKMAN_DIR="/home/itang/.sdkman"
 sdk selfupdate
 
 rustup update nightly
-# cargo install --git https://github.com/ogham/exa
+# cargo install --force --git https://github.com/ogham/ex
 cargo install-update -a
 
 #opam update
