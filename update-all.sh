@@ -17,5 +17,5 @@ rustup update nightly
 # cargo install --git https://github.com/ogham/exa
 cargo install-update -a
 
-opam update
-opam upgrade
+#opam update
+#opam upgrade
