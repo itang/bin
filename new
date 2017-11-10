@@ -363,15 +363,15 @@ end
 def new_reason_project
   project_name, _args = _parse('reason')
   sh "bsb -init #{project_name} -theme basic-reason"
-  puts "cd #{project_name};upgradeSyntaxFrom2To3 src/*;"
-  puts "cd #{project_name};npm run build;node lib/js/src/demo.js"
+  sh "cd #{project_name};upgradeSyntaxFrom2To3 src/*;"
+  sh "cd #{project_name};npm run build;node lib/js/src/demo.js"
 end
 
 def new_reason_react_project
   project_name, _args = _parse('reason-react')
   sh "bsb -init #{project_name} -theme react"
-  sh 'upgradeSyntaxFrom2To3 src/*'
-  puts "cd #{project_name};npm install;npm run build;"
+  sh 'cd #{project_name};upgradeSyntaxFrom2To3 src/*'
+  sh "cd #{project_name};npm install;npm run build;"
 end
 
 def new_go_project
