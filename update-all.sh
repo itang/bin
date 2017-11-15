@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# set -x
+
 gits="$HOME/workspace/load-imei $HOME/tang/load-imei $HOME/workspace/tangcloud $HOME/tang/tangcloud $HOME/tang/now $HOME/workspace/now $HOME/workspace/tests $HOME/tang/tests $HOME/workspace/nginxa $HOME/tang/nginxa $HOME/bin"
 for g in $gits; do
     (
