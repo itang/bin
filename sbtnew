@@ -162,15 +162,59 @@ echo "sbt.version=${SbtVersion}" > ${directoryName}/project/build.properties
 #----------------------------------
 # init src/main/scala/example.scala
 #----------------------------------
-echo "
-object Main {
+echo 'import java.io.Closeable
 
-  def main(args: Array[String]): Unit = {
-    println(\"Hello, World!\")
+package object util {
+
+  import java.text.SimpleDateFormat
+  import java.util.Date
+
+  implicit class DateOps(d: Date) {
+    def format(pattern: String = "yyyyMMdd"): String = new SimpleDateFormat(pattern).format(d)
+  }
+
+  def time[T](block: => T): T = {
+    val start = System.currentTimeMillis()
+    val ret = block
+    val end = System.currentTimeMillis()
+    println(s">>Cost time: ${end - start}ms")
+    ret
+  }
+
+  def using[A <: Closeable, B](target: A)(block: A => B): B =
+    try {
+      val ret = block(target)
+      target.close()
+      ret
+    } catch {
+      case e: Exception => throw e
+    }
+
+  implicit class Pipe[T](val v: T) extends AnyVal {
+    def |>[U] (f: T => U) = f(v)
+    // Additional suggestions:
+    def $$[U](f: T => U): T = {f(v); v}
+    def #!(str: String = ""): T = {println(str + v); v}
   }
 }
 
-" > ${directoryName}/src/main/scala/main.scala
+' > ${directoryName}/src/main/scala/util.scala
+
+echo 'import util._
+import java.util.Date
+
+object Main {
+
+  def main(args: Array[String]): Unit = time {
+    "Hello, World"
+      .$$(println)
+      .|>(_ + ", " + new Date().format("yyyy-MM-dd"))
+      .|>(println)
+  }
+}
+
+' > ${directoryName}/src/main/scala/main.scala
+
 
 #----------------------------------
 # init src/test/scala/example_test.scala
