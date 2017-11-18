@@ -505,6 +505,114 @@ end
 def new_rls_toml
   write 'rls.toml', 'unstable_features = true'
 end
+
+def new_scalajs_project
+  project_name, _args = _parse('scalajs')
+  scalajs_version = '0.6.21'
+  scala_version = '2.12.4'
+
+  sh "mkdir -p #{project_name}/project"
+  plugins_content = <<-eos
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "#{scalajs_version}")
+eos
+  write "#{project_name}/project/plugins.sbt", plugins_content
+
+  props_content = <<-eos
+sbt.version=1.0.3
+eos
+  write "#{project_name}/project/build.properties", props_content
+
+  build_content = <<-eos
+enablePlugins(ScalaJSPlugin)
+
+name := "Scala.js Tutorial"
+scalaVersion := "#{scala_version}" // or any other Scala version >= 2.10.2
+
+// This is an application with a main method
+scalaJSUseMainModuleInitializer := true
+
+scalaJSModuleKind := ModuleKind.CommonJSModule
+
+libraryDependencies ++= Seq(
+   "org.scala-js" %%% "scalajs-dom" % "0.9.1",
+   "io.scalajs" %%% "nodejs" % "0.4.2"
+)
+
+eos
+  write "#{project_name}/build.sbt", build_content
+
+  sh "mkdir -p #{project_name}/src/main/scala/tutorial/webapp/"
+  tutorial_content = <<-eos
+package tutorial.webapp
+
+import io.scalajs.nodejs.os
+import util._
+
+object TutorialApp {
+  def main(args: Array[String]): Unit = {
+    println("Hello world!")
+    println("args:")
+    args.foreach(println)
+
+    os.OS.arch()
+      .|>(os => println(s"""os is: $os"""))
+  }
+}
+
+eos
+
+  write "#{project_name}/src/main/scala/tutorial/webapp/TutorialApp.scala", tutorial_content
+
+  util_content = <<-eos
+import java.io.Closeable
+
+package object util {
+
+  import java.text.SimpleDateFormat
+  import java.util.Date
+
+  implicit class DateOps(d: Date) {
+    def format(pattern: String = "yyyyMMdd"): String = new SimpleDateFormat(pattern).format(d)
+  }
+
+  def time[T](block: => T): T = {
+    val start = System.currentTimeMillis()
+    val ret = block
+    val end = System.currentTimeMillis()
+    println(s">>Cost time: ${end - start}ms")
+    ret
+  }
+
+  def using[A <: Closeable, B](target: A)(block: A => B): B =
+    try {
+      val ret = block(target)
+      target.close()
+      ret
+    } catch {
+      case e: Exception => throw e
+    }
+
+  implicit class Pipe[T](val v: T) extends AnyVal {
+    def |>[U](f: T => U) = f(v)
+
+    // Additional suggestions:
+    def $$[U](f: T => U): T = {
+      f(v); v
+    }
+
+    def #!(str: String = ""): T = {
+      println(str + v); v
+    }
+  }
+
+}
+
+eos
+  write "#{project_name}/src/main/scala/util.scala", util_content
+
+  puts "(cd #{project_name}; sbt run)"
+  puts "cd #{project_name}; sbt run"
+end
 #############################################
 
 tmp = ARGV[0]
@@ -553,6 +661,10 @@ when 're-react'
   new_reason_react_project
 when 're'
   new_reason_project
+when 'scala-js'
+  new_scalajs_project
+when 'scalajs'
+  new_scalajs_project
 when 'springboot'
   new_springboot
 else
@@ -566,6 +678,7 @@ new kotlin    project_name   |
   elm       project_name   |
   eta       project_name   |
   bs        project_name   |
+  reason    project_name   |
 
   fabfile                  |
   rakefile                 |
@@ -579,6 +692,7 @@ new kotlin    project_name   |
   openresty project_name   |
   springboot project_name  |
   re-react   project_name  |
+  scalajs    project_name  |
   '
   # raise "unsupported"
 end
