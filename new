@@ -613,6 +613,11 @@ eos
   puts "(cd #{project_name}; sbt run)"
   puts "cd #{project_name}; sbt run"
 end
+
+def new_scalajs_web_project
+  project_name, _args = _parse('scalajs-web')
+  sh "git clone git@github.com:itang/scala-js-template.git #{project_name}"
+end
 #############################################
 
 tmp = ARGV[0]
@@ -665,6 +670,8 @@ when 'scala-js'
   new_scalajs_project
 when 'scalajs'
   new_scalajs_project
+when 'scalajs-web'
+  new_scalajs_web_project
 when 'springboot'
   new_springboot
 else
@@ -693,6 +700,7 @@ new kotlin    project_name   |
   springboot project_name  |
   re-react   project_name  |
   scalajs    project_name  |
+  scalajs-web project_name |
   '
   # raise "unsupported"
 end
