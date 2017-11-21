@@ -270,14 +270,14 @@ from fabric.api import *
 
 def run():
     """Run"""
-    local('sbt run')
+    local("sbt run")
 
 
 def dev():
     """Dev"""
-    local('sbt "~reStart"')
+    local("sbt \"~reStart\"")
 
-' > ${directoryName}/fabfile
+' > ${directoryName}/fabfile.py
 
 #-----------------------------
 # create README.me, if desired
