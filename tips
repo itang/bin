@@ -1,0 +1,95 @@
+#!/bin/bash
+
+
+function display_svn() {
+   echo '
+   格式: svn propset svn:global-ignores filelist .
+   格式: svn propset svn:ignore filePattern .
+
+   $ svn propget svn:ignore backend
+   $ svn pg svn:ignore backend
+   $ svn pg svn:global-ignores
+   $ svn status --no-ignore | grep "^I"
+   $ svn pg svn:global-ignores . -v --show-inherited-props
+
+   $ svn propset svn:ignore "*.pem" .
+   $ svn propset svn:ignore "1.pem 2.pem " .
+   $ svn propset svn:ignore -RF /root/svn-ignore.txt .
+
+   $ svn proplist -v
+
+   links: http://139.199.4.119/book/learn/scm/svn.html
+   '
+}
+
+function display_ssh() {
+    echo '
+    $ ssh -p 22 user@host
+    $ ssh -p 12367 -fNTL 8162:localhost:8161 user@host
+    '
+}
+
+function display_git() {
+    echo '
+    TODO
+    '
+}
+
+function display_mysql() {
+    echo '
+    TODO
+    '
+}
+
+function display_docker() {
+    echo '
+    TODO
+    '
+}
+
+function display_jmap() {
+    echo '
+    TODO
+    '
+}
+
+
+function display_jstack() {
+    echo '
+    TODO
+    '
+}
+
+
+function display_jstat() {
+    echo '
+    TODO
+    '
+}
+
+function display_top() {
+    echo '
+    TODO
+    '
+}
+
+function display_ps() {
+    echo '
+    TODO
+    '
+}
+
+case "$1" in
+  svn)  display_svn ;;
+  ssh)  display_ssh ;;
+  git)  display_git ;;
+  mysql) diplay_mysql ;;
+  docker) diplay_docker ;;
+  jmap) display_jmap ;;
+  jstack) display_jstack ;;
+  jstat) display_jstat ;;
+  top) display_top ;;
+  ps) display_ps ;;
+
+  *)  echo "tips svn|ssh|git|mysql|jmap|jstack|jstat|top|ps" ;;
+esac
