@@ -31,6 +31,7 @@ ScatangVersion=0.1
 ScalaStyleVersion=0.8.0
 AmmoniteVersion=1.0.1
 SbtCoursierVersion=1.0.0-RC10
+SbtRevolverVersion=0.9.1
 
 ScalaJava8Version=0.7.0
 
@@ -101,12 +102,12 @@ resolvers ++= Seq(
   Resolver.sonatypeRepo(\"releases\")
 )
 
-//resolvers += \"itang's repos\" at \"http://www.haoshuju.net:8078\"
-
-//incOptions := incOptions.value.withNameHashing(true)
+reStartArgs := Seq(\"-x\")
+//mainClass in reStart := Some(\"Main\")
+//javaOptions in reStart += \"-Xmx2g\"
+envVars in reStart := Map(\"ENV_USER_TOKEN\" -> \"2359298356239\")
 
 //mainClass in assembly := Some(\"Main\")
-
 //assemblyMergeStrategy in assembly := {
 //  //case PathList(\"javax\", \"servlet\", xs @ _*)         => MergeStrategy.first
 //  //case PathList(ps @ _*) if ps.last endsWith \".html\" => MergeStrategy.first
@@ -142,7 +143,7 @@ resolvers ++= Seq(
 # init plugins.sbt
 #-----------------
 echo "addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")
-
+addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")
 //addSbtPlugin(\"com.timushev.sbt\" % \"sbt-updates\" % \"${SbtUpdatesVersion}\")
 
 //addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")
@@ -200,12 +201,16 @@ package object util {
 
 ' > ${directoryName}/src/main/scala/util.scala
 
-echo 'import util._
-import java.util.Date
+echo 'import java.util.Date
+import scala.collection.JavaConverters._
+import util._
 
 object Main {
 
   def main(args: Array[String]): Unit = time {
+    println(s"args: ${args.mkString(" ")}") 
+    System.getenv.asScala.filter(it => it._1.startsWith("ENV")).foreach(println)
+
     "Hello, World"
       .$$(println)
       .|>(_ + ", " + new Date().format("yyyy-MM-dd"))
@@ -254,24 +259,25 @@ lib/
 fi
 
 #------------------------------
-# create Rakefile
+# create fabfile
 #-----------------------------
 
-echo "namespace :dev do
-  desc 'Generate Scalastyle config'
-  task :scalastyle_config do
-    sh 'sbt scalastyleGenerateConfig'
-  end
-end
+echo '
+# -*- coding: utf-8 -*-
 
-namespace :source do
-  namespace :check do
-    desc 'check scala style'
-    task :scalastyle do
-      sh 'sbt scalastyle'
-    end
-  end
-end" > ${directoryName}/Rakefile
+from fabric.api import *
+
+
+def run():
+    """Run"""
+    local('sbt run')
+
+
+def dev():
+    """Dev"""
+    local('sbt "~reStart"')
+
+' > ${directoryName}/fabfile
 
 #-----------------------------
 # create README.me, if desired
