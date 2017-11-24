@@ -1,6 +1,12 @@
 #!/bin/bash
 
+function display_curl() {
+    echo '
+    curl -sSL https://git.io/gobackup | bash
 
+    curl -L -o coursier https://git.io/vgvpD 
+    '
+}
 function display_svn() {
    echo '
    格式: svn propset svn:global-ignores filelist .
@@ -138,6 +144,7 @@ function diplay_iconv() {
 }
 
 case "$1" in
+  curl) display_curl;;
   svn)  display_svn ;;
   ssh)  display_ssh ;;
   git)  display_git ;;
@@ -153,5 +160,5 @@ case "$1" in
   xclip) display_xclip;;
   iconv) diplay_iconv;;
 
-  *)  echo "tips svn| ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv" ;;
+  *)  echo "tips curl | svn | ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv" ;;
 esac
