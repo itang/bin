@@ -26,6 +26,10 @@ function display_ssh() {
     echo '
     $ ssh -p 22 user@host
     $ ssh -p 12367 -fNTL 8162:localhost:8161 user@host
+
+    $ ssh USER@REMOTE_HOST "cat >> ~/.ssh/authorized_keys" < ~/.ssh/id_rsa.pub
+     chmod 700 ~/.ssh
+     chmod 600 ~/.ssh/authorized_keys
     '
 }
 
@@ -120,6 +124,19 @@ function display_docker_compose() {
     '
 }
 
+function display_xclip() {
+    echo '
+    xclip -sel clip < ~/.ssh/id_rsa.pub
+    '
+}
+
+function diplay_iconv() {
+    echo '
+    iconv -f GBK -t UTF-8 input.txt > output.txt
+    iconv -f GBK -t UTF-8 xxx.file -o good.file
+    '
+}
+
 case "$1" in
   svn)  display_svn ;;
   ssh)  display_ssh ;;
@@ -133,6 +150,8 @@ case "$1" in
   ps) display_ps ;;
   sbt) display_sbt ;;
   docker-compose) display_docker_compose ;;
+  xclip) display_xclip;;
+  iconv) diplay_iconv;;
 
-  *)  echo "tips svn| ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose" ;;
+  *)  echo "tips svn| ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv" ;;
 esac
