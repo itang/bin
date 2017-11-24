@@ -112,6 +112,14 @@ function display_sbt() {
     '
 }
 
+function display_docker_compose() {
+    echo '
+    docker-compose exec activemq /bin/bash
+    docker-compose logs -f --tail=200 activemq
+    docker-compose exec activemq /bin/bash -c "tail -f -n 1000 /var/log/activemq/activemq.log"
+    '
+}
+
 case "$1" in
   svn)  display_svn ;;
   ssh)  display_ssh ;;
@@ -124,6 +132,7 @@ case "$1" in
   top) display_top ;;
   ps) display_ps ;;
   sbt) display_sbt ;;
+  docker-compose) display_docker_compose ;;
 
-  *)  echo "tips svn|ssh|git|mysql|jmap|jstack|jstat|top|ps|sbt" ;;
+  *)  echo "tips svn| ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose" ;;
 esac
