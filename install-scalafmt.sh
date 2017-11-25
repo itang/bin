@@ -7,5 +7,5 @@ coursier bootstrap com.geirsson:scalafmt-cli_2.12:1.3.0 -o ~/.local/bin/scalafmt
 
 scalafmt --help
 
-coursier bootstrap ch.epfl.scala:scalafix-cli_2.12.3:0.5.3 -f --main scalafix.cli.Cli -o ~/.local/bin/scalafix
+coursier bootstrap ch.epfl.scala:scalafix-cli_2.12.3:0.5.6 -f --main scalafix.cli.Cli -o ~/.local/bin/scalafix
 scalafix --help
