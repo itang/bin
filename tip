@@ -53,7 +53,8 @@ function display_mysql() {
 
 function display_docker() {
     echo '
-    TODO
+    docker run -it --name mypostgres -p 5432:5432  postgres
+    docker start mypostgres 
     '
 }
 
