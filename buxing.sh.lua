@@ -1,22 +1,14 @@
 #! /usr/bin/env luajit
 
-function m(d)
+local function m(d)
     return 60.0 / 5000.0 * d
 end
 
-d = tonumber(arg[1]) or 1000
--- for k, v in pairs(arg) do
---   print(k, v)
--- end
--- print("len", #arg)
+local d = tonumber(arg[1]) or 1000
 
-if #arg > 1 then
-    d = tonumber(arg[1])
-end
-
-mf = m(d)
-mi = math.floor(mf)
-md = mf - mi
+local mf = m(d)
+local mi = math.floor(mf)
+local md = mf - mi
 
 print("\n")
 if md == 0.0 then
