@@ -147,6 +147,36 @@ function diplay_iconv() {
     '
 }
 
+function display_systemctl() {
+    echo '
+    systemctl list-units --all | grep redis
+    systemctl list-units
+    systemctl list-units --all --state=inactive
+    systemctl list-units --all
+    systemctl list-unit-files
+    
+    sudo systemctl enable application.service
+    sudo systemctl disable application.service
+    systemctl is-failed application.service
+    sudo systemctl is-enabled nginx
+    systemctl show sshd.service
+    systemctl is-active application.service
+    systemctl status application.service
+    
+    sudo systemctl start nginx.service
+    sudo systemctl stop application.service
+    sudo systemctl restart application.service
+    sudo systemctl reload-or-restart application.service
+    
+    systemctl list-dependencies sshd.service
+    
+    sudo systemctl edit nginx.service
+    
+    sudo systemctl daemon-reload
+    '
+}
+
+
 case "$1" in
   curl) display_curl;;
   svn)  display_svn ;;
@@ -163,6 +193,7 @@ case "$1" in
   docker-compose) display_docker_compose ;;
   xclip) display_xclip;;
   iconv) diplay_iconv;;
+  systemctl) display_systemctl;;
 
   *)  echo "tips curl | svn | ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv" ;;
 esac
