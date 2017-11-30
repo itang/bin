@@ -7,6 +7,7 @@ function display_curl() {
     curl -L -o coursier https://git.io/vgvpD 
     '
 }
+
 function display_svn() {
    echo '
    格式: svn propset svn:global-ignores filelist .
@@ -67,13 +68,11 @@ function display_jmap() {
     '
 }
 
-
 function display_jstack() {
     echo '
     TODO
     '
 }
-
 
 function display_jstat() {
     echo '
@@ -176,7 +175,7 @@ function display_systemctl() {
     '
 }
 
-
+###################################
 case "$1" in
   curl) display_curl;;
   svn)  display_svn ;;
@@ -195,5 +194,7 @@ case "$1" in
   iconv) diplay_iconv;;
   systemctl) display_systemctl;;
 
-  *)  echo "tips curl | svn | ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv" ;;
+  *)  echo '
+      $ tip curl | svn | ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv |
+            systemctl';;
 esac
