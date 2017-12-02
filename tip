@@ -9,24 +9,26 @@ function display_curl() {
 }
 
 function display_svn() {
-   echo '
-   格式: svn propset svn:global-ignores filelist .
-   格式: svn propset svn:ignore filePattern .
+    echo '
+    svn cp -m "create my branch" --parents http://host/trunk http://host/branches/my
 
-   $ svn propget svn:ignore backend
-   $ svn pg svn:ignore backend
-   $ svn pg svn:global-ignores
-   $ svn status --no-ignore | grep "^I"
-   $ svn pg svn:global-ignores . -v --show-inherited-props
+    格式: svn propset svn:global-ignores filelist .
+    格式: svn propset svn:ignore filePattern .
 
-   $ svn propset svn:ignore "*.pem" .
-   $ svn propset svn:ignore "1.pem 2.pem " .
-   $ svn propset svn:ignore -RF /root/svn-ignore.txt .
+    $ svn propget svn:ignore backend
+    $ svn pg svn:ignore backend
+    $ svn pg svn:global-ignores
+    $ svn status --no-ignore | grep "^I"
+    $ svn pg svn:global-ignores . -v --show-inherited-props
 
-   $ svn proplist -v
+    $ svn propset svn:ignore "*.pem" .
+    $ svn propset svn:ignore "1.pem 2.pem " .
+    $ svn propset svn:ignore -RF /root/svn-ignore.txt .
 
-   links: http://139.199.4.119/book/learn/scm/svn.html
-   '
+    $ svn proplist -v
+
+    links: http://139.199.4.119/book/learn/scm/svn.html
+    '
 }
 
 function display_ssh() {
