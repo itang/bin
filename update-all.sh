@@ -21,3 +21,8 @@ cargo install-update -a
 
 #opam update
 #opam upgrade
+
+(
+    cd ~/dev-env/elixir
+    git pull && make clean test
+)
