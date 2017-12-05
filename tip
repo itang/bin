@@ -201,6 +201,18 @@ function display_ulimit() {
     '
 }
 
+function display_egrep() {
+    echo '
+    tail -f -n 1000 /xxx/logs/application.log | egrep  "(WARN|ERROR)"
+    '
+}
+
+function display_grep() {
+    echo '
+    tail -f -n 1000 /xxx/logs/application.log | egrep  "ERROR"
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -220,8 +232,10 @@ case "$1" in
   iconv) diplay_iconv;;
   systemctl) display_systemctl;;
   ulimit) display_ulimit;;
+  egrep) display_egrep;;
+  grep) display_grep;;
 
   *)  echo '
       $ tip curl | svn | ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv |
-            systemctl | ulimit';;
+            systemctl | ulimit | egrep | grep';;
 esac
