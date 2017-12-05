@@ -213,6 +213,12 @@ function display_grep() {
     '
 }
 
+function display_tail() {
+    echo '
+    tail --follow=name --retry application.log | grep Exception
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -234,8 +240,9 @@ case "$1" in
   ulimit) display_ulimit;;
   egrep) display_egrep;;
   grep) display_grep;;
+  tail) display_tail;; 
 
   *)  echo '
       $ tip curl | svn | ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv |
-            systemctl | ulimit | egrep | grep';;
+            systemctl | ulimit | egrep | grep | tail';;
 esac
