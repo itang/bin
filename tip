@@ -219,6 +219,17 @@ function display_tail() {
     '
 }
 
+function realize() {
+    echo '
+    $ realize start
+    $ realize start --path="mypath"
+    $ realize start --name="realize" --build
+    $ realize start --path="realize" --run --no-config
+    $ realize start --install --test --fmt --no-config
+    $ realize start --path="/Users/username/go/src/github.com/tockins/realize-examples/coin/"
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -241,8 +252,10 @@ case "$1" in
   egrep) display_egrep;;
   grep) display_grep;;
   tail) display_tail;; 
+  realize) realize;; 
 
   *)  echo '
       $ tip curl | svn | ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv |
-            systemctl | ulimit | egrep | grep | tail';;
+            systemctl | ulimit | egrep | grep | tail
+            realize';;
 esac
