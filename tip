@@ -230,6 +230,11 @@ function realize() {
     '
 }
 
+function npm() {
+    echo '
+    npm install -g yarn --registry=https://registry.npm.taobao.org
+    '
+}
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -252,10 +257,11 @@ case "$1" in
   egrep) display_egrep;;
   grep) display_grep;;
   tail) display_tail;; 
-  realize) realize;; 
+  realize) realize;;
+  npm) npm;; 
 
   *)  echo '
       $ tip curl | svn | ssh | git | mysql | jmap | jstack | jstat | top | ps | sbt | docker-compose | xclip | iconv |
             systemctl | ulimit | egrep | grep | tail
-            realize';;
+            realize | npm';;
 esac
