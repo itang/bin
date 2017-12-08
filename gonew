@@ -38,6 +38,7 @@ File.write("#{TARGET_DIR}/main.go", main_content)
 ignore_content = <<eos
 vendor/
 tmp/
+.vscode/
 
 *.pyc
 
