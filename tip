@@ -94,7 +94,8 @@ function display_top() {
 
 function display_ps() {
     echo '
-    TODO
+    ps -ef
+    ps -aux
     '
 }
 
@@ -213,7 +214,7 @@ function display_egrep() {
 
 function display_grep() {
     echo '
-    tail -f -n 1000 /xxx/logs/application.log | egrep  "ERROR"
+    tail -f -n 1000 /xxx/logs/application.log | grep  "ERROR"
     '
 }
 
