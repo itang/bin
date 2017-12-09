@@ -237,24 +237,60 @@ function realize() {
 
 function npm() {
     echo '
-    npm install -g yarn --registry=https://registry.npm.taobao.org
+    $ npm init
+    $ npm init -y
+
+    $ npm install -g npm
+    $ npm install -g yarn --registry=https://registry.npm.taobao.org
+
+    $ npm run build
+    $ npm start
     '
 }
 
 function display_dep() {
     echo '
-    dep init
-    
-    dep status
-    dep status -dot | dot -T png | display
+    $ dep init
+
+    $ dep ensure
+    $ dep ensure -examples
+    $ dep ensure -add github.com/pkg/errors
+
+    update all your dependencies at once
+    $ dep ensure --update
+
+    $ dep ensure -update github.com/some/project github.com/other/project
+
+    $ dep status
+    $ dep status -dot | dot -T png | display
+    $ dep status -dot | dot -T png -o status.png; display status.png
     '
 }
 
 function display_dot() {
     echo '
-    dot -T png
+    dot [-Vv?] [-(GNE)name=val] [-(KTlso)<val>] <dot files>
+
+    $ dot -T png xxx.dot
+    $ dot -T png -o status.png xxx.dot
     '
 }
+
+function semantic_version() {
+    echo '
+    =: equal
+    !=: not equal
+    >: greater than
+    <: less than
+    >=: greater than or equal to
+    <=: less than or equal to
+    -: literal range. Eg: 1.2 - 1.4.5 is equivalent to >= 1.2, <= 1.4.5
+    ~: minor range. Eg: ~1.2.3 is equivalent to >= 1.2.3, < 1.3.0
+    ^: major range. Eg: ^1.2.3 is equivalent to >= 1.2.3, < 2.0.0
+    [xX*]: wildcard. Eg: 1.2.x is equivalent to >= 1.2.0, < 1.3.0
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -281,11 +317,13 @@ case "$1" in
   npm) npm;;
   dep) display_dep;;
   dot) display_dot;; 
+  semantic_version) semantic_version;;
 
   *)  echo '
       $ tip top | ps | systemctl | ulimit | egrep | grep | tail
             jmap | jstack | jstat | sbt
             curl | svn | ssh | git | mysql | dot | xclip | iconv 
             docker-compose
-            realize | dep | npm';;
+            realize | dep | npm
+            semantic_version';;
 esac
