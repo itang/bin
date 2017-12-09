@@ -291,6 +291,17 @@ function semantic_version() {
     '
 }
 
+function display_n(){
+    echo '
+    n lts
+    n stable
+
+    n prune
+     
+    n-update
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -315,6 +326,7 @@ case "$1" in
   tail) display_tail;; 
   realize) realize;;
   npm) npm;;
+  n) display_n;;
   dep) display_dep;;
   dot) display_dot;; 
   semantic_version) semantic_version;;
@@ -324,6 +336,6 @@ case "$1" in
             jmap | jstack | jstat | sbt
             curl | svn | ssh | git | mysql | dot | xclip | iconv 
             docker-compose
-            realize | dep | npm
+            realize | dep | npm | n
             semantic_version';;
 esac
