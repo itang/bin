@@ -369,15 +369,25 @@ function display_go() {
 
 function display_docker() {
     echo '
-    $ docker pull nginx
-
     $ docker run -ti -name container-name image-id /bin/bash
     $ docker run -ti -name container-name -d image-id
     $ docker run -ti -name container-name -p 4000:4000 -d image-id
     $ docker run --rm -ti --net=host postgresql /bin/bash
 
+    $ docker restart example
+    $ docker start example
+    $ docker attach example
+    $ docker exec -it mypostgres /bin/bash
+
+    $ docker logs --tail=20 -f example
+
     $ docker ps
     $ docker ps -a
+
+    $ docker build -t image:latest .
+    $ docker push image:latest
+    $ docker pull image:latest
+    $ docker pull nginx
 
     $ docker rm container-id
     $ docker rm container-name
