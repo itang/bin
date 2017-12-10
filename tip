@@ -400,6 +400,13 @@ function display_docker() {
     '
 }
 
+function display_my() {
+    url=http://139.199.4.119/book/
+    echo "
+    个人文档: $url
+    "
+    xdg-open $url
+}
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -429,7 +436,8 @@ case "$1" in
   dot) display_dot;; 
   semantic_version) semantic_version;;
   go_nil) display_go_nil;;
-  go) display_go;; 
+  go) display_go;;
+  my) display_my;; 
 
   *)  echo '
       $ tip top | ps | systemctl | ulimit | egrep | grep | tail
@@ -438,5 +446,7 @@ case "$1" in
             docker | docker-compose
             realize | dep | npm | n
             go 
-            semantic_version | go_nil';;
+            semantic_version | go_nil
+            my';;
+
 esac
