@@ -302,6 +302,42 @@ function display_n(){
     '
 }
 
+function display_go_nil {
+    echo '
+    // links: [nil在Golang中有什么用？](https://zhuanlan.zhihu.com/p/27382301)
+
+    // Do not declare concrete error vars
+    func do() error {
+        var err *doError // nil of type *doError
+        return err // error (*doError, nil)
+    }
+    func main() {
+        err := do() // error (*doError, nil)
+        fmt.Println(err == nil) // false
+    }
+    
+    // Do not return concrete error types：
+    func do() *doError {
+        return nil // nil of type *doError
+    }
+    func main() {
+        err := do() // nil of type *doError
+        fmt.Println(err == nil) // true
+    }
+    
+    func do() *doError {
+        return nil // nil of type *doError
+    }
+    func wrapDo() error { // error (*doError, nil)
+        return do() // nil of type *doError
+    }
+    func main() {
+        err := wrapDo() // error (*doError, nil)
+        fmt.Println(err == nil) // false
+    }
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -330,6 +366,7 @@ case "$1" in
   dep) display_dep;;
   dot) display_dot;; 
   semantic_version) semantic_version;;
+  go_nil) display_go_nil;; 
 
   *)  echo '
       $ tip top | ps | systemctl | ulimit | egrep | grep | tail
@@ -337,5 +374,5 @@ case "$1" in
             curl | svn | ssh | git | mysql | dot | xclip | iconv 
             docker-compose
             realize | dep | npm | n
-            semantic_version';;
+            semantic_version | go_nil';;
 esac
