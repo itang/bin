@@ -155,30 +155,32 @@ function diplay_iconv() {
 
 function display_systemctl() {
     echo '
-    systemctl list-units --all | grep redis
-    systemctl list-units
-    systemctl list-units --all --state=inactive
-    systemctl list-units --all
-    systemctl list-unit-files
+    links: https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units
+
+    $ systemctl list-units --all | grep redis
+    $ systemctl list-units
+    $ systemctl list-units --all --state=inactive
+    $ systemctl list-units --all
+    $ systemctl list-unit-files
     
-    sudo systemctl enable application.service
-    sudo systemctl disable application.service
-    systemctl is-failed application.service
-    sudo systemctl is-enabled nginx
-    systemctl show sshd.service
-    systemctl is-active application.service
-    systemctl status application.service
+    $ systemctl enable application.service
+    $ systemctl disable application.service
+    $ systemctl is-failed application.service
+    $ systemctl is-enabled nginx
+    $ systemctl show sshd.service
+    $ systemctl is-active application.service
+    $ systemctl status application.service
     
-    sudo systemctl start nginx.service
-    sudo systemctl stop application.service
-    sudo systemctl restart application.service
-    sudo systemctl reload-or-restart application.service
+    $ systemctl start nginx.service
+    $ systemctl stop application.service
+    $ systemctl restart application.service
+    $ systemctl reload-or-restart application.service
     
-    systemctl list-dependencies sshd.service
+    $ systemctl list-dependencies sshd.service
     
-    sudo systemctl edit nginx.service
+    $ systemctl edit nginx.service
     
-    sudo systemctl daemon-reload
+    $ systemctl daemon-reload
     '
 }
 
