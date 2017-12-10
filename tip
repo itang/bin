@@ -367,6 +367,29 @@ function display_go() {
     '
 }
 
+function display_docker() {
+    echo '
+    $ docker pull nginx
+
+    $ docker run -ti -name container-name image-id /bin/bash
+    $ docker run -ti -name container-name -d image-id
+    $ docker run -ti -name container-name -p 4000:4000 -d image-id
+    $ docker run --rm -ti --net=host postgresql /bin/bash
+
+    $ docker ps
+    $ docker ps -a
+
+    $ docker rm container-id
+    $ docker rm container-name
+
+    $ docker images
+    $ docker rmi image-id
+
+    $ docker system prun
+    $ docker system df
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -374,7 +397,7 @@ case "$1" in
   ssh)  display_ssh ;;
   git)  display_git ;;
   mysql) diplay_mysql ;;
-  docker) diplay_docker ;;
+  docker) display_docker ;;
   jmap) display_jmap ;;
   jstack) display_jstack ;;
   jstat) display_jstat ;;
@@ -402,7 +425,7 @@ case "$1" in
       $ tip top | ps | systemctl | ulimit | egrep | grep | tail
             jmap | jstack | jstat | sbt
             curl | svn | ssh | git | mysql | dot | xclip | iconv 
-            docker-compose
+            docker | docker-compose
             realize | dep | npm | n
             go 
             semantic_version | go_nil';;
