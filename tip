@@ -477,6 +477,13 @@ function display_nginx() {
     当有匹配成功时候，停止匹配，按当前匹配规则处理请求
     '
 }
+
+function display_buffalo() {
+    echo '
+    $ buffalo new testm --api --skip-pop -f
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -510,7 +517,7 @@ case "$1" in
   my) display_my;; 
   consul) display_consul;;
   nginx) display_nginx;;
-
+  buffalo) display_buffalo;;
   *)  echo '
       $ tip top | ps | systemctl | ulimit | egrep | grep | tail
             jmap | jstack | jstat | sbt
@@ -519,6 +526,7 @@ case "$1" in
             realize | dep | npm | n
             go 
             consul | nginx
+            buffalo
             semantic_version | go_nil
             my';;
 
