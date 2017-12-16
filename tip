@@ -397,6 +397,13 @@ function display_docker() {
 
     $ docker system prun
     $ docker system df
+
+    Dockerfile
+    e.g.
+        FROM scratch
+        COPY main /
+        ENTRYPOINT ["/main"]
+
     '
 }
 
