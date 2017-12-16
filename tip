@@ -364,6 +364,11 @@ function display_go() {
 
     GOOS: windows | linux | darwin
     GOARCH: 386 | amd64
+
+    ## go tools
+    ### httpstat
+    $ go get -u github.com/davecheney/httpstat
+    $ httpstat https://example.com/
     '
 }
 
@@ -414,6 +419,17 @@ function display_my() {
     "
     xdg-open $url
 }
+
+function display_consul() {
+    echo '
+    go get -v github.com/hashicorp/consul
+
+    $ consul agent --dev
+
+    $ dig +noall +answer @127.0.0.1 -p 8600 webkv.service.dc1.consul
+    $ curl "localhost:8500/v1/health/service/webkv?passing"
+    '
+}
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -445,6 +461,7 @@ case "$1" in
   go_nil) display_go_nil;;
   go) display_go;;
   my) display_my;; 
+  consul) display_consul;;
 
   *)  echo '
       $ tip top | ps | systemctl | ulimit | egrep | grep | tail
@@ -453,6 +470,7 @@ case "$1" in
             docker | docker-compose
             realize | dep | npm | n
             go 
+            consul
             semantic_version | go_nil
             my';;
 
