@@ -369,6 +369,10 @@ function display_go() {
     ### httpstat
     $ go get -u github.com/davecheney/httpstat
     $ httpstat https://example.com/
+
+    ### pixterm
+    $ go get -u github.com/eliukblau/pixterm
+    $ 
     '
 }
 
@@ -487,6 +491,12 @@ function display_buffalo() {
     '
 }
 
+function dislay_uml() {
+    echo '
+    links: http://www.cnblogs.com/silent2012/archive/2011/09/07/2169946.html
+    '
+    xdg-open http://www.cnblogs.com/silent2012/archive/2011/09/07/2169946.html
+}
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -521,16 +531,17 @@ case "$1" in
   consul) display_consul;;
   nginx) display_nginx;;
   buffalo) display_buffalo;;
+  uml) dislay_uml;;
   *)  echo '
       $ tip top | ps | systemctl | ulimit | egrep | grep | tail
             jmap | jstack | jstat | sbt
             curl | svn | ssh | git | mysql | dot | xclip | iconv 
             docker | docker-compose
             realize | dep | npm | n
-            go 
+            go | go_nil
             consul | nginx
             buffalo
-            semantic_version | go_nil
+            semantic_version | uml
             my';;
 
 esac
