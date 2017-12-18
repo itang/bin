@@ -147,11 +147,6 @@ def start():
     local('nginx -p `pwd`/ -c conf/nginx.conf')
 
 
-def run():
-    """nginx run"""
-    start()
-
-
 def reload():
     """nginx reload"""
     local('nginx -p `pwd`/ -s reload')
