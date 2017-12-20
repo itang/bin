@@ -87,7 +87,7 @@ File.write("#{TARGET_DIR}/fabfile.py", fabfile_content)
 
 sh "cd #{TARGET_DIR};go fmt ./..."
 
-sh "cd #{TARGET_DIR};dep init && touch .realize.yaml && realize add --run"
+sh "cd #{TARGET_DIR};dep init && touch .realize.yaml && realize add --install --run"
 
 sh "tree #{TARGET_DIR}"
 
