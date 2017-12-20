@@ -404,6 +404,9 @@ function display_docker() {
     $ docker images
     $ docker rmi image-id
 
+    $ docker save mynewimage > /tmp/mynewimage.tar
+    $ docker load < /tmp/mynewimage.tar
+
     $ docker system prun
     $ docker system df
 
