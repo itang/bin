@@ -526,6 +526,17 @@ function display_keytool() {
     $ keytool -printcert -file VScert.cer
     '
 }
+
+function display_du() {
+    echo '
+    查看当前目录总共占的容量
+    $ du -sh .
+
+    查看当前目录下一级子文件和子目录占用的磁盘容量 
+    $ du -lh --max-depth=1
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -562,8 +573,9 @@ case "$1" in
   buffalo) display_buffalo;;
   uml) dislay_uml;;
   keytool) display_keytool;;
+  du) display_du;;
   *)  echo '
-      $ tip top | ps | systemctl | ulimit | egrep | grep | tail
+      $ tip top | ps | du | systemctl | ulimit | egrep | grep | tail
             jmap | jstack | jstat | keytool | sbt
             curl | svn | ssh | git | mysql | dot | xclip | iconv 
             docker | docker-compose
