@@ -418,7 +418,7 @@ function display_docker() {
 
     ## docker-compose.yml
     e.g.
-      version: '2'
+      version: "2"
       services:
         dict:
           image: ubuntu
@@ -435,7 +435,13 @@ function display_docker() {
            - ROCKET_ENV=prod
            - ROCKET_PORT=8080
            - ROCKET_REDIS_URL=redis://redis/
-       '
+    
+    ## /etc/docker/daemon.json
+    {
+        "graph":"/data/docker",
+        "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
+    }
+    '
 }
 
 function display_my() {
@@ -537,6 +543,13 @@ function display_du() {
     '
 }
 
+function display_watch() {
+    echo '
+    watch -d -n 1 "echo free;mpstat;echo;free -m;echo temp; sudo hddtemp /dev/sd? ;echo; sensors; echo; cat /proc/cpuinfo | grep -i mhz"
+    watch -d -n 1 docker-compose ps
+    watch -d -n 1 curl http://localhost:8000
+    '
+}
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -574,8 +587,9 @@ case "$1" in
   uml) dislay_uml;;
   keytool) display_keytool;;
   du) display_du;;
+  watch) display_watch;;
   *)  echo '
-      $ tip top | ps | du | systemctl | ulimit | egrep | grep | tail
+      $ tip top | ps | du | systemctl | ulimit | egrep | grep | tail | watch
             jmap | jstack | jstat | keytool | sbt
             curl | svn | ssh | git | mysql | dot | xclip | iconv 
             docker | docker-compose
