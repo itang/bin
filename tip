@@ -568,6 +568,7 @@ function display_cargo() {
     $ cargo run --release
     $ cargo run --bin main
     $ cargo run --example echo
+    $ cargo run --example=echo --release
 
     $ cargo watch -x run
 
