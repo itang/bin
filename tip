@@ -556,6 +556,26 @@ function display_watch() {
     watch -d -n 1 curl http://localhost:8000
     '
 }
+
+function display_cargo() {
+    echo '
+    $ cargo new --bin test1
+    $ cargo new --lib test2
+
+    $ cargo add may
+
+    $ cargo run
+    $ cargo run --release
+    $ cargo run --bin main
+    $ cargo run --example echo
+
+    $ cargo watch -x run
+
+    $ cargo test
+    $ cargo bench
+    '
+}
+
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -594,6 +614,7 @@ case "$1" in
   keytool) display_keytool;;
   du) display_du;;
   watch) display_watch;;
+  cargo) display_cargo;;
   *)  echo '
       $ tip top | ps | du | systemctl | ulimit | egrep | grep | tail | watch
             jmap | jstack | jstat | keytool | sbt
@@ -601,6 +622,7 @@ case "$1" in
             docker | docker-compose
             realize | dep | npm | n
             go | go_nil
+            cargo
             consul | nginx
             buffalo
             semantic_version | uml
