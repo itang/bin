@@ -577,6 +577,15 @@ function display_cargo() {
     '
 }
 
+function display_rustup() {
+    echo '
+    $ rustup default nightly
+    $ rustup default nightly-2017-12-20
+
+    $ rustup self update
+    $ rustup target add wasm32-unknown-unknown
+    '
+}
 ###################################
 case "$1" in
   curl) display_curl;;
@@ -616,6 +625,7 @@ case "$1" in
   du) display_du;;
   watch) display_watch;;
   cargo) display_cargo;;
+  rustup) display_rustup;;
   *)  echo '
       $ tip top | ps | du | systemctl | ulimit | egrep | grep | tail | watch
             jmap | jstack | jstat | keytool | sbt
@@ -623,7 +633,7 @@ case "$1" in
             docker | docker-compose
             realize | dep | npm | n
             go | go_nil
-            cargo
+            cargo | rustup
             consul | nginx
             buffalo
             semantic_version | uml
