@@ -760,7 +760,7 @@ case "$1" in
   cargo) display_cargo;;
   rustup) display_rustup;;
   *)  echo '
-      $ tip base | top | ps | du | systemctl | ulimit | egrep | grep | tail | watch
+      $ tip bash | top | ps | du | systemctl | ulimit | egrep | grep | tail | watch
             jmap | jstack | jstat | keytool | sbt
             curl | svn | ssh | git | mysql | dot | xclip | iconv 
             docker | docker-compose
