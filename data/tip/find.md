@@ -4,6 +4,13 @@
 
 - https://www.linux.com/blog/25-examples-linux-find-command-search-files-command-line
 
+## Basic Syntax
+
+    find /dir/to/search/ -options -name 'regex' -action
+    find /dir/to/search/ -options -iname 'regex' -action
+    find /dir/to/search/ -type f -name 'regex' -print
+    find /dir/to/search/ -type f -name \( expression \) -print
+
 ## Usage
 
     List all files in current and sub directories
@@ -37,6 +44,13 @@
 
     Search multiple directories together
     $ find ./test ./dir2 -type f -name abc*
+
+    Say hello to -path option
+    $ find . -type f -name "*.txt" ! -path "./Movies/*" ! -path "./Downloads/*" ! -path "./Music/*"
+
+    ignore hidden files
+    $ find . -maxdepth 1 -type d ! -iname ".*"
+    $ find . -maxdepth 1 -type d ! -name ".*"
 
     Find hidden files
     $ find ~ -type f -name ".*"
