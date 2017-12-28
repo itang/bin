@@ -16,3 +16,8 @@ Linux 用户管理
 
     加入group
     $ sudo usermod -aG sudo $USER
+
+## chown
+
+    修改目录的owner
+    $ chown -R itang:itang datadir
