@@ -9,6 +9,23 @@
     $ docker run -it --name mypostgres -p 5432:5432 postgres
     $ docker run -it --name mypostgres -p 5432:5432 -d postgres
 
+    # 指定link, environment, port mapping
+    $ docker run  --name kong \
+    --link kong-database:kong-database \
+    -e "KONG_DATABASE=cassandra" \
+    -e "KONG_PG_HOST=kong-database" \
+    -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
+    -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+    -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+    -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+    -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+    -p 8000:8000 \
+    -p 8443:8443 \
+    -p 8001:8001 \
+    -p 8444:8444 \
+    kong:latest
+
+
     $ docker restart example
     $ docker start example
     $ docker attach example
