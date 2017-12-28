@@ -2,11 +2,12 @@
 
 ## nginx cmd
 
-$ nginx -p `pwd`/ -c conf/nginx.conf
-$ nginx -p `pwd`/ -s reload
-$ nginx -p `pwd`/ -s stop
-$ nginx -p `pwd`/ -c conf/nginx.conf -g "daemon off;"
+    $ nginx -p `pwd`/ -c conf/nginx.conf
+    $ nginx -p `pwd`/ -s reload
+    $ nginx -p `pwd`/ -s stop
+    $ nginx -p `pwd`/ -c conf/nginx.conf -g "daemon off;"
 
+    $ sudo $(which nginx) -p `pwd`/ -s reload
 
 ## location 匹配规则
 
