@@ -25,3 +25,40 @@ $ nginx -p `pwd`/ -c conf/nginx.conf -g "daemon off;"
     然后匹配不带任何修饰的前缀匹配。
     最后是交给 / 通用匹配
     当有匹配成功时候，停止匹配，按当前匹配规则处理请求
+
+## Websocket
+
+    map $http_upgrade $connection_upgrade {
+        default upgrade;
+        ''      close;
+    }
+
+## proxy_pass
+
+- proxy_hide_header
+- proxy_set_header
+- proxy_hide_header
+- add_header
+
+
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    proxy_set_header "Apikey" "ENTER_KEY_HERE";
+
+    add_header Access-Control-Allow-Origin "*";
+    add_header Access-Control-Allow-Methods "GET,HEAD,PUT,POST,DELETE";
+    add_header Access-Control-Max-Age "1728000";
+
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+
+    add_header Access-Control-Allow-Origin "*";
+    add_header Access-Control-Allow-Credentials "true";
+
+    add_header Access-Control-Allow-Methods "GET,HEAD,PUT,POST,DELETE";
+    proxy_hide_header Access-Control-Allow-Origin;
+    add_header 'Access-Control-Max-Age' 86400;
+    add_header 'Access-Control-Allow-Headers' 'Authorization, reqid, nid, host, x-real-ip, x-forwarded-ip, event-type, event-id, accept, content-type';
