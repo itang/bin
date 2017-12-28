@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 def sh(cmd)
   puts "$ #{cmd}"
   system cmd
@@ -9,14 +8,13 @@ def write(file, content)
   puts ">>write to file: #{file}:\n#{content}"
   puts ''
   File.write file, content
-end
+nd
 
 def new_phoenix_project
   project_name = ARGV[1] || 'test_phoenix'
   sh "mix phoenix.new #{project_name} --no-brunch --no-ecto"
   # sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
 end
-
 $base_fabfile_content = <<-eos
 # -*- coding: utf-8 -*-
 
@@ -163,7 +161,7 @@ def restart():
     stop()
     import time
     time.sleep(0.5)
-    run()
+    start()
 
 
   eos
