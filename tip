@@ -19,6 +19,7 @@ $ tip bash | top | ps | du | systemctl | ulimit | egrep | grep | tail | watch | 
     cargo | rustup
     consul | nginx
     buffalo
+    centos
     semantic_version | uml
     my'
 }
