@@ -21,3 +21,12 @@
 ## Tools
 
 - httpbin.org
+
+- mockbin.org
+
+    echo '{"foo": "bar"}' |  \
+    http POST 'http://mockbin.com/request?foo=bar&foo=baz' \
+    accept:application/json \
+    content-type:application/json \
+    cookie:'foo=bar; bar=baz' \
+    x-pretty-print:2
