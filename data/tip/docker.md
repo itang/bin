@@ -94,3 +94,17 @@
         "graph":"/data/docker",
         "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
     }
+
+## more on containers
+
+### ubuntu
+
+```
+apt-get update
+apt-get install net-tools
+```
+### centos
+
+```
+yum install net-tools
+```
