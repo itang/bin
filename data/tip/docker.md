@@ -52,6 +52,11 @@
     $ docker save mynewimage > /tmp/mynewimage.tar
     $ docker load < /tmp/mynewimage.tar
 
+    Disconnect a container from a network
+    $ docker network disconnect multi-host-network container1
+    $ docker network disconnect --force host CONTAINER
+    $ docker network disconnect --force bridge CONTAINER
+
     $ docker system prun
     $ docker system df
 
