@@ -16,4 +16,6 @@ links: https://www.hellorust.com/
 
     $ cargo web build
     $ cargo web test [--nodejs]
+
+    $ cargo web build --release --target-webasm
     $ cargo web start --target-webasm
