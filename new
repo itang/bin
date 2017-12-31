@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 def sh(cmd)
   puts "$ #{cmd}"
   system cmd
@@ -8,13 +9,14 @@ def write(file, content)
   puts ">>write to file: #{file}:\n#{content}"
   puts ''
   File.write file, content
-nd
+end
 
 def new_phoenix_project
   project_name = ARGV[1] || 'test_phoenix'
   sh "mix phoenix.new #{project_name} --no-brunch --no-ecto"
   # sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
 end
+
 $base_fabfile_content = <<-eos
 # -*- coding: utf-8 -*-
 
@@ -27,6 +29,7 @@ def usage():
 
 
 eos
+
 def new_fabfile
   content = $base_fabfile_content
 
@@ -230,7 +233,7 @@ eos
 
     write "#{project_name}/lib/main.ex", content
 
-    module_name = (File.read("#{project_name}/mix.exs").match /defmodule (.+)\..+ do/)[1]
+    module_name = File.read("#{project_name}/mix.exs").match(/defmodule (.+)\..+ do/)[1]
     content = <<-eos
 defmodule #{module_name}.Mixfile do
   use Mix.Project
@@ -416,7 +419,6 @@ def clean():
     local('epm clean')
     local('epm install --dependencies-only')
 
-
 eos
 
   write("#{project_name}/fabfile.py", content)
@@ -441,60 +443,6 @@ def new_springboot
   project_name, _args = _parse('springboot')
   system("spring init --build=gradle -l kotlin #{project_name}")
   system("cd #{project_name}; gradle wrapper --gradle-version=3.5")
-end
-
-def new_elm_project
-  project_name, _args = _parse('elm')
-  sh "mkdir -p #{project_name}/src"
-
-  content = <<-eos
-elm-stuff
-tmp
-
-.idea
-
-    eos
-
-  write "#{project_name}/.gitignore", content
-
-  content = <<-eos
-import Html exposing (Html, button, div, text)
-import Html.App as App
-import Html.Events exposing (onClick)
-
-main =
-  App.beginnerProgram { model = 0, view = view, update = update }
-
-type Msg = Increment | Decrement
-
-update msg model =
-  case msg of
-    Increment ->
-      model + 1
-
-    Decrement ->
-      model - 1
-
-view model =
-  div []
-    [ button [ onClick Decrement ] [ text "-" ]
-    , div [] [ text (toString model) ]
-    , button [ onClick Increment ] [ text "+" ]
-    ]
-
-    eos
-
-  write "#{project_name}/src/Main.elm", content
-
-  sh "cd #{project_name}; elm-make"
-
-  ep = "#{project_name}/elm-package.json"
-  write ep, File.read(ep).sub('"."', '"src"')
-
-  content = <<-eos
-# #{project_name}
-    eos
-  write "#{project_name}/README.md", content
 end
 
 def new_rls_toml
@@ -616,8 +564,6 @@ end
 #############################################
 
 tmp = ARGV[0]
-# tmp || (raise "no template!")
-
 case tmp
 when 'phoenix'
   new_phoenix_project
@@ -647,8 +593,6 @@ when 'rust'
   new_rust_project
 when 'go'
   new_go_project
-when 'elm'
-  new_elm_project
 when 'eta'
   new_eta_project
 when 'bs'
@@ -672,30 +616,28 @@ when 'springboot'
 else
   puts 'Usage:
 
-new kotlin    project_name   |
-  rust      project_name   |
-  go        project_name   |
-  swift     project_name   |
-  elixir    project_name   |
-  elm       project_name   |
-  eta       project_name   |
-  bs        project_name   |
-  reason    project_name   |
+new kotlin    project_name |
+    rust      project_name   |
+    go        project_name   |
+    swift     project_name   |
+    elixir    project_name   |
+    eta       project_name   |
+    bs        project_name   |
+    reason    project_name   |
 
-  fabfile                  |
-  rakefile                 |
-  procfile                 |
-  dockercompose            |
-  nginx_conf               |
-  rls_toml                 |
+    fabfile                  |
+    rakefile                 |
+    procfile                 |
+    dockercompose            |
+    nginx_conf               |
+    rls_toml                 |
 
-  vapor     project_name   |
-  phoenix   project_name   |
-  openresty project_name   |
-  springboot project_name  |
-  re-react   project_name  |
-  scalajs    project_name  |
-  scalajs-web project_name |
-  '
-  # raise "unsupported"
+    vapor     project_name   |
+    phoenix   project_name   |
+    openresty project_name   |
+    springboot project_name  |
+    re-react   project_name  |
+    scalajs    project_name  |
+    scalajs-web project_name |
+    '
 end
