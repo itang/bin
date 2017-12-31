@@ -7,6 +7,9 @@
 
     $ cargo add may
 
+    $ cargo build --release
+    $ cargo build --release --target x86_64-unknown-linux-musl
+
     $ cargo run
     $ cargo run --release
     $ cargo run --bin main
