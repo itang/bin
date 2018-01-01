@@ -18,6 +18,12 @@
     $ http httpbin.org/headers Accept: User-Agent:
     $ http httpbin.org/headers 'Header;'
 
+### form post
+
+application/x-www-form-urlencoded
+
+    $ echo '_method=delete' | http --form post ":8000/todo/6"
+
 ## Tools
 
 - httpbin.org
