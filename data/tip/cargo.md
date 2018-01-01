@@ -24,3 +24,8 @@
     $ cargo install -f cargo-web
     $ cargo install -f --git https://github.com/koute/cargo-web.git
     $ cargo install rustfmt-nightly
+    $ cargo install -f diesel_cli --no-default-features --features sqlite,mysql
+
+## profiler
+
+    $ cargo profiler callgrind --bin $PATH_TO_BINARY -- -a 3 --like this
