@@ -13,6 +13,8 @@ $HOME/workspace/tests
 $HOME/tang/tests
 $HOME/workspace/nginxa
 $HOME/tang/nginxa
+$HOME/tang/my_study
+$HOME/workspace/my_study
 $HOME/bin"
 
 for g in $gits; do

@@ -23,3 +23,4 @@
 
     $ cargo install -f cargo-web
     $ cargo install -f --git https://github.com/koute/cargo-web.git
+    $ cargo install rustfmt-nightly
