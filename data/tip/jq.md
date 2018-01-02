@@ -1,6 +1,6 @@
 # jq
 
-links: 
+links: https://stedolan.github.io/jq/tutorial/
 
 ## Usage
 
