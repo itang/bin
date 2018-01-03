@@ -92,6 +92,7 @@
 
     {
         "graph":"/data/docker",
+        "dns": ["114.114.114.114", "8.8.8.8"],
         "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
     }
 
