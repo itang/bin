@@ -1,5 +1,24 @@
 # supervisor
 
+## Usage
+
+    重启所有应用
+    $ supervisorctl restart
+
+    重启指定分组的应用
+    $ supervisorctl restart backend:
+
+    加载有变动的配置
+    $ supervisorctl reread
+
+    将新的program/group加入并启动
+    $ supervisorctl add toolset
+
+    加载有变动的配置并重启应用
+    $ supervisorctl update
+
+    $ supervisorctl status
+
 ## AUTO log file
 
 未設置或者爲AUTO
