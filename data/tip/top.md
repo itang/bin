@@ -10,3 +10,6 @@
 
     查看指定用戶下運行的程序
     $top -u someuser
+
+    按CPU占比列排序
+    top -o %CPU
