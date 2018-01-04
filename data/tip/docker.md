@@ -36,6 +36,9 @@
     $ docker images
     $ docker rmi image-id
 
+    `dangling` images == `UNTAGGED` IMAGES
+    $ docker rmi $(docker images -f "dangling=true" -q)
+
     $ docker save mynewimage > /tmp/mynewimage.tar
     $ docker load < /tmp/mynewimage.tar
 
@@ -44,7 +47,6 @@
     $ docker network disconnect --force host CONTAINER
     $ docker network disconnect --force bridge CONTAINER
 
-
     This will remove:
         - all stopped containers
         - all networks not used by at least one container
@@ -52,8 +54,16 @@
         - all build cache
     $ docker system prune
 
-    Remove all unused images not just dangling ones(删除清理未运行容器和其关联的镜像的资源)
+    Remove all unused images not just dangling ones(删除清理未运行容器和未关联容器的镜像的资源)
+    This will remove:
+        - all stopped containers
+        - all networks not used by at least one container
+        - all volumes not used by at least one container
+        - all images without at least one container associated to them
+        - all build cache
+    --volumes flag when running the command to prune volumes as well
     $ docker system prune -a
+    $ docker system prune -a --volumes
 
     $ docker system df
 
@@ -97,12 +107,13 @@
 
 ### ubuntu
 
-```
+```bash
 apt-get update
 apt-get install net-tools
 ```
+
 ### centos
 
-```
+```bash
 yum install net-tools
 ```

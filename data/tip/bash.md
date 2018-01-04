@@ -1,6 +1,11 @@
+# bash
+
+## Usage
+
 bash -c "echo hello world"
 
 ## bash syntax
+
 links: https://learnxinyminutes.com/docs/bash/
 
 * Each command starts on a new line, or after semicolon
@@ -48,6 +53,8 @@ pwd # still in first directory
 * echo "#helloworld" | tee output.out >/dev/null
 
 ### if
+
+```bash
 if [ "$Name" != $USER ]
 then
     echo "Your name is not your username"
@@ -88,16 +95,22 @@ fi
 if grep -q "poet" $file_name; then
 ..
 fi
+```
 
 ### case
+
+```bash
 case "$Variable" in
     #List patterns for the conditions you want to meet
     0) echo "There is a zero.";;
     1) echo "There is a one.";;
     *) echo "It is not null.";;
 esac
+```
 
 ### for
+
+```bash
 for Variable in {1..3}
 do
     echo "$Variable"
@@ -117,13 +130,40 @@ for Output in $(ls) # 空字符分割
 do
     cat "$Output"
 done
+```
 
 ### while
+
+```bash
 while [ true ]
 do
     echo "loop body here..."
     break
 done
+```
+
+## shell 全局变量$
+
+```bash
+echo "\$\$: $$"  # shell 本身的PID
+echo "\$?: $?"   # 最后运行的命令的返回值（结束代码）
+echo "\$!: $!"   #shell最后运行的后端Proces的PID
+echo "\$-: $-"   #使用Set命令设定的Flag一览
+echo "\$*: $*"   #所有参数列表(不包括$0), "$*" => "$1 $2 ...$n"
+echo "\$@:" "$@" #所有参数列表, "$@" => "$1" "$2" ... "$n"
+echo "\$#: $#"   #参数个数
+echo "\$0: $0"   #shell本身的文件名
+echo "\$1: $1"   #参数1
+echo "\$2: $2"   #参数2
+
+args_length() {
+    echo $#
+}
+# base a.sh a b c
+args_length "$*" # 1
+args_length  $*  # 3
+args_length "$@" # 3
+```
 
 ## More Tips
 
