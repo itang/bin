@@ -124,3 +124,7 @@ do
     echo "loop body here..."
     break
 done
+
+## More Tips
+
+    $ unset https_proxy http_proxy

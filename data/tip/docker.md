@@ -9,21 +9,8 @@
     $ docker run -it --name mypostgres -p 5432:5432 postgres
     $ docker run -it --name mypostgres -p 5432:5432 -d postgres
 
-    # 指定link, environment, port mapping
-    $ docker run  --name kong \
-    --link kong-database:kong-database \
-    -e "KONG_DATABASE=cassandra" \
-    -e "KONG_PG_HOST=kong-database" \
-    -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-    -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-    -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-    -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-    -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-    -p 8000:8000 \
-    -p 8443:8443 \
-    -p 8001:8001 \
-    -p 8444:8444 \
-    kong:latest
+    # 指定link, network, environment, port mapping
+    $ docker run --rm --network="testkong_default" --link kong-database:kong-database -e "KONG_DATABASE=cassandra" -e "KONG_PG_HOST=kong-database" -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" kong:latest kong migrations up
 
 
     $ docker restart example
@@ -57,7 +44,17 @@
     $ docker network disconnect --force host CONTAINER
     $ docker network disconnect --force bridge CONTAINER
 
-    $ docker system prun
+
+    This will remove:
+        - all stopped containers
+        - all networks not used by at least one container
+        - all dangling images
+        - all build cache
+    $ docker system prune
+
+    Remove all unused images not just dangling ones(删除清理未运行容器和其关联的镜像的资源)
+    $ docker system prune -a
+
     $ docker system df
 
 ## Dockerfile
