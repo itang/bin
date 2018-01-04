@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export JAVA_HOME="$HOME/dev-env/jdk9"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+echo "$*"
+exec "$@"
