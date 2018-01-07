@@ -16,7 +16,6 @@ def new_phoenix_project
   sh "mix phoenix.new #{project_name} --no-brunch --no-ecto"
   # sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
 end
-
 $base_fabfile_content = <<-eos
 # -*- coding: utf-8 -*-
 
@@ -347,9 +346,7 @@ def watch():
 end
 
 def new_rust_project
-  project_name, _args = _parse('rust')
-  sh "cargo new --bin #{project_name}"
-  puts "cd #{project_name}"
+  sh "new-rust #{ARGV[1..-1].join(' ')}"
 end
 
 def new_bs_project
