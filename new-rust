@@ -42,5 +42,13 @@ fi
 
 new_fab "$project"
 
+echo '/target/
+**/*.rs.bk
+
+*.pyc
+
+.idea
+*.iml' >> "$project/.gitignore"
+
 echo ""
 echo "cd $project"
