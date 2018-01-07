@@ -18,6 +18,10 @@ def dev():
     """dev"""
     local("cargo watch -x run")
 
+
+def build_musl():
+    """build musl"""
+    local('cargo build --release --target x86_64-unknown-linux-musl')
 EOF
   )
 }
