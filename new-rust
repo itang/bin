@@ -1,0 +1,46 @@
+#!/bin/bash
+
+function new(){
+  set -x
+  cargo new "$@"
+  set +x
+}
+
+function new_fab() {
+  p=$1
+  (cd "$p"; cat > fabfile.py <<- EOF
+# -*- coding: utf-8 -*-
+
+from fabric.api import *
+
+
+def dev():
+    """dev"""
+    local("cargo watch -x run")
+
+EOF
+  )
+}
+
+for x in "$@"; do 
+  if [ "${x:0:1}" != "-" ]; then
+    project=$x
+  fi
+done
+project=${project:-"test_rust"}
+
+if [[ -d "$project" ]]; then
+   echo "$project already exists"
+   exit 1
+fi 
+
+if [ "$#" -le 1 ]; then
+  new "$project" --bin 
+else
+  new "$@" 
+fi
+
+new_fab "$project"
+
+echo ""
+echo "cd $project"
