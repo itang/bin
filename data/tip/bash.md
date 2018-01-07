@@ -12,11 +12,12 @@ links: https://learnxinyminutes.com/docs/bash/
 * Declaring a variable looks like this: `Variable="Some string"`
 * Using the variable: `echo $Variable` `echo "$Variable"`
 
-* Parameter expansion ${ }: 
+* Parameter expansion ${ }:
     `echo ${Variable}`
+    `echo ${#myvar}`
     `echo ${Variable/Some/A}`
     `echo ${Variable:0:Length}`
-    `echo ${Foo:-"DefaultValueIfFooIsMissingOrEmpty"} `
+    `echo ${Foo:-"DefaultValueIfFooIsMissingOrEmpty"}`
 * Brace Expansion { }
     `echo {1..10} # => 1 2 3 4 5 6 7 8 9 10`
     `echo {a..z} # => a b c d e f ...`
@@ -38,7 +39,8 @@ links: https://learnxinyminutes.com/docs/bash/
 * echo "Always executed" && echo "Only executed if first command does NOT fail"
 * echo $(( 10 + 5 )) # => 15 , Expressions are denoted with the following format
 * Use subshells to work across directories
-```
+
+```bash
 (echo "First, I'm here: $PWD") && (cd someDir; echo "Then, I'm here: $PWD")
 pwd # still in first directory
 ```
