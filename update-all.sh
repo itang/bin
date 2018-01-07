@@ -43,7 +43,8 @@ cargo install-update -a
 #opam upgrade
 
 echo "elixir"
-(cd ~/dev-env/elixir && git pull && make clean test)
+(cd ~/dev-env/elixir && git pull && make clean compile)
+#(cd ~/dev-env/elixir && git pull && make clean test)
 
 gopackages="neugram.io/ng
 github.com/goby-lang/goby"
