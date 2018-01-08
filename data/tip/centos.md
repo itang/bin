@@ -32,7 +32,11 @@ links: http://139.199.4.119/book/learn/linux/centos.html
     $ timedatectl set-local-rtc 1 # 将硬件时钟调整为与本地时钟一致, 0 为设置为 UTC 时间
 
     $ timedatectl set-timezone Asia/Shanghai # 设置系统时区为上海
-    $ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    $ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime # 永久生效
 
     $ sudo yum install ntp
     $ sudo ntpdate us.pool.ntp.org
+
+    ubuntu 下
+    $ sudo apt-get install ntpdate
+    $ sudo ntpdate time.windows.com
