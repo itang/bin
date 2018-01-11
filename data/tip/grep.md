@@ -5,6 +5,13 @@
     $ tail -f -n 1000 /xxx/logs/application.log | grep "ERROR"
     $ grep "TODO" `find . -name "application.properties"`
 
+    Context control
+    -B, --before-context=NUM  print NUM lines of leading context
+    -A, --after-context=NUM   print NUM lines of trailing context
+    -C, --context=NUM         print NUM lines of output context
+
+    $ cat application.log application.log.2018-01-10.log | grep -B 1 TerminalStartProgram
+
 ## egrep
 
     $ svn info -r "HEAD" | egrep "版本|Revision" | egrep -o "[0-9]+"
