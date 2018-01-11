@@ -49,7 +49,9 @@ echo "elixir"
 (cd ~/dev-env/elixir && git pull && make clean compile) &
 #(cd ~/dev-env/elixir && git pull && make clean test)
 
-gopackages="neugram.io/ng
+gopackages="
+github.com/tools/godep
+neugram.io/ng
 github.com/goby-lang/goby"
 for x in $gopackages; do
     go get -u -v "$x" &
