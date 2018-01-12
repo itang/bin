@@ -2,7 +2,8 @@
 
 ## Usage
 
-bash -c "echo hello world"
+    $ bash -c "echo hello world"
+    $ sudo bash -c  "GOPATH=/home/itang/dev-env/gopath $(which go) run server/server.go"
 
 ## bash syntax
 
