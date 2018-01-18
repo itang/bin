@@ -1,9 +1,9 @@
 #!/bin/bash
 
-VERSION=3.3.0
+VERSION=3.5.1
 
 
-sudo apt-get install -y autoconf automake libtool curl make g++ unzip
+sudo apt-get install -yq autoconf automake libtool curl make g++ unzip
 
 cd /tmp
 #hget https://github.com/google/protobuf/releases/download/v$VERSION/protobuf-cpp-$VERSION.tar.gz
