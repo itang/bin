@@ -168,6 +168,12 @@ args_length  $*  # 3
 args_length "$@" # 3
 ```
 
+## Function commands
+
+* basename
+
+* dirname
+
 ## More Tips
 
     $ unset https_proxy http_proxy
