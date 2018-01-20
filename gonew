@@ -76,10 +76,12 @@ def update():
     status()
 
 
-def status():
+def status(v=None):
     """dep status"""
-    local('dep status')
-
+    if v:
+        local('dep status -dot | dot -T png | display')
+    else:
+        local('dep status')
 
 eos
 

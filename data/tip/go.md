@@ -2,6 +2,8 @@
 
 ## go bulid
 
+    $ go test -bench=. ./examples/fib
+
     构建去掉debug信息
     $ go build -ldflags "-s" prog.go
     $ go build -ldflags "-s -w"
@@ -27,9 +29,11 @@
 ## go tools
 
 ### httpstat
+
     $ go get -u github.com/davecheney/httpstat
     $ httpstat https://example.com/
 
 ### pixterm
+
     $ go get -u github.com/eliukblau/pixterm
     $
