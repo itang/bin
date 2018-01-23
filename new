@@ -166,6 +166,10 @@ def restart():
     start()
 
 
+def tip():
+    """tip"""
+    print 'sudo bash -c "`which nginx`  -p `pwd`/ -c conf/nginx.conf"'
+
   eos
 
   content = "#{$base_fabfile_content}#{content}"
