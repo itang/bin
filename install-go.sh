@@ -19,19 +19,20 @@ function install_pkgs() {
     # tools
     echo 'install go tools'
     (
-        go get -u  github.com/nsf/gocode
-        go get -u  github.com/rogpeppe/godef
-        go get -u  github.com/lukehoban/go-outline
-        go get -u  golang.org/x/tools/cmd/godoc
-        go get -u  github.com/bradfitz/goimports
-        go get -u  golang.org/x/tools/cmd/gorename
-        go get -u  github.com/tpng/gopkgs
-        go get -u  github.com/golang/lint/golint
-        go get -u  github.com/sqs/goreturns
-        go get -u  github.com/newhook/go-symbols
-        go get -u  golang.org/x/tools/cmd/guru
-        go get -u  github.com/k0kubun/pp
-        go get -u github.com/cweill/gotests/...
+        go get -u -v github.com/nsf/gocode
+        go get -u -v github.com/rogpeppe/godef
+        go get -u -v github.com/lukehoban/go-outline
+        go get -u -v golang.org/x/tools/cmd/godoc
+        go get -u -v github.com/bradfitz/goimports
+        go get -u -v golang.org/x/tools/cmd/gorename
+        go get -u -v github.com/tpng/gopkgs
+        go get -u -v github.com/golang/lint/golint
+        go get -u -v github.com/sqs/goreturns
+        go get -u -v github.com/newhook/go-symbols
+        go get -u -v golang.org/x/tools/cmd/guru
+        go get -u -v github.com/k0kubun/pp
+        go get -u -v github.com/cweill/gotests/...
+        go get -u -v gopkg.in/alecthomas/gometalinter.v2
 
         # REPL
         go get -u  github.com/motemen/gore
