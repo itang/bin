@@ -1,5 +1,12 @@
 # cargo
 
+## config
+
+    .cargo/config of the project
+
+    [alias]
+    x = "run --bin bin1"
+
 ## Usage
 
     $ cargo new --bin test1

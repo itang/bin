@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REASON_VERSION=3.0.4
+REASON_VERSION=3.0.5
 
 npm install -g bs-platform
 
