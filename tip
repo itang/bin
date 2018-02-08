@@ -4,9 +4,9 @@ function after_my() {
   xdg-open http://139.199.4.119/book/
 }
 
-function after_bash() {
-  xdg-open "https://learnxinyminutes.com/docs/bash/"
-}
+# function after_bash() {
+#   xdg-open "https://learnxinyminutes.com/docs/bash/"
+# }
 
 function usage() {
   echo 'Usage:
