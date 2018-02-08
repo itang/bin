@@ -63,7 +63,12 @@ else
     printf ">read %s\n...\n" "$f"
     _try_fn "before_$1"
 
-    cat "$f"
+    command -v mdcat >/dev/null 2>&1
+    if [ "$?" = "0" ];then
+      mdcat "$f"
+    else
+      cat "$f"
+    fi
     printf "\n\n"
 
     _try_fn "after_$1"
