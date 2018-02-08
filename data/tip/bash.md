@@ -177,3 +177,5 @@ args_length "$@" # 3
 ## More Tips
 
     $ unset https_proxy http_proxy
+
+* [Check if a program exists from a Bash script](https://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script/677212#677212)
