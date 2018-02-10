@@ -13,3 +13,9 @@ create keyspace example with replication = { 'class' : 'SimpleStrategy', 'replic
 create table example.tweet(timeline text, id UUID, text text, PRIMARY KEY(id));
 create index on example.tweet(timeline);
 ```
+
+```
+use system
+
+describe tables
+```
