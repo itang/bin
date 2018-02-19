@@ -28,7 +28,6 @@ for g in $gits; do
         echo "no exists, ignore $g"
     fi
 done
-
 echo "sdkman"
 (
 export SDKMAN_DIR="/home/itang/.sdkman"
@@ -51,6 +50,7 @@ echo "elixir"
 
 gopackages="
 github.com/tools/godep
+github.com/tockins/realize
 neugram.io/ng
 github.com/goby-lang/goby"
 for x in $gopackages; do
