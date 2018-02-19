@@ -49,7 +49,7 @@ echo "elixir"
 #(cd ~/dev-env/elixir && git pull && make clean test)
 
 gopackages="
-github.com/tools/godep
+github.com/golang/dep/cmd/dep
 github.com/tockins/realize
 neugram.io/ng
 github.com/goby-lang/goby"
