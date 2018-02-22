@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=3.92
+VERSION=3.94
 
 (
     cd /tmp
@@ -9,7 +9,7 @@ VERSION=3.92
 
     tar -xJf upx-$VERSION-amd64_linux.tar.xz
 
-    cp upx-$VERSION-amd64_linux/upx ~/dev-env/tools/
+    cp upx-$VERSION-amd64_linux/upx ~/.local/bin/
 
     upx --version
 )

@@ -51,6 +51,7 @@ echo "elixir"
 gopackages="
 github.com/golang/dep/cmd/dep
 github.com/tockins/realize
+golang.org/x/vgo
 neugram.io/ng
 github.com/goby-lang/goby"
 for x in $gopackages; do
