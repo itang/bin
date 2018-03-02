@@ -35,6 +35,8 @@
     $ cargo install rustfmt-nightly
     $ cargo install -f diesel_cli --no-default-features --features sqlite,mysql
 
+    $ cargo web start --release --target-webasm
+
 ## profiler
 
     $ cargo profiler callgrind --bin $PATH_TO_BINARY -- -a 3 --like this

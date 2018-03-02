@@ -25,6 +25,8 @@
     $ docker ps
     $ docker ps -a
 
+    $ docker inspect kong | jq ".[].State.Health"
+
     $ docker build -t image:latest .
     $ docker push image:latest
     $ docker pull image:latest
