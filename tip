@@ -1,5 +1,8 @@
 #!/bin/bash
 
+ROOT_DIR=$(dirname "$0")
+DATA_DIR="${ROOT_DIR}/data/tip"
+
 function after_my() {
   xdg-open http://139.199.4.119/book/
 }
@@ -23,10 +26,9 @@ $ tip bash | top | ps | du | systemctl | ulimit | egrep | grep | tail | watch | 
     semantic_version | uml
     my'
 
-  data_root=$1
-  echo "all tip list from $data_root"
+  echo "all tip list from $DATA_DIR"
   (
-    cd "$data_root"
+    cd "$DATA_DIR"
     i=0
     for x in $(exa -rs created); do
       printf "\t%-16s" "${x:0:-3}"
@@ -49,9 +51,6 @@ _fn_exists() {
 _try_fn() {
   _fn_exists "$1" && eval "$1"
 }
-
-ROOT_DIR=$(dirname "$0")
-DATA_DIR="${ROOT_DIR}/data/tip"
 
 task="$1"
 
