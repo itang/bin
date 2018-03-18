@@ -12,6 +12,9 @@
 
     $ cat application.log application.log.2018-01-10.log | grep -B 1 TerminalStartProgram
 
+    Grep NOT using grep -v
+    $ cat logs/application.log.2018-03-04.log | grep "xxx" | grep -v "\"amount\":0"
+
 ## egrep
 
     $ svn info -r "HEAD" | egrep "版本|Revision" | egrep -o "[0-9]+"

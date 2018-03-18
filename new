@@ -363,7 +363,7 @@ def new_reason_project
   project_name, _args = _parse('reason')
   sh "bsb -init #{project_name} -theme basic-reason"
   sh "cd #{project_name};upgradeSyntaxFrom2To3 src/*;"
-  sh "cd #{project_name};npm run build;node src/demo.bs.js"
+  sh "cd #{project_name};npm run build;node src/Demo.bs.js"
 end
 
 def new_reason_react_project
