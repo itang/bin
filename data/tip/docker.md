@@ -22,6 +22,8 @@
 
     $ docker logs --tail=20 -f example
 
+    $ docker cp xxx_kong_1:/etc/kong .
+
     $ docker ps
     $ docker ps -a
 
