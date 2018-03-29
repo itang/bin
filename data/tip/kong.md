@@ -13,3 +13,7 @@
     $ kong start -c kong.conf --nginx-conf custom_nginx.template
 
     $ kong check <path/to/kong.conf>
+
+## Config
+
+    default working directory: `/usr/local/kong`
