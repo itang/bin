@@ -6,4 +6,10 @@
     $ docker exec -it kong kong reload
 
     $ kong start --conf /path/to/kong.conf
-    $ kong check <path/to/kong.conf>VM                           
+
+    debug mode
+    $ kong start -c <kong.conf> --vv
+
+    $ kong start -c kong.conf --nginx-conf custom_nginx.template
+
+    $ kong check <path/to/kong.conf>
