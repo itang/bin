@@ -7,6 +7,9 @@
     $ nginx -p `pwd`/ -s stop
     $ nginx -p `pwd`/ -c conf/nginx.conf -g "daemon off;"
 
+    测试 nginx 配置是否正确
+    $ nginx -t
+
     $ sudo $(which nginx) -p `pwd`/ -s reload
 
 ## location 匹配规则
@@ -63,3 +66,9 @@
     proxy_hide_header Access-Control-Allow-Origin;
     add_header 'Access-Control-Max-Age' 86400;
     add_header 'Access-Control-Allow-Headers' 'Authorization, reqid, nid, host, x-real-ip, x-forwarded-ip, event-type, event-id, accept, content-type';
+
+## force https
+
+    if ($scheme = http) {
+        return 301 https://$server_name$request_uri;
+    }
