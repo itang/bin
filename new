@@ -562,6 +562,41 @@ def new_scalajs_web_project
   project_name, _args = _parse('scalajs-web')
   sh "git clone git@github.com:itang/scala-js-template.git #{project_name}"
 end
+
+def new_mill
+  project_name, _args = _parse('mill')
+
+  sh 'if [ ! -f "$HOME/.mill/templates/example-1.zip" ]; then
+        mkdir -p $HOME/.mill/templates
+        curl -L http://www.lihaoyi.com/mill/example-1.zip -o $HOME/.mill/templates/example-1.zip
+      fi'
+
+  sh "rm -rf /tmp/example-1;unzip $HOME/.mill/templates/example-1.zip -d /tmp ; cp -r /tmp/example-1 #{project_name}"
+
+  rcontent = <<-eos
+task default: :usage
+
+task :usage do
+    sh 'rake -T'
+end
+
+namespace :gen do
+  desc 'gen idea project'
+  task :idea do
+    sh 'mill mill.scalalib.GenIdeaModule/idea'
+  end
+end
+
+desc 'run dev mode'
+task :run do
+sh 'tally mill foo.run'
+end
+
+eos
+  write "#{project_name}/Rakefile", rcontent
+
+  puts "cd #{project_name};rake"
+end
 #############################################
 
 tmp = ARGV[0]
@@ -614,6 +649,8 @@ when 'scalajs-web'
   new_scalajs_web_project
 when 'springboot'
   new_springboot
+when 'mill'
+  new_mill
 else
   puts 'Usage:
 
@@ -640,5 +677,6 @@ new kotlin    project_name |
     re-react   project_name  |
     scalajs    project_name  |
     scalajs-web project_name |
+    mill        project_name |
     '
 end
