@@ -35,7 +35,8 @@
     $ cargo install rustfmt-nightly
     $ cargo install -f diesel_cli --no-default-features --features sqlite,mysql
 
-    $ cargo web start --release --target-webasm
+    cargo web/wasm
+    $ cargo web start --release --target wasm32-unknown-unknown
 
 ## profiler
 

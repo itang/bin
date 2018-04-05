@@ -577,7 +577,7 @@ def new_mill
 task default: :usage
 
 task :usage do
-    sh 'rake -T'
+  sh 'rake -T'
 end
 
 namespace :gen do
@@ -589,7 +589,7 @@ end
 
 desc 'run dev mode'
 task :run do
-sh 'tally mill foo.run'
+  sh 'tally mill foo.run'
 end
 
 eos
