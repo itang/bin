@@ -1,13 +1,18 @@
 #!/bin/bash
 
-VERSION=2.3.0
+# link: https://luarocks.org/#quick-start
 
-cd /tmp
-#wget http://luarocks.org/releases/luarocks-$VERSION.tar.gz
-#tar zxvf luarocks-$VERSION.tar.gz
-cd luarocks-$VERSION
-./configure --with-lua="/usr/local" --lua-suffix="jit" --with-lua-include="/usr/local/include/luajit-2.1"
-sudo make bootstrap
+LVERSION=2.4.4
+(
+    cd /tmp
+    rm -rf luarocks*
+    wget https://luarocks.org/releases/luarocks-${LVERSION}.tar.gz
+    tar zxpf luarocks-${LVERSION}.tar.gz
+    cd luarocks-${LVERSION}
+
+    ./configure; sudo make bootstrap
+)
 
 ## lua packages
 sudo luarocks install luasocket
+sudo luarocks install --server=http://luarocks.org/dev fennel
