@@ -19,9 +19,29 @@ def dev():
     local("cargo watch -x run")
 
 
+def run():
+    """run"""
+    local('cargo run')
+
+
+def build():
+    """build in release"""
+    local('cargo build --release')
+
+
 def build_musl():
     """build musl"""
     local('cargo build --release --target x86_64-unknown-linux-musl')
+
+
+def build_musl_upx():
+    """tip"""
+    build_musl()
+    local('du -sh target/x86_64-unknown-linux-musl/release/$p')
+    local('cp target/x86_64-unknown-linux-musl/release/$p target/x86_64-unknown-linux-musl/release/$p.orig')
+    local('upx target/x86_64-unknown-linux-musl/release/$p')
+    local('du -sh target/x86_64-unknown-linux-musl/release/$p')
+    print('try run: target/x86_64-unknown-linux-musl/release/$p')
 
 
 def setup_idea():
