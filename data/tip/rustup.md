@@ -14,3 +14,5 @@
     $ rustup component add rls-preview --toolchain nightly
 
     $ rustup self update
+
+    $ rustup doc --std
