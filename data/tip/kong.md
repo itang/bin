@@ -17,3 +17,7 @@
 ## Config
 
     default working directory: `/usr/local/kong`
+
+## Misc
+
+    $ docker run --rm -e "KONG_DATABASE=cassandra" -e "KONG_PG_HOST=kong-database" -e "KONG_CASSANDRA_CONTACT_POINTS=DB_HOST" kong:0.12.3 kong migrations up
