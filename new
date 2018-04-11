@@ -583,7 +583,7 @@ end
 namespace :gen do
   desc 'gen idea project'
   task :idea do
-    sh 'mill mill.scalalib.GenIdeaModule/idea'
+    sh 'mill mill.scalalib.GenIdea/idea'
   end
 end
 
