@@ -2,21 +2,14 @@
 
 sudo apt-get update
 
-sudo apt-get install -y --force-yes build-essential software-properties-common make cmake libssl-dev openssl libpcre3 perl pkg-config libreadline-dev zlib1g-dev libglib2.0-dev libsqlite3-dev
+sudo apt-get install -y --force-yes build-essential software-properties-common make cmake openssl perl pkg-config
+sudo apt-get install -y --force-yes build-essential libpcre3 libreadline-dev libsqlite3-dev libpq-dev libmysqlclient-dev libssl-dev libyaml-dev zlib1g-dev libglib2.0-dev
 
 #sudo apt-get install -y --force-yes ubuntu-restricted-extras
 sudo apt-get install -y --force-yes zsh wget curl git mercurial binutils bison xclip cloc tree zip p7zip-full rsync inotify-tools tmux shellcheck lnav graphviz
 sudo apt-get install -y --force-yes lm-sensors hddtemp linux-tools-generic
 
-
-chsh -s "$(which zsh)"
-
 # sys monitor
 sudo apt-get install -y --force-yes procps sysstat
 
-# SBT
-#echo "install sbt"
-#curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/bin/sbt && chmod 0755 ~/bin/sbt
-
-# lein
-#curl -s https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > ~/bin/lein && chmod 0755 ~/bin/lein
+chsh -s "$(which zsh)"
