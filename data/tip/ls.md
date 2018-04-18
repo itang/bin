@@ -1,5 +1,10 @@
 # ls
 
+## Usage
+
+    目录文件名使用":"连接起来
+    $ ls -1 | paste -sd ":" -
+
 ## exa (Rust)
 
 alias ls="exa"
