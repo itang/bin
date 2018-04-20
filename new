@@ -592,6 +592,12 @@ task :run do
   sh 'tally mill foo.run'
 end
 
+desc 'dist'
+task :dist do
+  sh 'mill foo.assembly'
+  sh 'cd out;$GRAALVM_HOME/bin/native-image -cp foo/assembly/dest/out.jar -H:Name=#{project_name} foo.Example && upx #{project_name}'
+end
+
 eos
   write "#{project_name}/Rakefile", rcontent
 
