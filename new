@@ -583,6 +583,7 @@ end
 namespace :gen do
   desc 'gen idea project'
   task :idea do
+    sh 'rake clean'
     sh 'mill mill.scalalib.GenIdea/idea'
   end
 end
@@ -595,7 +596,12 @@ end
 desc 'dist'
 task :dist do
   sh 'mill foo.assembly'
-  sh 'cd out;$GRAALVM_HOME/bin/native-image -cp foo/assembly/dest/out.jar -H:Name=#{project_name} foo.Example && upx #{project_name}'
+  sh 'cd out;$GRAALVM_HOME/bin/native-image -cp foo/assembly/dest/out.jar -H:Name=#{project_name} -H:+ReportUnsupportedElementsAtRuntime foo.Example && upx #{project_name}'
+end
+
+desc 'clean'
+task :clean do
+  sh 'rm -rf out/'
 end
 
 eos
