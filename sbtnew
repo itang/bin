@@ -17,19 +17,19 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.12.4
-SbtVersion=1.1.0
+ScalaVersion=2.12.6
+SbtVersion=1.1.4
 SbtUpdatesVersion=0.3.1
 SbtassemblyVersion=0.14.5
 #SbtDependencyGraph=0.8.2
 SbtScoverageVersion=1.4.0
 ScalatestVersion=3.0.1
 JavaVersion=1.8
-ScalazVersion=7.2.1
-ShapelessVersion=2.3.0
+ScalazVersion=7.2.22
+ShapelessVersion=2.3.3
 ScatangVersion=0.1
 ScalaStyleVersion=0.8.0
-AmmoniteVersion=1.0.1
+AmmoniteVersion=1.1.0
 SbtCoursierVersion=1.0.0-RC10
 SbtRevolverVersion=0.9.1
 
