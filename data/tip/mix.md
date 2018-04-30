@@ -1,6 +1,13 @@
 # mix
 
+## mix new
+
+    custom module name
+    $ mix new kv --module KV
+
 ## mix phx
+
+    $ mix phx.new my_app --umbrella
 
     $ PORT=4000 MIX_ENV=prod mix do compile, phx.server
 
