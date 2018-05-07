@@ -3,9 +3,14 @@
 ## Usage
 
     $ vapor new <name> [--template]
-       	--template=api
+        --template=api
         --template=web
         --template=user/repo
         --template=http://example.com/repo-path
         --branch=foo
-    $ vapor run serve --env=production --release
+
+    $ vapor build
+    $ vapor run
+
+    $ vapor build --release
+    $ .build/release/Run --env production
