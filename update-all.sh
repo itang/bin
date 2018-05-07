@@ -28,12 +28,13 @@ for g in $gits; do
         echo "no exists, ignore $g"
     fi
 done
-echo "sdkman"
-(
-export SDKMAN_DIR="/home/itang/.sdkman"
-[[ -s "/home/itang/.sdkman/bin/sdkman-init.sh" ]] && source "/home/itang/.sdkman/bin/sdkman-init.sh"
-sdk selfupdate
-) &
+
+#echo "sdkman"
+#(
+#export SDKMAN_DIR="/home/itang/.sdkman"
+#[[ -s "/home/itang/.sdkman/bin/sdkman-init.sh" ]] && source "/home/itang/.sdkman/bin/sdkman-init.sh"
+#sdk selfupdate
+#) &
 
 echo "rust"
 (
