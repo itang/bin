@@ -16,3 +16,4 @@
     $ rustup self update
 
     $ rustup doc --std
+    $ rustup doc --book
