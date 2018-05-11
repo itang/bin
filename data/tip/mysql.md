@@ -4,6 +4,8 @@
 
     $ mysql -uroot -h 192.168.0.1 -P 3306 -p dbname
 
+    $> CREATE DATABASE IF NOT EXISTS thedatabase_name DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
 ## mysqldump
 
     mysqldump -uroot -p123456 -h192.168.0.1 somedb --lock-all-tables --routines --triggers --default-character-set=utf8 --quick > somedb.db
