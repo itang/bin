@@ -27,6 +27,26 @@
     > GRANT ALL PRIVILEGES ON `somedb`.* TO 'someuser'@'%'  IDENTIFIED BY 'somepassword' WITH GRANT OPTION;
     > GRANT SELECT ON `somedb`.* TO 'someuser_ro'@'%'  IDENTIFIED BY 'somepassword_ro';
 
+## mysql config
+
+    > show variables like 'long%';
+    > show variables like 'slow%';
+
+    > SHOW PROCESSLIST;
+
+## mysql DDL
+
+    > ALTER TABLE table1 ADD CONSTRAINT FK_table1tabl2 ADD FOREIGN KEY (table2_id) REFERENCES table2 (id);
+    > alter table table1 drop FOREIGN KEY FK_table1tabl2;
+
+    > CREATE UNIQUE INDEX index_name ON table_name (column1, column2, ...);
+    > CREATE INDEX idx_lastname ON Persons (LastName);
+    > CREATE INDEX idx_pname ON Persons (LastName, FirstName);
+    > ALTER TABLE table_name DROP INDEX index_name;
+
+    > SHOW INDEX FROM table_name;
+    > SHOW keys FROM table_name;
+
 ## mysql functions
 
     > select DATE_FORMAT(now(),'%y-%m-%d %H:%i:%s')
