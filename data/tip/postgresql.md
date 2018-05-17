@@ -12,6 +12,11 @@
 
     $ sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
+
+    $ CREATE DATABASE plume;
+    $ CREATE USER plume WITH PASSWORD 'plume';
+    $ GRANT ALL PRIVILEGES ON DATABASE plume to plume;
+
 ## psql
 
     $ psql -U postgres -h localhost

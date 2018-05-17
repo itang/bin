@@ -34,6 +34,9 @@
 
     > SHOW PROCESSLIST;
 
+
+    > select * from  mysql.slow_log order by start_time desc limit 5;
+
 ## mysql DDL
 
     > ALTER TABLE table1 ADD CONSTRAINT FK_table1tabl2 ADD FOREIGN KEY (table2_id) REFERENCES table2 (id);
