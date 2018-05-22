@@ -32,7 +32,10 @@
     > show variables like 'long%';
     > show variables like 'slow%';
 
+    > show variables like 'max_connections';
+
     > SHOW PROCESSLIST;
+    > SHOW FULL PROCESSLIST;
 
 
     > select * from  mysql.slow_log order by start_time desc limit 5;
