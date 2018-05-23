@@ -42,6 +42,7 @@
 
     `dangling` images == `UNTAGGED` IMAGES
     $ docker rmi $(docker images -f "dangling=true" -q)
+    $ docker rmi $(docker images | grep "^<none>" | awk '{print $3}')
 
     $ docker save mynewimage > /tmp/mynewimage.tar
     $ docker load < /tmp/mynewimage.tar
