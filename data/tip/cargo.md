@@ -38,6 +38,9 @@
     cargo web/wasm
     $ cargo web start --release --target wasm32-unknown-unknown
 
+    systemfd + cargo watch
+    $ systemfd --no-pid -s http::4000 -- cargo watch -x run
+
 ## profiler
 
     $ cargo profiler callgrind --bin $PATH_TO_BINARY -- -a 3 --like this
