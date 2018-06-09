@@ -8,7 +8,8 @@ class String
     cmd =
       case os
       when /linux|bsd/
-        'xdg-open'
+        #'xdg-open'
+        'x-www-browser'
       when /mswin|mingw|cygwin/
         'start'
       when /darwin/
