@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-KOTLIN_VERSION = '1.2.10'.freeze
+KOTLIN_VERSION = '1.2.41'.freeze
 
 name = ARGV[0] || 'test-kotlin'
 
@@ -50,7 +50,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     //compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 
     testCompile "junit:junit:4.12"
@@ -74,6 +74,8 @@ fun main(args: Array<String>) {
 eos
 
 sh "mkdir -p #{name}/src/main/kotlin/demo"
+sh "mkdir -p #{name}/src/main/java"
+sh "mkdir -p #{name}/src/main/resources"
 File.write "#{name}/src/main/kotlin/demo/Main.kt", main_content
 
 ################################################################

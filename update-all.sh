@@ -29,16 +29,9 @@ for g in $gits; do
     fi
 done
 
-#echo "sdkman"
-#(
-#export SDKMAN_DIR="/home/itang/.sdkman"
-#[[ -s "/home/itang/.sdkman/bin/sdkman-init.sh" ]] && source "/home/itang/.sdkman/bin/sdkman-init.sh"
-#sdk selfupdate
-#) &
-
 echo "rust"
 (
-rustup update nightly
+rustup update stable
 # cargo install --force --git https://github.com/ogham/ex
 cargo install-update -a
 ) &
