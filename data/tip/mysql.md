@@ -31,13 +31,18 @@
 
     > show variables like 'long%';
     > show variables like 'slow%';
+    > show variables like '%engine%';
 
     > show variables like 'max_connections';
 
+    MySQL 进程
     > SHOW PROCESSLIST;
     > SHOW FULL PROCESSLIST;
 
+    MySQL 版本
+    > select version();
 
+    慢查询日志
     > select * from  mysql.slow_log order by start_time desc limit 5;
 
 ## mysql DDL
