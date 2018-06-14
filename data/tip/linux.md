@@ -40,6 +40,10 @@ Linux 用户管理
     修改目录的owner
     $ chown -R itang:itang datadir
 
+### groups
+
+    $ groups user1
+
 ## 压缩与解压
 
 ### .a
