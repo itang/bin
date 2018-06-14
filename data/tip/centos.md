@@ -4,6 +4,14 @@
 
 links: http://139.199.4.119/book/learn/linux/centos.html
 
+### iptables
+
+    $ iptables -L
+
+    $ service iptable status
+    $ servcie iptables stop
+    $ chkconfig iptables off
+
 ### firewalld
 
     systemctl start firewalld
