@@ -212,6 +212,11 @@ def new_kotlin_project
   sh "ktnew #{project_name} #{args.join(' ')}"
 end
 
+def new_java_project
+  project_name, args = _parse('java')
+  sh "javanew #{project_name} #{args.join(' ')}"
+end
+
 def new_swift_project
   project_name, args = _parse('swift')
   sh "swiftnew #{project_name} #{args.join(' ')}"
@@ -637,6 +642,8 @@ when 'rls_toml'
   new_rls_toml
 when 'kotlin'
   new_kotlin_project
+when 'java'
+  new_java_project
 when 'swift'
   new_swift_project
 when 'elixir'
@@ -672,7 +679,8 @@ when 'mill'
 else
   puts 'Usage:
 
-new kotlin    project_name |
+new kotlin    project_name   |
+    java      project_name   |
     rust      project_name   |
     go        project_name   |
     swift     project_name   |

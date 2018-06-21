@@ -1,0 +1,124 @@
+#!/usr/bin/env ruby
+
+
+name = ARGV[0] || 'test-java'
+
+def sh(cmd)
+  puts cmd
+  ret = system cmd
+  raise 'error' unless ret
+end
+
+################################################################################
+sh "mkdir #{name}"
+
+%w[resources java].each do |x|
+  sh "mkdir -p #{name}/src/main/#{x}"
+end
+
+sh "cd #{name}; gradle init"
+
+build_content = <<-eos
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    //maven {
+    //    url "http://www.haoshuju.net:8078/"
+    //}
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile "junit:junit:4.12"
+}
+
+mainClassName = 'demo.Main'
+defaultTasks 'run'
+
+eos
+
+File.write "#{name}/build.gradle", build_content
+
+main_content = <<-eos
+package demo;
+
+public class Main {
+    public static void main(String []args) {
+       System.out.println("Hello, java");
+    }
+}
+
+eos
+
+sh "mkdir -p #{name}/src/main/java/demo"
+sh "mkdir -p #{name}/src/main/resources"
+File.write "#{name}/src/main/java/demo/Main.java", main_content
+
+################################################################
+
+
+################################################################
+gp_content = <<-eos
+eos
+
+File.write "#{name}/gradle.properties", gp_content
+
+gitignore_content = <<-eos
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+# !gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+.idea
+*.iml
+
+.settings
+.classpath
+.project
+
+eos
+File.write "#{name}/.gitignore", gitignore_content
+
+## fabfile
+
+content = <<-eos
+# -*- coding: utf-8 -*-
+
+from fabric.api import *
+
+
+def run():
+    """run"""
+    local('./gradlew run')
+
+
+def dev():
+    """dev"""
+    local('watchexec "./gradlew run -no-daemon"')
+
+
+def clean():
+    """clean"""
+    local('./gradlew clean')
+
+
+eos
+
+File.write("#{name}/fabfile.py", content)
+
+sh "cd #{name}; tree"
+
+puts "cd #{name}"
+
