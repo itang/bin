@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 name = ARGV[0] || 'test_go'
-PDIR = ENV['GOPATH'] + '/src'
+PDIR = ENV['GOPATH'] || "#{ENV['HOME']}/go" + '/src'
 
 TARGET_DIR = "#{PDIR}/#{name}".freeze
 
