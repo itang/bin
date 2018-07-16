@@ -44,6 +44,10 @@ Linux 用户管理
 
     $ groups user1
 
+### access your files as the www-data user
+
+    $ sudo su -l www-data -s /bin/bash
+
 ## 压缩与解压
 
 ### .a
