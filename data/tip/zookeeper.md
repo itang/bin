@@ -14,3 +14,5 @@
 
     rmr
     $ rmr /path
+
+    $ zkCli.sh -server localhost:2181 ls /
