@@ -12,3 +12,6 @@
 
     consumer
     $ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sence-datasource --from-beginning
+
+    groups
+    $ bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group scenes-worker
