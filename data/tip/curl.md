@@ -16,6 +16,9 @@
 
     links: https://stackoverflow.com/questions/15995919/curl-how-to-send-cookies-via-command-line/23039038#23039038
 
+    $ basic auth
+    curl -u username:password http://hostname/some
+
 ## mockbin
 
     curl --request POST \
