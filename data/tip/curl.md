@@ -19,6 +19,9 @@
     $ basic auth
     curl -u username:password http://hostname/some
 
+    check gzip compression
+    $ curl -H "Accept-Encoding: gzip" -I https://somehost/some.js
+
 ## mockbin
 
     curl --request POST \
