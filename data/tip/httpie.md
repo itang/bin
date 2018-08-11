@@ -24,6 +24,10 @@ application/x-www-form-urlencoded
 
     $ echo '_method=delete' | http --form post ":8000/todo/6"
 
+### json post
+
+    $ echo '{"name": "test", "rate": 12}' | http post ":3030/employees/11"
+
 ## Tools
 
 - httpbin.org
