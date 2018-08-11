@@ -67,6 +67,12 @@ kotlin {
     }
 }
 
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 eos
 
 File.write "#{name}/build.gradle", build_content
