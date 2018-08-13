@@ -2,6 +2,8 @@
 
 ## Usage
 
+    $ docker stats
+
     $ docker run -ti -name container-name image-id /bin/bash
     $ docker run -ti -name container-name -d image-id
     $ docker run -ti -name container-name -p 4000:4000 -d image-id
