@@ -19,6 +19,10 @@
 
     $ supervisorctl status
 
+    查看进程标准输出
+    $ supervisorctl tail -50000 activemq stderr
+
+
 ## AUTO log file
 
 未設置或者爲AUTO
