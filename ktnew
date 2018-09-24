@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-KOTLIN_VERSION = '1.2.60'.freeze
+KOTLIN_VERSION = '1.2.70'.freeze
 
 name = ARGV[0] || 'test-kotlin'
 

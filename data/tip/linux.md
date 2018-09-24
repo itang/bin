@@ -16,6 +16,16 @@ export LANG=en_US.UTF-8
     net.ipv4.tcp_keepalive_probes = 9
     net.ipv4.tcp_keepalive_time = 7200
 
+## swappiness
+
+link: https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
+
+```
+$ cat /proc/sys/vm/swappiness
+60
+$ echo "vm.swappiness = 10" > /etc/sysctl.conf
+```
+
 ## user
 
 Linux 用户管理
