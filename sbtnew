@@ -17,10 +17,12 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.12.6
-SbtVersion=1.1.5
+ScalaVersion=2.12.7
+SbtVersion=1.2.3
 SbtUpdatesVersion=0.3.1
-SbtassemblyVersion=0.14.5
+SbtassemblyVersion=0.14.7
+ScalaJava8Version=0.9.0
+
 #SbtDependencyGraph=0.8.2
 SbtScoverageVersion=1.4.0
 ScalatestVersion=3.0.1
@@ -32,8 +34,6 @@ ScalaStyleVersion=0.8.0
 AmmoniteVersion=1.1.0
 SbtCoursierVersion=1.0.0-RC10
 SbtRevolverVersion=0.9.1
-
-ScalaJava8Version=0.7.0
 
 # takes a string and returns true if it seems to represent "yes"
 function isYes() {
@@ -214,7 +214,7 @@ import util._
 object Main {
 
   def main(args: Array[String]): Unit = time {
-    println(s"args: ${args.mkString(" ")}") 
+    println(s"args: ${args.mkString(" ")}")
     System.getenv.asScala.filter(it => it._1.startsWith("ENV")).foreach(println)
 
     "Hello, World"
