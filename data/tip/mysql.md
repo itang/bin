@@ -35,6 +35,9 @@
 
     > show variables like 'max_connections';
 
+    > show create table table1;
+
+
     MySQL 进程
     > SHOW PROCESSLIST;
     > SHOW FULL PROCESSLIST;
