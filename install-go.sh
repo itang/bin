@@ -2,7 +2,7 @@
 
 go version
 
-VERSION=1.11
+VERSION=1.11.1
 function install() {
     URL=https://storage.googleapis.com/golang/go${VERSION}.linux-amd64.tar.gz
     echo "download from ${URL}"

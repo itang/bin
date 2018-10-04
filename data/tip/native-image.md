@@ -9,3 +9,11 @@
     $ native-image --no-server -cp sis.jar:. -H:Kind=SHARED_LIBRARY -H:Name=libdistance
 
     $ native-image --static ...
+
+## tips
+
+    $ mvn install:install-file -Dfile=${GRAALVM_HOME}/jre/lib/svm/builder/svm.jar \
+                           -DgroupId=com.oracle.substratevm \
+                           -DartifactId=svm \
+                           -Dversion=GraalVM-1.0.0-rc6 \
+                           -Dpackaging=jar
