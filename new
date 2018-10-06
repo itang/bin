@@ -367,14 +367,23 @@ end
 def new_reason_project
   project_name, _args = _parse('reason')
   sh "bsb -init #{project_name} -theme basic-reason"
-  #sh "cd #{project_name};upgradeSyntaxFrom2To3 src/*;"
   sh "cd #{project_name};npm run build;node src/Demo.bs.js"
+  content = <<-eos
+#!/bin/bash
+
+npm run start &
+watchexec node src/Demo.bs.js &
+
+wait
+
+  eos
+
+  write "#{project_name}/dev.sh", content
 end
 
 def new_reason_react_project
   project_name, _args = _parse('reason-react')
   sh "bsb -init #{project_name} -theme react"
-  sh 'cd #{project_name};upgradeSyntaxFrom2To3 src/*'
   sh "cd #{project_name};npm install;npm run build;"
 end
 
