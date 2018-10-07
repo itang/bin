@@ -1,6 +1,5 @@
 urls = [
      "http://bbs.szhome.com/30017.html",
-     #"http://bbs.szhome.com/50010.html",
      "https://twitter.com",
      "https://github.com/stars?direction=desc&sort=updated",
      "http://www.douban.com",
@@ -12,16 +11,16 @@ urls = [
      "http://36kr.com/",
      "https://news.ycombinator.com/news",
      "https://elixirforum.com/",
-     "https://github.com/trending/elixir",
+     #"https://github.com/trending/elixir",
      "https://github.com/trending",
      "https://github.com/trending/lua",
      "https://github.com/trending/typescript",
      "https://www.reddit.com/r/golang/",
      "https://github.com/trending/go",
      "https://github.com/trending/scala",
-     "https://github.com/trending/python",
-     "https://reasonml.chat/",
-     "https://www.reddit.com/r/reasonml/",
+     #"https://github.com/trending/python",
+     #"https://reasonml.chat/",
+     #"https://www.reddit.com/r/reasonml/",
      "https://github.com/trending/rust",
      "https://www.reddit.com/r/rust"
 ]
