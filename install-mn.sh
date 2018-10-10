@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0.0.RC1
+VERSION=1.0.0.RC2
 
 cd /tmp
 wget https://github.com/micronaut-projects/micronaut-core/releases/download/v${VERSION}/micronaut-${VERSION}.zip
