@@ -6,3 +6,6 @@
 
     $ certbot renew --dry-run --force-renew
     $ certbot renew --force-renew
+
+    link: https://community.letsencrypt.org/t/renew-incorrect-validation-certificate-for-tls-sni-01-challenge/64865/3
+    $ certbot renew --preferred-challenges http

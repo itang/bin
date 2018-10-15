@@ -9,6 +9,7 @@ sudo apt-get install -y --force-yes build-essential libpcre3 libreadline-dev lib
 sudo apt-get install -y --force-yes zsh wget curl git mercurial binutils bison xclip cloc tree zip p7zip-full rsync inotify-tools tmux shellcheck lnav graphviz
 sudo apt-get install -y --force-yes lm-sensors hddtemp linux-tools-generic
 
+sudo apt-get install -7 --force-yes clang llvm
 # sys monitor
 sudo apt-get install -y --force-yes procps sysstat
 
