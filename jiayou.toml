@@ -10,6 +10,7 @@ urls = [
      "http://www.infoq.com/cn",
      "http://36kr.com/",
      "https://news.ycombinator.com/news",
+     "https://blog.appsignal.com/",
      "https://elixirstatus.com/",
      "https://elixirforum.com/",
      "https://github.com/trending/elixir",
