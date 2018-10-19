@@ -16,6 +16,8 @@
     > use somedatabase;
     > show tables;
 
+    create user
+    > CREATE USER 'root'@'%' IDENTIFIED BY 'root';
     > select User, Host from mysql.user;
     > update mysql.user set password=password('新密码') where User="root";
     > UPDATE mysql.user SET authentication_string=PASSWORD('13584368554') WHERE User='root';
