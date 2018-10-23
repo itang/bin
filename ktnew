@@ -100,7 +100,6 @@ fun main(args: Array<String>) {
         jobs.forEach { it.join() }
     }
 }
-
 eos
 
 sh "mkdir -p #{name}/src/main/kotlin/demo"
@@ -123,7 +122,6 @@ class TestDemo {
         assertEquals(1 + 1, 2)
     }
 }
-
 eos
 
 sh "mkdir -p #{name}/src/test/kotlin/demo"

@@ -4,11 +4,19 @@
 
     $ docker run -ti --rm --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 mysql
 
+    mysql 8
+    $ docker run -ti --rm --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 mysql mysqld --default-authentication-plugin=mysql_native_password
+
 ## Usage
 
     $ mysql -uroot -h 192.168.0.1 -P 3306 -p dbname
 
     $> CREATE DATABASE IF NOT EXISTS thedatabase_name DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    $> create database if not exists thedatabase_name default charset utf8mb4 collate utf8mb4_general_ci;
+
+    ref: https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
+    $> create database if not exists thedatabase_name default charset utf8mb4 collate utf8mb4_unicode_ci;
+
 
 ## mysqldump
 
