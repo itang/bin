@@ -1,5 +1,28 @@
 # Linux
 
+## limits
+
+    $ cat /proc/sys/kernel/pid_max
+    $ sysctl kernel.pid_max
+    $ sysctl kernel.pid_max=4194304
+
+    $ file descriptors
+    $ ulimit -n
+
+    max user processes
+    $ ulimit -a
+    max user processes              (-u) 500000
+    $ ulimit -u
+
+    调整max user processes
+    临时:
+    $ ulimit -u 10240
+
+    持久:
+    /etc/security/limits.conf
+    hadoop - nproc 500000
+
+
 ## locale
 
 locale is set to UTF-8
