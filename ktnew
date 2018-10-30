@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-KOTLIN_VERSION = '1.2.70'.freeze
+KOTLIN_VERSION = '1.3.0'.freeze
+COROUTINE_VERSION='1.0.0'.freeze
 
 name = ARGV[0] || 'test-kotlin'
 
@@ -23,6 +24,7 @@ build_content = <<-eos
 buildscript {
     ext {
         kotlinVersion = '#{KOTLIN_VERSION}'
+        coroutineVersion = '#{COROUTINE_VERSION}'
     }
     repositories {
         jcenter()
@@ -52,7 +54,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     //compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.24.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
 
     testCompile "junit:junit:4.12"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
@@ -62,9 +64,9 @@ mainClassName = 'demo.MainKt'
 defaultTasks 'run'
 
 kotlin {
-    experimental {
-        coroutines 'enable'
-    }
+    //experimental {
+    //    coroutines 'enable'
+    //}
 }
 
 compileKotlin {
@@ -82,9 +84,9 @@ File.write "#{name}/build.gradle", build_content
 main_content = <<-eos
 package demo
 
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.concurrent.TimeUnit
 
 fun main(args: Array<String>) {
@@ -92,7 +94,7 @@ fun main(args: Array<String>) {
     runBlocking {
         val jobs = List(1_000) {
             launch {
-                delay(1L, TimeUnit.SECONDS)
+                delay(1000L)
                 print(".")
             }
         }
@@ -130,6 +132,7 @@ File.write "#{name}/src/test/kotlin/demo/TestDemo.kt", test_content
 ################################################################
 gp_content = <<-eos
 kotlin.incremental=true
+kotlin.code.style=official
 eos
 
 File.write "#{name}/gradle.properties", gp_content
