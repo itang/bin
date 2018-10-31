@@ -38,17 +38,17 @@ cargo install-update -a
 #opam update
 #opam upgrade
 
-echo "elixir"
-(cd ~/dev-env/elixir && git pull && make clean compile) &
+#echo "elixir"
+#(cd ~/dev-env/elixir && git pull && make clean compile) &
 #(cd ~/dev-env/elixir && git pull && make clean test)
 
-gopackages="
-github.com/tockins/realize
-neugram.io/ng
-github.com/kode4food/sputter/cmd/sputter
-github.com/goby-lang/goby"
-for x in $gopackages; do
-    go get -u -v "$x" &
-done
+#gopackages="
+#github.com/tockins/realize
+#neugram.io/ng
+#github.com/kode4food/sputter/cmd/sputter
+#github.com/goby-lang/goby"
+#for x in $gopackages; do
+#    go get -u -v "$x" &
+#done
 
 wait
