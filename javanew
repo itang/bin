@@ -110,7 +110,7 @@ def run():
 
 def dev():
     """dev"""
-    local('watchexec "./gradlew run -no-daemon"')
+    local('watchexec -r "./gradlew run -no-daemon"')
 
 
 def clean():
