@@ -8,6 +8,7 @@ https://github.com/BurntSushi/ripgrep
     $ rg "TODO|FIXME|OPTIMIZE|REVIEW"
 
     $ rg clap -g '!*.toml'
+    $ rg "var " -g !'*entity.kt'
     $ rg 'int main' -g '*.{c,h}'
     $ rg 'int main' -tc
     $ rg clap --type-not rust
