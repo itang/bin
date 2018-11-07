@@ -10,3 +10,4 @@ links: https://github.com/sharkdp/fd
 ## Usage
 
     $ fd --no-ignore "wasm[1-9]+"
+    $ fd ".pdf|.xmind"
