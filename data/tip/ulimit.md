@@ -19,6 +19,18 @@
     某个具体用户的资源加以限制的方法
     /etc/security/limits
 
-    <domain> <type> <item> <value> 
+    <domain> <type> <item> <value>
     domain 表示用户或者组的名字，还可以使用 * 作为通配符。Type 可以有两个值，soft 和 hard。Item 则表示需要限定的资源，可以有很多候选值，如 stack，cpu，nofile 等等，分别表示最大的堆栈大小，占用的 cpu 时间，以及打开的文件数, e.g:
     * hard noflle 100
+
+## Notice
+
+https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu
+
+> Modify /etc/systemd/user.conf and /etc/systemd/system.conf with the following line (this takes care of graphical login):
+>
+> DefaultLimitNOFILE=65535
+> Modify /etc/security/limits.conf with the following lines (this takes care of non-GUI login):
+>
+> mkasberg hard nofile 65535
+> mkasberg soft nofile 65535
