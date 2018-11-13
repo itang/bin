@@ -21,3 +21,5 @@
 
     $ egrep --help | grep "only-matching"
     -o, --only-matching       show only the part of a line matching PATTERN
+
+    $ egrep 'TODO|FIXME|OPTIMIZE|REVIEW|NOTICE' -n -C 1 --color `find . -name "*.kt"`
