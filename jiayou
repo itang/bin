@@ -1,45 +1,57 @@
 #!/usr/bin/env ruby
+
 require 'uri'
 require 'toml'
 
+# open String
 class String
-  def browser(f = false)
-    os = RbConfig::CONFIG['host_os']
-    cmd =
-      case os
-      when /linux|bsd/
-        #'xdg-open'
-        'x-www-browser'
-      when /mswin|mingw|cygwin/
-        'start'
-      when /darwin/
-        'open'
-      end
-    if cmd
-      cline = ("#{cmd} #{self} > /dev/null 2>&1" + (f ? '' : ' &')) # .tap {|x| puts x}
-      system cline
-      sleep(1.3) if f
-    end
+  # open browser for url
+  def browser(foreground = false)
+    cmd = open_cmd
+    return unless cmd
+
+    cline = ("#{cmd} #{self} > /dev/null 2>&1" + (foreground ? '' : ' &'))
+    system cline
+    sleep(1.3) if foreground
   end
 
   def valid_url?
     URI.parse(self)
     true
-  rescue
+  rescue _
     false
+  end
+
+  private
+
+  def open_cmd
+    os = RbConfig::CONFIG['host_os']
+    case os
+    when /linux|bsd/
+      # 'xdg-open'
+      'x-www-browser'
+    when /mswin|mingw|cygwin/
+      'start'
+    when /darwin/
+      'open'
+    end
   end
 end
 
 if $PROGRAM_NAME == __FILE__
-  f = ARGV.any? { |e| e.start_with? '--f' }
-
   dir = File.dirname(__FILE__)
   toml_file = File.join(dir, 'jiayou.toml')
+
   puts "load from #{toml_file}..."
 
   jiayou = TOML.load_file(toml_file)
-  jiayou['urls'].select(&:valid_url?)
-                .reverse
-                .map { |url| %("#{url}") }
-                .each { |url| url.browser(f) }
+  foreground = ARGV.any? { |e| e.start_with? '--f' }
+
+  jiayou['urls']
+    .select(&:valid_url?)
+    .reverse
+    .map { |url| %("#{url}") }
+    .each do |url|
+      url.browser foreground
+    end
 end
