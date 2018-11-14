@@ -22,3 +22,6 @@ https://github.com/BurntSushi/ripgrep
     Replace(for display)
     $ rg fast README.md --replace FAST
     $ rg fast README.md -r FAST
+
+    -i
+    $ java -XX:+PrintFlagsFinal -version | rg -i "maxheapsize|maxram"
