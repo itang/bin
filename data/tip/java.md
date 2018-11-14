@@ -2,6 +2,8 @@
 
 ## Usage
 
+    $ java -XX:+PrintFlagsFinal -version | grep -Ei "maxheapsize|maxram"
+
     -Djava.library.path
     $javac HelloWorld.java && java -Djava.library.path=mylib/target/debug/ HelloWorld
 
