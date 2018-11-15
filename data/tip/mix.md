@@ -5,6 +5,20 @@
     custom module name
     $ mix new kv --module KV
 
+## mix hex
+
+    $ mix hex.info jason
+
+## mix xref
+
+    $ mix xref callers Jason.encode!
+    $ mix xref callers Phoenix.Controller.render
+
+## mix test
+
+    Running your previous failed test only
+    $ mix test --failed
+
 ## mix phx
 
     $ mix phx.new my_app --umbrella
