@@ -50,7 +50,7 @@ pwd # still in first directory
     #!/usr/bin/env python
     EOF
 
-* python hello.py > "output-and-error.log" 2>&1 # redirect both output and errors 
+* python hello.py > "output-and-error.log" 2>&1 # redirect both output and errors
 * python hello.py > /dev/null 2>&1 # redirect all output and errors to the black hole
 
 * echo "#helloworld" | tee output.out >/dev/null
@@ -133,6 +133,11 @@ for Output in $(ls) # 空字符分割
 do
     cat "$Output"
 done
+
+for x in $(seq 1 10) ;do echo $x ; done
+
+d=100
+for x in $(seq 1 $d) ;do echo $x ; done
 ```
 
 ### while
