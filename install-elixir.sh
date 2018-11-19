@@ -13,16 +13,16 @@ esac
 sudo apt-get update
 sudo apt-get install esl-erlang
 
-sudo apt-get install elixir
+#sudo apt-get install elixir
 
-#VERSION=1.4.4
+VERSION=1.7.4
 
-#(
-#  cd /tmp
-#  rm Precompiled.zip
+(
+  cd /tmp
+  rm Precompiled.zip
 
-#  wget https://github.com/elixir-lang/elixir/releases/download/v${VERSION}/Precompiled.zip && rm -rf ~/dev-env/elixir
-#  mkdir -p ~/dev-env/elixir
+  wget https://github.com/elixir-lang/elixir/releases/download/v${VERSION}/Precompiled.zip && rm -rf ~/dev-env/elixir
+  mkdir -p ~/dev-env/elixir
 
-#  unzip Precompiled.zip -d ~/dev-env/elixir/ && ~/dev-env/elixir/bin/iex -v
-#)
+  unzip Precompiled.zip -d ~/dev-env/elixir/ && ~/dev-env/elixir/bin/iex -v
+)
