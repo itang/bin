@@ -5,6 +5,9 @@
     $ bash -c "echo hello world"
     $ sudo bash -c  "GOPATH=/home/itang/dev-env/gopath $(which go) run server/server.go"
 
+    在当前shell解析加载并执行脚本
+    $ . ~/test/.env3
+
 ## bash syntax
 
 links: https://learnxinyminutes.com/docs/bash/

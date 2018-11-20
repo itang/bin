@@ -11,6 +11,8 @@
 
     $ cargo new --bin test1
     $ cargo new --lib test2
+    $ cargo +nightly new foo
+    $ cargo +beta new foo
 
     $ cargo add may
 
@@ -29,6 +31,12 @@
 
     $ cargo test
     $ cargo bench
+
+    $ cargo fix --edition
+    $ cargo fix --edition-idioms
+    $ cargo fix --edition-idioms --broken-code
+
+    $ cargo generate --git https://github.com/rust-clique/cargo-template-cli
 
     $ cargo install -f cargo-web
     $ cargo install -f --git https://github.com/koute/cargo-web.git
