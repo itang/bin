@@ -4,6 +4,9 @@
 
     $ java -XX:+PrintFlagsFinal -version | grep -Ei "maxheapsize|maxram"
 
+    $ java -Xss500k -XX:+PrintFlagsFinal -version  | grep ThreadStackSize
+    $ java -XX:ThreadStackSize=2k -XX:+PrintFlagsFinal -version 2>&1 | grep ThreadStackSize
+
     -Djava.library.path
     $javac HelloWorld.java && java -Djava.library.path=mylib/target/debug/ HelloWorld
 
