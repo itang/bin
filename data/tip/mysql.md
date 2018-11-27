@@ -11,6 +11,9 @@
 
     $ mysql -uroot -h 192.168.0.1 -P 3306 -p dbname
 
+    $ mysql -u root -p -e "create database testdb";
+    $ mysql -u root -p < somepath/source.sql
+
     $> CREATE DATABASE IF NOT EXISTS thedatabase_name DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
     $> create database if not exists thedatabase_name default charset utf8mb4 collate utf8mb4_general_ci;
 
