@@ -157,6 +157,11 @@ gradle-app.setting
 .classpath
 .project
 
+bin/
+.vscode/
+target/
+*.pyc
+
 eos
 File.write "#{name}/.gitignore", gitignore_content
 

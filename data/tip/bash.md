@@ -8,6 +8,14 @@
     在当前shell解析加载并执行脚本
     $ . ~/test/.env3
 
+## Simple Script
+
+    $ echo "hello" | sha1sum | awk '{print $1}' | xargs echo -n | wc -c
+
+## hash command(tools)
+
+`base64, base32, md5sum, sha1sum, sha256sum, uuidgen -r`
+
 ## bash syntax
 
 links: https://learnxinyminutes.com/docs/bash/
