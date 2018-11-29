@@ -187,6 +187,29 @@ eos
 
 File.write("#{name}/fabfile.py", content)
 
+content = <<-eos
+task :default do
+  sh 'rake -T'
+end
+
+desc 'run'
+task :run do
+  sh './gradlew run'
+end
+
+desc 'dev'
+task :dev do
+  sh 'watchexec -r "./gradlew run -no-daemon"'
+end
+
+desc 'clean'
+task :clean do
+  sh './gradlew clean'
+end
+eos
+
+File.write("#{name}/Rakefile", content)
+
 sh "cd #{name}; tree"
 
 puts "cd #{name}"
