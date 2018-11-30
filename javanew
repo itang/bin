@@ -60,9 +60,25 @@ public class Main {
 eos
 
 sh "mkdir -p #{name}/src/main/java/demo"
+sh "mkdir -p #{name}/src/test/java/demo"
 sh "mkdir -p #{name}/src/main/resources"
 File.write "#{name}/src/main/java/demo/Main.java", main_content
 
+test_content = <<-eos
+package demo;
+
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class DemoTest {
+    @Test
+    public void testIt(){
+        assertEquals("hello", "hello");
+    }
+}
+eos
+
+File.write "#{name}/src/test/java/demo/DemoTest.java", test_content
 ################################################################
 
 
@@ -92,6 +108,10 @@ gradle-app.setting
 .classpath
 .project
 
+*.pyc
+bin/
+target/
+.vscode/
 eos
 File.write "#{name}/.gitignore", gitignore_content
 
@@ -116,11 +136,32 @@ def dev():
 def clean():
     """clean"""
     local('./gradlew clean')
-
-
 eos
 
 File.write("#{name}/fabfile.py", content)
+
+content = <<-eos
+task :default do
+  sh 'rake -T'
+end
+
+desc 'run'
+task :run do
+  sh './gradlew run'
+end
+
+desc 'dev'
+task :dev do
+  sh 'watchexec -r "./gradlew run -no-daemon"'
+end
+
+desc 'clean'
+task :clean do
+  sh './gradlew clean'
+end
+eos
+
+File.write("#{name}/Rakefile", content)
 
 sh "cd #{name}; tree"
 
