@@ -18,6 +18,7 @@ urls = [
      #"https://github.com/trending/elixir",
      "https://github.com/trending",
      "https://github.com/trending/lua",
+     "https://github.com/trending/ruby?since=daily",
      "https://github.com/trending/typescript",
      "https://www.reddit.com/r/golang/",
      "https://github.com/trending/go",
