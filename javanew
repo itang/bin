@@ -26,21 +26,19 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    //maven {
-    //    url "http://www.haoshuju.net:8078/"
-    //}
     jcenter()
     mavenCentral()
 }
 
 dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.14'
+
     testCompile "junit:junit:4.12"
+    testCompile 'org.mockito:mockito-core:2.20.0'
 }
 
 mainClassName = 'demo.Main'
 defaultTasks 'run'
-
 eos
 
 File.write "#{name}/build.gradle", build_content
