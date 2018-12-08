@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=v0.2.1
+VERSION=v0.2.2
 
 deno --version
 
@@ -12,3 +12,4 @@ gunzip  -c deno_linux_x64.gz > ~/.local/bin/deno
 chmod +x ~/.local/bin/deno
 
 deno --version
+  
