@@ -89,6 +89,7 @@ File.write "#{name}/gradle.properties", gp_content
 gitignore_content = <<-eos
 .gradle
 build/
+out/
 
 # Ignore Gradle GUI config
 gradle-app.setting
