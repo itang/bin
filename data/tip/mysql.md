@@ -67,6 +67,8 @@
 
 ## mysql DDL
 
+    > create table user(id varchar(36), name varchar(100) not null, age int not null, del_flag int(1) default 0, created_at datetime, description text, primary key (id));
+
     > ALTER TABLE table1 ADD CONSTRAINT FK_table1tabl2 ADD FOREIGN KEY (table2_id) REFERENCES table2 (id);
     > alter table table1 drop FOREIGN KEY FK_table1tabl2;
 
@@ -120,7 +122,6 @@ unit：表示单位，支持毫秒(microsecond)，秒(second)，小时(hour)，�
     > select json_object("name","andyqian","database","MySQL");
 
 - json_array
-
 
 - json_valid
 
