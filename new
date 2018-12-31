@@ -613,7 +613,8 @@ end
 desc 'dist'
 task :dist do
   sh 'mill foo.assembly'
-  sh 'cd out;$GRAALVM_HOME/bin/native-image -cp foo/assembly/dest/out.jar -H:Name=#{project_name} -H:+ReportUnsupportedElementsAtRuntime foo.Example && upx #{project_name}'
+  sh 'cd out;$GRAALVM_HOME/bin/native-image -cp foo/assembly/dest/out.jar -H:Name=#{project_name} -H:+ReportUnsupportedElementsAtRuntime foo.Example'
+  #sh 'cd out;upx #{project_name}'
 end
 
 desc 'clean'
