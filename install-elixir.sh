@@ -15,7 +15,7 @@ sudo apt-get install esl-erlang
 
 #sudo apt-get install elixir
 
-VERSION=1.7.4
+VERSION=1.8.0-rc.1
 
 (
   cd /tmp
