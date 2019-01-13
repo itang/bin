@@ -261,6 +261,7 @@ lib/
 
 .idea/
 *.iml
+.metals
 " > ${directoryName}/.gitignore
 fi
 
