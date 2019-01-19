@@ -9,3 +9,9 @@
     $ mvn clean package -U
     $ mvn package -Dmaven.test.skip=true
 
+    in offline mode
+    $ mvn -o install
+
+    ensure all dependencies installed locally before to work offline
+    $ mvn dependency:go-offline
+
