@@ -135,9 +135,7 @@ envVars in reStart := Map(\"ENV_USER_TOKEN\" -> \"2359298356239\")
 //    Some(\"releases\"  at nexus + \"/releases\")
 //}
 
-//credentials += Credentials(Path.userHome / \".ivy2\" / \".credentials\")
-
-" > ${directoryName}/build.sbt
+//credentials += Credentials(Path.userHome / \".ivy2\" / \".credentials\")" > ${directoryName}/build.sbt
 
 #-----------------
 # init plugins.sbt
@@ -203,9 +201,7 @@ package object util {
 
     def orElse(pred: (T) => Boolean)(elseAction: (T) => T): T = orElse(pred(v))(elseAction)
   }
-}
-
-' > ${directoryName}/src/main/scala/util.scala
+}' > ${directoryName}/src/main/scala/util.scala
 
 echo 'import java.util.Date
 import scala.collection.JavaConverters._
@@ -222,9 +218,7 @@ object Main {
       .|>(_ + ", " + new Date().format("yyyy-MM-dd"))
       .|>(println)
   }
-}
-
-' > ${directoryName}/src/main/scala/main.scala
+}' > ${directoryName}/src/main/scala/main.scala
 
 
 #----------------------------------
@@ -282,9 +276,7 @@ def run():
 
 def dev():
     """Dev"""
-    local("sbt \"~reStart\"")
-
-' > ${directoryName}/fabfile.py
+    local("sbt \"~reStart\"")' > ${directoryName}/fabfile.py
 
 #-----------------------------
 # create README.me, if desired
