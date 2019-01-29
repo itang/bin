@@ -18,6 +18,8 @@
 
     Running your previous failed test only
     $ mix test --failed
+    
+    $ mix test --slowest
 
 ## mix phx
 
