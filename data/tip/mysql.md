@@ -65,6 +65,18 @@
     慢查询日志
     > select * from  mysql.slow_log order by start_time desc limit 5;
 
+    查看系统隔离级别：
+    select @@global.tx_isolation;
+
+    查看当前会话隔离级别
+    select @@tx_isolation;
+   
+    设置当前会话隔离级别
+    SET session TRANSACTION ISOLATION LEVEL serializable;
+
+    设置全局系统隔离级别
+    SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
 ## mysql DDL
 
     > create table user(id varchar(36), name varchar(100) not null, age int not null, del_flag int(1) default 0, created_at datetime, description text, primary key (id));
