@@ -54,6 +54,9 @@
 
     > show create table table1;
 
+    > show index from tblname;
+
+    > show keys from tblname;
 
     MySQL 进程
     > SHOW PROCESSLIST;
