@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=v0.2.11
+VERSION=v0.3.0
 
 deno --version
 
