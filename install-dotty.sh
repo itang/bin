@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.12.0-RC1
+VERSION=0.13.0-RC1
 
 cd /tmp
 rm -rf dotty-$VERSION.tar.gz
