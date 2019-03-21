@@ -62,6 +62,12 @@
     > SHOW PROCESSLIST;
     > SHOW FULL PROCESSLIST;
 
+
+    set global slow_query_log='ON';
+    set global long_query_time=1;
+    set global log_output='TABLE';
+
+    select * from mysql.slow_log;
     MySQL 版本
     > select version();
 
