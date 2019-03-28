@@ -45,7 +45,7 @@
     > GRANT SELECT ON `somedb`.* TO 'someuser_ro'@'%'  IDENTIFIED BY 'somepassword_ro';
 
 ## mysql config
-
+    > show variables like '%version%';
     > show variables like 'long%';
     > show variables like 'slow%';
     > show variables like '%engine%';
@@ -68,6 +68,7 @@
     set global log_output='TABLE';
 
     select * from mysql.slow_log;
+
     MySQL 版本
     > select version();
 
