@@ -19,6 +19,9 @@ end
 sh "cd #{name}; gradle init"
 
 build_content = <<-eos
+plugins {
+    id "net.ltgt.apt" version "0.21" //builtin on gradle 5.2
+}
 apply plugin: 'java'
 apply plugin: 'application'
 
@@ -38,6 +41,9 @@ dependencies {
     compile 'org.apache.commons:commons-collections4:4.3'
     compile 'commons-collections:commons-collections:3.2.2'
     compile 'commons-codec:commons-codec:1.11'
+
+    compileOnly 'org.projectlombok:lombok:1.18.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
 
     testCompile "junit:junit:4.12"
     testCompile 'org.mockito:mockito-core:2.20.0'
