@@ -6,3 +6,5 @@
     EOT
 
 
+    $ cat /dev/urandom | head -c 32 | base64
+
