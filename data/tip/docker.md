@@ -78,6 +78,21 @@ x
 
     $ docker system df
 
+
+    docker run --detach \
+           --name bluedoc \
+           --publish 443:443 --publish 80:80 \
+           --restart always \
+           --volume ${bluedoc_root}/postgresql:/var/lib/postgresql \
+           --volume ${bluedoc_root}/redis:/var/lib/redis \
+           --volume ${bluedoc_root}/elasticsearch:/usr/share/elasticsearch/data \
+           --volume ${bluedoc_root}/storage:/home/app/bluedoc/storage \
+           --volume ${bluedoc_root}/data:/home/app/bluedoc/data \
+           --volume ${bluedoc_root}/log:/home/app/bluedoc/log \
+           --volume ${bluedoc_root}/tmp:/home/app/bluedoc/tmp \
+           --end-file ${bluedoc_root}/production.env \
+           bluedoc/bluedoc:latest
+
 ## Dockerfile
 
     e.g.
