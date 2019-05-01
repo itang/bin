@@ -1,8 +1,8 @@
 #!/bin/bash
 
-VERSION=v0.3.6
+VERSION=v0.3.10
 
-deno --version
+deno version
 
 cd /tmp
 rm deno_linux_x64.gz
@@ -11,5 +11,5 @@ wget https://github.com/denoland/deno/releases/download/${VERSION}/deno_linux_x6
 gunzip  -c deno_linux_x64.gz > ~/.local/bin/deno
 chmod +x ~/.local/bin/deno
 
-deno --version
+deno version
   
