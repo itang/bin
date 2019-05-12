@@ -37,7 +37,70 @@
         ''      close;
     }
 
-## proxy_pass
+## rewrite
+
+    rewrite /app/(.*) /$1 break;
+    rewrite /app / break;
+    proxy_pass http://apps-appsvc-8080;
+
+## server
+
+```
+server {
+    server_name kubernetes.foo.bar;
+    listen 80;
+    listen [::]:80;
+    set $proxy_upstream_name "-";
+    location ~* ^/web2\/?(?<baseuri>.*) {
+        set $proxy_upstream_name "apps-web2svc-8080";
+        port_in_redirect off;
+
+        client_max_body_size                    "1m";
+
+        proxy_set_header Host                   $best_http_host;
+
+        # Pass the extracted client certificate to the backend
+
+        # Allow websocket connections
+        proxy_set_header                        Upgrade           $http_upgrade;
+        proxy_set_header                        Connection        $connection_upgrade;
+
+        proxy_set_header X-Real-IP              $the_real_ip;
+        proxy_set_header X-Forwarded-For        $the_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host       $best_http_host;
+        proxy_set_header X-Forwarded-Port       $pass_port;
+        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Original-URI         $request_uri;
+        proxy_set_header X-Scheme               $pass_access_scheme;
+
+        # mitigate HTTPoxy Vulnerability
+        # https://www.nginx.com/blog/mitigating-the-httpoxy-vulnerability-with-nginx/
+        proxy_set_header Proxy                  "";
+
+        # Custom headers
+
+        proxy_connect_timeout                   5s;
+        proxy_send_timeout                      60s;
+        proxy_read_timeout                      60s;
+
+        proxy_redirect                          off;
+        proxy_buffering                         off;
+        proxy_buffer_size                       "4k";
+        proxy_buffers                           4 "4k";
+
+        proxy_http_version                      1.1;
+
+        proxy_cookie_domain                     off;
+        proxy_cookie_path                       off;
+
+    rewrite /app/(.*) /$1 break;
+    rewrite /app / break;
+    proxy_pass http://apps-appsvc-8080;
+
+}
+```
+
+## proxy_pass 2
 
 - proxy_hide_header
 - proxy_set_header
@@ -85,4 +148,3 @@ baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
 gpgcheck=0
 enabled=1
 ```
-
