@@ -17,6 +17,7 @@
     $ kubectl get nodes
 
     $ kubectl get pods
+    $ kubectl get pods -o wide
 
     $ kubectl get svc
   
