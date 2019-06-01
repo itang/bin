@@ -102,6 +102,11 @@
     > SHOW INDEX FROM table_name;
     > SHOW keys FROM table_name;
 
+## encoding
+
+    对于不区分大小写的字段查询时想区分大小写, 在field_name 前添加 binary 关键字即可
+    SELECT * FROM table_name WHERE binary field_name LIKE 'a%';
+
 ## mysql functions
 
     > select DATE_FORMAT(now(),'%y-%m-%d %H:%i:%s')
