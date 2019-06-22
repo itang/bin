@@ -25,7 +25,7 @@ urls = [
      "https://github.com/trending/kotlin?since=daily",
      "https://github.com/trending/java?since=daily",
      "https://github.com/trending/scala?since=daily",
-     #"https://github.com/trending/python",
+     "https://github.com/trending/python",
      #"https://reasonml.chat/",
      #"https://www.reddit.com/r/reasonml/",
      "https://github.com/trending/rust",
