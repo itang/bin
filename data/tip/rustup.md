@@ -4,6 +4,9 @@
 
     $ rustup update nighlty
     $ rustup update stable
+    
+    $ rustup install nightly
+    $ rustup install nightly-2019-09-03
 
     $ rustup default nightly
     $ rustup default nightly-2017-12-20
