@@ -158,6 +158,9 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     用 --abort 参数来终止 rebase 的行动，并且分支会回到 rebase 开始前的状
     git rebase —abort
 
+    拉取时进行rebase
+    git pull --rebase
+
     不分页显示
     $ git config pager.log false
     $ config --global pager.log false
