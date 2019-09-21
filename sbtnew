@@ -17,8 +17,8 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.12.8
-SbtVersion=1.3.0-RC1
+ScalaVersion=2.12.10
+SbtVersion=1.3.0
 SbtUpdatesVersion=0.3.1
 SbtassemblyVersion=0.14.7
 ScalaJava8Version=0.9.0
