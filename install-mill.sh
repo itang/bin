@@ -1,5 +1,5 @@
 #!/bin/bash
 
-VERSION=0.3.5
+VERSION=0.5.1
 
 curl -L -o ~/.local/bin/mill https://github.com/lihaoyi/mill/releases/download/$VERSION/$VERSION && chmod +x ~/.local/bin/mill

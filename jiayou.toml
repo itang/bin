@@ -8,6 +8,7 @@ urls = [
      "http://www.oschina.net/",
      #"http://www.infoq.com/",
      "http://www.infoq.com/cn",
+     "https://www.infoq.cn/topic/106",
      "http://36kr.com/",
      "https://news.ycombinator.com/news",
 
