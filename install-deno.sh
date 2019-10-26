@@ -1,10 +1,6 @@
 #!/bin/bash
 
-<<<<<<< HEAD
-VERSION=v0.18.0
-=======
 VERSION=v0.21.0
->>>>>>> 84048e8a679a16f34543c2a40dce823387961d34
 
 deno version
 

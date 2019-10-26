@@ -33,7 +33,7 @@ echo "rust"
 (
 rustup update stable
 # cargo install --force --git https://github.com/ogham/ex
-cargo install-update -a
+#cargo install-update -a
 ) &
 #opam update
 #opam upgrade
