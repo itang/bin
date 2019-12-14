@@ -468,8 +468,8 @@ end
 
 def new_scalajs_project
   project_name, _args = _parse('scalajs')
-  scalajs_version = '0.6.21'
-  scala_version = '2.12.4'
+  scalajs_version = '0.6.31'
+  scala_version = '2.12.10'
 
   sh "mkdir -p #{project_name}/project"
   plugins_content = <<-eos
@@ -478,7 +478,7 @@ eos
   write "#{project_name}/project/plugins.sbt", plugins_content
 
   props_content = <<-eos
-sbt.version=1.0.3
+sbt.version=1.3.5
 eos
   write "#{project_name}/project/build.properties", props_content
 
@@ -494,7 +494,7 @@ scalaJSUseMainModuleInitializer := true
 scalaJSModuleKind := ModuleKind.CommonJSModule
 
 libraryDependencies ++= Seq(
-   "org.scala-js" %%% "scalajs-dom" % "0.9.1",
+   "org.scala-js" %%% "scalajs-dom" % "0.9.8",
    "io.scalajs" %%% "nodejs" % "0.4.2"
 )
 
