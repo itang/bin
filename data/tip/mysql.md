@@ -6,6 +6,7 @@
 
     mysql 8
     $ docker run -ti --rm --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 mysql mysqld --default-authentication-plugin=mysql_native_password
+    $ docker run -ti --rm --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql mysqld --default-authentication-plugin=mysql_native_password
 
 ## Usage
 
@@ -43,6 +44,11 @@
     > GRANT ALL PRIVILEGES ON `somedb`.* TO 'someuser'@'%'  IDENTIFIED BY 'somepassword';
     > GRANT ALL PRIVILEGES ON `somedb`.* TO 'someuser'@'%'  IDENTIFIED BY 'somepassword' WITH GRANT OPTION;
     > GRANT SELECT ON `somedb`.* TO 'someuser_ro'@'%'  IDENTIFIED BY 'somepassword_ro';
+
+    START TRANSACTION;
+        SELECT @A:=SUM(salary) FROM table1 WHERE type=1;
+        UPDATE table2 SET summary=@A WHERE type=1;
+    COMMIT;
 
 ## mysql config
     > show variables like '%version%';
