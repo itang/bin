@@ -1,6 +1,9 @@
 #!/bin/bash
 
+SCALA_VERSION=2.13
+AMM_VERSION=1.9.2
+
 mkdir -p ~/.ammonite && curl -L -o ~/.ammonite/predef.sc https://git.io/vHaKQ
 
 cd ~/.local/bin
-curl -L -o amm https://github.com/lihaoyi/Ammonite/releases/download/1.8.2/2.13-1.8.2 && chmod +x amm
+curl -L -o amm "https://github.com/lihaoyi/Ammonite/releases/download/${AMM_VERSION}/${SCALA_VERSION}-${AMM_VERSION}" && chmod +x amm
