@@ -23,6 +23,9 @@
 
     check gzip compression
     $ curl -H "Accept-Encoding: gzip" -I https://somehost/some.js
+    ...
+    Content-Encoding: gzip
+    ...
 
     upload files
     $ curl -F file=@http-index-fs http://10.1.xx.60:8080/upload
