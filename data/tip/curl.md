@@ -1,5 +1,9 @@
 # curl
 
+## cheat sheet
+
+https://curl.github.io/curl-cheat-sheet/http-sheet.html
+
 ## Usage
 
     $ curl -sSL https://git.io/gobackup | bash
