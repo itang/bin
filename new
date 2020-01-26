@@ -456,6 +456,19 @@ eos
   puts "cd #{project_name}"
 end
 
+def new_invokefile
+  content = <<-eos
+from invoke import task
+
+@task
+def run(c):
+    'run'
+    c.run('echo hello')
+
+  eos
+  write('tasks.py', content)
+end
+
 def new_springboot
   project_name, _args = _parse('springboot')
   system("spring init --build=gradle -l kotlin #{project_name}")
@@ -644,6 +657,8 @@ when 'rakefile'
   new_rakefile
 when 'procfile'
   new_procfile
+when 'invoke'
+  new_invokefile
 when 'dockercompose'
   new_dockercompose
 when 'openresty'
@@ -703,6 +718,7 @@ new kotlin    project_name   |
 
     fabfile                  |
     rakefile                 |
+    invoke                   |
     procfile                 |
     dockercompose            |
     nginx_conf               |

@@ -26,3 +26,14 @@
     $ deno fmt server.ts
 
     $ deno test server.ts
+
+## tips
+
+Testing if current file is the main program
+
+
+```TypeScript
+if (import.meta.main) {
+    console.log("main");
+}
+```
