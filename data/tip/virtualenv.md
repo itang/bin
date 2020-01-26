@@ -1,5 +1,7 @@
 # virtualenv
 
+[https://stackoverflow.com/questions/44091886/whats-the-difference-between-virtualenv-and-m-venv-in-creating-virtual-env](https://stackoverflow.com/questions/44091886/whats-the-difference-between-virtualenv-and-m-venv-in-creating-virtual-env)
+
 ## Usage
 
     创建一个独立的Python运行环境，命名为venv
@@ -12,3 +14,9 @@
 
     退出此虚拟环境
     $ deactivate
+
+
+    如果是Python 3，　可以使用内置的package venv
+    $ python3 -m venv venv
+
+    $ python3 -m http.server
