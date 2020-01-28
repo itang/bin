@@ -15,7 +15,7 @@ from functional import seq
 
 def open_browser(url: str, cmd: str = 'x-www-browser'):
     #os.system('%s %s > /dev/null 2>&1 &' % (cmd, url))
-    subprocess.Popen([cmd, url], stdout=subprocess.PIPE)
+    subprocess.Popen([cmd, url], stdout=subprocess.DEVNULL)
 
 
 TOML_FILE = 'jiayou.toml'
