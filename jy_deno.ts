@@ -1,30 +1,27 @@
+//deno install jy_deno jy_deno.ts --allow-net --allow-run --allow-read --allow-env
+
 import * as toml from "https://deno.land/x/std/encoding/toml.ts";
 
 function openUrl(url: string) {
-  const p = Deno.run({ args: ["x-www-browser", url] });
-  return p.status();
+  return Deno.run({ args: ["x-www-browser", url] }).status();
 }
 
-async function tomlContent(
-  filePath: string = "/home/itang/bin/jiayou.toml"
+async function getTomlContent(
+  filePath: string = `${Deno.dir("home")}/bin/jiayou.toml`
 ): Promise<string> {
-  const decoder = new TextDecoder("utf-8");
-  const data = await Deno.readFile("/home/itang/bin/jiayou.toml");
-  return decoder.decode(data);
+  const data = await Deno.readFile(filePath);
+  return new TextDecoder("utf-8").decode(data);
 }
 
-function urlsFromToml(tomlContent: string): Array<string> {
+function getUrlsFromToml(tomlContent: string): Array<string> {
   const obj = toml.parse(tomlContent);
   const urls: string[] = obj["urls"];
   return urls;
 }
 
 if (import.meta.main) {
-  const content = await tomlContent();
-  const urls = urlsFromToml(content);
-  for (const url of urls) {
-    openUrl(url);
-  }
+  const content = await getTomlContent();
+  getUrlsFromToml(content).forEach(openUrl);
 }
 /*
 const ps = (await tomlContent().then(urlsFromToml)).map(url => {
