@@ -50,6 +50,11 @@
         UPDATE table2 SET summary=@A WHERE type=1;
     COMMIT;
 
+## mysql jdbc 
+
+    url:
+    > jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+
 ## mysql config
     > show variables like '%version%';
     > show variables like 'long%';
@@ -65,8 +70,11 @@
     > show keys from tblname;
 
     MySQL 进程
-    > SHOW PROCESSLIST;
-    > SHOW FULL PROCESSLIST;
+    shows which threads are running.
+
+    > show processlist;
+
+    > show full processlist;
 
 
     set global slow_query_log='ON';
