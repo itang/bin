@@ -1,4 +1,4 @@
-//deno install jy_deno jy_deno.ts --allow-net --allow-run --allow-read --allow-env
+// deno install jy_deno jy_deno.ts --allow-net --allow-run --allow-read --allow-env
 
 import * as toml from "https://deno.land/x/std/encoding/toml.ts";
 
@@ -14,7 +14,9 @@ async function getTomlContent(
 }
 
 function getUrlsFromToml(tomlContent: string): Array<string> {
-  const obj = toml.parse(tomlContent);
+  const obj = toml.parse(tomlContent) as { //TODO:　object
+    [key: string]: any;
+  };
   const urls: string[] = obj["urls"];
   return urls;
 }
