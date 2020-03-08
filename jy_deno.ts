@@ -14,9 +14,11 @@ async function getTomlContent(
 }
 
 function getUrlsFromToml(tomlContent: string): Array<string> {
-  const obj = toml.parse(tomlContent) as { //TODO:　object
+  /*const obj = toml.parse(tomlContent) as { //TODO:　object
     [key: string]: any;
   };
+  */
+  const obj = toml.parse(tomlContent) as { urls: string[]; };
   const urls: string[] = obj["urls"];
   return urls;
 }
