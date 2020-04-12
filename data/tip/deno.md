@@ -6,12 +6,16 @@
     $ deno run --allow-write=/tmp script.ts
     $ deno run --allow-net script.ts
 
+    inspect
+    $ deno run --inspect main.ts
+    open chrome://inspect/#devices
+
     $ deno info
     $ deno info server.ts
 
-    deno install [OPTIONS] <exe_name> <SUBCOMMAND>
+    deno install [OPTIONS] <exe_name> <cmd>...
     $ deno install server server.ts
-    $ deno install file_server https://deno.land/std/http/file_server.ts --allow-net --allow-read
+    $ deno install --allow-net --allow-read file_server https://deno.land/std/http/file_server.ts
 
     deno bundle [OPTIONS] <source_file> [out_file]
     $ deno bundle server.ts server-with-deps.js
