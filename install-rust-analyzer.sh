@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2020-03-30"
+VERSION="2020-04-13"
 
 FROM_NAME="rust-analyzer-linux"
 TARGET="$HOME/.local/bin/rust-analyzer"
