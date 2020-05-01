@@ -2,6 +2,8 @@
 
 ## Usage
 
+amm
+
     import $file.MyScript._ 
     import $file.MyScript, MyScript.
 
@@ -10,3 +12,5 @@
 
 
     desugar{ (0 until 10).map( _ * 2) }
+
+amm --predef myScript.sc
