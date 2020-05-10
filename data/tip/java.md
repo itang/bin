@@ -16,3 +16,9 @@
     $ java -Xmx5m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=file.hprof -jar build/libs/hello-world-0.1-all.jar
 
     $ java -Xmx10m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=file.hprof -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:logfile.gc -XX:+PrintCommandLineFlags -jar build/libs/hello-world-0.1-all.jar
+
+
+    -cp
+    Use Java 6  wildcard option to include multiple JAR: use wildcard * and not  *.jar
+    Read more: https://javarevisited.blogspot.com/2012/10/5-ways-to-add-multiple-jar-to-classpath-java.html#ixzz6LzsKXHFO
+    $ java -cp "/home/itang/.asdf/installs/scala/2.13.2/lib/*:." Main
