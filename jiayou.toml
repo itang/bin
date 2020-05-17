@@ -4,7 +4,7 @@ urls = [
     
      "http://www.douban.com",
      "http://www.weibo.com",
-     "http://www.deftype.com",
+     #"http://www.deftype.com",
      "http://www.oschina.net/",
      #"http://www.infoq.com/",
      "http://www.infoq.com/cn",
@@ -15,7 +15,7 @@ urls = [
       "https://github.com/stars?direction=desc&sort=updated",
      #"https://blog.appsignal.com/",
      #"https://elixirstatus.com/",
-     "https://elixirforum.com/",
+     #"https://elixirforum.com/",
      #"https://github.com/trending/elixir",
      "https://github.com/trending",
      "https://github.com/trending/lua?since=daily",
