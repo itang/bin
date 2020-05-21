@@ -595,12 +595,12 @@ end
 def new_mill
   project_name, _args = _parse('mill')
 
-  sh 'if [ ! -f "$HOME/.mill/templates/example-1.zip" ]; then
+  sh 'if [ ! -f "$HOME/.mill/templates/example-3.zip" ]; then
         mkdir -p $HOME/.mill/templates
-        curl -L http://www.lihaoyi.com/mill/example-1.zip -o $HOME/.mill/templates/example-1.zip
+        curl -L https://github.com/lihaoyi/mill/releases/download/0.7.2/0.7.2-example-3.zip -o $HOME/.mill/templates/example-3.zip
       fi'
 
-  sh "rm -rf /tmp/example-1;unzip $HOME/.mill/templates/example-1.zip -d /tmp ; cp -r /tmp/example-1 #{project_name}"
+  sh "rm -rf /tmp/example-1;unzip $HOME/.mill/templates/example-3.zip -d /tmp ; cp -r /tmp/example-3 #{project_name}"
 
   rcontent = <<-eos
 task default: :usage
@@ -626,7 +626,7 @@ end
 desc 'dist'
 task :dist do
   sh 'mill foo.assembly'
-  sh 'cd out;$GRAALVM_HOME/bin/native-image -cp foo/assembly/dest/out.jar -H:Name=#{project_name} -H:+ReportUnsupportedElementsAtRuntime foo.Example'
+  sh 'cd out;$GRAALVM_HOME/bin/native-image -cp foo/assembly/dest/out.jar -H:Name=#{project_name} -H:+ReportUnsupportedElementsAtRuntime -H:+RemoveSaturatedTypeFlows foo.Example'
   #sh 'cd out;upx #{project_name}'
 end
 
