@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 def sh(cmd)
   puts "$ #{cmd}"
@@ -16,17 +17,17 @@ def new_phoenix_project
   sh "mix phoenix.new #{project_name} --no-brunch --no-ecto"
   # sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
 end
-$base_fabfile_content = <<-eos
-# -*- coding: utf-8 -*-
-
-from fabric.api import *
-
-
-def usage():
-    """Usage"""
-    print('usage')
-
-
+$base_fabfile_content = <<~eos
+  # -*- coding: utf-8 -*-
+  
+  from fabric.api import *
+  
+  
+  def usage():
+      """Usage"""
+      print('usage')
+  
+  
 eos
 
 def new_fabfile
@@ -35,19 +36,19 @@ def new_fabfile
   File.write 'fabfile.py', content
 end
 
-$rakefile_content = <<eos
-task default: :usage
-
-task :usage do
-    sh 'rake -T'
-end
-
-namespace :run do
-  desc 'run dev mode'
-  task :dev do
-    puts "run dev..."
+$rakefile_content = <<~eos
+  task default: :usage
+  
+  task :usage do
+      sh 'rake -T'
   end
-end
+  
+  namespace :run do
+    desc 'run dev mode'
+    task :dev do
+      puts "run dev..."
+    end
+  end
 eos
 
 def new_rakefile
@@ -57,55 +58,55 @@ def new_rakefile
 end
 
 def new_procfile
-  content = <<-eos
-# sample
-web: python serve.py
-redis: redis-server
-
-eos
+  content = <<~eos
+    # sample
+    web: python serve.py
+    redis: redis-server
+    
+  eos
   puts 'create Procfile...'
   File.write 'Procfile', content
 end
 
 def new_dockercompose
-  content = <<-eos
-version: '2'
-
-services:
-  seagull:
-    restart: always
-    image: tobegit3hub/seagull
-    ports:
-      - "10086:10086"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-eos
+  content = <<~eos
+    version: '2'
+    
+    services:
+      seagull:
+        restart: always
+        image: tobegit3hub/seagull
+        ports:
+          - "10086:10086"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+  eos
   puts 'create docker-compose.yml'
   File.write 'docker-compose.yml', content
 end
 
 def new_nginx_conf
-  content = <<-eos
-worker_processes 4;
-error_log logs/error.log;
-events {
-    worker_connections 1024;
-}
-
-http {
-    server {
-        listen 8080;
-        location / {
-            default_type text/html;
-            proxy_pass http://localhost:3000;
-            #content_by_lua '
-            #    ngx.say("<p>hello, world</p>")
-            #';
+  content = <<~eos
+    worker_processes 4;
+    error_log logs/error.log;
+    events {
+        worker_connections 1024;
+    }
+    
+    http {
+        server {
+            listen 8080;
+            location / {
+                default_type text/html;
+                proxy_pass http://localhost:3000;
+                #content_by_lua '
+                #    ngx.say("<p>hello, world</p>")
+                #';
+            }
         }
     }
-}
-
-eos
+    
+  eos
 
   puts 'create nginx config file...'
   write 'nginx.conf', content
@@ -116,78 +117,78 @@ def new_openresty_project
   sh("mkdir -p #{project_name}/logs")
   sh("mkdir -p #{project_name}/conf")
 
-  content = <<-eos
-worker_processes  1;
-error_log logs/error.log;
-
-events {
-    worker_connections 1024;
-}
-
-http {
-    server {
-        listen 3000;
-        location / {
-            default_type text/html;
-            content_by_lua '
-                ngx.say("<p>hello, world</p>")
-            ';
+  content = <<~eos
+    worker_processes  1;
+    error_log logs/error.log;
+    
+    events {
+        worker_connections 1024;
+    }
+    
+    http {
+        server {
+            listen 3000;
+            location / {
+                default_type text/html;
+                content_by_lua '
+                    ngx.say("<p>hello, world</p>")
+                ';
+            }
         }
     }
-}
-
+    
   eos
 
   File.write "#{project_name}/conf/nginx.conf", content
 
-  content = <<-eos
-def start():
-    """nginx start"""
-    local('[ -d "./logs" ] || mkdir logs')
-    #local('nginx -p `pwd`/ -c conf/nginx.conf -g "daemon off;"')
-    local('nginx -p `pwd`/ -c conf/nginx.conf -g "daemon off;"')
-
-
-def reload():
-    """nginx reload"""
-    local('nginx -p `pwd`/ -s reload')
-
-
-def stop():
-    """nginx stop"""
-    with warn_only():
-        local('nginx -p `pwd`/ -s stop')
-
-
-def restart():
-    """restart"""
-    stop()
-    import time
-    time.sleep(0.5)
-    start()
-
-
-def tip():
-    """tip"""
-    print 'sudo bash -c "`which nginx`  -p `pwd`/ -c conf/nginx.conf"'
-
+  content = <<~eos
+    def start():
+        """nginx start"""
+        local('[ -d "./logs" ] || mkdir logs')
+        #local('nginx -p `pwd`/ -c conf/nginx.conf -g "daemon off;"')
+        local('nginx -p `pwd`/ -c conf/nginx.conf -g "daemon off;"')
+    
+    
+    def reload():
+        """nginx reload"""
+        local('nginx -p `pwd`/ -s reload')
+    
+    
+    def stop():
+        """nginx stop"""
+        with warn_only():
+            local('nginx -p `pwd`/ -s stop')
+    
+    
+    def restart():
+        """restart"""
+        stop()
+        import time
+        time.sleep(0.5)
+        start()
+    
+    
+    def tip():
+        """tip"""
+        print 'sudo bash -c "`which nginx`  -p `pwd`/ -c conf/nginx.conf"'
+    
   eos
 
   content = "#{$base_fabfile_content}#{content}"
 
   File.write "#{project_name}/fabfile.py", content
 
-  content = <<-eos
-*.pyc
-
-logs/
-
-tmp/
-target/
-
-.idea/
-
-eos
+  content = <<~eos
+    *.pyc
+    
+    logs/
+    
+    tmp/
+    target/
+    
+    .idea/
+    
+  eos
 
   File.write "#{project_name}/.gitignore", content
 
@@ -232,77 +233,77 @@ def new_elixir_project
     sh("cd #{project_name};new fabfile")
     sh("echo /#{project_name} >> #{project_name}/.gitignore")
 
-    content = <<-eos
-defmodule MyApp.CLI do
-  def main(_args) do
-    IO.puts("Hello from MyApp!")
-  end
-end
-eos
+    content = <<~eos
+      defmodule MyApp.CLI do
+        def main(_args) do
+          IO.puts("Hello from MyApp!")
+        end
+      end
+    eos
 
     write "#{project_name}/lib/main.ex", content
 
     module_name = File.read("#{project_name}/mix.exs").match(/defmodule (.+)\..+ do/)[1]
-    content = <<-eos
-defmodule #{module_name}.Mixfile do
-  use Mix.Project
-
-  def project do
-    [app: :#{project_name},
-     version: "0.1.0",
-     elixir: "~> 1.7",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps(),
-     escript: escript()]
-  end
-
-  def application do
-    [applications: [:logger]]
-  end
-
-  defp deps do
-    [{:credo, "~> 1.0.0-rc1", only: [:dev, :test], runtime: false}]
-  end
-
-  def escript do
-    [main_module: MyApp.CLI]
-  end
-end
-
-eos
+    content = <<~eos
+      defmodule #{module_name}.Mixfile do
+        use Mix.Project
+      
+        def project do
+          [app: :#{project_name},
+           version: "0.1.0",
+           elixir: "~> 1.7",
+           build_embedded: Mix.env == :prod,
+           start_permanent: Mix.env == :prod,
+           deps: deps(),
+           escript: escript()]
+        end
+      
+        def application do
+          [applications: [:logger]]
+        end
+      
+        defp deps do
+          [{:credo, "~> 1.0.0-rc1", only: [:dev, :test], runtime: false}]
+        end
+      
+        def escript do
+          [main_module: MyApp.CLI]
+        end
+      end
+      
+    eos
 
     write "#{project_name}/mix.exs", content
 
-    content = <<-eos
-#{$base_fabfile_content}
-def dist():
-    """dist"""
-    local('mix escript.build')
-
-
-def run():
-    """run"""
-    dist()
-    local('./#{project_name}')
-
-
-def repl():
-    """repl"""
-    local('iex -S mix')
-
-        eos
+    content = <<~eos
+      #{$base_fabfile_content}
+      def dist():
+          """dist"""
+          local('mix escript.build')
+      
+      
+      def run():
+          """run"""
+          dist()
+          local('./#{project_name}')
+      
+      
+      def repl():
+          """repl"""
+          local('iex -S mix')
+      
+    eos
 
     write "#{project_name}/fabfile.py", content
   else
     sh "mix new #{project_name} #{args.join(' ')}"
-    content = <<-eos
-#{$base_fabfile_content}
-def repl():
-    """repl"""
-    local('iex -S mix')
-
-        eos
+    content = <<~eos
+      #{$base_fabfile_content}
+      def repl():
+          """repl"""
+          local('iex -S mix')
+      
+    eos
 
     write "#{project_name}/fabfile.py", content
   end
@@ -311,46 +312,46 @@ end
 def new_vapor_project
   project_name, _args = _parse('vapor')
   sh "vapor new #{project_name}"
-  content = <<-eos
-'use strict';
-
-var gulp = require('gulp');        // npm install gulp
-var vapor = require('gulp-vapor'); // npm install gulp-vapor
-
-/* If your project requires special configuration during */
-//vapor.config.commands.build = 'swift build --some-flag';
-//vapor.config.commands.start = ['.build/debug/gulp-vapor', ['serve', '--port=80']];
-
-gulp.task('vapor:start', vapor.start);
-gulp.task('vapor:reload', vapor.reload);
-
-gulp.task('watch', function() {
-   gulp.watch('./Sources/**/*', ['vapor:reload']);
-});
-
-
-gulp.task('default', ['vapor:start', 'watch']);
-
-    eos
+  content = <<~eos
+    'use strict';
+    
+    var gulp = require('gulp');        // npm install gulp
+    var vapor = require('gulp-vapor'); // npm install gulp-vapor
+    
+    /* If your project requires special configuration during */
+    //vapor.config.commands.build = 'swift build --some-flag';
+    //vapor.config.commands.start = ['.build/debug/gulp-vapor', ['serve', '--port=80']];
+    
+    gulp.task('vapor:start', vapor.start);
+    gulp.task('vapor:reload', vapor.reload);
+    
+    gulp.task('watch', function() {
+       gulp.watch('./Sources/**/*', ['vapor:reload']);
+    });
+    
+    
+    gulp.task('default', ['vapor:start', 'watch']);
+    
+  eos
 
   write "#{project_name}/gulpfile.js", content
 
   sh "echo node_modules >> #{project_name}/.gitignore"
 
-  content = <<-eos
-def run():
-    local('vapor build && vapor run serve')
-
-
-def prepare_watch():
-    local('npm install gulp gulp-vapor')
-
-
-def watch():
-    local('gulp')
-
-
-    eos
+  content = <<~eos
+    def run():
+        local('vapor build && vapor run serve')
+    
+    
+    def prepare_watch():
+        local('npm install gulp gulp-vapor')
+    
+    
+    def watch():
+        local('gulp')
+    
+    
+  eos
 
   content = "#{$base_fabfile_content}#{content}"
   write "#{project_name}/fabfile.py", content
@@ -370,14 +371,14 @@ def new_reason_project
   project_name, _args = _parse('reason')
   sh "bsb -init #{project_name} -theme basic-reason"
   sh "cd #{project_name};npm run build;node src/Demo.bs.js"
-  content = <<-eos
-#!/bin/bash
-
-npm run start &
-watchexec node src/Demo.bs.js &
-
-wait
-
+  content = <<~eos
+    #!/bin/bash
+    
+    npm run start &
+    watchexec node src/Demo.bs.js &
+    
+    wait
+    
   eos
 
   write "#{project_name}/dev.sh", content
@@ -400,71 +401,71 @@ def new_eta_project
 
   sh "cd #{project_name}; epm init --main-is Main.hs -p #{project_name.delete('_')} --version=0.1.0.0 -l MIT -a $USER -e \"live.tang@gmail.com\" -u \"http://deftype.com/projects/#{project_name}\" -s \"test\" -c Other --is-executable --language Haskell2010 --no-comments --source-dir src"
 
-  content = <<-eos
-module Main where
-
-main = putStrLn "Hello, World"
-eos
+  content = <<~eos
+    module Main where
+    
+    main = putStrLn "Hello, World"
+  eos
   write("#{project_name}/src/Main.hs", content)
 
-  content = <<-eos
-    #{$base_fabfile_content}
-def run():
-    """run"""
-    local('epm run')
-
-
-def dev():
-    """dev"""
-    local('watchexec "epm run"')
-
-
-def uberjar_mode():
-    """uberjar mode"""
-    local('epm clean')
-    local('epm configure --enable-uberjar-mode')
-
-
-def jar_mode():
-    """jar mode"""
-    local('epm clean')
-    local('epm configure --disable-uberjar-mode')
-
-
-def clean():
-    """clean"""
-    local('epm clean')
-    local('epm install --dependencies-only')
-
-eos
+  content = <<~eos
+        #{$base_fabfile_content}
+    def run():
+        """run"""
+        local('epm run')
+    
+    
+    def dev():
+        """dev"""
+        local('watchexec "epm run"')
+    
+    
+    def uberjar_mode():
+        """uberjar mode"""
+        local('epm clean')
+        local('epm configure --enable-uberjar-mode')
+    
+    
+    def jar_mode():
+        """jar mode"""
+        local('epm clean')
+        local('epm configure --disable-uberjar-mode')
+    
+    
+    def clean():
+        """clean"""
+        local('epm clean')
+        local('epm install --dependencies-only')
+    
+  eos
 
   write("#{project_name}/fabfile.py", content)
 
-  content = <<-eos
-dist/
-*.pyc
-eos
+  content = <<~eos
+    dist/
+    *.pyc
+  eos
 
   write("#{project_name}/.gitignore", content)
 
-  content = <<-eos
-# #{project_name}
-
-eos
+  content = <<~eos
+    # #{project_name}
+    
+  eos
   write("#{project_name}/README.md", content)
 
   puts "cd #{project_name}"
 end
 
 def new_invokefile
-  content = <<-eos
-from invoke import task
-
-@task
-def run(c):
-    'run'
-    c.run('echo hello')
-
+  content = <<~eos
+    from invoke import task
+    
+    @task
+    def run(c):
+        'run'
+        c.run('echo hello')
+    
   eos
   write('tasks.py', content)
 end
@@ -485,102 +486,102 @@ def new_scalajs_project
   scala_version = '2.12.10'
 
   sh "mkdir -p #{project_name}/project"
-  plugins_content = <<-eos
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "#{scalajs_version}")
-eos
+  plugins_content = <<~eos
+    addSbtPlugin("org.scala-js" % "sbt-scalajs" % "#{scalajs_version}")
+  eos
   write "#{project_name}/project/plugins.sbt", plugins_content
 
-  props_content = <<-eos
-sbt.version=1.3.5
-eos
+  props_content = <<~eos
+    sbt.version=1.3.5
+  eos
   write "#{project_name}/project/build.properties", props_content
 
-  build_content = <<-eos
-enablePlugins(ScalaJSPlugin)
-
-name := "Scala.js Tutorial"
-scalaVersion := "#{scala_version}" // or any other Scala version >= 2.10.2
-
-// This is an application with a main method
-scalaJSUseMainModuleInitializer := true
-
-scalaJSModuleKind := ModuleKind.CommonJSModule
-
-libraryDependencies ++= Seq(
-   "org.scala-js" %%% "scalajs-dom" % "0.9.8",
-   "io.scalajs" %%% "nodejs" % "0.4.2"
-)
-
-eos
+  build_content = <<~eos
+    enablePlugins(ScalaJSPlugin)
+    
+    name := "Scala.js Tutorial"
+    scalaVersion := "#{scala_version}" // or any other Scala version >= 2.10.2
+    
+    // This is an application with a main method
+    scalaJSUseMainModuleInitializer := true
+    
+    scalaJSModuleKind := ModuleKind.CommonJSModule
+    
+    libraryDependencies ++= Seq(
+       "org.scala-js" %%% "scalajs-dom" % "0.9.8",
+       "io.scalajs" %%% "nodejs" % "0.4.2"
+    )
+    
+  eos
   write "#{project_name}/build.sbt", build_content
 
   sh "mkdir -p #{project_name}/src/main/scala/tutorial/webapp/"
-  tutorial_content = <<-eos
-package tutorial.webapp
-
-import io.scalajs.nodejs.os
-import util._
-
-object TutorialApp {
-  def main(args: Array[String]): Unit = {
-    println("Hello world!")
-    println("args:")
-    args.foreach(println)
-
-    os.OS.arch()
-      .|>(os => println(s"""os is: $os"""))
-  }
-}
-
-eos
+  tutorial_content = <<~eos
+    package tutorial.webapp
+    
+    import io.scalajs.nodejs.os
+    import util._
+    
+    object TutorialApp {
+      def main(args: Array[String]): Unit = {
+        println("Hello world!")
+        println("args:")
+        args.foreach(println)
+    
+        os.OS.arch()
+          .|>(os => println(s"""os is: $os"""))
+      }
+    }
+    
+  eos
 
   write "#{project_name}/src/main/scala/tutorial/webapp/TutorialApp.scala", tutorial_content
 
-  util_content = <<-eos
-import java.io.Closeable
-
-package object util {
-
-  import java.text.SimpleDateFormat
-  import java.util.Date
-
-  implicit class DateOps(d: Date) {
-    def format(pattern: String = "yyyyMMdd"): String = new SimpleDateFormat(pattern).format(d)
-  }
-
-  def time[T](block: => T): T = {
-    val start = System.currentTimeMillis()
-    val ret = block
-    val end = System.currentTimeMillis()
-    println(s">>Cost time: ${end - start}ms")
-    ret
-  }
-
-  def using[A <: Closeable, B](target: A)(block: A => B): B =
-    try {
-      val ret = block(target)
-      target.close()
-      ret
-    } catch {
-      case e: Exception => throw e
+  util_content = <<~eos
+    import java.io.Closeable
+    
+    package object util {
+    
+      import java.text.SimpleDateFormat
+      import java.util.Date
+    
+      implicit class DateOps(d: Date) {
+        def format(pattern: String = "yyyyMMdd"): String = new SimpleDateFormat(pattern).format(d)
+      }
+    
+      def time[T](block: => T): T = {
+        val start = System.currentTimeMillis()
+        val ret = block
+        val end = System.currentTimeMillis()
+        println(s">>Cost time: ${end - start}ms")
+        ret
+      }
+    
+      def using[A <: Closeable, B](target: A)(block: A => B): B =
+        try {
+          val ret = block(target)
+          target.close()
+          ret
+        } catch {
+          case e: Exception => throw e
+        }
+    
+      implicit class Pipe[T](val v: T) extends AnyVal {
+        def |>[U](f: T => U) = f(v)
+    
+        // Additional suggestions:
+        def $$[U](f: T => U): T = {
+          f(v); v
+        }
+    
+        def #!(str: String = ""): T = {
+          println(str + v); v
+        }
+      }
+    
     }
-
-  implicit class Pipe[T](val v: T) extends AnyVal {
-    def |>[U](f: T => U) = f(v)
-
-    // Additional suggestions:
-    def $$[U](f: T => U): T = {
-      f(v); v
-    }
-
-    def #!(str: String = ""): T = {
-      println(str + v); v
-    }
-  }
-
-}
-
-eos
+    
+  eos
   write "#{project_name}/src/main/scala/util.scala", util_content
 
   puts "(cd #{project_name}; sbt run)"
@@ -600,47 +601,47 @@ def new_mill
         curl -L https://github.com/lihaoyi/mill/releases/download/0.7.2/0.7.2-example-3.zip -o $HOME/.mill/templates/example-3.zip
       fi'
 
-  sh "rm -rf /tmp/example-1;unzip $HOME/.mill/templates/example-3.zip -d /tmp ; cp -r /tmp/example-3 #{project_name}"
+  sh "rm -rf /tmp/example-3;unzip $HOME/.mill/templates/example-3.zip -d /tmp ; cp -r /tmp/example-3 #{project_name}"
 
-  rcontent = <<-eos
-task default: :usage
-
-task :usage do
-  sh 'rake -T'
-end
-
-namespace :gen do
-  desc 'gen idea project'
-  task :idea do
-    sh 'rake clean'
-    sh 'rake clean_idea'
-    sh 'mill mill.scalalib.GenIdea/idea'
-  end
-end
-
-desc 'run dev mode'
-task :run do
-  sh 'tally mill foo.run'
-end
-
-desc 'dist'
-task :dist do
-  sh 'mill foo.assembly'
-  sh 'cd out;$GRAALVM_HOME/bin/native-image -cp foo/assembly/dest/out.jar -H:Name=#{project_name} -H:+ReportUnsupportedElementsAtRuntime -H:+RemoveSaturatedTypeFlows foo.Example'
-  #sh 'cd out;upx #{project_name}'
-end
-
-desc 'clean'
-task :clean do
-  sh 'rm -rf out/'
-end
-
-desc 'clean_idea'
-task :clean_idea do
-  sh 'rm -rf .idea .idea_modules'
-end
-
-eos
+  rcontent = <<~eos
+    task default: :usage
+    
+    task :usage do
+      sh 'rake -T'
+    end
+    
+    namespace :gen do
+      desc 'gen idea project'
+      task :idea do
+        sh 'rake clean'
+        sh 'rake clean_idea'
+        sh 'mill mill.scalalib.GenIdea/idea'
+      end
+    end
+    
+    desc 'run dev mode'
+    task :run do
+      sh 'tally mill foo.run'
+    end
+    
+    desc 'dist'
+    task :dist do
+      sh 'mill foo.assembly'
+      sh 'cd out;$GRAALVM_HOME/bin/native-image --no-server -cp foo/assembly/dest/out.jar -H:Name=#{project_name} -H:+ReportUnsupportedElementsAtRuntime -H:+RemoveSaturatedTypeFlows foo.Example'
+      #sh 'cd out;upx #{project_name}'
+    end
+    
+    desc 'clean'
+    task :clean do
+      sh 'rm -rf out/'
+    end
+    
+    desc 'clean_idea'
+    task :clean_idea do
+      sh 'rm -rf .idea .idea_modules'
+    end
+    
+  eos
   write "#{project_name}/Rakefile", rcontent
 
   puts "cd #{project_name};rake"
