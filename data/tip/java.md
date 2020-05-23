@@ -22,3 +22,22 @@
     Use Java 6  wildcard option to include multiple JAR: use wildcard * and not  *.jar
     Read more: https://javarevisited.blogspot.com/2012/10/5-ways-to-add-multiple-jar-to-classpath-java.html#ixzz6LzsKXHFO
     $ java -cp "/home/itang/.asdf/installs/scala/2.13.2/lib/*:." Main
+
+
+## Gc options
+
+see: https://zhuanlan.zhihu.com/p/118490800
+
+```
+-XX:+PrintGCDetails 表示打印GC的详细日志
+
+-XX:+PrintGCDateStamps 表示需要展示打印GC的日期时间
+
+-XX:+PrintGCApplicationStoppedTime 打印垃圾回收期间程序暂停的时间
+
+日志滚动，输出到指定的日志文件中等等配置
+-Xloggc:logs/gc.log
+-XX:+UseGCLogFileRotation
+-XX:NumberOfGCLogFiles=32
+-XX:GCLogFileSize=64
+```
