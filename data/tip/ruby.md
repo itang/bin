@@ -1,5 +1,9 @@
 # Ruby
 
+## Usage
+
+    $ruby --dump=insns -e 'puts 2 + 3'
+
 ## Syntax tips
 
 * string

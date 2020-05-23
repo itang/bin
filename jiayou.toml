@@ -23,7 +23,7 @@ urls = [
      "https://github.com/trending/typescript?since=daily",
      "https://www.reddit.com/r/golang/",
      "https://github.com/trending/go?since=daily",
-     "https://github.com/trending/kotlin?since=daily",
+     #"https://github.com/trending/kotlin?since=daily",
      "https://github.com/trending/java?since=daily",
      "https://github.com/trending/scala?since=daily",
      "https://github.com/trending/python?since=daily",
