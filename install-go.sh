@@ -2,13 +2,13 @@
 
 go version
 
-VERSION=1.14
+VERSION=1.14.3
 function install() {
     #URL=https://storage.googleapis.com/golang/go${VERSION}.linux-amd64.tar.gz
     URL=https://dl.google.com/go/go${VERSION}.linux-amd64.tar.gz
     echo "download from ${URL}"
     (
-        cd /tmp
+        cd /tmp || exit
         wget $URL &&
         rm -rf ~/dev-env/go &&
         tar zxvf go${VERSION}.linux-amd64.tar.gz -C ~/dev-env &&
