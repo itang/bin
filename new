@@ -596,10 +596,22 @@ end
 def new_mill
   project_name, _args = _parse('mill')
 
-  sh 'if [ ! -f "$HOME/.mill/templates/example-3.zip" ]; then
-        mkdir -p $HOME/.mill/templates
-        curl -L https://github.com/lihaoyi/mill/releases/download/0.7.2/0.7.2-example-3.zip -o $HOME/.mill/templates/example-3.zip
-      fi'
+  mill_version = '0.7.2'
+  begin
+    s = `mill --version`
+    mill_version = s.lines.first.split(/\s+/).last
+    puts "got mill version #{mill_version}"
+  rescue StandardError => e
+    puts e.message
+  end
+  puts "install example for #{mill_version}"
+
+  sh <<~EOS
+    if [ ! -f "$HOME/.mill/templates/example-3.zip" ]; then
+      mkdir -p $HOME/.mill/templates
+      curl -L https://github.com/lihaoyi/mill/releases/download/#{mill_version}/#{mill_version}-example-3.zip -o $HOME/.mill/templates/example-3.zip
+    fi
+  EOS
 
   sh "rm -rf /tmp/example-3;unzip $HOME/.mill/templates/example-3.zip -d /tmp ; cp -r /tmp/example-3 #{project_name}"
 

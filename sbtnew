@@ -17,8 +17,8 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.13.1
-SbtVersion=1.3.5
+ScalaVersion=2.13.2
+SbtVersion=1.3.11
 
 JavaVersion=1.8
 ScatangVersion=0.1
@@ -54,10 +54,9 @@ echo "Directory/Project Name: $directoryName"
 echo "Create .gitignore File?: $createGitignore"
 echo "Create README.md File?: $createReadme"
 echo "-----------------------------------------------"
-createProject="y"
 
 mkdir -p ${directoryName}/src/{main,test}/{java,resources,scala}
-mkdir ${directoryName}/lib ${directoryName}/project ${directoryName}/target
+mkdir "${directoryName}/lib" "${directoryName}/project" "${directoryName}/target"
 
 # optional
 #mkdir -p ${directoryName}/src/main/config
@@ -279,19 +278,19 @@ end
 
 desc "run"
 task :run do
-  system('sbt run')
+  system("sbt run")
 end
 
 desc "dev"
 task :dev do
   system("sbt \"~reStart\"")
-end' > ${directoryName}/Rakefile
+end' > "${directoryName}/Rakefile"
 
 #-----------------------------
 # create README.me, if desired
 #-----------------------------
 if [ "$(isYes $createReadme)" = "$TRUE" ]; then
-    touch ${directoryName}/README.md
+    touch "${directoryName}/README.md"
 fi
 
 echo ""
