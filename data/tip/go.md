@@ -28,6 +28,21 @@
 
 ## go tools
 
+## goproxy
+
+https://goproxy.io/
+
+```
+go env -w GO111MODULE=on
+go env -w GOPROXY="https://goproxy.io,direct"
+
+# Set environment variable allow bypassing the proxy for selected modules (optional)
+go env -w GOPRIVATE="*.corp.example.com"
+
+# Set environment variable allow bypassing the proxy for specified organizations (optional)
+go env -w GOPRIVATE="example.com/org_name"
+```
+    
 ### httpstat
 
     $ go get -u github.com/davecheney/httpstat
