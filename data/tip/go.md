@@ -1,5 +1,22 @@
 # go
 
+## go module
+
+    检查可以升级的package
+    $ go list -m -u all
+
+    升级后会将新的依赖版本更新到go.mod
+    $ go get -u need-upgrade-package
+
+    升级所有依赖 (将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号，  y是次要版本号))
+    $ go get -u
+
+    升级到最新的修订版本
+    $ go get -u=patch
+
+    升级到指定的版本号version
+    $ go get package@version
+
 ## go bulid
 
     $ go test -bench=. ./examples/fib
