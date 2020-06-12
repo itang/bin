@@ -6,6 +6,9 @@
     $ deno run --allow-write=/tmp script.ts
     $ deno run --allow-net script.ts
 
+    --unstable Enable unstable APIs
+    $ deno run --unstable --allow-read main.ts
+
     inspect
     $ deno run --inspect main.ts
     open chrome://inspect/#devices
@@ -35,8 +38,7 @@
 
 Testing if current file is the main program
 
-
-```TypeScript
+```typescript
 if (import.meta.main) {
     console.log("main");
 }
