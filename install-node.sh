@@ -3,7 +3,7 @@
 #echo "使用install-n.sh代替..."
 #exit 0
 
-VERSION=14.3.0
+VERSION=14.4.0
 
 node -v
 

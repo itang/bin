@@ -43,6 +43,9 @@
     $ cargo install rustfmt-nightly
     $ cargo install -f diesel_cli --no-default-features --features sqlite,mysql
 
+    install local project
+    $ cargo install --path .
+
     cargo web/wasm
     $ cargo web start --release --target wasm32-unknown-unknown
 
@@ -52,3 +55,19 @@
 ## profiler
 
     $ cargo profiler callgrind --bin $PATH_TO_BINARY -- -a 3 --like this
+
+## config
+
+https://blog.csdn.net/xiangxianghehe/article/details/53471936
+
+使用阿里云镜像
+
+```
+tee $HOME/.cargo/config <<-'EOF'
+[source.crates-io]
+replace-with = "rustcc"
+
+[source.rustcc]
+registry = "https://code.aliyun.com/rustcc/crates.io-index"
+EOF
+```
