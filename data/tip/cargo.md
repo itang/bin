@@ -27,6 +27,8 @@
     $ cargo run --example echo
     $ cargo run --example=echo --release
 
+    $ cargo tree
+
     $ cargo watch -x run
 
     $ cargo test
