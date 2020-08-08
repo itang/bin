@@ -12,8 +12,7 @@ import subprocess
 
 def open_browser(url: str, cmd: str = 'x-www-browser'):
     #os.system('%s %s > /dev/null 2>&1 &' % (cmd, url))
-    subprocess.Popen([cmd, url], stdout=subprocess.DEVNULL,
-                     stderr=subprocess.DEVNULL)
+    subprocess.Popen([cmd, url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 if __name__ == '__main__':
@@ -23,11 +22,12 @@ if __name__ == '__main__':
 
     TOML_FILE = 'jiayou.toml'
     toml_file = os.path.join(os.path.dirname(__file__), TOML_FILE)
-    print('load urls from %s...' % toml_file)
+    print(f'load urls from {toml_file}...')
 
     with open(toml_file, 'rb') as f:
         config = toml.load(f)
         for url in config['urls']:
+            print(f'open {url}...')
             open_browser(url)
         # seq(obj['urls']).for_each(open_browser)
 
