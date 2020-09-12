@@ -9,7 +9,9 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     $ git config --global color.ui true
     $ git config --global core.editor "vim"
-    
+
+    $ git config --list
+
     install gui tool
     $ sudo apt-get install gitk
 
@@ -37,7 +39,7 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     回退到上上版本
     $ git reset --hard HEAD^^
-   
+
     回退前100个版本
     $ git reset --hard HEAD~100
 
@@ -97,8 +99,8 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     $ git remote
     $ git remote -v
 
-　　 将本地分支与远程origin/dev分支建立链接
-　　 $ git branch --set-upstream dev origin/dev
+将本地分支与远程 origin/dev 分支建立链接
+　　 \$ git branch --set-upstream dev origin/dev
 
     将指定分支推送到指定远程
     $ git push origin master
@@ -112,7 +114,7 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     在指定的commit id 打tag
     $ git tag v0.9 f52c633
-    
+
     -a指定标签名，-m指定说明文字
     $ git tag -a v0.1 -m "version 0.1 released" 1094adb
 
@@ -145,7 +147,7 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     $ git rebase -i [commit_log]
 
     rebase 的另外一种使用场景：分支合并
-    
+
     git:(feature1)$ git rebase master
         git 会把 feature1 分支里面的每个 commit 取消掉
         其次，把上面的操作临时保存成 patch 文件，存在 .git/rebase 目录下
@@ -168,5 +170,4 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     $ git config core.pager cat
     $ git config --global core.pager cat
-    $ git config --global core.pager '' 
-
+    $ git config --global core.pager ''
