@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCALA_VERSION=2.13
-AMM_VERSION=2.1.4
+AMM_VERSION=2.2.0
 
 mkdir -p ~/.ammonite && curl -L -o ~/.ammonite/predef.sc https://git.io/vHaKQ
 
