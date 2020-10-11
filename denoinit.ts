@@ -1,4 +1,4 @@
-//deno install -f --allow-write denoinit denoinit.ts
+//deno install -f --allow-write -n denoinit denoinit.ts
 
 if (import.meta.main) {
   const mainContent =
@@ -17,6 +17,13 @@ for await (const req of s) {
 // .vscode/settings.json
 {
   "deno.enable": true,
+  "deno.unstable": true,
+  "deno.lint": true,
+  "deno.import_intellisense_autodiscovery": true,
+  "deno.import_intellisense_origins": {
+    "https://deno.land": true,
+    "https://other.registry": false
+  }
 }
 `;
 
