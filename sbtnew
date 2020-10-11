@@ -84,12 +84,14 @@ libraryDependencies ++= Seq(
   \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\"
 )
 
+/*
 resolvers ++= Seq(
   Resolver.jcenterRepo,
   DefaultMavenRepository,
   Resolver.sonatypeRepo(\"snapshots\"),
   Resolver.sonatypeRepo(\"releases\")
 )
+*/
 
 reStartArgs := Seq(\"-x\")
 //mainClass in reStart := Some(\"Main\")
