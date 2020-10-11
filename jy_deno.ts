@@ -1,4 +1,4 @@
-// deno install --allow-net --allow-run --allow-read --allow-env -f jy_deno.ts jy_deno
+// deno install --allow-net --allow-run --allow-read --allow-env -f -n jy_deno jy_deno.ts
 
 import * as toml from "https://deno.land/x/std/encoding/toml.ts";
 
