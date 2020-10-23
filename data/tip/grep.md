@@ -15,6 +15,9 @@
     Grep NOT using grep -v
     $ cat logs/application.log.2018-03-04.log | grep "xxx" | grep -v "\"amount\":0"
 
+    ignore case: -i
+    $ tip mysql | grep -i index
+
 ## egrep
 
     $ svn info -r "HEAD" | egrep "版本|Revision" | egrep -o "[0-9]+"
