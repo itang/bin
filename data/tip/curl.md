@@ -34,6 +34,12 @@ https://curl.github.io/curl-cheat-sheet/http-sheet.html
     upload files
     $ curl -F file=@http-index-fs http://10.1.xx.60:8080/upload
 
+    Maximum time allowed to spend
+    $ curl --max-time 5.5 https://example.com/
+
+    Never spend more than this to connect
+    $ curl --connect-timeout 2.37 https://example.com/
+
 ## mockbin
 
     curl --request POST \
