@@ -39,5 +39,9 @@ see: https://zhuanlan.zhihu.com/p/118490800
 -Xloggc:logs/gc.log
 -XX:+UseGCLogFileRotation
 -XX:NumberOfGCLogFiles=32
--XX:GCLogFileSize=64
+-XX:GCLogFileSize=64m
+```
+
+```
+java -Xms1024m -Xmx1024m -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -Xloggc:logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=32 -XX:GCLogFileSize=64m -jar xxx.jar
 ```
