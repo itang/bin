@@ -10,6 +10,11 @@
     dump内存用来分析
     $ jmap -dump:file=test.bin pid
 
+    使用jmap手工触发fullGC
+    $ jmap -histo:live <pid>
+    $ jmap -dump:live,file=dump_001.bin PID 
+
+    gc日志输出[Full GC (Heap Inspection Initiated GC) 
 
 ## Q
 

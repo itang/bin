@@ -45,3 +45,15 @@ see: https://zhuanlan.zhihu.com/p/118490800
 ```
 java -Xms1024m -Xmx1024m -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -Xloggc:logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=32 -XX:GCLogFileSize=64m -jar xxx.jar
 ```
+
+### 手工触发GC
+
+方式1: `jcmd PID GC.run`
+
+-XX:+DisableExplicitGC 配置 禁用gc 则不会触发GC
+
+GC 日志输出: "[Full GC (System.gc())"
+
+方式2: `jmap -dump:live`  or `jmap -histo:live`
+
+都会触发Full GC   , 不受 -XX:+DisableExplicitGC  影响, GC 日志输出"[Full GC (Heap Inspection Initiated GC)"
