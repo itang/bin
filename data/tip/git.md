@@ -134,7 +134,10 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     $ git tag -d v0.9
     $ git push origin :refs/tags/v0.9
 
-    查看所有标签
+    list the tags on remote repository 
+    $ git ls-remote --tags origin
+
+    查看所有标签(list tags local)
     $ git tag
 
     rebase 合并多次提交
