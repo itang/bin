@@ -6,6 +6,10 @@
     $ mvn help:effective-pom
 
     $ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+    $ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+    $ mvn clean dependency:copy-dependencies package
+
     $ mvn exec:java -Dexec.mainClass="com.example.Main"
     $ mvn clean package -U
     $ mvn package -Dmaven.test.skip=true
@@ -19,4 +23,3 @@
     profiles
     $ mvn package -P profileTest1
     $ mvn help:active-profiles
-
