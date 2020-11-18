@@ -8,8 +8,11 @@
     $ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     $ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
+    # 复制依赖的jar包
     $ mvn clean dependency:copy-dependencies package
-
+	
+    $ mvn dependency:copy-dependencies -DoutputDirectory=lib -DincludeScope=compile
+   
     $ mvn exec:java -Dexec.mainClass="com.example.Main"
     $ mvn clean package -U
     $ mvn package -Dmaven.test.skip=true
