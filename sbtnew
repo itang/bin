@@ -18,7 +18,7 @@ declare -r TRUE=0
 declare -r FALSE=1
 
 ScalaVersion=2.13.3
-SbtVersion=1.4.3
+SbtVersion=1.4.4
 
 JavaVersion=1.8
 ScatangVersion=0.1
