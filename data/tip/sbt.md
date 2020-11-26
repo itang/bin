@@ -8,6 +8,9 @@ https://github.com/foundweekends/giter8/wiki/giter8-templates
 
     for dotty
     $ sbt launchIDE
+    
+    # run with arguments
+    $ sbt "run -f hello"
 
     sbt -Dsbt.version=1.0.3 new https://github.com/akka/akka-http-scala-seed.g8
     sbt new scala/scala-seed.g8
