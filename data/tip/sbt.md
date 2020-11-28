@@ -13,8 +13,12 @@ https://github.com/foundweekends/giter8/wiki/giter8-templates
     $ sbt "run -f hello"
 
 
-    sbt new lampepfl/dotty.g8
-    sbt new lampepfl/dotty-cross.g8
+    new for dotty
+    $ sbt new lampepfl/dotty.g8
+    $ sbt new lampepfl/dotty-cross.g8
+
+    # launch vscode for dotty IDE
+    $ sbt launchIDE
 
     sbt -Dsbt.version=1.0.3 new https://github.com/akka/akka-http-scala-seed.g8
     sbt new scala/scala-seed.g8
