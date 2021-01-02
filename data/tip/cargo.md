@@ -56,7 +56,10 @@
 
     cargo clippy
     $ rustup component add clippy
+    if you want the build job to fail when encountering warnings, use
     $ cargo clippy -- -D warnings
+    in order to also check tests and non-default crate features, use
+    $ cargo clippy --all-targets --all-features -- -D warnings
 
 ## profiler
 
