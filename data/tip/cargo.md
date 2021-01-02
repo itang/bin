@@ -54,6 +54,10 @@
     systemfd + cargo watch
     $ systemfd --no-pid -s http::4000 -- cargo watch -x run
 
+    cargo clippy
+    $ rustup component add clippy
+    $ cargo clippy -- -D warnings
+
 ## profiler
 
     $ cargo profiler callgrind --bin $PATH_TO_BINARY -- -a 3 --like this
