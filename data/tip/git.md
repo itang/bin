@@ -71,6 +71,9 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     $ git branch dev && git checkout dev
 
+    checkout远程分支并track
+    $ git checkout -b 0.2.x origin/0.2.x
+
     查看分支
     $ git branch
 
