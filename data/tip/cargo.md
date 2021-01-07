@@ -54,6 +54,13 @@
     systemfd + cargo watch
     $ systemfd --no-pid -s http::4000 -- cargo watch -x run
 
+    cargo clippy
+    $ rustup component add clippy
+    if you want the build job to fail when encountering warnings, use
+    $ cargo clippy -- -D warnings
+    in order to also check tests and non-default crate features, use
+    $ cargo clippy --all-targets --all-features -- -D warnings
+
 ## profiler
 
     $ cargo profiler callgrind --bin $PATH_TO_BINARY -- -a 3 --like this
