@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.9.1
+VERSION=1.13.1
 
 janet -v
 
