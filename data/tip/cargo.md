@@ -19,6 +19,10 @@
     $ cargo check
 
     $ cargo build --release
+
+    MUSL support for fully static binaries
+    https://doc.rust-lang.org/edition-guide/rust-2018/platform-and-target-support/musl-support-for-fully-static-binaries.html
+    $ rustup component add rust-std-x86_64-unknown-linux-musl
     $ cargo build --release --target x86_64-unknown-linux-musl
 
     $ cargo run
