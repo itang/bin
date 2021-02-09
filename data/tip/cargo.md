@@ -49,6 +49,8 @@
     $ cargo install rustfmt-nightly
     $ cargo install -f diesel_cli --no-default-features --features sqlite,mysql
 
+    $ cargo install --force --git https://github.com/google/evcxr.git evcxr_repl
+
     install local project
     $ cargo install --path .
 
