@@ -480,10 +480,19 @@ def new_rls_toml
   write 'rls.toml', 'unstable_features = true'
 end
 
+private def new_from_github_template(project, new_project_name, user = 'itang')
+  sh "git clone git@github.com:#{user}/#{project}.git #{new_project_name}"
+  puts "cd #{new_project_name}; inv"
+end
+
 def new_scalajs_nodejs_project
   project_name, _args = _parse('scalajs-nodejs')
-  sh "git clone git@github.com:itang/scalajs-nodejs-template.git #{project_name}"
-  puts "cd #{project_name}; inv"
+  new_from_github_template('scalajs-nodejs-template', project_name)
+end
+
+def new_scalajs_deno_project
+  project_name, _args = _parse('scalajs-deno')
+  new_from_github_template('scalajs-deno-template', project_name)
 end
 
 def new_scalajs_project
@@ -492,14 +501,13 @@ end
 
 def new_scalajs_web_project
   project_name, _args = _parse('scalajs-web')
-  sh "git clone git@github.com:itang/scala-js-template.git #{project_name}"
-  puts "cd #{project_name}; inv"
+  new_from_github_template('scala-js-template', project_name)
 end
 
 def new_mill
   project_name, _args = _parse('mill')
 
-  mill_version = '0.7.2'
+  mill_version = '0.9.5'
   begin
     s = `mill --version`
     mill_version = s.lines.first.split(/\s+/).last
@@ -618,7 +626,7 @@ when 'scalajs-nodejs'
 when 'scalajs-web'
   new_scalajs_web_project
 when 'scalajs-deno'
-  puts "TODO"
+  new_scalajs_deno_project
 when 'springboot'
   new_springboot
 when 'mill'
