@@ -30,12 +30,6 @@ $base_fabfile_content = <<~eos
   
 eos
 
-def new_fabfile
-  content = $base_fabfile_content
-
-  File.write 'fabfile.py', content
-end
-
 $rakefile_content = <<~eos
   task default: :usage
   
@@ -219,11 +213,6 @@ def new_java_project
   sh "javanew #{project_name} #{args.join(' ')}"
 end
 
-def new_swift_project
-  project_name, args = _parse('swift')
-  sh "swiftnew #{project_name} #{args.join(' ')}"
-end
-
 def new_elixir_project
   project_name, args = _parse('elixir')
 
@@ -309,152 +298,8 @@ def new_elixir_project
   end
 end
 
-def new_vapor_project
-  project_name, _args = _parse('vapor')
-  sh "vapor new #{project_name}"
-  content = <<~eos
-    'use strict';
-    
-    var gulp = require('gulp');        // npm install gulp
-    var vapor = require('gulp-vapor'); // npm install gulp-vapor
-    
-    /* If your project requires special configuration during */
-    //vapor.config.commands.build = 'swift build --some-flag';
-    //vapor.config.commands.start = ['.build/debug/gulp-vapor', ['serve', '--port=80']];
-    
-    gulp.task('vapor:start', vapor.start);
-    gulp.task('vapor:reload', vapor.reload);
-    
-    gulp.task('watch', function() {
-       gulp.watch('./Sources/**/*', ['vapor:reload']);
-    });
-    
-    
-    gulp.task('default', ['vapor:start', 'watch']);
-    
-  eos
-
-  write "#{project_name}/gulpfile.js", content
-
-  sh "echo node_modules >> #{project_name}/.gitignore"
-
-  content = <<~eos
-    def run():
-        local('vapor build && vapor run serve')
-    
-    
-    def prepare_watch():
-        local('npm install gulp gulp-vapor')
-    
-    
-    def watch():
-        local('gulp')
-    
-    
-  eos
-
-  content = "#{$base_fabfile_content}#{content}"
-  write "#{project_name}/fabfile.py", content
-end
-
 def new_rust_project
   sh "new-rust #{ARGV[1..-1].join(' ')}"
-end
-
-def new_bs_project
-  project_name, _args = _parse('bs')
-  sh "bsb -init #{project_name}"
-  puts "cd #{project_name}"
-end
-
-def new_reason_project
-  project_name, _args = _parse('reason')
-  sh "bsb -init #{project_name} -theme basic-reason"
-  sh "cd #{project_name};npm run build;node src/Demo.bs.js"
-  content = <<~eos
-    #!/bin/bash
-    
-    npm run start &
-    watchexec node src/Demo.bs.js &
-    
-    wait
-    
-  eos
-
-  write "#{project_name}/dev.sh", content
-end
-
-def new_reason_react_project
-  project_name, _args = _parse('reason-react')
-  sh "bsb -init #{project_name} -theme react"
-  sh "cd #{project_name};npm install;npm run build;"
-end
-
-def new_go_project
-  project_name, args = _parse('go')
-  sh "gonew #{project_name} #{args.join(' ')}"
-end
-
-def new_eta_project
-  project_name, _args = _parse('eta')
-  sh "mkdir -p #{project_name}"
-
-  sh "cd #{project_name}; epm init --main-is Main.hs -p #{project_name.delete('_')} --version=0.1.0.0 -l MIT -a $USER -e \"live.tang@gmail.com\" -u \"http://deftype.com/projects/#{project_name}\" -s \"test\" -c Other --is-executable --language Haskell2010 --no-comments --source-dir src"
-
-  content = <<~eos
-    module Main where
-    
-    main = putStrLn "Hello, World"
-  eos
-  write("#{project_name}/src/Main.hs", content)
-
-  content = <<~eos
-        #{$base_fabfile_content}
-    def run():
-        """run"""
-        local('epm run')
-    
-    
-    def dev():
-        """dev"""
-        local('watchexec "epm run"')
-    
-    
-    def uberjar_mode():
-        """uberjar mode"""
-        local('epm clean')
-        local('epm configure --enable-uberjar-mode')
-    
-    
-    def jar_mode():
-        """jar mode"""
-        local('epm clean')
-        local('epm configure --disable-uberjar-mode')
-    
-    
-    def clean():
-        """clean"""
-        local('epm clean')
-        local('epm install --dependencies-only')
-    
-  eos
-
-  write("#{project_name}/fabfile.py", content)
-
-  content = <<~eos
-    dist/
-    *.pyc
-  eos
-
-  write("#{project_name}/.gitignore", content)
-
-  content = <<~eos
-    # #{project_name}
-    
-  eos
-  write("#{project_name}/README.md", content)
-
-  puts "cd #{project_name}"
 end
 
 def new_invokefile
@@ -474,10 +319,6 @@ def new_springboot
   project_name, _args = _parse('springboot')
   system("spring init --build=gradle -l kotlin #{project_name}")
   system("cd #{project_name}; gradle wrapper --gradle-version=3.5")
-end
-
-def new_rls_toml
-  write 'rls.toml', 'unstable_features = true'
 end
 
 private def new_from_github_template(project, new_project_name, user = 'itang')
@@ -580,8 +421,6 @@ tmp = ARGV[0]
 case tmp
 when 'phoenix'
   new_phoenix_project
-when 'fabfile'
-  new_fabfile
 when 'rakefile'
   new_rakefile
 when 'procfile'
@@ -594,34 +433,14 @@ when 'openresty'
   new_openresty_project
 when 'nginx_conf'
   new_nginx_conf
-when 'rls_toml'
-  new_rls_toml
 when 'kotlin'
   new_kotlin_project
 when 'java'
   new_java_project
-when 'swift'
-  new_swift_project
 when 'elixir'
   new_elixir_project
-when 'vapor'
-  new_vapor_project
 when 'rust'
   new_rust_project
-when 'go'
-  new_go_project
-when 'eta'
-  new_eta_project
-when 'bs'
-  new_bs_project
-when 'bucklescript'
-  new_bs_project
-when 'reason'
-  new_reason_project
-when 're-react'
-  new_reason_react_project
-when 're'
-  new_reason_project
 when 'scala-js'
   new_scalajs_project
 when 'scalajs'
@@ -643,25 +462,17 @@ new kotlin    project_name   |
     java      project_name   |
     rust      project_name   |
     go        project_name   |
-    swift     project_name   |
     elixir    project_name   |
-    eta       project_name   |
-    bs        project_name   |
-    reason    project_name   |
 
-    fabfile                  |
     rakefile                 |
     invoke                   |
     procfile                 |
     dockercompose            |
     nginx_conf               |
-    rls_toml                 |
 
-    vapor     project_name   |
     phoenix   project_name   |
     openresty project_name   |
     springboot project_name  |
-    re-react   project_name  |
     scalajs    project_name  |
     scalajs-nodejs project_name  |
     scalajs-deno project_name  |
