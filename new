@@ -461,7 +461,6 @@ else
 new kotlin    project_name   |
     java      project_name   |
     rust      project_name   |
-    go        project_name   |
     elixir    project_name   |
 
     rakefile                 |
