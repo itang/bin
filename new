@@ -540,6 +540,11 @@ def new_mill
         sh 'rake clean_idea'
         sh 'mill mill.scalalib.GenIdea/idea'
       end
+
+      desc 'gen IDE bsp project'
+      task :ide do
+        sh 'mill mill.bsp.BSP/install'
+      end
     end
     
     desc 'run dev mode'
