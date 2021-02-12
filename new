@@ -18,7 +18,7 @@ def new_phoenix_project
   # sh "mix phoenix.new #{project_name} --no-brunch --no-ecto --no-html"
 end
 $base_fabfile_content = <<~eos
-  # -*- coding: utf-8 -*-
+  # -*- coding: utf-8 -*
   
   from fabric.api import *
   
@@ -480,117 +480,20 @@ def new_rls_toml
   write 'rls.toml', 'unstable_features = true'
 end
 
+def new_scalajs_nodejs_project
+  project_name, _args = _parse('scalajs-nodejs')
+  sh "git clone git@github.com:itang/scalajs-nodejs-template.git #{project_name}"
+  puts "cd #{project_name}; inv"
+end
+
 def new_scalajs_project
-  project_name, _args = _parse('scalajs')
-  scalajs_version = '0.6.31'
-  scala_version = '2.12.10'
-
-  sh "mkdir -p #{project_name}/project"
-  plugins_content = <<~eos
-    addSbtPlugin("org.scala-js" % "sbt-scalajs" % "#{scalajs_version}")
-  eos
-  write "#{project_name}/project/plugins.sbt", plugins_content
-
-  props_content = <<~eos
-    sbt.version=1.3.5
-  eos
-  write "#{project_name}/project/build.properties", props_content
-
-  build_content = <<~eos
-    enablePlugins(ScalaJSPlugin)
-    
-    name := "Scala.js Tutorial"
-    scalaVersion := "#{scala_version}" // or any other Scala version >= 2.10.2
-    
-    // This is an application with a main method
-    scalaJSUseMainModuleInitializer := true
-    
-    scalaJSModuleKind := ModuleKind.CommonJSModule
-    
-    libraryDependencies ++= Seq(
-       "org.scala-js" %%% "scalajs-dom" % "0.9.8",
-       "io.scalajs" %%% "nodejs" % "0.4.2"
-    )
-    
-  eos
-  write "#{project_name}/build.sbt", build_content
-
-  sh "mkdir -p #{project_name}/src/main/scala/tutorial/webapp/"
-  tutorial_content = <<~eos
-    package tutorial.webapp
-    
-    import io.scalajs.nodejs.os
-    import util._
-    
-    object TutorialApp {
-      def main(args: Array[String]): Unit = {
-        println("Hello world!")
-        println("args:")
-        args.foreach(println)
-    
-        os.OS.arch()
-          .|>(os => println(s"""os is: $os"""))
-      }
-    }
-    
-  eos
-
-  write "#{project_name}/src/main/scala/tutorial/webapp/TutorialApp.scala", tutorial_content
-
-  util_content = <<~eos
-    import java.io.Closeable
-    
-    package object util {
-    
-      import java.text.SimpleDateFormat
-      import java.util.Date
-    
-      implicit class DateOps(d: Date) {
-        def format(pattern: String = "yyyyMMdd"): String = new SimpleDateFormat(pattern).format(d)
-      }
-    
-      def time[T](block: => T): T = {
-        val start = System.currentTimeMillis()
-        val ret = block
-        val end = System.currentTimeMillis()
-        println(s">>Cost time: ${end - start}ms")
-        ret
-      }
-    
-      def using[A <: Closeable, B](target: A)(block: A => B): B =
-        try {
-          val ret = block(target)
-          target.close()
-          ret
-        } catch {
-          case e: Exception => throw e
-        }
-    
-      implicit class Pipe[T](val v: T) extends AnyVal {
-        def |>[U](f: T => U) = f(v)
-    
-        // Additional suggestions:
-        def $$[U](f: T => U): T = {
-          f(v); v
-        }
-    
-        def #!(str: String = ""): T = {
-          println(str + v); v
-        }
-      }
-    
-    }
-    
-  eos
-  write "#{project_name}/src/main/scala/util.scala", util_content
-
-  puts "(cd #{project_name}; sbt run)"
-  puts "cd #{project_name}; sbt run"
+  new_scalajs_nodejs_project()
 end
 
 def new_scalajs_web_project
   project_name, _args = _parse('scalajs-web')
   sh "git clone git@github.com:itang/scala-js-template.git #{project_name}"
+  puts "cd #{project_name}; inv"
 end
 
 def new_mill
@@ -710,8 +613,12 @@ when 'scala-js'
   new_scalajs_project
 when 'scalajs'
   new_scalajs_project
+when 'scalajs-nodejs'
+  new_scalajs_nodejs_project
 when 'scalajs-web'
   new_scalajs_web_project
+when 'scalajs-deno'
+  puts "TODO"
 when 'springboot'
   new_springboot
 when 'mill'
@@ -743,6 +650,8 @@ new kotlin    project_name   |
     springboot project_name  |
     re-react   project_name  |
     scalajs    project_name  |
+    scalajs-nodejs project_name  |
+    scalajs-deno project_name  |
     scalajs-web project_name |
     mill        project_name |
     '
