@@ -254,26 +254,6 @@ lib/
 " > ${directoryName}/.gitignore
 fi
 
-#------------------------------
-# create fabfile
-#-----------------------------
-
-echo '
-# -*- coding: utf-8 -*-
-
-from fabric.api import *
-
-
-def run():
-    """Run"""
-    local("sbt run")
-
-
-def dev():
-    """Dev"""
-    local("sbt \"~reStart\"")' > ${directoryName}/fabfile.py
-
-
 echo '
 task default: :usage
 
@@ -292,10 +272,10 @@ task :dev do
 end' > "${directoryName}/Rakefile"
 
 #-----------------------------
-# create README.me, if desired
+# create README.md, if desired
 #-----------------------------
 if [ "$(isYes $createReadme)" = "$TRUE" ]; then
-    touch "${directoryName}/README.md"
+  echo "# ${directorName}" > "${directoryName}/README.md"
 fi
 
 echo ""
