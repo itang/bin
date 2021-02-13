@@ -12,6 +12,12 @@ def write(file, content)
   File.write file, content
 end
 
+def write_append(file, content)
+  open(file, 'a') { |f|
+    f.puts content
+  }
+end
+
 def new_phoenix_project
   project_name = ARGV[1] || 'test_phoenix'
   sh "mix phoenix.new #{project_name} --no-brunch --no-ecto"
@@ -386,6 +392,11 @@ def new_mill
       task :ide do
         sh 'mill mill.bsp.BSP/install'
       end
+
+      desc 'gen bloop'
+      task :bloop do
+        sh 'mill mill.contrib.Bloop/install'
+      end
     end
     
     desc 'run dev mode'
@@ -413,6 +424,10 @@ def new_mill
   eos
   write "#{project_name}/Rakefile", rcontent
 
+  bloopDepContent = 'import $ivy.`com.lihaoyi::mill-contrib-bloop:$MILL_VERSION`'
+  write_append("#{project_name}/build.sc", bloopDepContent)
+
+  #sh "cd #{project_name}; mill mill.contrib.Bloop/install"
   puts "cd #{project_name};rake"
 end
 #############################################

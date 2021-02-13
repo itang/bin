@@ -1,4 +1,6 @@
 #!/bin/bash
 
-http_proxy=http://localhost:7979 https_proxy=http://localhost:7979 $*
+whost=$(ip route | grep default | awk '{print $3}')
+echo $whost
+http_proxy=http://$whost:7979 https_proxy=http://$whost:7979 $*
 

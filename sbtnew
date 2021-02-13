@@ -24,6 +24,7 @@ JavaVersion=1.8
 ScatangVersion=0.1
 SbtassemblyVersion=0.15.0
 SbtRevolverVersion=0.9.1
+SbtBloopVersion=1.4.7
 
 
 SbtUpdatesVersion=0.5.0
@@ -134,6 +135,7 @@ envVars in reStart := Map(\"ENV_USER_TOKEN\" -> \"2359298356239\")
 #-----------------
 echo "addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")
 addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")
+addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")
 //addSbtPlugin(\"com.timushev.sbt\" % \"sbt-updates\" % \"${SbtUpdatesVersion}\")
 
 //addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")
@@ -300,7 +302,8 @@ echo ""
 echo "Project created. See the following URL for build.sbt examples:"
 echo "http://alvinalexander.com/scala/sbt-syntax-examples"
 
-# cd ${directoryName}
+#cd ${directoryName}
+#sbt bloopInstall
 
 # echo "eclipse with-source=false"
 # sbt 'eclipse with-source=false';
