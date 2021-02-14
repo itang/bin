@@ -329,6 +329,7 @@ end
 
 private def new_from_github_template(project, new_project_name, user = 'itang')
   sh "git clone git@github.com:#{user}/#{project}.git #{new_project_name}"
+  sh "cd #{new_project_name} && rm -rf .git"
   puts "cd #{new_project_name}; inv"
 end
 
@@ -475,22 +476,25 @@ else
 
 new kotlin    project_name   |
     java      project_name   |
+    springboot project_name  |
     rust      project_name   |
-    elixir    project_name   |
+
+    scalajs    project_name  |
+    scalajs-nodejs project_name  |
+    scalajs-deno project_name  |
+    scalajs-web project_name |
+
+    mill        project_name |
 
     rakefile                 |
     invoke                   |
     procfile                 |
     dockercompose            |
-    nginx_conf               |
 
-    phoenix   project_name   |
+    nginx_conf               |
     openresty project_name   |
-    springboot project_name  |
-    scalajs    project_name  |
-    scalajs-nodejs project_name  |
-    scalajs-deno project_name  |
-    scalajs-web project_name |
-    mill        project_name |
+
+    elixir    project_name   |
+    phoenix   project_name   |
     '
 end
