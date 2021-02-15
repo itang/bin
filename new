@@ -321,6 +321,13 @@ def new_invokefile
   write('tasks.py', content)
 end
 
+def new_scalafmt_conf
+  content = <<~eos
+   version = "2.7.5"
+  eos
+  write('.scalafmt.conf', content)
+end
+
 def new_springboot
   project_name, _args = _parse('springboot')
   system("spring init --build=gradle -l kotlin #{project_name}")
@@ -467,6 +474,10 @@ when 'scalajs-web'
   new_scalajs_web_project
 when 'scalajs-deno'
   new_scalajs_deno_project
+when 'scalafmt'
+  new_scalafmt_conf
+when 'scalafmt.conf'
+  new_scalafmt_conf
 when 'springboot'
   new_springboot
 when 'mill'
@@ -483,6 +494,7 @@ new kotlin    project_name   |
     scalajs-nodejs project_name  |
     scalajs-deno project_name  |
     scalajs-web project_name |
+    scalafmt.conf(alias scalafmt)|
 
     mill        project_name |
 
