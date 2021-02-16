@@ -1,6 +1,16 @@
 #!/bin/bash
 
-whost=$(ip route | grep default | awk '{print $3}')
-echo $whost
-http_proxy=http://$whost:7979 https_proxy=http://$whost:7979 $*
+kr=$(uname -r)
+echo $kr
 
+whost='localhost'
+
+if [[ "$kr" =~ 'WSL2' ]]; then
+  whost=$(ip route | grep default | awk '{print $3}')
+  
+  echo "in WSL2; host machine: $whost"
+fi
+
+proxy_host="http://$whost:7979"
+echo "proxy_host: $proxy_host"
+http_proxy=$proxy_host https_proxy=$proxy_host $*
