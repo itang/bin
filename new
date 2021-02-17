@@ -308,6 +308,18 @@ def new_rust_project
   sh "new-rust #{ARGV[1..-1].join(' ')}"
 end
 
+def new_scala3_project
+  sh 'sbt new lampepfl/dotty.g8'
+end
+
+def new_scala2_project
+  sh 'sbt new scala/scala-seed.g8'
+end
+
+def new_scala_native_project
+  sh 'sbt new scala-native/scala-native.g8'
+end
+
 def new_invokefile
   content = <<~eos
     from invoke import task
@@ -464,6 +476,14 @@ when 'elixir'
   new_elixir_project
 when 'rust'
   new_rust_project
+when 'scala3'
+  new_scala3_project
+when 'scala2'
+  new_scala2_project
+when 'scala'
+  new_scala3_project
+when 'scala-native'
+  new_scala_native_project
 when 'scala-js'
   new_scalajs_project
 when 'scalajs'
@@ -489,6 +509,9 @@ new kotlin    project_name   |
     java      project_name   |
     springboot project_name  |
     rust      project_name   |
+    scala3(scala)            |
+    scala2                   |
+    scala-native             |
 
     scalajs    project_name  |
     scalajs-nodejs project_name  |
