@@ -5,7 +5,7 @@ echo $kr
 
 whost='localhost'
 
-if [[ "$kr" =~ 'WSL2' ]]; then
+if ([[ "$kr" =~ 'WSL2' ]] || [[ "$kr" =~ 'microsoft' ]]); then
   whost=$(ip route | grep default | awk '{print $3}')
   
   echo "in WSL2; host machine: $whost"
