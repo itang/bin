@@ -10,8 +10,8 @@
 
     # 复制依赖的jar包
     $ mvn clean dependency:copy-dependencies package
-	
-    $ mvn dependency:copy-dependencies -DoutputDirectory=lib -DincludeScope=compile
+    $ mvn clean dependency:copy-dependencies -DoutputDirectory=lib -DincludeScope=compile
+    $ mvn clean dependency:copy-dependencies package -DoutputDirectory=lib -DincludeScope=compile
    
     $ mvn exec:java -Dexec.mainClass="com.example.Main"
     $ mvn clean package -U
