@@ -310,7 +310,7 @@ end
 
 def _new_g8_project(project, template_name)
   project_name, _args = _parse(project)
-  sh "g8 lampepfl/dotty.g8 --name=#{project_name}"
+  sh "g8 #{template_name} --name=#{project_name}"
   puts "cd #{project_name} && sbt tasks"
 end
 
@@ -324,6 +324,10 @@ end
 
 def new_scala_native_project
   _new_g8_project('scala_native', 'scala-native/scala-native.g8')
+end
+
+def new_zio_project
+  _new_g8_project('zio', 'ScalaConsultants/zio-dotty-quickstart.g8')
 end
 
 def new_invokefile
@@ -490,6 +494,8 @@ when 'scala'
   new_scala3_project
 when 'scala-native'
   new_scala_native_project
+when 'zio'
+  new_zio_project
 when 'scala-js'
   new_scalajs_project
 when 'scalajs'
@@ -524,6 +530,8 @@ new kotlin    project_name   |
     scalajs-deno project_name  |
     scalajs-web project_name |
     scalafmt.conf(alias scalafmt)|
+
+    zio        project-name  |
 
     mill        project_name |
 
