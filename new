@@ -308,16 +308,22 @@ def new_rust_project
   sh "new-rust #{ARGV[1..-1].join(' ')}"
 end
 
+def _new_g8_project(project, template_name)
+  project_name, _args = _parse(project)
+  sh "g8 lampepfl/dotty.g8 --name=#{project_name}"
+  puts "cd #{project_name} && sbt tasks"
+end
+
 def new_scala3_project
-  sh 'sbt new lampepfl/dotty.g8'
+  _new_g8_project('scala3', 'lampepfl/dotty.g8')
 end
 
 def new_scala2_project
-  sh 'sbt new scala/scala-seed.g8'
+  _new_g8_project('scala2', 'scala/scala-seed.g8')
 end
 
 def new_scala_native_project
-  sh 'sbt new scala-native/scala-native.g8'
+  _new_g8_project('scala_native', 'scala-native/scala-native.g8')
 end
 
 def new_invokefile
