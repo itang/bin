@@ -6,6 +6,9 @@ https://github.com/foundweekends/giter8/wiki/giter8-templates
 
 ## Usage
 
+    show dependency tree
+    $ sbt dependencyTree
+
     for dotty
     $ sbt launchIDE
 
