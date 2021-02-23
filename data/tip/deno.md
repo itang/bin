@@ -8,6 +8,8 @@
 
     --unstable Enable unstable APIs
     $ deno run --unstable --allow-read main.ts
+    watch changes
+    $ deno run --watch --unstable main.ts
 
     inspect
     $ deno run --inspect main.ts
