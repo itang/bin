@@ -6,6 +6,9 @@ https://github.com/foundweekends/giter8/wiki/giter8-templates
 
 ## Usage
 
+    show all tasks
+    $ sbt 'tasks -V'
+
     show dependency tree
     $ sbt dependencyTree
 
