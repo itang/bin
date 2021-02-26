@@ -8,5 +8,7 @@
 
     $ bin/redis-cli -h host1 -n 1 -a password info replication
 
+    $ .\redis-cli.exe -a foobared monitor
+
     Lists the currently active channels, If no pattern is specified, all the channels are listed
     $ PUBSUB CHANNELS [pattern]
