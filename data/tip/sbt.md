@@ -17,6 +17,7 @@ https://github.com/foundweekends/giter8/wiki/giter8-templates
 
     # run with arguments
     $ sbt "run -f hello"
+    $ sbt "run --do-it"
 
 
     new for dotty
