@@ -17,14 +17,14 @@
 declare -r TRUE=0
 declare -r FALSE=1
 
-ScalaVersion=2.13.4
-SbtVersion=1.4.7
+ScalaVersion=2.13.5
+SbtVersion=1.4.9
 
 JavaVersion=1.8
 ScatangVersion=0.1
 SbtassemblyVersion=0.15.0
 SbtRevolverVersion=0.9.1
-SbtBloopVersion=1.4.7
+SbtBloopVersion=1.4.8
 
 
 SbtUpdatesVersion=0.5.0
