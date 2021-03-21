@@ -381,6 +381,11 @@ def new_scalajs_web_project
   new_from_github_template('scala-js-template', project_name)
 end
 
+def new_sbt_project
+  project_name, _args = _parse('sbt')
+  new_from_github_template('sbt-native-image-template', project_name)
+end
+
 def new_mill
   project_name, _args = _parse('mill')
 
@@ -486,6 +491,8 @@ when 'elixir'
   new_elixir_project
 when 'rust'
   new_rust_project
+when 'sbt'
+  new_sbt_project
 when 'scala3'
   new_scala3_project
 when 'scala2'
@@ -521,6 +528,7 @@ new kotlin    project_name   |
     java      project_name   |
     springboot project_name  |
     rust      project_name   |
+    sbt       project_name   |
     scala3(scala)            |
     scala2                   |
     scala-native             |
