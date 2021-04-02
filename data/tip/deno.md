@@ -13,6 +13,7 @@
 
     inspect
     $ deno run --inspect main.ts
+    $ deno run ----inspect-brk main.ts
     open chrome://inspect/#devices
 
     $ deno info

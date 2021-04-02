@@ -1,193 +1,74 @@
 #!/bin/bash
 
-#-----------------------------------------------------------------------------
-# Modified By itang
-#-----------------------------------------------------------------------------
-
-## Origin info
-#------------------------------------------------------------------------------
-# Name:    sbtmkdirs
-# Purpose: Create an SBT project directory structure with a few simple options.
-# Author:  Alvin Alexander, http://alvinalexander.com
-# Info:    http://alvinalexander.com/sbtmkdirs
-# License: Creative Commons Attribution-ShareAlike 2.5 Generic
-#          http://creativecommons.org/licenses/by-sa/2.5/
-#------------------------------------------------------------------------------
-##
-declare -r TRUE=0
-declare -r FALSE=1
-
-ScalaVersion=2.13.5
-SbtVersion=1.4.9
-
-JavaVersion=1.8
-ScatangVersion=0.1
-SbtassemblyVersion=0.15.0
-SbtRevolverVersion=0.9.1
+ScalaVersion=3.0.0-RC2
+SbtVersion=1.5.0-RC2
 SbtBloopVersion=1.4.8
-
-
-SbtUpdatesVersion=0.5.0
-ScalatestVersion=3.1.0
-
-# takes a string and returns true if it seems to represent "yes"
-function isYes() {
-    local x=$1
-    [ $x = "y" ] && echo $TRUE; return
-    [ $x = "Y" ] && echo $TRUE; return
-    [ $x = "yes" ] && echo $TRUE; return
-    echo $FALSE
-}
 
 echo "This script creates an SBT project directory beneath the current directory."
 
 if [ -n "$1" ]; then
   directoryName=$1
 else
-  read -p "Directory/Project Name (MyFirstProject): " directoryName
+  read -r -p "Directory/Project Name (MyFirstProject): " directoryName
 fi
 directoryName=${directoryName:-MyFirstProject}
-createGitignore="y"
-createReadme="y"
 
 echo ""
 echo "-----------------------------------------------"
 echo "Directory/Project Name: $directoryName"
-echo "Create .gitignore File?: $createGitignore"
-echo "Create README.md File?: $createReadme"
 echo "-----------------------------------------------"
 
-mkdir -p ${directoryName}/src/{main,test}/{java,resources,scala}
+mkdir -p "${directoryName}/src/main/java"
+mkdir -p "${directoryName}/src/main/resources"
+mkdir -p "${directoryName}/src/main/scala"
 mkdir "${directoryName}/lib" "${directoryName}/project" "${directoryName}/target"
-
-# optional
-#mkdir -p ${directoryName}/src/main/config
-#mkdir -p ${directoryName}/src/{main,test}/{filters,assembly}
-#mkdir -p ${directoryName}/src/site
 
 #---------------------------------
 # create an initial build.sbt file
 #---------------------------------
-echo "name := \"$directoryName\"
-
-version := \"1.0-SNAPSHOT\"
-
-organization := \"deftype.com\"
-
-scalaVersion := \"${ScalaVersion}\"
-
-javacOptions ++= Seq(\"-encoding\", \"UTF-8\", \"-source\", \"${JavaVersion}\", \"-target\", \"${JavaVersion}\", \"-Xlint\")
-
-scalacOptions ++= Seq(\"-deprecation\", \"-feature\", \"-Xfatal-warnings\", \"-Ydelambdafy:method\", \"-target:jvm-1.8\")
-
-libraryDependencies ++= Seq(
-  //\"org.scala-lang.modules\" %% \"scala-java8-compat\" % \"${ScalaJava8Version}\",
-  //\"me.itang\" %% \"scatang\" % \"${ScatangVersion}\",
-  \"org.scalatest\" %% \"scalatest\" % \"${ScalatestVersion}\" % \"test\"
-)
-
-/*
-resolvers ++= Seq(
-  Resolver.jcenterRepo,
-  DefaultMavenRepository,
-  Resolver.sonatypeRepo(\"snapshots\"),
-  Resolver.sonatypeRepo(\"releases\")
-)
-*/
-
-reStartArgs := Seq(\"-x\")
-//mainClass in reStart := Some(\"Main\")
-//javaOptions in reStart += \"-Xmx2g\"
-envVars in reStart := Map(\"ENV_USER_TOKEN\" -> \"2359298356239\")
-
-//mainClass in assembly := Some(\"Main\")
-//assemblyMergeStrategy in assembly := {
-//  //case PathList(\"javax\", \"servlet\", xs @ _*)         => MergeStrategy.first
-//  //case PathList(ps @ _*) if ps.last endsWith \".html\" => MergeStrategy.first
-//  //case \"application.conf\"                            => MergeStrategy.concat
-//  //case \"unwanted.txt\"                                => MergeStrategy.discard
-//  case x =>
-//    val oldStrategy = (assemblyMergeStrategy in assembly).value
-//    oldStrategy(x)
-//}
-
-// no need for v0.8
-//net.virtualvoid.sbt.graph.Plugin.graphSettings
-
-//EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
-
-//initialCommands in console := \"import scatang._;\"
-
-//initialCommands in (Test, console) := \"\"\"ammonite.repl.Repl.run(\"\")\"\"\"
-
-//publishTo := {
-//  val nexus = \"http://120.24.68.174:8081/nexus/content/repositories\"
-//  if (isSnapshot.value)
-//   Some(\"snapshots\" at nexus + \"/snapshots\")
-//  else
-//    Some(\"releases\"  at nexus + \"/releases\")
-//}
-
-//credentials += Credentials(Path.userHome / \".ivy2\" / \".credentials\")" > ${directoryName}/build.sbt
+echo "lazy val root = project
+  .in(file(\".\"))
+  .settings(
+    name := \"$directoryName\",
+    description := \"Example sbt project that compiles using Scala\",
+    version := \"0.1.0\",
+    scalaVersion := \"${ScalaVersion}\",
+    libraryDependencies ++= Seq(
+      //\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion
+    ),
+    resolvers += (\"p\" at \"https://maven.aliyun.com/repository/public\").withAllowInsecureProtocol(true)
+  )
+" > "${directoryName}/build.sbt"
 
 #-----------------
 # init plugins.sbt
 #-----------------
-echo "addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"${SbtassemblyVersion}\")
-addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")
-addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")
-//addSbtPlugin(\"com.timushev.sbt\" % \"sbt-updates\" % \"${SbtUpdatesVersion}\")
-
-//addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"${SbtDependencyGraph}\")
-
-//addSbtPlugin(\"org.scoverage\" % \"sbt-scoverage\" % \"${SbtScoverageVersion}\")
-
-//addSbtPlugin(\"org.scalastyle\" %% \"scalastyle-sbt-plugin\" % \"${ScalaStyleVersion}\")
-
-//addSbtPlugin(\"io.get-coursier\" % \"sbt-coursier\" % \"${SbtCoursierVersion}\")" > ${directoryName}/project/plugins.sbt
+echo "addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")" > "${directoryName}/project/plugins.sbt"
 
 
 #-----------------
 # init build.properties
 #-----------------
-echo "sbt.version=${SbtVersion}" > ${directoryName}/project/build.properties
+echo "sbt.version=${SbtVersion}" > "${directoryName}/project/build.properties"
 
 #----------------------------------
 # init src/main/scala/example.scala
 #----------------------------------
-echo 'import java.io.Closeable
-
-package object util {
+echo "package object util {
 
   import java.text.SimpleDateFormat
   import java.util.Date
 
   implicit class DateOps(d: Date) {
-    def format(pattern: String = "yyyyMMdd"): String = new SimpleDateFormat(pattern).format(d)
+    def format(pattern: String = \"yyyyMMdd\"): String = new SimpleDateFormat(pattern).format(d)
   }
 
   def time[T](block: => T): T = {
     val start = System.currentTimeMillis()
     val ret = block
     val end = System.currentTimeMillis()
-    println(s">>Cost time: ${end - start}ms")
+    println(s\">>Cost time: \${end - start}ms\")
     ret
-  }
-
-  def using[A <: Closeable, B](target: A)(block: A => B): B =
-    try {
-      val ret = block(target)
-      target.close()
-      ret
-    } catch {
-      case e: Exception => throw e
-    }
-
-  implicit class Pipe[T](val v: T) extends AnyVal {
-    def |>[U] (f: T => U) = f(v)
-    // Additional suggestions:
-    def $$[U](f: T => U): T = {f(v); v}
-    def #!(str: String = ""): T = {println(str + v); v}
   }
 
   implicit class AnyOpts[T](v: T) {
@@ -195,49 +76,34 @@ package object util {
 
     def orElse(pred: (T) => Boolean)(elseAction: (T) => T): T = orElse(pred(v))(elseAction)
   }
-}' > ${directoryName}/src/main/scala/util.scala
+}" > "${directoryName}/src/main/scala/util.scala"
 
-echo 'import java.util.Date
-//import scala.collection.JavaConverters._
+echo "import java.util.Date
 import scala.jdk.CollectionConverters._
+import scala.util.chaining._
+import scala.util.Using
+import scala.io.Source
 import util._
 
 object Main {
 
   def main(args: Array[String]): Unit = time {
-    println(s"args: ${args.mkString(" ")}")
-    System.getenv.asScala.filter(it => it._1.startsWith("ENV")).foreach(println)
+    println(s\"args: \${args.mkString(\" \")}\")
+    System.getenv.asScala.filter(it => it._1.startsWith(\"ENV\")).foreach(println)
 
-    "Hello, World"
-      .$$(println)
-      .|>(_ + ", " + new Date().format("yyyy-MM-dd"))
-      .|>(println)
+    Using(Source.fromFile(\"build.sbt\")){ it => it.getLines().filter(_.contains(\"version\")).foreach(println)}
+
+    \"Hello, World\"
+      .tap(println)
+      .pipe(_ + \", \" + new Date().format(\"yyyy-MM-dd\"))
+      .pipe(println)
   }
-}' > ${directoryName}/src/main/scala/main.scala
-
-
-#----------------------------------
-# init src/test/scala/example_test.scala
-#----------------------------------
-
-#echo "package example
-#
-#import org.scalatest.FunSpec
-#
-#class ExampleSpec extends FunSpec {
-#
-#  describe(\"echo\") {
-#    it(\"test\") {
-#      assert(\"hello\" === \"hello\")
-#    }
-#  }
-#}" >  ${directoryName}/src/test/scala/example_test.scala
+}" > "${directoryName}/src/main/scala/main.scala"
 
 #------------------------------
 # create .gitignore, if desired
 #------------------------------
-if [ "$(isYes $createGitignore)" = "$TRUE" ]; then
-    echo "bin/
+echo "bin/
 project/project/
 target/
 lib/
@@ -251,11 +117,9 @@ lib/
 .idea/
 *.iml
 .metals
-" > ${directoryName}/.gitignore
-fi
+" > "${directoryName}/.gitignore"
 
-echo '
-task default: :usage
+echo 'task default: :usage
 
 task :usage do
   sh "rake -T"
@@ -274,16 +138,8 @@ end' > "${directoryName}/Rakefile"
 #-----------------------------
 # create README.md, if desired
 #-----------------------------
-if [ "$(isYes $createReadme)" = "$TRUE" ]; then
-  echo "# ${directorName}" > "${directoryName}/README.md"
-fi
+echo "# ${directoryName}" > "${directoryName}/README.md"
 
 echo ""
-echo "Project created. See the following URL for build.sbt examples:"
-echo "http://alvinalexander.com/scala/sbt-syntax-examples"
-
-#cd ${directoryName}
-#sbt bloopInstall
-
-# echo "eclipse with-source=false"
-# sbt 'eclipse with-source=false';
+echo "Project created."
+echo "cd $directoryName"
