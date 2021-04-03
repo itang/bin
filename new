@@ -315,7 +315,7 @@ def _new_g8_project(project, template_name)
 end
 
 def new_scala3_project
-  _new_g8_project('scala3', 'lampepfl/dotty.g8')
+  _new_g8_project('scala3', 'scala/scala3.g8')
 end
 
 def new_scala2_project
