@@ -1,8 +1,9 @@
 #!/bin/bash
 
 ScalaVersion=3.0.0-RC2
-SbtVersion=1.5.0-RC2
+SbtVersion=1.5.0
 SbtBloopVersion=1.4.8
+SbtRevolverVersion=0.9.1
 
 echo "This script creates an SBT project directory beneath the current directory."
 
@@ -43,7 +44,8 @@ echo "lazy val root = project
 #-----------------
 # init plugins.sbt
 #-----------------
-echo "addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")" > "${directoryName}/project/plugins.sbt"
+echo "addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")
+addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")" > "${directoryName}/project/plugins.sbt"
 
 
 #-----------------
