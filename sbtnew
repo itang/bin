@@ -21,7 +21,8 @@ echo "-----------------------------------------------"
 
 mkdir -p "${directoryName}/src/main/java"
 mkdir -p "${directoryName}/src/main/resources"
-mkdir -p "${directoryName}/src/main/scala"
+mkdir -p "${directoryName}/src/main/scala" 
+mkdir -p "${directoryName}/src/test/scala" 
 mkdir "${directoryName}/lib" "${directoryName}/project" "${directoryName}/target"
 
 #---------------------------------
@@ -35,7 +36,9 @@ echo "lazy val root = project
     version := \"0.1.0\",
     scalaVersion := \"${ScalaVersion}\",
     libraryDependencies ++= Seq(
-      //\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion
+       \"com.novocode\" % \"junit-interface\" % \"0.11\" % Test,
+       \"org.scalameta\" %% \"munit\" % \"0.7.23\" % Test
+      //,\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion
     ),
     resolvers += (\"p\" at \"https://maven.aliyun.com/repository/public\").withAllowInsecureProtocol(true)
   )
@@ -101,6 +104,15 @@ object Main {
       .pipe(println)
   }
 }" > "${directoryName}/src/main/scala/main.scala"
+
+echo "class Test2 extends munit.FunSuite {
+  test(\"test1\") {
+    val a = 2
+    val b = 2
+    assertEquals(a, b)
+  }
+}
+" > "${directoryName}/src/test/scala/test1.scala"
 
 #------------------------------
 # create .gitignore, if desired
