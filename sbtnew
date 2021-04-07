@@ -5,30 +5,34 @@ SbtVersion=1.5.0
 SbtBloopVersion=1.4.8
 SbtRevolverVersion=0.9.1
 
-echo "This script creates an SBT project directory beneath the current directory."
+directoryName=""
 
-if [ -n "$1" ]; then
-  directoryName=$1
-else
-  read -r -p "Directory/Project Name (MyFirstProject): " directoryName
-fi
-directoryName=${directoryName:-MyFirstProject}
+init() {
+  if [ -n "$1" ]; then
+    directoryName=$1
+  else
+    read -r -p "Directory/Project Name (MyFirstProject): " directoryName
+  fi
+  directoryName=${directoryName:-MyFirstProject}
+}
 
-echo ""
-echo "-----------------------------------------------"
-echo "Directory/Project Name: $directoryName"
-echo "-----------------------------------------------"
+setup() {
+  echo ""
+  echo "-----------------------------------------------"
+  echo "Directory/Project Name: $directoryName"
+  echo "-----------------------------------------------"
 
-mkdir -p "${directoryName}/src/main/java"
-mkdir -p "${directoryName}/src/main/resources"
-mkdir -p "${directoryName}/src/main/scala" 
-mkdir -p "${directoryName}/src/test/scala" 
-mkdir "${directoryName}/lib" "${directoryName}/project" "${directoryName}/target"
+  mkdir -p "${directoryName}/src/main/java"
+  mkdir -p "${directoryName}/src/main/resources"
+  mkdir -p "${directoryName}/src/main/scala"
+  mkdir -p "${directoryName}/src/test/scala"
+  mkdir "${directoryName}/lib" "${directoryName}/project" "${directoryName}/target"
+}
 
-#---------------------------------
 # create an initial build.sbt file
 #---------------------------------
-echo "lazy val root = project
+createSbt() {
+  echo "lazy val root = project
   .in(file(\".\"))
   .settings(
     name := \"$directoryName\",
@@ -42,24 +46,29 @@ echo "lazy val root = project
     ),
     resolvers += (\"p\" at \"https://maven.aliyun.com/repository/public\").withAllowInsecureProtocol(true)
   )
-" > "${directoryName}/build.sbt"
+" >"${directoryName}/build.sbt" #---------------------------------
+}
 
 #-----------------
 # init plugins.sbt
 #-----------------
-echo "addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")
-addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")" > "${directoryName}/project/plugins.sbt"
-
+createPlugins() {
+  echo "addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")
+addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")" >"${directoryName}/project/plugins.sbt"
+}
 
 #-----------------
 # init build.properties
 #-----------------
-echo "sbt.version=${SbtVersion}" > "${directoryName}/project/build.properties"
+createBuildProperties() {
+  echo "sbt.version=${SbtVersion}" >"${directoryName}/project/build.properties"
+}
 
 #----------------------------------
-# init src/main/scala/example.scala
+# init src
 #----------------------------------
-echo "package object util {
+createSources() {
+  echo "package object util {
 
   import java.text.SimpleDateFormat
   import java.util.Date
@@ -81,9 +90,9 @@ echo "package object util {
 
     def orElse(pred: (T) => Boolean)(elseAction: (T) => T): T = orElse(pred(v))(elseAction)
   }
-}" > "${directoryName}/src/main/scala/util.scala"
+}" >"${directoryName}/src/main/scala/util.scala"
 
-echo "import java.util.Date
+  echo "import java.util.Date
 import scala.jdk.CollectionConverters._
 import scala.util.chaining._
 import scala.util.Using
@@ -103,21 +112,25 @@ object Main {
       .pipe(_ + \", \" + new Date().format(\"yyyy-MM-dd\"))
       .pipe(println)
   }
-}" > "${directoryName}/src/main/scala/main.scala"
+}" >"${directoryName}/src/main/scala/main.scala"
+}
 
-echo "class Test2 extends munit.FunSuite {
+createTestSources() {
+  echo "class Test2 extends munit.FunSuite {
   test(\"test1\") {
     val a = 2
     val b = 2
     assertEquals(a, b)
   }
 }
-" > "${directoryName}/src/test/scala/test1.scala"
+" >"${directoryName}/src/test/scala/test1.scala"
+}
 
 #------------------------------
 # create .gitignore, if desired
 #------------------------------
-echo "bin/
+createGitignore() {
+  echo "bin/
 project/project/
 target/
 lib/
@@ -131,9 +144,11 @@ lib/
 .idea/
 *.iml
 .metals
-" > "${directoryName}/.gitignore"
+" >"${directoryName}/.gitignore"
+}
 
-echo 'task default: :usage
+createRakefile() {
+  echo 'task default: :usage
 
 task :usage do
   sh "rake -T"
@@ -147,13 +162,42 @@ end
 desc "dev"
 task :dev do
   system("sbt \"~reStart\"")
-end' > "${directoryName}/Rakefile"
+end' >"${directoryName}/Rakefile"
+}
 
-#-----------------------------
-# create README.md, if desired
-#-----------------------------
-echo "# ${directoryName}" > "${directoryName}/README.md"
+createReadme() {
+  #-----------------------------
+  # create README.md, if desired
+  #-----------------------------
+  echo "# ${directoryName}" >"${directoryName}/README.md"
+}
 
-echo ""
-echo "Project created."
-echo "cd $directoryName"
+showProjectInfo() {
+  echo ""
+  echo "Project created."
+  echo "cd $directoryName"
+}
+
+main() {
+  echo "This script creates an SBT project directory beneath the current directory."
+
+  init "$1"
+
+  setup
+
+  createSbt
+
+  createBuildProperties
+
+  createSources
+
+  createTestSources
+
+  createRakefile
+
+  createReadme
+
+  showProjectInfo
+}
+
+main "$@"
