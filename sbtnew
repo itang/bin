@@ -4,6 +4,7 @@ ScalaVersion=3.0.0-RC2
 SbtVersion=1.5.0
 SbtBloopVersion=1.4.8
 SbtRevolverVersion=0.9.1
+SbtNativePackagerVersion=1.8.1
 
 directoryName=""
 
@@ -32,20 +33,42 @@ setup() {
 # create an initial build.sbt file
 #---------------------------------
 createSbt() {
-  echo "lazy val root = project
-  .in(file(\".\"))
-  .settings(
-    name := \"$directoryName\",
-    description := \"Example sbt project that compiles using Scala\",
-    version := \"0.1.0\",
-    scalaVersion := \"${ScalaVersion}\",
-    libraryDependencies ++= Seq(
-       \"com.novocode\" % \"junit-interface\" % \"0.11\" % Test,
-       \"org.scalameta\" %% \"munit\" % \"0.7.23\" % Test
-      //,\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion
-    ),
-    resolvers += (\"p\" at \"https://maven.aliyun.com/repository/public\").withAllowInsecureProtocol(true)
+  echo "enablePlugins(GraalVMNativeImagePlugin)
+
+val graalVMNativeImageCommandStr = {
+  val windows = System.getProperty(\"os.name\").toLowerCase.contains(\"windows\")
+  val nativeImageCmd = \"native-image\" + (if (windows) \".cmd\" else \"\")
+  val r = s\"\${System.getenv(\"GRAALVM_HOME\")}/bin/\$nativeImageCmd\"
+  println(s\"graalVMNativeImageCommand: \${r}\")
+  r
+}
+
+lazy val root = project
+.in(file(\".\"))
+.settings(
+  name := \"$directoryName\",
+  description := \"Example sbt project that compiles using Scala\",
+  version := \"0.1.0\",
+  scalaVersion := \"${ScalaVersion}\",
+  libraryDependencies ++= Seq(
+      \"com.novocode\" % \"junit-interface\" % \"0.11\" % Test,
+      \"org.scalameta\" %% \"munit\" % \"0.7.23\" % Test
+    //,\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion
+  ),
+  resolvers += (\"p\" at \"https://maven.aliyun.com/repository/public\").withAllowInsecureProtocol(true),
+  graalVMNativeImageCommand := graalVMNativeImageCommandStr,
+  graalVMNativeImageOptions ++= Seq(
+    \"--report-unsupported-elements-at-runtime\",
+    \"-H:+ReportExceptionStackTraces\",
+    \"--verbose\",
+    \"--allow-incomplete-classpath\",
+    \"--initialize-at-build-time\",
+    \"--no-fallback\",
+    \"-H:-CheckToolchain\",
+    \"-H:+TraceNativeToolUsage\",
+    \"-H:ConfigurationFileDirectories=.\"
   )
+)
 " >"${directoryName}/build.sbt" #---------------------------------
 }
 
@@ -54,7 +77,8 @@ createSbt() {
 #-----------------
 createPlugins() {
   echo "addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")
-addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")" >"${directoryName}/project/plugins.sbt"
+addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")
+addSbtPlugin(\"com.typesafe.sbt\" % \"sbt-native-packager\" % \"${SbtNativePackagerVersion}\")" >"${directoryName}/project/plugins.sbt"
 }
 
 #-----------------
@@ -162,6 +186,10 @@ end
 desc "dev"
 task :dev do
   system("sbt \"~reStart\"")
+end
+desc "native-build"
+task :native_build do
+  sh "sbt \"show graalvm-native-image:packageBin\""
 end' >"${directoryName}/Rakefile"
 }
 
@@ -188,6 +216,8 @@ main() {
   createSbt
 
   createBuildProperties
+
+  createPlugins
 
   createSources
 
