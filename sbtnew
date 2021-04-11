@@ -51,6 +51,7 @@ lazy val root = project
   version := \"0.1.0\",
   scalaVersion := \"${ScalaVersion}\",
   libraryDependencies ++= Seq(
+    // (\"io.d11\" %% \"zhttp\" % \"1.0.0.0-RC15\").cross(CrossVersion.for3Use2_13),
       \"com.novocode\" % \"junit-interface\" % \"0.11\" % Test,
       \"org.scalameta\" %% \"munit\" % \"0.7.23\" % Test
     //,\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion

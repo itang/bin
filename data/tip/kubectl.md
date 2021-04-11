@@ -2,6 +2,18 @@
 
 ## Usage
 
+    创建命名空间
+    $ kubectl create namespace svccomb-system
+
+    应用yaml
+    $ kubectl apply -f service-center.yaml
+
+    查看命名空间里pod状态
+    $ kubectl -n svccomb-system get pod
+
+    查看命名空间里服务
+    $ kubectl -n svccomb-system get service
+
     $ kubectl --namespace=<insert-namespace-name-here> run nginx --image=nginx
     $ kubectl --namespace=<insert-namespace-name-here> get pods
 
