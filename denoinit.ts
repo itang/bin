@@ -2,12 +2,21 @@
 
 if (import.meta.main) {
   const mainContent =
-    `import { serve } from "https://deno.land/std/http/server.ts";
+    `import * as path from "https://deno.land/std/path/mod.ts";
 
-const s = serve({ port: 8000 });
-console.log("http://localhost:8000/");
-for await (const req of s) {
-  req.respond({ body: "Hello World\\n" });
+console.log(path.normalizeGlob("/*"));
+
+const port = parseInt(Deno.env.get("PORT") || "8080");
+
+const body = new TextEncoder().encode("Hello World");
+
+console.info(\`Listen on :\${port}...\`);
+for await (const conn of Deno.listen({ port })) {
+  (async () => {
+    for await (const { respondWith } of Deno.serveHttp(conn)) {
+      respondWith(new Response(body));
+    }
+  })();
 }
 `;
 
@@ -19,10 +28,14 @@ for await (const req of s) {
   "deno.enable": true,
   "deno.unstable": true,
   "deno.lint": true,
-  "deno.import_intellisense_autodiscovery": true,
-  "deno.import_intellisense_origins": {
-    "https://deno.land": true,
-    "https://other.registry": false
+  "deno": {
+    "suggest": {
+      "imports": {
+        "hosts": {
+          "https://deno.land": true
+        }
+      }
+    }
   }
 }
 `;
