@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ScalaVersion=3.0.0-RC2
+ScalaVersion=3.0.0-RC3
 SbtVersion=1.5.0
 SbtBloopVersion=1.4.8
 SbtRevolverVersion=0.9.1
@@ -35,7 +35,7 @@ setup() {
 createSbt() {
   echo "enablePlugins(GraalVMNativeImagePlugin)
 
-val graalVMNativeImageCommandStr = {
+lazy val graalVMNativeImageCommandStr = {
   val windows = System.getProperty(\"os.name\").toLowerCase.contains(\"windows\")
   val nativeImageCmd = \"native-image\" + (if (windows) \".cmd\" else \"\")
   val r = s\"\${System.getenv(\"GRAALVM_HOME\")}/bin/\$nativeImageCmd\"
@@ -53,7 +53,7 @@ lazy val root = project
   libraryDependencies ++= Seq(
     // (\"io.d11\" %% \"zhttp\" % \"1.0.0.0-RC15\").cross(CrossVersion.for3Use2_13),
       \"com.novocode\" % \"junit-interface\" % \"0.11\" % Test,
-      \"org.scalameta\" %% \"munit\" % \"0.7.23\" % Test
+      \"org.scalameta\" %% \"munit\" % \"0.7.25\" % Test
     //,\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion
   ),
   resolvers += (\"p\" at \"https://maven.aliyun.com/repository/public\").withAllowInsecureProtocol(true),
