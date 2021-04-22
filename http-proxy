@@ -1,16 +1,22 @@
 #!/bin/bash
 
-kr=$(uname -r)
-echo $kr
+function main(){
+  local kr
+  kr="$(uname -r)"
+  echo "uname -r => $kr"
 
-whost='localhost'
+  local whost='localhost'
 
-if ([[ "$kr" =~ 'WSL2' ]] || [[ "$kr" =~ 'microsoft' ]]); then
-  whost=$(ip route | grep default | awk '{print $3}')
-  
-  echo "in WSL2; host machine: $whost"
-fi
+  if [[ "$kr" =~ 'WSL2' ]] || [[ "$kr" =~ 'microsoft' ]]; then
+    whost=$(ip route | grep default | awk '{print $3}')
+    
+    echo "in WSL2; host machine: $whost"
+  fi
 
-proxy_host="http://$whost:7979"
-echo "proxy_host: $proxy_host"
-http_proxy=$proxy_host https_proxy=$proxy_host $*
+  local proxy_host="http://$whost:7979"
+  echo "proxy_host: $proxy_host"
+
+  http_proxy=$proxy_host https_proxy=$proxy_host "$@"
+}
+
+main "$@"
