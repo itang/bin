@@ -5,10 +5,11 @@ SbtVersion=1.5.0
 SbtBloopVersion=1.4.8
 SbtRevolverVersion=0.9.1
 SbtNativePackagerVersion=1.8.1
+SbtNativeImageVersion=0.3.0
 
 directoryName=""
 
-init() {
+function init() {
   if [ -n "$1" ]; then
     directoryName=$1
   else
@@ -17,7 +18,7 @@ init() {
   directoryName=${directoryName:-MyFirstProject}
 }
 
-setup() {
+function setup() {
   echo ""
   echo "-----------------------------------------------"
   echo "Directory/Project Name: $directoryName"
@@ -32,115 +33,129 @@ setup() {
 
 # create an initial build.sbt file
 #---------------------------------
-createSbt() {
-  echo "enablePlugins(GraalVMNativeImagePlugin)
+function createSbt() {
+  echo "ThisBuild / scalaVersion := \"${ScalaVersion}\"
+ThisBuild / version := \"0.1.0-SNAPSHOT\"
+ThisBuild / organization := \"com.example\"
+ThisBuild / organizationName := \"example\"
+
+
+val munitVersion = \"0.7.25\"
+
+lazy val root = project
+  .in(file(\".\"))
+  .enablePlugins(GraalVMNativeImagePlugin, NativeImagePlugin)
+  .settings(
+    name := \"$directoryName\",
+    description := \"Example sbt project that compiles using Scala\",
+    version := \"0.1.0\",
+    scalaVersion := \"${ScalaVersion}\",
+    libraryDependencies ++= Seq(
+      // (\"io.d11\" %% \"zhttp\" % \"1.0.0.0-RC15\").cross(CrossVersion.for3Use2_13),
+      //  \"com.novocode\" % \"junit-interface\" % \"0.11\" % Test,
+        \"org.scalameta\" %% \"munit\" % munitVersion % Test
+      //,\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion
+    ),
+    Compile / mainClass := Some(\"Main\"),
+    resolvers += (\"p\" at \"https://maven.aliyun.com/repository/public\").withAllowInsecureProtocol(true),
+    graalVMNativeImageCommand := graalVMNativeImageCommandStr,
+    graalVMNativeImageOptions ++= projectNativeImageOptions,
+    nativeImageOptions ++= projectNativeImageOptions
+  )
 
 lazy val graalVMNativeImageCommandStr = {
   val windows = System.getProperty(\"os.name\").toLowerCase.contains(\"windows\")
   val nativeImageCmd = \"native-image\" + (if (windows) \".cmd\" else \"\")
-  val r = s\"\${System.getenv(\"GRAALVM_HOME\")}/bin/\$nativeImageCmd\"
-  println(s\"graalVMNativeImageCommand: \${r}\")
-  r
+  import scala.util.chaining._
+  s\"\${System.getenv(\"GRAALVM_HOME\")}/bin/\$nativeImageCmd\".tap(cmd => {
+    println(s\"[info] native image cmd: \${cmd}\")
+  })
 }
 
-lazy val root = project
-.in(file(\".\"))
-.settings(
-  name := \"$directoryName\",
-  description := \"Example sbt project that compiles using Scala\",
-  version := \"0.1.0\",
-  scalaVersion := \"${ScalaVersion}\",
-  libraryDependencies ++= Seq(
-    // (\"io.d11\" %% \"zhttp\" % \"1.0.0.0-RC15\").cross(CrossVersion.for3Use2_13),
-      \"com.novocode\" % \"junit-interface\" % \"0.11\" % Test,
-      \"org.scalameta\" %% \"munit\" % \"0.7.25\" % Test
-    //,\"org.springframework.boot\" % \"spring-boot-starter\" % springBootVersion
-  ),
-  resolvers += (\"p\" at \"https://maven.aliyun.com/repository/public\").withAllowInsecureProtocol(true),
-  graalVMNativeImageCommand := graalVMNativeImageCommandStr,
-  graalVMNativeImageOptions ++= Seq(
-    \"--report-unsupported-elements-at-runtime\",
-    \"-H:+ReportExceptionStackTraces\",
-    \"--verbose\",
-    \"--allow-incomplete-classpath\",
-    \"--initialize-at-build-time\",
-    \"--no-fallback\",
-    \"-H:-CheckToolchain\",
-    \"-H:+TraceNativeToolUsage\",
-    \"-H:ConfigurationFileDirectories=.\"
-  )
+lazy val projectNativeImageOptions = Seq(
+  \"--no-fallback\",
+  \"--allow-incomplete-classpath\",
+  \"--initialize-at-build-time=org.eclipse.jgit.ignore.internal.PathMatcher\",
+  \"-H:ReflectionConfigurationFiles=../../src/main/resources/reflection-config.json\",
+  \"--report-unsupported-elements-at-runtime\",
+  \"-H:+ReportExceptionStackTraces\",
+  \"--verbose\",
+  //\"--initialize-at-build-time\",
+  \"-H:-CheckToolchain\",
+  //\"-H:PrintFlags=Debug\",
+  //\"-H:+TraceNativeToolUsage\"
 )
+
 " >"${directoryName}/build.sbt" #---------------------------------
 }
 
 #-----------------
 # init plugins.sbt
 #-----------------
-createPlugins() {
+function createPlugins() {
   echo "addSbtPlugin(\"ch.epfl.scala\" % \"sbt-bloop\" % \"${SbtBloopVersion}\")
 addSbtPlugin(\"io.spray\" % \"sbt-revolver\" % \"${SbtRevolverVersion}\")
-addSbtPlugin(\"com.typesafe.sbt\" % \"sbt-native-packager\" % \"${SbtNativePackagerVersion}\")" >"${directoryName}/project/plugins.sbt"
+addSbtPlugin(\"com.typesafe.sbt\" % \"sbt-native-packager\" % \"${SbtNativePackagerVersion}\")
+addSbtPlugin(\"org.scalameta\" % \"sbt-native-image\" % \"${SbtNativeImageVersion}\")" >"${directoryName}/project/plugins.sbt"
 }
 
 #-----------------
 # init build.properties
 #-----------------
-createBuildProperties() {
+function createBuildProperties() {
   echo "sbt.version=${SbtVersion}" >"${directoryName}/project/build.properties"
 }
 
 #----------------------------------
 # init src
 #----------------------------------
-createSources() {
-  echo "package object util {
+function createSources() {
+  echo "object utils:
 
   import java.text.SimpleDateFormat
   import java.util.Date
 
-  implicit class DateOps(d: Date) {
+  extension (d: Date)
     def format(pattern: String = \"yyyyMMdd\"): String = new SimpleDateFormat(pattern).format(d)
-  }
 
-  def time[T](block: => T): T = {
+  def time[T](block: => T): T =
     val start = System.currentTimeMillis()
     val ret = block
     val end = System.currentTimeMillis()
     println(s\">>Cost time: \${end - start}ms\")
     ret
-  }
 
-  implicit class AnyOpts[T](v: T) {
+  extension[T] (v: T)
     def orElse(pred: Boolean)(elseAction: (T) => T): T = if (pred) elseAction(v) else v
 
     def orElse(pred: (T) => Boolean)(elseAction: (T) => T): T = orElse(pred(v))(elseAction)
-  }
-}" >"${directoryName}/src/main/scala/util.scala"
+" >"${directoryName}/src/main/scala/util.scala"
 
-  echo "import java.util.Date
-import scala.jdk.CollectionConverters._
-import scala.util.chaining._
-import scala.util.Using
+  echo "import utils._
+
+import java.util.Date
 import scala.io.Source
-import util._
+import scala.jdk.CollectionConverters._
+import scala.util.Using
+import scala.util.chaining._
 
-object Main {
+object Main:
 
   def main(args: Array[String]): Unit = time {
     println(s\"args: \${args.mkString(\" \")}\")
     System.getenv.asScala.filter(it => it._1.startsWith(\"ENV\")).foreach(println)
 
-    Using(Source.fromFile(\"build.sbt\")){ it => it.getLines().filter(_.contains(\"version\")).foreach(println)}
+    Using(Source.fromFile(\"build.sbt\")) { it => it.getLines().filter(_.contains(\"version\")).foreach(println) }
 
     \"Hello, World\"
       .tap(println)
       .pipe(_ + \", \" + new Date().format(\"yyyy-MM-dd\"))
       .pipe(println)
   }
-}" >"${directoryName}/src/main/scala/main.scala"
+" >"${directoryName}/src/main/scala/main.scala"
 }
 
-createTestSources() {
+function createTestSources() {
   echo "class Test2 extends munit.FunSuite {
   test(\"test1\") {
     val a = 2
@@ -154,7 +169,7 @@ createTestSources() {
 #------------------------------
 # create .gitignore, if desired
 #------------------------------
-createGitignore() {
+function createGitignore() {
   echo "bin/
 project/project/
 target/
@@ -172,7 +187,7 @@ lib/
 " >"${directoryName}/.gitignore"
 }
 
-createRakefile() {
+function createRakefile() {
   echo 'task default: :usage
 
 task :usage do
@@ -188,26 +203,69 @@ desc "dev"
 task :dev do
   system("sbt \"~reStart\"")
 end
+
 desc "native-build"
 task :native_build do
   sh "sbt \"show graalvm-native-image:packageBin\""
+end
+
+desc "nativeImage"
+task :nativeimage do
+  sh "sbt nativeImage"
 end' >"${directoryName}/Rakefile"
 }
 
-createReadme() {
+function createReadme() {
   #-----------------------------
   # create README.md, if desired
   #-----------------------------
   echo "# ${directoryName}" >"${directoryName}/README.md"
 }
 
-showProjectInfo() {
+function createReflectionConfigfile() {
+  echo '[
+  {"name": "org.apache.log4j.Category"},
+  {"name": "org.apache.log4j.Logger"},
+  {"name": "org.apache.log4j.helpers.Loader"},
+  {
+    "name":"java.lang.Thread",
+    "allPublicMethods":true,
+    "allPublicFields": true,
+    "allPublicConstructors": true
+  },
+  {
+    "name": "giter8.G8$",
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
+    "name": "giter8.G8$$anon$2",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "allDeclaredClasses" : true,
+    "allPublicClasses" : true
+  },
+  {
+    "name": "java.util.Properties",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "allDeclaredClasses" : true,
+    "allPublicClasses" : true
+  }
+]' >"$directoryName/src/main/resources/reflection-config.json"
+}
+
+function showProjectInfo() {
   echo ""
   echo "Project created."
   echo "cd $directoryName"
 }
 
-main() {
+function main() {
   echo "This script creates an SBT project directory beneath the current directory."
 
   init "$1"
@@ -221,6 +279,8 @@ main() {
   createPlugins
 
   createSources
+
+  createReflectionConfigfile
 
   createTestSources
 
