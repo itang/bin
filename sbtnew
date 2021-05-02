@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ScalaVersion=3.0.0-RC3
-SbtVersion=1.5.0
+SbtVersion=1.5.1
 SbtBloopVersion=1.4.8
 SbtRevolverVersion=0.9.1
 SbtNativePackagerVersion=1.8.1
@@ -48,8 +48,8 @@ lazy val root = project
   .settings(
     name := \"$directoryName\",
     description := \"Example sbt project that compiles using Scala\",
-    version := \"0.1.0\",
-    scalaVersion := \"${ScalaVersion}\",
+    //version := \"0.1.0\",
+    //scalaVersion := \"${ScalaVersion}\",
     libraryDependencies ++= Seq(
       // (\"io.d11\" %% \"zhttp\" % \"1.0.0.0-RC15\").cross(CrossVersion.for3Use2_13),
       //  \"com.novocode\" % \"junit-interface\" % \"0.11\" % Test,
@@ -84,9 +84,7 @@ lazy val projectNativeImageOptions = Seq(
   \"-H:-CheckToolchain\",
   //\"-H:PrintFlags=Debug\",
   //\"-H:+TraceNativeToolUsage\"
-)
-
-" >"${directoryName}/build.sbt" #---------------------------------
+)" >"${directoryName}/build.sbt" #---------------------------------
 }
 
 #-----------------

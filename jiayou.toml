@@ -15,6 +15,8 @@ urls = [
      "https://www.infoq.cn/topic/programing-languages",
      "http://36kr.com/",
      "https://news.ycombinator.com/news",
+     "https://elixirforum.com/",
+     "https://github.com/trending/elixir?since=daily",
      "https://github.com/stars?direction=desc&sort=updated",
      "https://github.com/trending",
      "https://github.com/trending/typescript?since=daily",
@@ -33,6 +35,3 @@ urls = [
      "https://www.reddit.com/r/rust",
      "https://lobste.rs/",
 ]
-
-#"https://elixirforum.com/",
-#"https://github.com/trending/elixir?since=daily",
