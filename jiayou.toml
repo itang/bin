@@ -32,6 +32,7 @@ urls = [
      "https://gitter.im/scala-native/scala-native",
      "https://rustcc.cn/section?id=f4703117-7e6b-4caf-aa22-a3ad3db6898f",
      "https://github.com/trending/rust?since=daily",
+     "https://users.rust-lang.org/",
      "https://www.reddit.com/r/rust",
      "https://lobste.rs/",
 ]
