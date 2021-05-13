@@ -15,6 +15,9 @@ https://curl.github.io/curl-cheat-sheet/http-sheet.html
     $ curl -i --insecure https://localhost:8443
     $ curl -i -k https://localhost:8443
 
+    Post JSON
+    $ curl -X POST -d '{"name": "tom", "legs": 4}' -H "Content-Type: application/json" http://localhost:8080/orders/shoes
+
     send cookies via command line
     $ curl -H "Content-Type: application/json" -X GET \
       http://localhost:4000/api/users \
