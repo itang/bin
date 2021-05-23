@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ScalaVersion=3.0.0-RC3
+ScalaVersion=3.0.0
 SbtVersion=1.5.2
 SbtBloopVersion=1.4.8
 SbtRevolverVersion=0.9.1

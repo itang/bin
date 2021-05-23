@@ -10,6 +10,9 @@
 
     $ native-image --static ...
 
+    Windows
+    run after 'x64 Native Tools Command Prompt for VS 2019'
+
 ## tips
 
     $ mvn install:install-file -Dfile=${GRAALVM_HOME}/jre/lib/svm/builder/svm.jar \
