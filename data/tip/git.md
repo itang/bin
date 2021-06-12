@@ -80,6 +80,9 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     回到master分支
     $ git checkout master
 
+    创建远程分支(本地分支push到远程)
+    $ git push origin [name]
+
 
     (当前分支）合并指定分支
     $ git merge dev
