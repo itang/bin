@@ -19,6 +19,9 @@ https://github.com/foundweekends/giter8/wiki/giter8-templates
     $ sbt "run -f hello"
     $ sbt "run --do-it"
 
+    # run in sub project
+    $ sbt "start/run"
+
 
     new for dotty
     $ sbt new lampepfl/dotty.g8
