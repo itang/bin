@@ -31,6 +31,11 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     $ git clone git@github.com:itang/testgit.git
 
+    $ git clone https://github.com/username/project-main.git --recurse-submodules
+
+    $ git submodule init
+    $ git submodule update
+
     HEAD 指向指定commit id
     $ git reset --hard commit_id
 
@@ -105,8 +110,7 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     $ git remote
     $ git remote -v
 
-将本地分支与远程 origin/dev 分支建立链接
-　　 \$ git branch --set-upstream dev origin/dev
+将本地分支与远程 origin/dev 分支建立链接 $ git branch --set-upstream dev origin/dev
 
     将指定分支推送到指定远程
     $ git push origin master
