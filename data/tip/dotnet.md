@@ -15,6 +15,14 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
 
     $ dotnet add package Plotly.NET
 
+    Runtime depended executable
     $ dotnet build
     $ dotnet build --configuration Release
     $ dotnet build -c Release
+
+    Self-contained executable
+    $ dotnet publish -c Release -r win-x64
+    $ dotnet publish -c Release -r linux-x64
+
+    Native single-executable
+    TODO
