@@ -4,6 +4,7 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
 
 ## Usage
 
+    $ dotnet new --list
     $ dotnet new -i WebSharper.Templates
     $ dotnet new websharper-web
 
@@ -12,6 +13,7 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     $ dotnet new console -lang "F#" -o myApp
 
     $ dotnet run
+    $ dotnet watch run
 
     $ dotnet add package Plotly.NET
 
