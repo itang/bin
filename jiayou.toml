@@ -21,6 +21,7 @@ urls = [
      "https://github.com/trending/python?since=daily",
      "https://github.com/trending/go?since=daily",
      "https://github.com/trending/java?since=daily",
+     "https://github.com/trending/fsharp?since=daily",
      "https://www.zhihu.com/column/fsharp",
      "https://discuss.lightbend.com/c/akka/5",
      "https://github.com/trending/scala?since=daily",
