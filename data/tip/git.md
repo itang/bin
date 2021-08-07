@@ -23,6 +23,8 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     $ git init
 
     $ git remote add origin git@bitbucket.org:user/something.git
+    change a remote git repository
+    $ git remote set-url origin git@your.git.repo.example.com:user/repository2.git
 
     $ git add README.md
     $ git commit -m "first commit"
