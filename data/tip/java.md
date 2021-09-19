@@ -23,7 +23,6 @@
     Read more: https://javarevisited.blogspot.com/2012/10/5-ways-to-add-multiple-jar-to-classpath-java.html#ixzz6LzsKXHFO
     $ java -cp "/home/itang/.asdf/installs/scala/2.13.2/lib/*:." Main
 
-
 ## Gc options
 
 see: https://zhuanlan.zhihu.com/p/118490800
@@ -54,6 +53,16 @@ java -Xms1024m -Xmx1024m -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGC
 
 GC 日志输出: "[Full GC (System.gc())"
 
-方式2: `jmap -dump:live`  or `jmap -histo:live`
+方式2: `jmap -dump:live` or `jmap -histo:live`
 
-都会触发Full GC   , 不受 -XX:+DisableExplicitGC  影响, GC 日志输出"[Full GC (Heap Inspection Initiated GC)"
+都会触发Full GC , 不受 -XX:+DisableExplicitGC 影响, GC 日志输出"[Full GC (Heap Inspection
+Initiated GC)"
+
+### JVM诊断常用命令
+
+```
+jmap -heap ${pid}
+jmap -dump:format=b,file=logs/dump/test.bin ${pid}
+jstat -gc ${pid} 2000
+jstack ${pid}
+```
