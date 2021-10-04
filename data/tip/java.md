@@ -41,8 +41,10 @@ see: https://zhuanlan.zhihu.com/p/118490800
 -XX:GCLogFileSize=64m
 ```
 
+https://dzone.com/articles/try-to-avoid-xxusegclogfilerotation
+
 ```
-java -Xms1024m -Xmx1024m -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -Xloggc:logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=32 -XX:GCLogFileSize=64m -jar xxx.jar
+java -Xms1024m -Xmx1024m -Dfile.encoding=UTF-8 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=data/ -XX:ErrorFile=logs/hs_err_pid%p.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -Xloggc:logs/gc-%t.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=64m -jar xxx.jar
 ```
 
 ### 手工触发GC

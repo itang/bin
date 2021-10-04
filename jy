@@ -6,13 +6,13 @@
 # pip install pytoml
 # pip install pyfunctional
 
-#import os
 import subprocess
+from os import path
 
 
 def open_browser(url: str, cmd: str = 'x-www-browser'):
-    #os.system('%s %s > /dev/null 2>&1 &' % (cmd, url))
-    subprocess.Popen([cmd, url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.Popen([cmd, url], stdout=subprocess.DEVNULL,
+                     stderr=subprocess.DEVNULL)
 
 
 if __name__ == '__main__':
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     #from functional import seq
 
     TOML_FILE = 'jiayou.toml'
-    toml_file = os.path.join(os.path.dirname(__file__), TOML_FILE)
+    toml_file = path.join(os.path.dirname(__file__), TOML_FILE)
     print(f'load urls from {toml_file}...')
 
     with open(toml_file, 'rb') as f:
@@ -30,7 +30,3 @@ if __name__ == '__main__':
             print(f'open {url}...')
             open_browser(url)
         # seq(obj['urls']).for_each(open_browser)
-
-        # for url in obj['urls']:
-        #    os.system('xdg-open {}'.format(url))
-        # subprocess.call("xdg-open {}".format(url), shell=True)
