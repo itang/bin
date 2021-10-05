@@ -2,9 +2,21 @@
 
 ## Links
 
-* [https://pypi.org/](https://pypi.org/)
+- [https://pypi.org/](https://pypi.org/)
 
 ## tips
+
+虚拟环境
+
+```python
+python -m venv .env
+source .env/bin/activate
+
+# see: https://github.com/PyO3/maturin
+pip install maturin
+# builds the crate and installs it as a python module directly in the current virtualenv
+maturin develop
+```
 
 指定文件编码
 
@@ -16,7 +28,7 @@
 bytes to string
 
 ```python
- b"abcde".decode("utf-8")
+b"abcde".decode("utf-8")
  b'\xe4\xb8\xad\xff'.decode('utf-8', errors='ignore')
 ```
 
@@ -179,7 +191,6 @@ List
 
 ```python
 for i, value in enumerate(['A', 'B', 'C'])
-
 ```
 
 Dict
@@ -229,7 +240,6 @@ Python中定义函数，参数顺序必须是：必选参数、默认参数、�
 装饰器
 
 ```python
-
 # decorator，所以接受一个函数作为参数，并返回一个函数
 
 def log(func):
