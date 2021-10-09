@@ -2,6 +2,10 @@
 
 ## Usage
 
+    $ native-image --initialize-at-build-time \
+             --no-server \
+             -jar ./target/hello-world-0.1.0-SNAPSHOT-standalone.jar \
+
     $ native-image -cp ./target/mixed-code-hello-world-1.0-SNAPSHOT.jar -H:Name=helloworld -H:Class=hello.JavaHello -H:+ReportUnsupportedElementsAtRuntime
     $ native-image -cp ./target/mixed-code-hello-world-1.0-SNAPSHOT.jar -H:Name=helloworld --report-unsupported-elements-at-runtime hello.JavaHello
     $ native-image --verbose -cp ".:$(echo /$GROOVY_HOME/lib/*.jar | tr ' ' ':')" HiWorld
