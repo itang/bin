@@ -24,3 +24,7 @@ for x in $(./bin/target/mill --show core.assemblyClasspath | jq ".[].path"); do
   fi
 done
 ```
+
+```bash
+curl -s http://localhost:5186/json | jq ".[1].age"
+```
