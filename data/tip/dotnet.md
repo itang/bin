@@ -30,6 +30,8 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
 
     $ dotnet tool install fake-cli -g
     $ fake
+    $ dotnet tool update -g fantomas-tool
+    $ dotnet tool update --global fantomas-tool --version 4.6.0-alpha-004
 
     $ dotnet run
     $ dotnet watch run
