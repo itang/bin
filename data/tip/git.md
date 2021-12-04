@@ -18,6 +18,19 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     $ ssh-keygen -t rsa -C "live.tang@gmail.com"
     $ cat ~/.ssh/id_rsa.pub
 
+## New Usage
+
+    https://devconnected.com/how-to-checkout-git-tags/
+    $ git fetch --all --tags
+    $ git checkout tags/v1.0 -b v1.0-branch
+    $ git fetch --tags
+
+    latest tag
+    $ tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+    $ git checkout $tag -b latest
+
+    $ git log --oneline --graph
+
 ## Usage
 
     $ git init

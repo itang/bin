@@ -7,10 +7,10 @@
     $ docker run -ti -name container-name image-id /bin/bash
     $ docker run -ti -name container-name -d image-id
     $ docker run -ti -name container-name -p 4000:4000 -d image-id
-x
-    $ docker run --rm -ti --net=host postgresql /bin/bash
-    $ docker run -it --name mypostgres -p 5432:5432 postgres
-    $ docker run -it --name mypostgres -p 5432:5432 -d postgres
+
+x $ docker run --rm -ti --net=host postgresql /bin/bash $ docker run -it --name
+mypostgres -p 5432:5432 postgres $ docker run -it --name mypostgres -p 5432:5432
+-d postgres
 
     $ docker run -ti --rm --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 mysql
     $ docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
@@ -36,6 +36,8 @@ x
     $ docker inspect kong | jq ".[].State.Health"
 
     $ docker build -t image:latest .
+    $ docker build -t image:latest . --no-cache
+
     $ docker push image:latest
     $ docker pull image:latest
     $ docker pull nginx
