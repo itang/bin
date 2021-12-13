@@ -3,6 +3,8 @@
 ## Usage
 
     $ scala-cli repl -S 3.1.0 --dependency org.wvlet.airframe::airframe-ulid:21.12.0
+    $ scala-cli repl -S 3.1.0 --dep org.wvlet.airframe::airframe-canvas:21.12.0
+    $ scala-cli repl -S 3.1.0 --dep org.wvlet.airframe::airframe-canvas:21.12.0 -d org.wvlet.airframe::airframe-ulid:21.12.0
     $ scala-cli repl -S 2.13 --amm
 
     $ scala-cli package --native -S 2.13 main.scala
