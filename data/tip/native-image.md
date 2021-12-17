@@ -1,7 +1,12 @@
 # native-image
 
+
+## install
+
+    $ gu install -L  /somepath/native_image.jar
 ## Usage
 
+    $ native-image -H:-CheckToolchain -H:+ReportExceptionStackTraces --initialize-at-build-time --report-unsupported-elements-at-runtime --no-fallback --verbose -jar main.jar
     $ native-image --initialize-at-build-time \
              --no-server \
              -jar ./target/hello-world-0.1.0-SNAPSHOT-standalone.jar \
