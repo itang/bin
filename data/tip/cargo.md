@@ -9,6 +9,9 @@
 
 ## Usage
 
+    $ cargo doc
+    $ cargo doc --open
+
     $ cargo new --bin test1
     $ cargo new --lib test2
     $ cargo +nightly new foo
