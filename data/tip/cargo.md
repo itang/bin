@@ -70,6 +70,13 @@
     in order to also check tests and non-default crate features, use
     $ cargo clippy --all-targets --all-features -- -D warnings
 
+## cargo.toml
+
+```toml
+[dependencies]
+tokio = { version = "1.15.0", features = ["full"] }
+```
+
 ## profiler
 
     $ cargo profiler callgrind --bin $PATH_TO_BINARY -- -a 3 --like this
