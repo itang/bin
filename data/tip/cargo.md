@@ -18,6 +18,7 @@
     $ cargo +beta new foo
 
     $ cargo add may
+    $ cargo add dioxus --features ssr
 
     $ cargo check
 
