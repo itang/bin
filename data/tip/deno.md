@@ -16,6 +16,11 @@
     $ deno run ----inspect-brk main.ts
     open chrome://inspect/#devices
 
+    $ deno run -A --import-map imports.json .\lib\es6\src\demo.js
+    
+    compile
+    $ deno compile --import-map=imports.json .\lib\es6\src\demo.js
+
     $ deno info
     $ deno info server.ts
 
