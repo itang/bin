@@ -35,8 +35,11 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
 
     $ dotnet tool install fake-cli -g
     $ fake
+
+    # update tool
     $ dotnet tool update -g fantomas-tool
     $ dotnet tool update --global fantomas-tool --version 4.6.0-alpha-004
+    $ dotnet tool update fable --version 3.7.0-beta-*
 
     $ dotnet run
     $ dotnet watch run
