@@ -17,6 +17,11 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     $ dotnet new -i WebSharper.Templates
     $ dotnet new -i "fake-template::*"
 
+    # checks for available updates for installed template packages.
+    $ dotnet new --update-check
+    #  applies updates to installed template packages.
+    $ dotnet new --update-apply
+
     $ dotnet new websharper-web
 
     $ dotnet new classlib -lang "F#" -o myLibrary
