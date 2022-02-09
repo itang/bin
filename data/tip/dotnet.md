@@ -42,6 +42,7 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     $ dotnet tool update fable --version 3.7.0-beta-*
 
     $ dotnet run
+    $ dotnet run --no-build
     $ dotnet watch run
 
     $ dotnet add package Plotly.NET
