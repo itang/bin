@@ -59,3 +59,8 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     Native single-executable
     $ dotnet publish -r linux-x64 -c Release /p:PublishSingleFile=true /p:PublishTrimmed=true
     $ dotnet publish -r win-x64 -c Release /p:PublishSingleFile=true /p:PublishTrimmed=true
+
+## dotnet fsi
+
+    load package
+    > #r "nuget: Newtonsoft.Json"
