@@ -28,6 +28,19 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     $ dotnet add myLibrary/myLibrary.fsproj package Newtonsoft.Json
     $ dotnet new console -lang "F#" -o myApp
 
+    fable
+    $ dotnet new --install Fable.Template
+    $ dotnet new fable -o webapp1
+    $ cd webappi
+    $ npm install
+    $ npm start
+
+    fable python
+    $ dotnet tool install --global fable-py --version 4.0.0-alpha-032
+    $ dotnet add src package Fable.Core.Experimental --version 4.0.0-alpha-032
+    $ dotnet add src package Fable.Python
+    $ fable-py src
+
     local dotnet tool
     $ dotnet new tool-manifest
     $ dotnet tool install fake-cli
