@@ -2,6 +2,8 @@
 
 ## Usage
 
+    $ zig test src/main.zig
+
     $ zig cc -o main main.c -target x86_64-linux-musl
     $ zig cc -o main main.c -target x86_64-linux -static
 
