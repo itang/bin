@@ -1,5 +1,10 @@
 # go
 
+## Usage
+
+    $ go mod init
+    # 从源码获取package信息到mod？
+    $ go mod tidy
 ## go module
 
     检查可以升级的package
@@ -16,6 +21,10 @@
 
     升级到指定的版本号version
     $ go get package@version
+
+    $ git tag v1.2.3
+    $ git push --tags
+    $ go get -d example.com/mod@v1.2.3
 
 ## go bulid
 
