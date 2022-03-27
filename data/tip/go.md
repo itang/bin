@@ -54,6 +54,16 @@
 
 ## go tools
 
+    godoc
+    $ go install -v golang.org/x/tools/cmd/godoc@latest
+    $ godoc -http=:9000
+
+    golangci-lint
+    $ go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+    $ golangci-lint run
+    $ golangci-lint run ./...
+    $ golangci-lint run dir1 dir2/... dir3/file1.go
+
 ## goproxy
 
 https://goproxy.io/
