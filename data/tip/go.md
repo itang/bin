@@ -52,6 +52,19 @@
     GOOS: windows | linux | darwin
     GOARCH: 386 | amd64
 
+## go test
+
+    $ go test
+
+
+    https://brantou.github.io/2017/05/24/go-cover-story/
+    输出测试覆盖度
+    $ go test . -cover -v
+    输出覆盖度结果文件
+    $ go test -cover "-coverprofile=cov.out"
+    覆盖情况html展示
+    $ go tool cover  "-html=cov.out"
+
 ## go tools
 
     godoc
