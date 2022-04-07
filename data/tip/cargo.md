@@ -29,6 +29,11 @@
     $ rustup component add rust-std-x86_64-unknown-linux-musl
     $ cargo build --release --target x86_64-unknown-linux-musl
 
+    LLVM-based coverage instrumentation
+    $ RUSTFLAGS="-C instrument-coverage" cargo build
+
+    $ cargo build --timings
+
     $ cargo run
     $ cargo run --release
     $ cargo run --bin main
