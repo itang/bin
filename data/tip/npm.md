@@ -12,6 +12,10 @@
     $ npm install --save-dev typescript
     $ npm install --save-prod typescript
 
+    $ npm install --save-dev @types/node
+    add a types reference if you're not using modules
+    /// <reference types="node" />
+
     $ npm run build
     $ npm start
 
