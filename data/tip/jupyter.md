@@ -11,4 +11,6 @@
 
 ## Usage
 
+    $ jupyter notebook
+
     $ jupyter lab
