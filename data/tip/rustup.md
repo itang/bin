@@ -11,6 +11,9 @@
     $ rustup default nightly
     $ rustup default nightly-2017-12-20
 
+    # Modify directory toolchain overrides
+    $ rustup override set nightly
+
     $ rustup target list
     $ rustup target add wasm32-unknown-unknown
 
