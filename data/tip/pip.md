@@ -2,6 +2,8 @@
 
 ## Usage
 
+    $ python -m pip install -U pip
+
     $ pip install --upgrade pip
  
     $ pip install -U robyn
