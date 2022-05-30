@@ -1,8 +1,10 @@
-# pip
+// # pip
 
 ## Usage
 
     $ pip install --upgrade pip
+ 
+    $ pip install -U robyn
 
     $ pip install -r requirements.txt
     $ cat requirements.txt
