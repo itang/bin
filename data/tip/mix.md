@@ -4,6 +4,8 @@
 
     custom module name
     $ mix new kv --module KV
+    
+    $ mix new my_app --sup
 
 ## mix hex
 
