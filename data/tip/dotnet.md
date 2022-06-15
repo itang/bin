@@ -72,6 +72,8 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     Native single-executable
     $ dotnet publish -r linux-x64 -c Release /p:PublishSingleFile=true /p:PublishTrimmed=true
     $ dotnet publish -r win-x64 -c Release /p:PublishSingleFile=true /p:PublishTrimmed=true
+    
+    $ dotnet publish -c Release -r win-x64 --self-contained /p:RunNativeAot=True
 
 ## dotnet fsi
 
