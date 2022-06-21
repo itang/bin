@@ -19,6 +19,7 @@
 
     $ cargo add may
     $ cargo add dioxus --features ssr
+    $ cargo add tokio +full
 
     $ cargo check
 
