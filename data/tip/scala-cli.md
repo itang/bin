@@ -30,3 +30,13 @@
     $ scala-cli package -f --assembly main.scala
 
     $ scala-cli run -S 2.13 -w main.scala
+
+    ➜ scala-cli repl -d "fr.janalyse::zio-worksheet:2.0.0.0"
+    Downloading 2 dependencies
+    Welcome to Scala 3.1.3 (17.0.2, Java Java HotSpot(TM) 64-Bit Server VM).
+    Type in expressions for evaluation. Or try :help.
+
+    scala> import zio.*
+    scala> import zio.worksheet.*
+    scala> Console.printLine("Hello").unsafeRun
+    Hello
