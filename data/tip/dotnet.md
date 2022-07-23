@@ -79,3 +79,12 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
 
     load package
     > #r "nuget: Newtonsoft.Json"
+
+## dotnet fable
+    $ dotnet new console -lang F# -o testfable && cd testfable
+    $ dotnet new tool-manifest
+    $ dotnet tool install fable --local --version 4.0.0-snake-island-*
+    $ dotnet fable
+    $ dotnet fable --lang rust
+    
+    $ deno run Program.fs.js
