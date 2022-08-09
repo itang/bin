@@ -2,6 +2,9 @@
 
 ## Usage
 
+    mill resolve xxx._
+    mill resolve core._
+
     mill mill.scalalib.GenIdea/idea
     mill mill.bsp.BSP/install
 
