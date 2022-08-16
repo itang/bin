@@ -51,3 +51,9 @@ if (import.meta.main) {
     console.log("main");
 }
 ```
+
+## tools
+
+    fresh
+    $ deno run -A -r https://fresh.deno.dev deno-fresh-demo
+
