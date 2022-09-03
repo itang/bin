@@ -72,7 +72,7 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     Native single-executable
     $ dotnet publish -r linux-x64 -c Release /p:PublishSingleFile=true /p:PublishTrimmed=true
     $ dotnet publish -r win-x64 -c Release /p:PublishSingleFile=true /p:PublishTrimmed=true
-    
+
     $ dotnet publish -c Release -r win-x64 --self-contained /p:RunNativeAot=True
 
 ## dotnet fsi
@@ -81,10 +81,16 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     > #r "nuget: Newtonsoft.Json"
 
 ## dotnet fable
+    $ dotnet tool install fable --global --version 4.0.0-snake-island-*
+    $ dotnet tool update fable --global --version 4.0.0-snake-island-*
+
     $ dotnet new console -lang F# -o testfable && cd testfable
     $ dotnet new tool-manifest
     $ dotnet tool install fable --local --version 4.0.0-snake-island-*
+
+    $ dotnet fable watch src -s --run vite
+
     $ dotnet fable
     $ dotnet fable --lang rust
-    
+
     $ deno run Program.fs.js
