@@ -97,3 +97,23 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     $ dotnet fable --lang rust
 
     $ deno run Program.fs.js
+
+## native aot configuration
+
+```xml
+<!-- Publish Native AOT -->
+<PublishAot>true</PublishAot>
+<StripSymbols>true</StripSymbols>
+
+<!-- https://docs.microsoft.com/zh-cn/dotnet/core/deploying/trimming/prepare-libraries-for-trimming -->
+<IsTrimmable>true</IsTrimmable>
+<PublishTrimmed>true</PublishTrimmed>
+
+<!-- https://github.com/dotnet/runtime/blob/main/src/coreclr/nativeaot/docs/optimizing.md -->
+<!-- <TrimMode>link</TrimMode> -->
+<TrimMode>full</TrimMode>
+<InvariantGlobalization>true</InvariantGlobalization>
+<IlcGenerateStackTraceData>false</IlcGenerateStackTraceData>
+<IlcOptimizationPreference>Speed</IlcOptimizationPreference>
+```
+
