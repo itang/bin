@@ -58,6 +58,9 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     $ dotnet run --no-build
     $ dotnet watch run
 
+    $ dotnet run -c Release -f net6.0 --filter '**' --runtimes net6.0 net7.0
+    $ dotnet run -c Release -f net7.0 --filter '**' --runtimes net7.0
+
     $ dotnet add package Plotly.NET
 
     Runtime depended executable
