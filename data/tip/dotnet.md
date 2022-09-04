@@ -92,6 +92,7 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     $ dotnet tool install fable --local --version 4.0.0-snake-island-*
 
     $ dotnet fable watch src -s --run vite
+    $ dotnet fable watch . --run deno run --watch Program.fs.js
 
     $ dotnet fable
     $ dotnet fable --lang rust
@@ -116,4 +117,3 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
 <IlcGenerateStackTraceData>false</IlcGenerateStackTraceData>
 <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
 ```
-
