@@ -35,11 +35,6 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     $ npm install
     $ npm start
 
-    fable python
-    $ dotnet tool install --global fable-py --version 4.0.0-alpha-032
-    $ dotnet add src package Fable.Core.Experimental --version 4.0.0-alpha-032
-    $ dotnet add src package Fable.Python
-    $ fable-py src
 
     local dotnet tool
     $ dotnet new tool-manifest
@@ -48,6 +43,7 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
 
     $ dotnet tool install fake-cli -g
     $ fake
+    $ dotnet tool install -g fantomas --prerelease
 
     # update tool
     $ dotnet tool update -g fantomas-tool
