@@ -1,8 +1,10 @@
 # dotnet
 
-see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
+see <https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet>
 
 ## Usage
+
+    $ dotnet nuget locals all -clear
 
     $ dotnet new sln -o FSNetCore
     $ cd FSNetCore
@@ -80,20 +82,21 @@ see https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet
     > #r "nuget: Newtonsoft.Json"
 
 ## dotnet fable
-    $ dotnet tool install fable --global --version 4.0.0-snake-island-*
-    $ dotnet tool update fable --global --version 4.0.0-snake-island-*
 
-    $ dotnet new console -lang F# -o testfable && cd testfable
-    $ dotnet new tool-manifest
-    $ dotnet tool install fable --local --version 4.0.0-snake-island-*
+    dotnet tool install fable --global --version 4.0.0-snake-island-*
+    dotnet tool update fable --global --version 4.0.0-snake-island-*
 
-    $ dotnet fable watch src -s --run vite
-    $ dotnet fable watch . --run deno run --watch Program.fs.js
+    dotnet new console -lang F# -o testfable && cd testfable
+    dotnet new tool-manifest
+    dotnet tool install fable --local --version 4.0.0-snake-island-*
 
-    $ dotnet fable
-    $ dotnet fable --lang rust
+    dotnet fable watch src -s --run vite
+    dotnet fable watch . --run deno run --watch Program.fs.js
 
-    $ deno run Program.fs.js
+    dotnet fable
+    dotnet fable --lang rust
+
+    deno run Program.fs.js
 
 ## native aot configuration
 
