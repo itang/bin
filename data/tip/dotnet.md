@@ -4,6 +4,7 @@ see <https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet>
 
 ## Usage
 
+    $ dotnet nuget locals all -list
     $ dotnet nuget locals all -clear
 
     $ dotnet new sln -o FSNetCore
