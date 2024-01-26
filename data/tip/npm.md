@@ -8,7 +8,7 @@
     $ npm init @vitejs/app
 
     $ npm install -g npm
-    $ npm install -g yarn --registry=https://registry.npm.taobao.org
+    $ npm install -g yarn --registry=https://registry.npmmirror.com/
     $ npm install --save-dev typescript
     $ npm install --save-prod typescript
 
@@ -24,5 +24,5 @@
     $ npm config list
 
 
-    $ npm config set registry https://registry.npm.taobao.org
+    $ npm config set registry https://registry.npmmirror.com/
     $ npm config set registry https://registry.npmjs.org
