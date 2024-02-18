@@ -18,6 +18,12 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     $ ssh-keygen -t rsa -C "live.tang@gmail.com"
     $ cat ~/.ssh/id_rsa.pub
 
+## New New Usage
+
+    # git clone指定tag或者分支
+    
+    git clone -b v1.0 git@github.com:xxx/sss.git
+
 ## New Usage
 
     https://devconnected.com/how-to-checkout-git-tags/
