@@ -148,3 +148,12 @@ baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
 gpgcheck=0
 enabled=1
 ```
+
+## 排错
+
+* 怎么查看nginx错误日志的路径
+
+```
+ps x | grep nginx
+lsof -p 29229
+```
