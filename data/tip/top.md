@@ -13,3 +13,12 @@
 
     按CPU占比列排序
     top -o %CPU
+
+    按内存占比排序
+    top -o %MEM
+
+    输出到文件
+    top -b -n 1 > top.txt
+
+    指定进程线程情况输出到文件
+    top -b -H -n 1 -p xxx-pid  |> top_xxx-pid.txt
