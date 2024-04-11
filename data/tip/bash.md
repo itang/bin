@@ -103,8 +103,9 @@ fi
     -x FILE
             FILE exists and is executable
     -z STRING
-            the length of STRING is zero -d FILE
-            FILE exists and is a directory
+            the length of STRING is zero
+    -n STRING 
+            the length of STRING is not zero
 
 if grep -q "poet" $file_name; then
 ..
@@ -182,6 +183,28 @@ args_length() {
 args_length "$*" # 1
 args_length  $*  # 3
 args_length "$@" # 3
+```
+
+## Array
+
+```
+array=(one two three four five six)
+# Print the first element:
+echo "${array[0]}" # => "one"
+# Print all elements:
+echo "${array[@]}" # => "one two three four five six"
+# Print the number of elements:
+echo "${#array[@]}" # => "6"
+# Print the number of characters in third element
+echo "${#array[2]}" # => "5"
+# Print 2 elements starting from fourth:
+echo "${array[@]:3:2}" # => "four five"
+# Print all elements each of them on new line.
+for item in "${array[@]}"; do
+    echo "$item"
+done
+
+for ((i=0; i < "${#arr[@]}"; i++)); do echo "$i ${arr[i]}"; done
 ```
 
 ## Function commands
