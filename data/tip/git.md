@@ -21,7 +21,7 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 ## New New Usage
 
     # git clone指定tag或者分支
-    
+
     git clone -b v1.0 git@github.com:xxx/sss.git
 
 ## New Usage
@@ -71,6 +71,7 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     查看分支的合并情况
     $ git log --graph --pretty=oneline --abbrev-commit
+    $ git log --graph --pretty=oneline --abbrev-commit --name-status
 
     显示最后一次提交信息
     $ git log -1
@@ -165,7 +166,7 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
     $ git tag -d v0.9
     $ git push origin :refs/tags/v0.9
 
-    list the tags on remote repository 
+    list the tags on remote repository
     $ git ls-remote --tags origin
 
     查看所有标签(list tags local)
