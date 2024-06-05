@@ -24,6 +24,11 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     git clone -b v1.0 git@github.com:xxx/sss.git
 
+
+    在Git中，如果你想要克隆一个仓库并包含所有分支，你可以使用以下命令：
+
+    git clone --mirror [repository-url]
+
 ## New Usage
 
     https://devconnected.com/how-to-checkout-git-tags/
