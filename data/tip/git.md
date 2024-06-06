@@ -29,6 +29,10 @@ https://mp.weixin.qq.com/s/FzFwIDxWqGqcfTXJ0CbPFg
 
     git clone --mirror [repository-url]
 
+
+    使用 git reflog 查找分支的创建:
+    git reflog branch_name
+
 ## New Usage
 
     https://devconnected.com/how-to-checkout-git-tags/
