@@ -5,6 +5,9 @@
 
     rustup show
 
+    rustup set default-host x86_64-pc-windows-msvc
+    rustup set default-host x86_64-pc-windows-gnu
+
     rustup toolchain install stable-msvc
     rustup toolchain install nightly-msvc
     rustup toolchain install nightly
