@@ -38,3 +38,8 @@
     $ mix ecto.create
     $ mix ecto.migrate
     $ mix ecto.setup
+
+## Mix.install
+
+    Mix.install([:jason])
+    IO.puts(Jason.encode!(%{hello: :world}))
