@@ -19,7 +19,7 @@
 
     trace
 
-    > trace demo.MathGame run -n 1 --skipJDKMethod false '#cost > 10' 
+    > trace demo.MathGame run -v -n 1 --skipJDKMethod false '#cost > 10' 
 
     > trace -E com.test.ClassA|org.test.ClassB method1|method2|method3 
 
