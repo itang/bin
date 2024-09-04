@@ -47,6 +47,22 @@ https://dzone.com/articles/try-to-avoid-xxusegclogfilerotation
 java -Xms1024m -Xmx1024m -Dfile.encoding=UTF-8 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=data/ -XX:ErrorFile=logs/hs_err_pid%p.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -Xloggc:logs/gc-%t.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=64m -jar xxx.jar
 ```
 
+## Java 8 参数
+
+```
+  java -Dfile.encoding=UTF-8 \
+       -Djava.io.tmpdir=tmp \
+       -Djava.net.preferIPv4Stack=true \
+       -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=9010 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false \
+       -Xms1024m -Xmx1024m -Xss512k -XX:NewRatio=1 \
+       -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=512m \
+       -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs \
+       -XX:ErrorFile=logs/hs_err_pid%p.log \
+       -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -Xloggc:logs/gc-%t.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=64m \
+       -cp "target/universal/stage/lib/*" \
+       demo.Main
+```
+
 ### 手工触发GC
 
 方式1: `jcmd PID GC.run`
