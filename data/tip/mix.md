@@ -33,6 +33,8 @@
     $ PORT=4000 MIX_ENV=prod iex -S mix phx.server
     $ PORT=4000 MIX_ENV=prod elixir --detached -S mix do compile, phx.server
 
+    $ mix phx.new my_app --no-assets --no-dashboard  --no-ecto --no-esbuild --no-gettext --no-html --no-live --no-mailer --no-tailwind
+
 ## mix ecto
 
     $ mix ecto.create
