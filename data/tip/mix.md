@@ -45,3 +45,12 @@
 
     Mix.install([:jason])
     IO.puts(Jason.encode!(%{hello: :world}))
+
+## archive.install
+
+```
+mix archive.install hex phx_new
+
+mix archive.install hex igniter_new
+
+```
