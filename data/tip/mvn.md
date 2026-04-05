@@ -27,5 +27,11 @@
     $ mvn package -P profileTest1
     $ mvn help:active-profiles
 
+    覆盖特定profile的属性
+    mvn clean install -Pdev -Dnacos.server=192.168.1.100:8848
+    mvn clean install -Dprofiles.active=dev -Dnacos.server=192.168.1.100:8848
+    mvn clean package -Pdev -Dnacos.server=192.168.1.100:8848 -Danother.property=value
+
+
     show-project-version
     $mvn help:evaluate -Dexpression=project.version -q -DforceStdout
