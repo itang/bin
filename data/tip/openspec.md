@@ -9,6 +9,7 @@
 |确认设计|人工审阅|确认过的规范文件|
 |校验|openspec validate <change> --strict; openspec validate --strict | 校验spec文件格式 | 
 |逐步实现|/opsx:apply|通过测试的代码|
+|审| /opsx:verify add-async-validation| 拿 design.md 审代码 |
 |完成归档|/opsx:archive|已合并的规范|
 
 
